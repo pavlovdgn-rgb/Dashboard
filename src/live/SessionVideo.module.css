@@ -1,0 +1,12 @@
+.player { display:grid; gap:var(--size-base); min-inline-size:0; }
+.video { display:block; inline-size:100%; max-block-size:60vh; aspect-ratio:16/9; background:var(--text-primary); border-radius:var(--radius-small); object-fit:contain; }
+.timeline { display:grid; gap:var(--size-x-small); }
+.timeline input { inline-size:100%; accent-color:var(--accent-strong); }
+.markers { position:relative; block-size:var(--size-base); margin-inline:var(--size-small); }
+.markers button { position:absolute; inline-size:var(--size-small); block-size:var(--size-medium); transform:translateX(-50%); background:var(--accent-strong); border:0; border-radius:var(--radius-small); cursor:pointer; }
+.markers button:hover,.markers button:focus-visible { outline:var(--size-xx-small) solid var(--border-focus); outline-offset:var(--size-xx-small); }
+.controls { display:flex; flex-wrap:wrap; align-items:center; gap:var(--size-small); }
+.events { display:grid; max-block-size:calc(var(--size-base)*20); overflow:auto; margin-block-start:var(--size-small); }
+.events button { display:flex; gap:var(--size-base); text-align:start; color:var(--text-primary); background:var(--background-surface); border:0; padding:var(--size-small); cursor:pointer; }
+.events button:hover { background:var(--accent-soft); }
+.events time { font-variant-numeric:tabular-nums; }

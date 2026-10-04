@@ -1,0 +1,202 @@
+﻿{
+    "date":  "2026-09-30",
+    "project":  "UX-Lab Dashboard",
+    "figmaFileKey":  "1LeVoicxDT7Sl8TpMPs4hr",
+    "sourceOfTruth":  {
+                          "implementation":  "C:/Users/InfDesign/Documents/Codex_sreda/src",
+                          "history":  "directives/directive_wire.md",
+                          "app":  "http://127.0.0.1:5173/",
+                          "target":  "http://127.0.0.1:5175/leads-table?ux_study=leed-local"
+                      },
+    "verification":  {
+                         "appHttp":  200,
+                         "targetHttp":  200,
+                         "api":  "GET /api/project; GET /api/project/reports",
+                         "liveState":  {
+                                           "studies":  2,
+                                           "defaultMode":  "free",
+                                           "defaultRecordingMode":  "screenshots",
+                                           "defaultStudySessions":  16,
+                                           "reports":  2
+                                       },
+                         "figma":  "57 editable screens/states, 57 three-part descriptions, 4 mobile states; no container overlaps; representative restored states visually checked.",
+                         "visualRuntime":  "Fresh screenshots captured 2026-09-30 with installed Playwright/headless Chromium; .tmp/final-screen-sync",
+                         "mutationsToUserStudyData":  false,
+                         "limitations":  [
+                                             "Additional error/transient states are illustrative source-based examples; live study data unchanged.",
+                                             "Participant backgrounds are simplified loading-state compositions."
+                                         ]
+                     },
+    "changes":  [
+                    {
+                        "screen":  "Общая навигация",
+                        "current":  "Lead Generation, выпадающий выбор исследования, отчёты на уровне проекта; раздел Сессии; автоматическое обновление каждые 2 секунды; Открыть Lead Generation только в настройке/запуске.",
+                        "figma":  "Старый интернет-магазин, статичное название исследования, Участники и Отчёт PDF внутри исследования; Обновить результаты.",
+                        "sources":  [
+                                        "src/live/LiveWorkspace.tsx:19",
+                                        "src/live/LiveWorkspace.tsx:31",
+                                        "src/components/_shared/ProductComponent.tsx:61"
+                                    ],
+                        "nodes":  [
+                                      "175:614",
+                                      "205:5418",
+                                      "210:11942"
+                                  ]
+                    },
+                    {
+                        "screen":  "Обзор",
+                        "current":  "Четыре карточки. Свободное изучение: сессии, экраны, клики, сессии с сигналами. По сценарию: сессии, задания, выполнили все задания, сессии с сигналами. Результаты заданий и активность по экранам.",
+                        "figma":  "Три карточки сценариев/участников/неполных данных и старая таблица сценариев.",
+                        "sources":  [
+                                        "src/live/OverviewMetrics.tsx:8",
+                                        "src/live/LiveViews.tsx:50",
+                                        "src/live/TaskOutcome.tsx:25"
+                                    ],
+                        "nodes":  [
+                                      "175:614"
+                                  ]
+                    },
+                    {
+                        "screen":  "Исследования",
+                        "current":  "Исследование / Сценарий / Сессий / Сбор; создание отдельного исследования и переход в настройки.",
+                        "figma":  "Статус / Сценариев / Участников / Действия, демонстрационные карточки и фильтры.",
+                        "sources":  [
+                                        "src/live/ProjectList.tsx"
+                                    ],
+                        "nodes":  [
+                                      "205:6055"
+                                  ]
+                    },
+                    {
+                        "screen":  "Настройка",
+                        "current":  "Подключённый интерфейс, название исследования, режим, упорядоченные задания, отдельный критерий каждого задания, формат записи и настройки собираемых данных.",
+                        "figma":  "Старый редактор сценариев, стартовая страница и демонстрационный код подключения.",
+                        "sources":  [
+                                        "src/live/LiveViews.tsx:78",
+                                        "src/live/StudyScenario.tsx:17",
+                                        "src/live/SuccessCriteriaEditor.tsx"
+                                    ],
+                        "nodes":  [
+                                      "205:5418"
+                                  ]
+                    },
+                    {
+                        "screen":  "Критерии",
+                        "current":  "Ручная, автоматическая проверка или без оценки; посещение экрана, нажатие элемента либо подтверждённое именованное событие; сохранённые условия попытки.",
+                        "figma":  "Предложения 415:468/469/470 отражают часть реализованного решения; это уже не полностью неприменённые варианты.",
+                        "sources":  [
+                                        "src/live/SuccessCriteriaEditor.tsx",
+                                        "directives/directive_wire.md:209"
+                                    ],
+                        "nodes":  [
+                                      "415:468",
+                                      "415:469",
+                                      "415:470"
+                                  ]
+                    },
+                    {
+                        "screen":  "Сессии",
+                        "current":  "Поиск, 8 строк на странице; Сессия / Последнее действие / Экранов / Кликов / Запись / Задания; результаты задач и ожидание ручной оценки.",
+                        "figma":  "Участник / Попытка / Исход / Время / Сигналы / Данные / Действие.",
+                        "sources":  [
+                                        "src/live/LiveViews.tsx:59",
+                                        "src/live/TaskOutcome.tsx:14"
+                                    ],
+                        "nodes":  [
+                                      "210:11942"
+                                  ]
+                    },
+                    {
+                        "screen":  "История сессии",
+                        "current":  "Результаты полученных заданий, ручная оценка, ссылка на карту сессии, видео или снимки действий, раскрываемые события, наблюдение.",
+                        "figma":  "Статичная видеозапись NOVA со старой временной шкалой и демонстрационными событиями.",
+                        "sources":  [
+                                        "src/live/LiveViews.tsx:66",
+                                        "src/live/ScreenshotReplay.tsx",
+                                        "src/live/SessionVideo.tsx"
+                                    ],
+                        "nodes":  [
+                                      "209:6256"
+                                  ]
+                    },
+                    {
+                        "screen":  "Воронка",
+                        "current":  "Вертикальный редактор Последовательность экранов; удаление шагов, минимум два; Прохождение шагов; Последнее действие у не дошедших.",
+                        "figma":  "Основной вертикальный вариант уже перенесён; блока последних действий нет; есть лишний текст MM в шкалах.",
+                        "sources":  [
+                                        "src/live/LiveViews.tsx:114",
+                                        "src/live/FunnelLastActions.tsx:8"
+                                    ],
+                        "nodes":  [
+                                      "210:7274",
+                                      "402:577"
+                                  ]
+                    },
+                    {
+                        "screen":  "Тепловая карта",
+                        "current":  "Открытые фильтры, сессия/экран/размер окна; все/первые клики; сохранённый фон; слой; PNG/ZIP; элементы и сессии выборки.",
+                        "figma":  "Вариант E уже принят, но навигация и часть текстов/состояний отстают.",
+                        "sources":  [
+                                        "src/heatmap/LocalHeatmap.tsx"
+                                    ],
+                        "nodes":  [
+                                      "205:6345",
+                                      "402:358"
+                                  ]
+                    },
+                    {
+                        "screen":  "Отчёты",
+                        "current":  "Каталог всех исследований проекта; создание с названием, исследованием, размером экрана и шестью разделами; сохранённый снимок и настоящий PDF.",
+                        "figma":  "Старый экран состава PDF с демонстрационными выводами команды.",
+                        "sources":  [
+                                        "src/live/ProjectReports.tsx:16",
+                                        "src/live/ProjectReports.tsx:34",
+                                        "execution/project_reports.py"
+                                    ],
+                        "nodes":  [
+                                      "210:15773"
+                                  ]
+                    },
+                    {
+                        "screen":  "Проверка и запуск",
+                        "current":  "Проверка подключения, включение сбора, ссылка участника, поступление данных, инструкция; открытие интерфейса в шапке.",
+                        "figma":  "Старая модель контрольного прохождения и демонстрационного запуска.",
+                        "sources":  [
+                                        "src/live/LiveViews.tsx:103",
+                                        "src/live/CollectionControl.tsx",
+                                        "src/live/ParticipantLink.tsx"
+                                    ],
+                        "nodes":  [
+                                      "209:6806"
+                                  ]
+                    }
+                ],
+    "historyCorrections":  [
+                               "Фраза «Настройки состава отчёта пока не реализованы» в directive_wire.md:227 устарела: ProjectReports.tsx реализует выбор шести разделов.",
+                               "Фраза «Шаги воронки» в поздней заметке/старом тесте не совпадает с текущим заголовком «Последовательность экранов» в LiveViews.tsx.",
+                               "Универсальные критерии реально реализованы; ранняя запись о правке только макетов не определяет текущий статус.",
+                               "«Путь задания» 432:10357 и 432:10569 остаётся предложением, не реализованным маршрутом.",
+                               "Старые скриншоты и тесты нельзя считать свежей визуальной приёмкой."
+                           ],
+    "figmaState":  {
+                       "finalPageId":  "191:847",
+                       "finalPageStatus":  "57 screens/states in section 471:5478; 57 purpose/state/actions description panels; coverage guide 492:11994",
+                       "archivePageId":  "444:12226",
+                       "oldScreens":  58,
+                       "proposals":  2,
+                       "unappliedSandboxVariants":  5,
+                       "acceptedSandboxVariantsRetained":  false,
+                       "archivedSandboxPages":  [
+                                                    "382:2",
+                                                    "67:2"
+                                                ],
+                       "contentPreservedInArchive":  true,
+                       "archiveCoverage":  {
+                                               "reviewed":  58,
+                                               "mapped":  50,
+                                               "archiveOnly":  8,
+                                               "manifest":  "ds/screens/live-prototype-manifest.json"
+                                           }
+                   },
+    "next":  "Sync future implementation changes into current section; archived screens are historical."
+}

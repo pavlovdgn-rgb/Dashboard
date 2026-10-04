@@ -1,0 +1,61 @@
+# Очередь final_screens — завершённый пакет
+
+Все 55 исходников/состояний имеют финальный макет и пройденную проверку.
+
+| Экран / состояние | Макет | Размер | Спецификация |
+| --- | --- | --- | --- |
+| ResultsOverview | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=175-614) | 1920 × 1080 | [results-overview](results-overview.md) |
+| ProjectsDefault | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=203-7278) | 1920 × 1080 | [projects-default](projects-default.md) |
+| StudySetup | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=205-5418) | 1920 × 1080 | [study-setup](study-setup.md) |
+| Studies | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=205-6055) | 1920 × 1080 | [studies](studies.md) |
+| Heatmaps | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=205-6345) | 1920 × 1080 | [heatmaps](heatmaps.md) |
+| Projects | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=207-6449) | 1920 × 1080 | [projects](projects.md) |
+| Replay | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=209-6256) | 1920 × 1080 | [replay](replay.md) |
+| Launch | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=209-6806) | 1920 × 1080 | [launch](launch.md) |
+| ProjectsEmpty | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=209-7255) | 1920 × 1080 | [projects-empty](projects-empty.md) |
+| StudiesEmpty | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=209-7311) | 1920 × 1080 | [studies-empty](studies-empty.md) |
+| Funnel | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-7274) | 1920 × 1080 | [funnel](funnel.md) |
+| SuccessCriteria | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-7862) | 1920 × 1080 | [success-criteria](success-criteria.md) |
+| Login | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-8295) | 1920 × 1080 | [login](login.md) |
+| StudySetupBlank | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-8311) | 1920 × 1080 | [study-setup-blank](study-setup-blank.md) |
+| StudySetupFree | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-8643) | 1920 × 1080 | [study-setup-free](study-setup-free.md) |
+| TaskEditor | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-8977) | 1920 × 1080 | [task-editor](task-editor.md) |
+| TaskPicker | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-9300) | 1920 × 1080 | [task-picker](task-picker.md) |
+| CriteriaURL | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-9660) | 1920 × 1080 | [criteria-u-r-l](criteria-u-r-l.md) |
+| CriteriaButton | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-9995) | 1920 × 1080 | [criteria-button](criteria-button.md) |
+| ConnectionError | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-10330) | 1920 × 1080 | [connection-error](connection-error.md) |
+| ControlResult | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-10736) | 1920 × 1080 | [control-result](control-result.md) |
+| LaunchActive | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11108) | 1920 × 1080 | [launch-active](launch-active.md) |
+| LaunchError | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11450) | 1920 × 1080 | [launch-error](launch-error.md) |
+| ParticipantIntro | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11783) | 1920 × 1080 | [participant-intro](participant-intro.md) |
+| TaskBriefing | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11803) | 1920 × 1080 | [task-briefing](task-briefing.md) |
+| ParticipantSession | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11819) | 1920 × 1080 | [participant-session](participant-session.md) |
+| ParticipantFinish | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11879) | 1920 × 1080 | [participant-finish](participant-finish.md) |
+| UnavailableLink | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11890) | 1920 × 1080 | [unavailable-link](unavailable-link.md) |
+| PrototypeUnavailable | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11905) | 1920 × 1080 | [prototype-unavailable](prototype-unavailable.md) |
+| ParticipantTransferError | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11927) | 1920 × 1080 | [participant-transfer-error](participant-transfer-error.md) |
+| Participants | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11942) | 1920 × 1080 | [participants](participants.md) |
+| ParticipantDetails | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-12490) | 1920 × 1080 | [participant-details](participant-details.md) |
+| Signals | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-12947) | 1920 × 1080 | [signals](signals.md) |
+| ResultsEmpty | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-13536) | 1920 × 1080 | [results-empty](results-empty.md) |
+| ResultsFree | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-13812) | 1920 × 1080 | [results-free](results-free.md) |
+| HeatmapsFirstClick | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-14240) | 1920 × 1080 | [heatmaps-first-click](heatmaps-first-click.md) |
+| HeatmapsDynamicState | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-14633) | 1920 × 1080 | [heatmaps-dynamic-state](heatmaps-dynamic-state.md) |
+| ReplayIncomplete | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-15045) | 1920 × 1080 | [replay-incomplete](replay-incomplete.md) |
+| ReplayUnavailable | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-15490) | 1920 × 1080 | [replay-unavailable](replay-unavailable.md) |
+| Report | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-15773) | 1920 × 1080 | [report](report.md) |
+| ReportGenerating | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-16193) | 1920 × 1080 | [report-generating](report-generating.md) |
+| ReportReady | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-16468) | 1920 × 1080 | [report-ready](report-ready.md) |
+| ReportError | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-16767) | 1920 × 1080 | [report-error](report-error.md) |
+| ParticipantIntroMobile | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-17054) | 390 × 844 | [participant-intro-mobile](participant-intro-mobile.md) |
+| TaskBriefingMobile | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-17074) | 390 × 844 | [task-briefing-mobile](task-briefing-mobile.md) |
+| ParticipantSessionMobile | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-17090) | 390 × 844 | [participant-session-mobile](participant-session-mobile.md) |
+| ParticipantFinishMobile | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-17130) | 390 × 844 | [participant-finish-mobile](participant-finish-mobile.md) |
+| SignalsByPage | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-17141) | 1920 × 1080 | [signals-by-page](signals-by-page.md) |
+| SignalsPageDetails | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-17611) | 1920 × 1080 | [signals-page-details](signals-page-details.md) |
+| Findings | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-18056) | 1920 × 1080 | [findings](findings.md) |
+| FindingsEmpty | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-18458) | 1920 × 1080 | [findings-empty](findings-empty.md) |
+| FindingDetails | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-18782) | 1920 × 1080 | [finding-details](finding-details.md) |
+| FindingEditor | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-19268) | 1920 × 1080 | [finding-editor](finding-editor.md) |
+| FindingSaved | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-19805) | 1920 × 1080 | [finding-saved](finding-saved.md) |
+| ParticipantsFromHeatmap | [Figma](https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-20237) | 1920 × 1080 | [participants-from-heatmap](participants-from-heatmap.md) |

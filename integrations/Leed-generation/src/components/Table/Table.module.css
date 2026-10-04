@@ -1,0 +1,53 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: var(--font-sans);
+}
+
+.headerRow {
+  display: flex;
+  border-bottom: var(--border-width-thin) solid var(--color-border-default);
+}
+
+/*
+ * Скругление углов — на самих крайних ячейках, не через overflow:hidden на .table: тот ломает
+ * position:sticky у headerRow.sticky (overflow!=visible на предке становится ближайшим scroll-container
+ * для sticky, и хедер перестаёт следовать за реальным скроллом снаружи). Проверено в Storybook.
+ */
+.headerRow > :first-child {
+  border-top-left-radius: var(--radius-focus);
+}
+
+.headerRow > :last-child {
+  border-top-right-radius: var(--radius-focus);
+}
+
+.row:last-child > :first-child {
+  border-bottom-left-radius: var(--radius-focus);
+}
+
+.row:last-child > :last-child {
+  border-bottom-right-radius: var(--radius-focus);
+}
+
+.headerRow.sticky {
+  position: sticky;
+  top: 0;
+  background: var(--color-bg-surface-primary);
+  z-index: 1;
+}
+
+.row {
+  display: flex;
+  border-bottom: var(--border-width-thin) solid var(--color-border-default);
+}
+
+.row:hover > * {
+  background: var(--color-bg-hover-subtle);
+}
+
+.compact .headerRow,
+.compact .row {
+  font-size: 12px;
+}

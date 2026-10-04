@@ -1,0 +1,21 @@
+flowchart TD
+    login["Login"]
+    projects["Projects"]
+    studies["Studies"]
+    studySetup["StudySetup"]
+    connection["Connection"]
+    tasks["Tasks"]
+    successCriteria["SuccessCriteria"]
+    launch["Launch"]
+    login -->|"Вход выполнен"| projects
+    projects -->|"Создать или открыть проект"| studies
+    studies -->|"Создать исследование"| studySetup
+    studySetup -->|"Название и режим сохранены"| connection
+    connection -->|"Ошибка или нет событий"| connection
+    connection -->|"Подключено; режим заданий"| tasks
+    connection -->|"Подключено; свободное изучение"| launch
+    tasks -->|"Текст введён или выбран"| successCriteria
+    successCriteria -->|"Цель сохранена"| launch
+    launch -->|"Проблема подключения"| connection
+    launch -->|"Ошибка цели задания"| successCriteria
+    launch -->|"Проверено; запустить и получить ссылку"| launch

@@ -1,0 +1,55 @@
+import {chromium,expect} from '@playwright/test';
+import assert from 'node:assert/strict';
+const api=process.env.LIVE_TEST_API;if(!api)throw Error('Isolated API is required');
+const browser=await chromium.launch({channel:'chrome',headless:true});
+try {
+  const context=await browser.newContext({viewport:{width:1440,height:1000}});
+  const exports=[];
+  await context.route('http://127.0.0.1:5174/**',async route=>{
+    if(route.request().url().includes('/api/heatmap/export?')){exports.push(new URL(route.request().url()));return route.fulfill({status:500,json:{error:'Verification: export parameters only'}});}
+    await route.fulfill({response:await route.fetch({url:route.request().url().replace('http://127.0.0.1:5174',api)})});
+  });
+  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.goto('http://127.0.0.1:5173/#/heatmap?participant=legacy-unrelated');
+  const selector=page.getByRole('button',{name:'Сессия участника',exact:true});
+  await expect(selector).toContainText('Все участники');
+  await selector.click();await page.getByRole('menuitemradio',{name:/person-a/}).click();
+  await expect.poll(()=>page.url()).toContain('session=person-a');
+  await expect(page.getByTestId('real-click-count')).toContainText('1 сессий');
+  await page.getByRole('button',{name:'Экран',exact:true}).click();
+  await expect(page.getByRole('menuitemradio')).toHaveCount(1);await page.keyboard.press('Escape');
+  await page.reload();await expect(selector).toContainText('person-a');
+  const map=page.getByTestId('captured-heatmap');
+  await expect(map).toBeVisible();
+  assert.equal(await map.getAttribute('role'),null);
+  await map.click({position:{x:100,y:100}});
+  await page.waitForTimeout(250);
+  assert.equal(exports.length,0,'Clicking the map must not request a download');
+  const download=page.getByRole('group',{name:'Скачивание тепловой карты'}),parts=download.getByRole('button');
+  const colors=()=>parts.evaluateAll(nodes=>nodes.map(node=>getComputedStyle(node).backgroundColor));
+  await parts.first().hover();await page.waitForTimeout(300);
+  const firstHover=await colors();assert.equal(firstHover[0],firstHover[1]);
+  await parts.last().hover();await page.waitForTimeout(300);
+  assert.deepEqual(await colors(),firstHover,'Both areas share the same hover');
+  await page.getByRole('button',{name:'Скачать',exact:true}).click();
+  await expect(page.getByText('Не удалось скачать',{exact:true})).toBeVisible();
+  await page.getByRole('button',{name:'Варианты скачивания',exact:true}).click();
+  await page.getByRole('menuitem',{name:'Текущий экран PNG',exact:true}).click();
+  await expect.poll(()=>exports.length).toBe(2);
+  await page.getByRole('button',{name:'Варианты скачивания',exact:true}).click();
+  await page.getByRole('menuitem',{name:'Все экраны ZIP',exact:true}).click();
+  await expect.poll(()=>exports.length).toBe(3);
+  assert.deepEqual(exports.map(url=>url.searchParams.get('format')),['png','png','zip']);
+  assert.ok(exports.every(url=>url.searchParams.get('session')==='person-a'));
+  await selector.click();await page.getByRole('menuitemradio',{name:/empty/}).click();
+  await expect(page.getByText('В этой сессии нет собранных кликов. Выберите другую сессию или всех участников.',{exact:true})).toBeVisible();
+  await expect(page.getByTestId('captured-heatmap')).toHaveCount(0);
+  await selector.click();await page.getByRole('menuitemradio',{name:'Все участники (все сессии)',exact:true}).click();
+  await page.getByRole('button',{name:'Экран',exact:true}).click();
+  await expect(page.getByRole('menuitemradio')).toHaveCount(2);await page.keyboard.press('Escape');
+  await page.goto('http://127.0.0.1:5173/#/participant?participant=person-b');
+  await page.getByRole('link',{name:'Тепловая карта этой сессии',exact:true}).click();
+  await expect(selector).toContainText('person-b');
+  assert.deepEqual(errors,[]);
+  console.log('PASS all/single session selection, independent participant parameter, reload, empty session, export scope and link from replay');
+}finally {await browser.close();}

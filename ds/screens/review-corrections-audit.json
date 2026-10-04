@@ -1,0 +1,547 @@
+{
+  "date": "2026-09-23",
+  "replay": {
+    "form": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"mutatedNodeIds\":[\"210:15323\"],\"height\":76,\"sizing\":\"HUG\"}"
+        }
+      ],
+      "isError": false
+    },
+    "play": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"mutatedNodeIds\":[\"96:116\",\"96:183\",\"118:120\",\"118:212\"],\"token\":\"accent/strong\",\"hex\":\"#626E32\",\"foreground\":\"text/inverse\"}"
+        }
+      ],
+      "isError": false
+    },
+    "audit": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"fieldCount\":40,\"issues\":[],\"players\":[{\"id\":\"I209:6710;96:116\",\"fill\":\"VariableID:67:118\"},{\"id\":\"I210:15379;96:183\",\"fill\":\"VariableID:67:118\"},{\"id\":\"I210:19591;96:116\",\"fill\":\"VariableID:67:118\"},{\"id\":\"I210:20128;96:116\",\"fill\":\"VariableID:67:118\"}],\"gap\":16,\"passed\":true}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "studies": {
+    "filters": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"createdNodeIds\":[\"258:10269\"],\"mutatedNodeIds\":[\"205:6211\",\"205:6220\",\"258:10269\",\"I258:10269;203:4241\",\"I258:10269;203:4242\",\"I258:10269;203:4242;13603:1587\",\"I258:10269;203:4242;13610:59718\",\"I258:10269;203:4242;13610:59718;13610:45029\",\"I258:10269;203:4242;13610:59718;13610:51002\",\"I258:10269;203:4242;13610:59718;13610:51002;31572:393329\",\"I258:10269;203:4242;13610:59718;13610:51002;31572:393329;13581:27275\",\"I258:10269;203:4242;13610:55355\",\"I258:10269;203:4242;13610:55355;13610:44626\",\"I258:10269;203:4242;13610:55355;13610:44628\"],\"removedNodeIds\":[\"205:6212\"],\"statusId\":\"258:10269\"}"
+        }
+      ],
+      "isError": false
+    },
+    "metrics": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"mutatedNodeIds\":[\"205:6160\",\"I205:6160;171:1765\",\"I205:6160;202:1962\",\"I205:6160;171:1766\",\"I205:6160;171:1767\",\"I205:6160;202:1965\",\"205:6177\",\"I205:6177;171:1765\",\"I205:6177;202:1962\",\"I205:6177;171:1766\",\"I205:6177;202:1963\",\"I205:6177;202:1964\",\"I205:6177;171:1767\",\"I205:6177;202:1965\",\"205:6194\",\"I205:6194;171:1765\",\"I205:6194;202:1962\",\"I205:6194;171:1766\",\"I205:6194;202:1963\",\"I205:6194;202:1964\",\"I205:6194;171:1767\",\"I205:6194;202:1965\"]}"
+        }
+      ],
+      "isError": false
+    },
+    "audit": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"positions\":[{\"id\":\"205:6220\",\"name\":\"Field/Найти исследование\",\"x\":0,\"w\":1272,\"top\":36,\"height\":40,\"bottom\":76},{\"id\":\"258:10269\",\"name\":\"Field/Статус исследования\",\"x\":1296,\"w\":240,\"top\":36,\"height\":40,\"bottom\":76}],\"metrics\":[{\"id\":\"205:6160\",\"height\":208,\"text\":[\"Всего исследований\",\"3\",\"1 идёт сбор · 1 черновик · 1 завершено\",\"2 с заданиями · 1 в свободном режиме\"],\"overflow\":[]},{\"id\":\"205:6177\",\"height\":208,\"text\":[\"Идёт сбор\",\"1 из 3\",\"33%\",\"Доля исследований с открытым сбором\",\"20 участников в активном исследовании\"],\"overflow\":[]},{\"id\":\"205:6194\",\"height\":208,\"text\":[\"Черновики\",\"1 из 3\",\"33%\",\"Доля исследований, ожидающих запуска\",\"«Навигация каталога» · 2 сценария\"],\"overflow\":[]}],\"aligned\":true}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "taskChoiceCard": {
+    "board": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"createdNodeIds\":[\"260:2932\",\"260:2933\",\"260:2934\",\"260:2935\"],\"boardId\":\"260:2932\"}"
+        }
+      ],
+      "isError": false
+    },
+    "registry": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"createdNodeIds\":[\"260:3028\"],\"mutatedNodeIds\":[\"260:3028\",\"260:2936\",\"260:2937\",\"I260:2937;16034:5487\",\"I260:2937;16034:5487;16033:196064\",\"I260:2937;16034:5487;16033:196065\",\"I260:2937;16034:5487;16033:196066\",\"260:2942\",\"260:2943\",\"260:2944\",\"260:2945\",\"260:2946\",\"260:2947\",\"260:2948\",\"I260:2948;16034:5550\",\"I260:2948;16034:5550;16033:196074\",\"I260:2948;16034:5550;16033:196075\",\"I260:2948;16034:5550;16033:196076\",\"I260:2948;16034:5550;16033:196077\",\"260:2954\",\"260:2955\",\"260:2956\",\"260:2957\",\"260:2958\",\"260:2959\",\"260:2960\",\"I260:2960;16034:5487\",\"I260:2960;16034:5487;16033:196064\",\"I260:2960;16034:5487;16033:196065\",\"I260:2960;16034:5487;16033:196066\",\"260:2965\",\"260:2966\",\"260:2967\",\"260:2968\",\"260:2969\",\"260:2970\",\"260:2971\",\"I260:2971;16034:5550\",\"I260:2971;16034:5550;16033:196074\",\"I260:2971;16034:5550;16033:196075\",\"I260:2971;16034:5550;16033:196076\",\"I260:2971;16034:5550;16033:196077\",\"260:2977\",\"260:2978\",\"260:2979\",\"260:2980\",\"260:2981\",\"260:2982\",\"260:2983\",\"I260:2983;16034:5487\",\"I260:2983;16034:5487;16033:196064\",\"I260:2983;16034:5487;16033:196065\",\"I260:2983;16034:5487;16033:196066\",\"260:2988\",\"260:2989\",\"260:2990\",\"260:2991\",\"260:2992\",\"260:2993\",\"260:2994\",\"I260:2994;16034:5550\",\"I260:2994;16034:5550;16033:196074\",\"I260:2994;16034:5550;16033:196075\",\"I260:2994;16034:5550;16033:196076\",\"I260:2994;16034:5550;16033:196077\",\"260:3000\",\"260:3001\",\"260:3002\",\"260:3003\",\"260:3004\",\"260:3005\",\"260:3006\",\"I260:3006;16034:5487\",\"I260:3006;16034:5487;16033:196064\",\"I260:3006;16034:5487;16033:196065\",\"I260:3006;16034:5487;16033:196066\",\"260:3011\",\"260:3012\",\"260:3013\",\"260:3014\",\"260:3015\",\"260:3016\",\"260:3017\",\"I260:3017;16034:5550\",\"I260:3017;16034:5550;16033:196074\",\"I260:3017;16034:5550;16033:196075\",\"I260:3017;16034:5550;16033:196076\",\"I260:3017;16034:5550;16033:196077\",\"260:3023\",\"260:3024\",\"260:3025\",\"260:3026\",\"260:3027\"],\"setId\":\"260:3028\",\"variants\":[{\"id\":\"260:2936\",\"name\":\"Selected=False, State=Default\",\"width\":672,\"height\":104},{\"id\":\"260:2947\",\"name\":\"Selected=True, State=Default\",\"width\":672,\"height\":104},{\"id\":\"260:2959\",\"name\":\"Selected=False, State=Hover\",\"width\":672,\"height\":104},{\"id\":\"260:2970\",\"name\":\"Selected=True, State=Hover\",\"width\":672,\"height\":104},{\"id\":\"260:2982\",\"name\":\"Selected=False, State=Focus\",\"width\":672,\"height\":104},{\"id\":\"260:2993\",\"name\":\"Selected=True, State=Focus\",\"width\":672,\"height\":104},{\"id\":\"260:3005\",\"name\":\"Selected=False, State=Disabled\",\"width\":672,\"height\":104},{\"id\":\"260:3016\",\"name\":\"Selected=True, State=Disabled\",\"width\":672,\"height\":104}],\"properties\":{\"Title#260:0\":{\"type\":\"TEXT\",\"defaultValue\":\"Найти товар\"},\"Description#260:9\":{\"type\":\"TEXT\",\"defaultValue\":\"Найдите подходящий товар и откройте его карточку.\"},\"Selected\":{\"type\":\"VARIANT\",\"defaultValue\":\"False\",\"variantOptions\":[\"False\",\"True\"]},\"State\":{\"type\":\"VARIANT\",\"defaultValue\":\"Default\",\"variantOptions\":[\"Default\",\"Hover\",\"Focus\",\"Disabled\"]}}}"
+        }
+      ],
+      "isError": false
+    },
+    "application": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"createdNodeIds\":[\"261:10279\",\"261:10300\",\"261:10315\"],\"mutatedNodeIds\":[\"210:9625\"],\"removedNodeIds\":[\"210:9636\",\"210:9639\",\"210:9642\"],\"modalHeight\":544,\"modalY\":268}"
+        }
+      ],
+      "isError": false
+    },
+    "selectedHover": {
+      "id": "260:2970",
+      "strokeWeight": 3
+    }
+  },
+  "finalAudit": {
+    "pageId": "191:847",
+    "screenCount": 55,
+    "screens": [
+      {
+        "name": "ResultsOverview",
+        "id": "175:614",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 1376,
+        "issues": []
+      },
+      {
+        "name": "ProjectsDefault",
+        "id": "203:7278",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 162,
+        "issues": []
+      },
+      {
+        "name": "StudySetup",
+        "id": "205:5418",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 410,
+        "issues": []
+      },
+      {
+        "name": "Studies",
+        "id": "205:6055",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 273,
+        "issues": []
+      },
+      {
+        "name": "Heatmaps",
+        "id": "205:6345",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 384,
+        "issues": []
+      },
+      {
+        "name": "Projects",
+        "id": "207:6449",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 220,
+        "issues": []
+      },
+      {
+        "name": "Replay",
+        "id": "209:6256",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 428,
+        "issues": []
+      },
+      {
+        "name": "Launch",
+        "id": "209:6806",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 328,
+        "issues": []
+      },
+      {
+        "name": "ProjectsEmpty",
+        "id": "209:7255",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 55,
+        "issues": []
+      },
+      {
+        "name": "StudiesEmpty",
+        "id": "209:7311",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 81,
+        "issues": []
+      },
+      {
+        "name": "Funnel",
+        "id": "210:7274",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 467,
+        "issues": []
+      },
+      {
+        "name": "SuccessCriteria",
+        "id": "210:7862",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 428,
+        "issues": []
+      },
+      {
+        "name": "Login",
+        "id": "210:8295",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 15,
+        "issues": []
+      },
+      {
+        "name": "StudySetupBlank",
+        "id": "210:8311",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 331,
+        "issues": []
+      },
+      {
+        "name": "StudySetupFree",
+        "id": "210:8643",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 333,
+        "issues": []
+      },
+      {
+        "name": "TaskEditor",
+        "id": "210:8977",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 322,
+        "issues": []
+      },
+      {
+        "name": "TaskPicker",
+        "id": "210:9300",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 381,
+        "issues": []
+      },
+      {
+        "name": "CriteriaURL",
+        "id": "210:9660",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 334,
+        "issues": []
+      },
+      {
+        "name": "CriteriaButton",
+        "id": "210:9995",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 334,
+        "issues": []
+      },
+      {
+        "name": "ConnectionError",
+        "id": "210:10330",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 405,
+        "issues": []
+      },
+      {
+        "name": "ControlResult",
+        "id": "210:10736",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 371,
+        "issues": []
+      },
+      {
+        "name": "LaunchActive",
+        "id": "210:11108",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 341,
+        "issues": []
+      },
+      {
+        "name": "LaunchError",
+        "id": "210:11450",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 332,
+        "issues": []
+      },
+      {
+        "name": "ParticipantIntro",
+        "id": "210:11783",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 19,
+        "issues": []
+      },
+      {
+        "name": "TaskBriefing",
+        "id": "210:11803",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 15,
+        "issues": []
+      },
+      {
+        "name": "ParticipantSession",
+        "id": "210:11819",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 59,
+        "issues": []
+      },
+      {
+        "name": "ParticipantFinish",
+        "id": "210:11879",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 10,
+        "issues": []
+      },
+      {
+        "name": "UnavailableLink",
+        "id": "210:11890",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 14,
+        "issues": []
+      },
+      {
+        "name": "PrototypeUnavailable",
+        "id": "210:11905",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 21,
+        "issues": []
+      },
+      {
+        "name": "ParticipantTransferError",
+        "id": "210:11927",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 14,
+        "issues": []
+      },
+      {
+        "name": "Participants",
+        "id": "210:11942",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 506,
+        "issues": []
+      },
+      {
+        "name": "ParticipantDetails",
+        "id": "210:12490",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 455,
+        "issues": []
+      },
+      {
+        "name": "Signals",
+        "id": "210:12947",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 466,
+        "issues": []
+      },
+      {
+        "name": "ResultsEmpty",
+        "id": "210:13536",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 275,
+        "issues": []
+      },
+      {
+        "name": "ResultsFree",
+        "id": "210:13812",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 427,
+        "issues": []
+      },
+      {
+        "name": "HeatmapsFirstClick",
+        "id": "210:14240",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 392,
+        "issues": []
+      },
+      {
+        "name": "HeatmapsDynamicState",
+        "id": "210:14633",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 415,
+        "issues": []
+      },
+      {
+        "name": "ReplayIncomplete",
+        "id": "210:15045",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 443,
+        "issues": []
+      },
+      {
+        "name": "ReplayUnavailable",
+        "id": "210:15490",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 282,
+        "issues": []
+      },
+      {
+        "name": "Report",
+        "id": "210:15773",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 355,
+        "issues": []
+      },
+      {
+        "name": "ReportGenerating",
+        "id": "210:16193",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 274,
+        "issues": []
+      },
+      {
+        "name": "ReportReady",
+        "id": "210:16468",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 298,
+        "issues": []
+      },
+      {
+        "name": "ReportError",
+        "id": "210:16767",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 286,
+        "issues": []
+      },
+      {
+        "name": "ParticipantIntroMobile",
+        "id": "210:17054",
+        "width": 390,
+        "height": 844,
+        "nodeCount": 19,
+        "issues": []
+      },
+      {
+        "name": "TaskBriefingMobile",
+        "id": "210:17074",
+        "width": 390,
+        "height": 844,
+        "nodeCount": 15,
+        "issues": []
+      },
+      {
+        "name": "ParticipantSessionMobile",
+        "id": "210:17090",
+        "width": 390,
+        "height": 844,
+        "nodeCount": 39,
+        "issues": []
+      },
+      {
+        "name": "ParticipantFinishMobile",
+        "id": "210:17130",
+        "width": 390,
+        "height": 844,
+        "nodeCount": 10,
+        "issues": []
+      },
+      {
+        "name": "SignalsByPage",
+        "id": "210:17141",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 467,
+        "issues": []
+      },
+      {
+        "name": "SignalsPageDetails",
+        "id": "210:17611",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 442,
+        "issues": []
+      },
+      {
+        "name": "Findings",
+        "id": "210:18056",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 399,
+        "issues": []
+      },
+      {
+        "name": "FindingsEmpty",
+        "id": "210:18458",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 321,
+        "issues": []
+      },
+      {
+        "name": "FindingDetails",
+        "id": "210:18782",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 483,
+        "issues": []
+      },
+      {
+        "name": "FindingEditor",
+        "id": "210:19268",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 546,
+        "issues": []
+      },
+      {
+        "name": "FindingSaved",
+        "id": "210:19805",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 439,
+        "issues": []
+      },
+      {
+        "name": "ParticipantsFromHeatmap",
+        "id": "210:20237",
+        "width": 1920,
+        "height": 1080,
+        "nodeCount": 507,
+        "issues": []
+      }
+    ],
+    "passed": true
+  },
+  "visuallyReviewed": [
+    "210:15317",
+    "205:6055",
+    "260:3028",
+    "210:9625"
+  ]
+}

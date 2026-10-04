@@ -1,0 +1,465 @@
+{
+  "date": "2026-09-22",
+  "wireframes": 55,
+  "patternsBoards": 1,
+  "pageId": "20:2",
+  "clickablePrototype": false,
+  "frames": [
+    {
+      "name": "ResultsOverview",
+      "id": "22:3",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "20:3",
+      "navCount": 10
+    },
+    {
+      "name": "Heatmaps",
+      "id": "22:95",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "20:3",
+      "navCount": 10
+    },
+    {
+      "name": "Funnel",
+      "id": "24:3",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "20:3",
+      "navCount": 10
+    },
+    {
+      "name": "Replay",
+      "id": "24:93",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "20:3",
+      "navCount": 10
+    },
+    {
+      "name": "SuccessCriteria",
+      "id": "24:173",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "20:3",
+      "navCount": 10
+    },
+    {
+      "name": "Projects",
+      "id": "31:3",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "30:2",
+      "navCount": 10
+    },
+    {
+      "name": "Studies",
+      "id": "31:70",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "30:2",
+      "navCount": 10
+    },
+    {
+      "name": "StudySetup",
+      "id": "32:3",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "30:2",
+      "navCount": 10
+    },
+    {
+      "name": "Launch",
+      "id": "32:94",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "30:2",
+      "navCount": 10
+    },
+    {
+      "name": "Login",
+      "id": "46:4",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:2",
+      "navCount": 0
+    },
+    {
+      "name": "ProjectsDefault",
+      "id": "46:14",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:2",
+      "navCount": 10
+    },
+    {
+      "name": "ProjectsEmpty",
+      "id": "46:89",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:2",
+      "navCount": 10
+    },
+    {
+      "name": "StudiesEmpty",
+      "id": "46:137",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:2",
+      "navCount": 10
+    },
+    {
+      "name": "StudySetupBlank",
+      "id": "47:4",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:2",
+      "navCount": 10
+    },
+    {
+      "name": "StudySetupFree",
+      "id": "47:68",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:2",
+      "navCount": 10
+    },
+    {
+      "name": "TaskEditor",
+      "id": "47:134",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:2",
+      "navCount": 10
+    },
+    {
+      "name": "TaskPicker",
+      "id": "47:201",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:2",
+      "navCount": 10
+    },
+    {
+      "name": "CriteriaURL",
+      "id": "47:289",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:2",
+      "navCount": 10
+    },
+    {
+      "name": "CriteriaButton",
+      "id": "47:358",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:2",
+      "navCount": 10
+    },
+    {
+      "name": "ConnectionError",
+      "id": "47:427",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:2",
+      "navCount": 10
+    },
+    {
+      "name": "ControlResult",
+      "id": "47:530",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:2",
+      "navCount": 10
+    },
+    {
+      "name": "LaunchActive",
+      "id": "48:4",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:2",
+      "navCount": 10
+    },
+    {
+      "name": "LaunchError",
+      "id": "48:85",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:2",
+      "navCount": 10
+    },
+    {
+      "name": "ParticipantIntro",
+      "id": "48:164",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:3",
+      "navCount": 0
+    },
+    {
+      "name": "TaskBriefing",
+      "id": "48:180",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:3",
+      "navCount": 0
+    },
+    {
+      "name": "ParticipantSession",
+      "id": "48:192",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:3",
+      "navCount": 0
+    },
+    {
+      "name": "ParticipantFinish",
+      "id": "48:224",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:3",
+      "navCount": 0
+    },
+    {
+      "name": "UnavailableLink",
+      "id": "48:236",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:3",
+      "navCount": 0
+    },
+    {
+      "name": "PrototypeUnavailable",
+      "id": "48:247",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:3",
+      "navCount": 0
+    },
+    {
+      "name": "ParticipantTransferError",
+      "id": "49:4",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:3",
+      "navCount": 0
+    },
+    {
+      "name": "Participants",
+      "id": "49:79",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:4",
+      "navCount": 10
+    },
+    {
+      "name": "ParticipantDetails",
+      "id": "49:170",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:4",
+      "navCount": 10
+    },
+    {
+      "name": "Signals",
+      "id": "49:263",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:4",
+      "navCount": 10
+    },
+    {
+      "name": "ResultsEmpty",
+      "id": "50:4",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:4",
+      "navCount": 10
+    },
+    {
+      "name": "ResultsFree",
+      "id": "50:51",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:4",
+      "navCount": 10
+    },
+    {
+      "name": "HeatmapsFirstClick",
+      "id": "50:137",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:4",
+      "navCount": 10
+    },
+    {
+      "name": "HeatmapsDynamicState",
+      "id": "50:229",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:4",
+      "navCount": 10
+    },
+    {
+      "name": "ReplayIncomplete",
+      "id": "50:322",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:4",
+      "navCount": 10
+    },
+    {
+      "name": "ReplayUnavailable",
+      "id": "50:416",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:4",
+      "navCount": 10
+    },
+    {
+      "name": "Report",
+      "id": "50:465",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:5",
+      "navCount": 10
+    },
+    {
+      "name": "ReportGenerating",
+      "id": "50:531",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:5",
+      "navCount": 10
+    },
+    {
+      "name": "ReportReady",
+      "id": "51:4",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:5",
+      "navCount": 10
+    },
+    {
+      "name": "ReportError",
+      "id": "51:68",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:5",
+      "navCount": 10
+    },
+    {
+      "name": "ParticipantIntroMobile",
+      "id": "49:15",
+      "width": 390,
+      "height": 844,
+      "sectionId": "45:6",
+      "navCount": 0
+    },
+    {
+      "name": "TaskBriefingMobile",
+      "id": "49:31",
+      "width": 390,
+      "height": 844,
+      "sectionId": "45:6",
+      "navCount": 0
+    },
+    {
+      "name": "ParticipantSessionMobile",
+      "id": "49:43",
+      "width": 390,
+      "height": 844,
+      "sectionId": "45:6",
+      "navCount": 0
+    },
+    {
+      "name": "ParticipantFinishMobile",
+      "id": "49:67",
+      "width": 390,
+      "height": 844,
+      "sectionId": "45:6",
+      "navCount": 0
+    },
+    {
+      "name": "SharedPatterns",
+      "id": "51:121",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "45:7",
+      "navCount": 0
+    },
+    {
+      "name": "SignalsByPage",
+      "id": "105:3",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "105:2",
+      "navCount": 10
+    },
+    {
+      "name": "SignalsPageDetails",
+      "id": "105:90",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "105:2",
+      "navCount": 10
+    },
+    {
+      "name": "Findings",
+      "id": "105:177",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "105:2",
+      "navCount": 10
+    },
+    {
+      "name": "FindingsEmpty",
+      "id": "105:264",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "105:2",
+      "navCount": 10
+    },
+    {
+      "name": "FindingDetails",
+      "id": "105:351",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "105:2",
+      "navCount": 10
+    },
+    {
+      "name": "FindingEditor",
+      "id": "105:438",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "105:2",
+      "navCount": 10
+    },
+    {
+      "name": "FindingSaved",
+      "id": "105:545",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "105:2",
+      "navCount": 10
+    },
+    {
+      "name": "ParticipantsFromHeatmap",
+      "id": "109:313",
+      "width": 1920,
+      "height": 1080,
+      "sectionId": "105:2",
+      "navCount": 10
+    }
+  ],
+  "overflow": [],
+  "annotationOverflow": [],
+  "insightUpdate": {
+    "updated": 8,
+    "added": 8,
+    "audited": 16,
+    "report": "insight-update.md"
+  }
+}

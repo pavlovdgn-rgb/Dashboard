@@ -1,0 +1,43 @@
+{
+  "date": "2026-09-23",
+  "heatmapPanels": [
+    "292:10340",
+    "293:11737",
+    "293:11746"
+  ],
+  "closeButtons": [
+    "207:6616",
+    "210:9628",
+    "210:19189",
+    "210:19685"
+  ],
+  "actionButtons": [
+    "210:19254",
+    "210:19261"
+  ],
+  "icons": {
+    "pencil": "294:10340",
+    "document": "153:1809",
+    "cross": "106:617"
+  },
+  "pagination": {
+    "master": "153:702",
+    "group": "294:11750",
+    "counter": "294:11751",
+    "width": 156,
+    "height": 40,
+    "tables": {
+      "210:12295": "1 из 4",
+      "210:20553": "1 из 3"
+    },
+    "rightInset": 0
+  },
+  "checks": {
+    "fullPackBeforeFinalFooterAlignment": {
+      "passed": true,
+      "screenCount": 55
+    },
+    "finalFooterAlignment": "verified on both instances, screenshots reviewed; rotated vector local-coordinate bounds are not treated as frame overflow"
+  },
+  "prototypeWired": false
+}

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Отдельный сайт · проверка UX-Lab</title>
+<style>body{font:18px system-ui;background:#f7f7f3;color:#252823;margin:0;padding:32px}main{max-width:760px;margin:auto}section{padding:24px;border:1px solid #ddd;border-radius:12px;background:white;margin:24px 0}button,input,a{font:inherit}button{padding:12px 20px;cursor:pointer}label{display:grid;gap:8px;margin:20px 0}input{padding:12px;max-width:100%;box-sizing:border-box}small{color:#62675f}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style>
+<script defer src="__API__/sdk.js" data-project="__PROJECT__"></script>
+</head><body><main><p>Независимая HTML-страница · без React и кода Lead Generation</p>
+<h1>Проверка подключения сайта</h1><section data-ux-page="demo-home"><h2 id="title">Первый экран</h2>
+<p>Нажмите кнопку, чтобы проверить клик и переход между экранами.</p>
+<button data-ux-target="next-screen" id="next">Следующий экран</button>
+<label data-ux-private>Приватное поле (исключено из кликов)<input placeholder="Тестовое значение"></label>
+<small>Ввод и текст страницы не отправляются.</small></section><p id="status" role="status">Откройте ссылку участника из UX-Lab, чтобы включить сбор.</p>
+<a href="http://127.0.0.1:5173/?screen=connections&connection=__PROJECT__" target="_blank" rel="noopener">Открыть журнал UX-Lab ↗</a>
+</main><script>
+addEventListener('ux-lab-sdk-status',event=>{document.getElementById('status').textContent=event.detail.error||event.detail.message||('Сборщик подключён. В очереди: '+event.detail.pending);});
+document.getElementById('next').addEventListener('click',()=>{const section=document.querySelector('section');const next=section.dataset.uxPage==='demo-home'?'demo-details':'demo-home';history.pushState({},'',next==='demo-details'?'/details':'/');section.dataset.uxPage=next;document.getElementById('title').textContent=next==='demo-details'?'Второй экран':'Первый экран';});
+addEventListener('popstate',()=>{const details=location.pathname==='/details';document.querySelector('section').dataset.uxPage=details?'demo-details':'demo-home';document.getElementById('title').textContent=details?'Второй экран':'Первый экран';});
+if(location.pathname==='/details'){document.querySelector('section').dataset.uxPage='demo-details';document.getElementById('title').textContent='Второй экран';}
+</script></body></html>

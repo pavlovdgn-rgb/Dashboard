@@ -1,0 +1,118 @@
+{
+  "status": "Reference direction chosen; exact hex values are a proposed interpretation",
+  "scope": "Color only; no reference spacing, radius or typography adoption",
+  "colors": {
+    "background/canvas": "#F7F7F2",
+    "background/surface": "#FFFFFF",
+    "background/sidebar": "#F3F3EE",
+    "background/subtle": "#FAFAF7",
+    "border/subtle": "#E4E5DC",
+    "border/control": "#85877A",
+    "text/primary": "#22241F",
+    "text/secondary": "#66695F",
+    "text/inverse": "#FFFFFF",
+    "action/primary": "#20221E",
+    "accent/soft": "#ECEEDC",
+    "accent/strong": "#626E32",
+    "status/success/background": "#E8F4EC",
+    "status/success/text": "#236744",
+    "status/warning/background": "#FFF3DC",
+    "status/warning/text": "#805619",
+    "status/error/background": "#FBEAEA",
+    "status/error/text": "#A13737",
+    "status/info/background": "#EAF0FC",
+    "status/info/text": "#385DA2",
+    "heatmap/intensity/1": "#F2F4E9",
+    "heatmap/intensity/2": "#E3E8CC",
+    "heatmap/intensity/3": "#D3DDAE",
+    "heatmap/intensity/4": "#BECF8F",
+    "heatmap/intensity/5": "#A7BD70",
+    "heatmap/intensity/6": "#8FA653",
+    "heatmap/intensity/7": "#788E3C",
+    "heatmap/intensity/8": "#62782E",
+    "heatmap/intensity/9": "#4C6224",
+    "heatmap/intensity/10": "#384D19",
+    "replay/playhead": "#C61E25",
+    "action/secondary/background": "#E4E5DC",
+    "action/secondary/hover": "#D8DACD",
+    "action/secondary/pressed": "#CCD0BE"
+  },
+  "heatmapScale": "Separate sequential intensity scale; illustrative legend, numerical thresholds remain undefined",
+  "playheadToken": {
+    "createdVariableIds": [
+      "VariableID:102:94"
+    ],
+    "mutatedNodeIds": [
+      "96:67",
+      "96:68",
+      "96:108",
+      "96:109"
+    ],
+    "variable": {
+      "id": "VariableID:102:94",
+      "name": "replay/playhead",
+      "collectionId": "VariableCollectionId:67:106",
+      "values": {
+        "67:0": {
+          "r": 0.7764706015586853,
+          "g": 0.11764705926179886,
+          "b": 0.14509804546833038,
+          "a": 1
+        }
+      }
+    },
+    "hex": "#C61E25"
+  },
+  "secondaryChoice": {
+    "status": "approved and applied",
+    "date": "2026-09-23",
+    "choice": "A without outline",
+    "componentSetId": "125:450",
+    "tokens": [
+      {
+        "name": "action/secondary/background",
+        "id": "VariableID:252:3",
+        "primitiveId": "VariableID:252:2",
+        "hex": "#E4E5DC",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "codeSyntax": {
+          "WEB": "var(--action-secondary-background)"
+        }
+      },
+      {
+        "name": "action/secondary/hover",
+        "id": "VariableID:252:5",
+        "primitiveId": "VariableID:252:4",
+        "hex": "#D8DACD",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "codeSyntax": {
+          "WEB": "var(--action-secondary-hover)"
+        }
+      },
+      {
+        "name": "action/secondary/pressed",
+        "id": "VariableID:252:7",
+        "primitiveId": "VariableID:252:6",
+        "hex": "#CCD0BE",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "codeSyntax": {
+          "WEB": "var(--action-secondary-pressed)"
+        }
+      }
+    ],
+    "audit": "ds/secondary-choice-audit.json",
+    "scannedPages": 7,
+    "verifiedControls": 378,
+    "focusRingRetained": true,
+    "selectedOliveRetained": true
+  }
+}

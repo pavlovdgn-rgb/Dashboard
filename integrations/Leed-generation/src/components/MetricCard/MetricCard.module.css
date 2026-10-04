@@ -1,0 +1,47 @@
+/* flex:1 + min-width:0 — в Figma MetricCard всегда используется с layoutSizingHorizontal=FILL (равные доли строки
+   KeyMetricsRow), не HUG-по-контенту. min-width:0 не даёт длинному Label/Value растянуть карточку шире соседних. */
+.card {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-lg);
+  background: var(--color-bg-surface-primary);
+  border: var(--border-width-thin) solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--font-sans);
+}
+
+.label {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: var(--weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.value {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: var(--weight-semibold);
+}
+
+.value.positive {
+  color: var(--color-system-success);
+}
+
+.value.negative {
+  color: var(--color-system-error);
+}
+
+.value.neutral {
+  color: var(--color-text-primary);
+}
+
+/* Caption is always secondary regardless of trend — only Value is colored by trend, per ds/components.md */
+.caption {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-text-secondary);
+}

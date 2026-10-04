@@ -1,0 +1,134 @@
+.wrapper {
+  position: relative;
+  height: 100%;
+}
+
+/* Sidebar rail — ds/components.md → Sidebar. bg = brand/secondary (#253858), сверено напрямую в Figma — не text/primary, как можно было бы предположить */
+.rail {
+  position: relative;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  height: 100%;
+  background: var(--color-brand-secondary);
+}
+
+.logoZone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 100px;
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  color: var(--color-bg-surface-primary);
+}
+
+/* Нижняя граница pin-row — сверено напрямую в Figma (I154:4363;124:1698): 1px solid, только снизу, neutral/500 (то же значение, что color/border/hover) */
+.pinRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  width: 80px;
+  height: 20px;
+  flex-shrink: 0;
+  border-bottom: var(--border-width-thin) solid var(--color-border-hover);
+  color: var(--color-text-icons);
+}
+
+.pinRow svg {
+  width: 16px;
+  height: 16px;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding-top: var(--space-md);
+  width: 100%;
+}
+
+/* Иконки рельса по умолчанию серые (color/text/icons, #ADADAD) — не белые, сверено напрямую в Figma */
+.navItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 44px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-text-icons);
+}
+
+.navItem:hover {
+  color: var(--color-bg-surface-primary);
+}
+
+/* Активная иконка красится в brand/primary целиком (не только индикатор-полоска слева) — сверено в Figma (growth-graph fill=#B5E200 на активном пункте) */
+.navItem.active {
+  color: var(--color-brand-primary);
+}
+
+/* Активный индикатор — 4×36 полоса brand/primary слева, сверено напрямую в Figma (I154:4363;124:1707) */
+.navItem.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 4px;
+  height: 36px;
+  background: var(--color-brand-primary);
+}
+
+.navItem svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Flyout — «Раскрытое состояние (hover/click)», ds/components.md → Sidebar. 340px, появляется справа от рельса, перекрывая контент (position: absolute, не сдвигает layout) */
+.flyout {
+  position: absolute;
+  left: 80px;
+  top: 0;
+  width: 340px;
+  height: 100%;
+  padding: var(--space-2xl) var(--space-lg) var(--space-lg);
+  background: var(--color-bg-surface-primary);
+  box-shadow: var(--shadow-lg);
+  z-index: 50;
+  /* -100% (своя ширина) + 80px (ширина рельса) — иначе при overflow:hidden на AppShell правый край панели
+     остаётся ровно на границе рельса и её хвост просвечивает поверх рельса в закрытом состоянии. */
+  transform: translateX(calc(-100% - 80px));
+  pointer-events: none;
+  /* Закрытие — отдельная (более медленная и мягкая) кривая: применяется при возврате в это, базовое, состояние. */
+  transition: transform 420ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wrapper:hover .flyout,
+.wrapper:focus-within .flyout {
+  transform: translateX(0);
+  /* Открытие — своя, более быстрая кривая: применяется при переходе в это состояние (наведение/фокус). */
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+.flyoutTitle {
+  margin: 0 0 var(--space-lg);
+  padding-left: var(--space-xs);
+  color: var(--color-text-primary);
+}
+
+.flyoutList {
+  display: flex;
+  flex-direction: column;
+}

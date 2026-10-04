@@ -1,0 +1,269 @@
+{
+  "screenId": "175:614",
+  "width": 1920,
+  "height": 1080,
+  "states": [
+    {
+      "id": "175:2642",
+      "name": "State/Ready",
+      "visible": true,
+      "width": 1536,
+      "height": 802
+    },
+    {
+      "id": "175:2790",
+      "name": "State/Selected",
+      "visible": false,
+      "width": 1536,
+      "height": 918
+    },
+    {
+      "id": "175:2975",
+      "name": "State/Loading",
+      "visible": false,
+      "width": 1536,
+      "height": 616
+    },
+    {
+      "id": "175:3034",
+      "name": "State/Error",
+      "visible": false,
+      "width": 1536,
+      "height": 440
+    },
+    {
+      "id": "175:3055",
+      "name": "State/Empty",
+      "visible": false,
+      "width": 1536,
+      "height": 804
+    },
+    {
+      "id": "175:3253",
+      "name": "State/FilteredEmpty",
+      "visible": false,
+      "width": 1536,
+      "height": 804
+    },
+    {
+      "id": "175:3429",
+      "name": "State/Overflow",
+      "visible": false,
+      "width": 1536,
+      "height": 802
+    },
+    {
+      "id": "175:3574",
+      "name": "State/FreeExploration",
+      "visible": false,
+      "width": 1536,
+      "height": 318
+    }
+  ],
+  "unbound": [],
+  "unstyled": [],
+  "horizontalOverflow": [],
+  "fonts": [
+    "Inter"
+  ],
+  "ratios": [
+    {
+      "state": "State/Ready",
+      "fraction": "14 / 18",
+      "width": 155.55555725097656,
+      "expected": 155.55555555555554,
+      "passed": true
+    },
+    {
+      "state": "State/Ready",
+      "fraction": "12 / 17",
+      "width": 141.1764678955078,
+      "expected": 141.1764705882353,
+      "passed": true
+    },
+    {
+      "state": "State/Ready",
+      "fraction": "10 / 15",
+      "width": 133.3333282470703,
+      "expected": 133.33333333333334,
+      "passed": true
+    },
+    {
+      "state": "State/Selected",
+      "fraction": "14 / 18",
+      "width": 155.55555725097656,
+      "expected": 155.55555555555554,
+      "passed": true
+    },
+    {
+      "state": "State/Selected",
+      "fraction": "12 / 17",
+      "width": 141.1764678955078,
+      "expected": 141.1764705882353,
+      "passed": true
+    },
+    {
+      "state": "State/Selected",
+      "fraction": "10 / 15",
+      "width": 133.3333282470703,
+      "expected": 133.33333333333334,
+      "passed": true
+    }
+  ],
+  "components": [
+    {
+      "id": "171:1801",
+      "name": "SummaryMetric",
+      "type": "COMPONENT_SET",
+      "variants": [
+        {
+          "id": "171:1764",
+          "name": "State=Ready",
+          "width": 496,
+          "height": 152
+        },
+        {
+          "id": "171:1779",
+          "name": "State=Loading",
+          "width": 496,
+          "height": 152
+        },
+        {
+          "id": "171:1790",
+          "name": "State=NoData",
+          "width": 496,
+          "height": 152
+        }
+      ],
+      "properties": {
+        "Label#171:0": {
+          "type": "TEXT",
+          "defaultValue": "Участников"
+        },
+        "Value#171:4": {
+          "type": "TEXT",
+          "defaultValue": "20"
+        },
+        "Hint#171:8": {
+          "type": "TEXT",
+          "defaultValue": "Уникальных в текущей выборке"
+        },
+        "ShowLink#171:12": {
+          "type": "BOOLEAN",
+          "defaultValue": false
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Ready",
+          "variantOptions": [
+            "Ready",
+            "Loading",
+            "NoData"
+          ]
+        }
+      }
+    },
+    {
+      "id": "136:715",
+      "name": "ScenarioTable",
+      "type": "COMPONENT_SET",
+      "variants": [
+        {
+          "id": "136:477",
+          "name": "State=Ready",
+          "width": 1408,
+          "height": 920
+        },
+        {
+          "id": "136:638",
+          "name": "State=Loading",
+          "width": 1408,
+          "height": 920
+        },
+        {
+          "id": "136:656",
+          "name": "State=Empty",
+          "width": 1408,
+          "height": 920
+        },
+        {
+          "id": "136:671",
+          "name": "State=FilteredEmpty",
+          "width": 1408,
+          "height": 920
+        },
+        {
+          "id": "136:693",
+          "name": "State=Error",
+          "width": 1408,
+          "height": 920
+        },
+        {
+          "id": "172:1756",
+          "name": "State=OverviewUnselected",
+          "width": 1536,
+          "height": 512
+        },
+        {
+          "id": "172:1877",
+          "name": "State=OverviewSelected",
+          "width": 1536,
+          "height": 512
+        }
+      ],
+      "properties": {
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Ready",
+          "variantOptions": [
+            "Ready",
+            "Loading",
+            "Empty",
+            "FilteredEmpty",
+            "Error",
+            "OverviewUnselected",
+            "OverviewSelected"
+          ]
+        }
+      }
+    }
+  ],
+  "contrast": {
+    "active": 4.69730168366643,
+    "body": 15.669857410360857,
+    "secondary": 5.598759346321366
+  },
+  "effects": [
+    {
+      "id": "S:33899efc313cd34c3be9f04a04d0853ed7091433,",
+      "name": "shadow/card",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "visible": true,
+          "radius": 8,
+          "boundVariables": {
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:171:1758"
+            }
+          },
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.03999999910593033
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "spread": 0,
+          "blendMode": "NORMAL",
+          "showShadowBehindNode": true
+        }
+      ]
+    }
+  ],
+  "passed": true
+}

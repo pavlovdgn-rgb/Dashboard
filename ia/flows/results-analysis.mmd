@@ -1,0 +1,51 @@
+flowchart TD
+    studies["Studies"]
+    resultsOverview["ResultsOverview"]
+    heatmaps["Heatmaps"]
+    funnel["Funnel"]
+    participants["Participants"]
+    participantDetails["ParticipantDetails"]
+    replay["Replay"]
+    signals["Signals"]
+    report["Report"]
+    studies -->|"Открыть результаты"| resultsOverview
+    resultsOverview -->|"Выбрать сценарий; тепловая карта"| heatmaps
+    resultsOverview -->|"Выбрать сценарий; воронка"| funnel
+    resultsOverview -->|"Открыть участников"| participants
+    resultsOverview -->|"Проверить сигналы затруднений"| signals
+    heatmaps -->|"Частота или первый клик"| heatmaps
+    funnel -->|"Участники выбранного шага"| participants
+    signals -->|"Участники выбранного сигнала"| participants
+    participants -->|"Выбрать участника"| participantDetails
+    participantDetails -->|"Открыть запись"| replay
+    replay -->|"Запись недоступна"| replay
+    replay -->|"Назад; контекст сохранён"| participantDetails
+    participantDetails -->|"Вернуться к выборке"| participants
+    participants -->|"Вернуться к обзору"| resultsOverview
+    heatmaps -->|"Назад; контекст сохранён"| resultsOverview
+    resultsOverview -->|"Подготовить PDF"| report
+    report -->|"Сформировать и скачать PDF"| report
+    report -->|"Ошибка экспорта; повторить"| report
+
+    signalsByPage["SignalsByPage"]
+    signalsPageDetails["SignalsPageDetails"]
+    findings["Findings"]
+    findingDetails["FindingDetails — боковая панель"]
+    findingEditor["FindingEditor — боковая панель"]
+    participantsFromHeatmap["ParticipantsFromHeatmap"]
+    signals -->|"По страницам"| signalsByPage
+    signalsByPage -->|"Выбрать страницу"| signalsPageDetails
+    signalsPageDetails -->|"Событие и время"| replay
+    signals -->|"Вкладка Находки"| findings
+    findings -->|"Открыть находку"| findingDetails
+    findingDetails -->|"Открыть доказательство"| replay
+    findingDetails -->|"Редактировать"| findingEditor
+    replay -->|"Сохранить наблюдение; участник, попытка, время"| findingEditor
+    heatmaps -->|"Сохранить наблюдение; область и состояние"| findingEditor
+    funnel -->|"Сохранить наблюдение; шаг и выборка"| findingEditor
+    findingSaved["FindingSaved — подтверждение, исходный экран"]
+    findingEditor -->|"Сохранено; вернуться к источнику"| findingSaved
+    findingSaved -->|"Открыть находку"| findingDetails
+    findings -->|"Включить выбранные находки"| report
+    heatmaps -->|"Участники выбранной области"| participantsFromHeatmap
+    participantsFromHeatmap -->|"Конкретная попытка"| replay

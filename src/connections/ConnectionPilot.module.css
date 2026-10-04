@@ -1,0 +1,7 @@
+.page { max-inline-size:calc(var(--size-base)*80); margin-inline:auto; padding:var(--size-large); display:grid; gap:var(--size-large); }
+.form { max-inline-size:calc(var(--size-base)*46); display:grid; gap:var(--size-base); }
+.code { padding:var(--size-base); background:var(--background-surface); border:thin solid var(--border-subtle); border-radius:var(--radius-small); white-space:pre-wrap; overflow-wrap:anywhere; font-size:var(--font-size-small); }
+.frame { inline-size:100%; block-size:65dvh; min-block-size:320px; border:thin solid var(--border-subtle); border-radius:var(--radius-small); background:var(--background-surface); }
+.events { overflow:auto; max-block-size:calc(var(--size-base)*32); }
+.page a { overflow-wrap:anywhere; }
+@media(max-width:600px) { .page { padding:var(--size-base); } }

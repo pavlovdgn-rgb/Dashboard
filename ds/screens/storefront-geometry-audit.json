@@ -1,0 +1,43 @@
+{
+  "date": "2026-09-23",
+  "mutatedVariableIds": [
+    "VariableID:269:10324",
+    "VariableID:273:17939",
+    "VariableID:273:17940",
+    "VariableID:273:17941",
+    "VariableID:273:17942",
+    "VariableID:273:17943",
+    "VariableID:273:17944",
+    "VariableID:273:17945",
+    "VariableID:273:17946",
+    "VariableID:273:17947",
+    "VariableID:273:17948",
+    "VariableID:273:17949",
+    "VariableID:273:17950",
+    "VariableID:273:17951"
+  ],
+  "screens": [
+    {
+      "id": "210:14633",
+      "name": "Screen/HeatmapsDynamicState",
+      "contentBottom": 1052,
+      "frameHeight": 1080,
+      "overflow": 0
+    },
+    {
+      "id": "210:17090",
+      "name": "Screen/ParticipantSessionMobile",
+      "contentBottom": 824,
+      "frameHeight": 844,
+      "overflow": 0
+    },
+    {
+      "id": "209:6256",
+      "name": "Screen/Replay",
+      "contentBottom": 1005,
+      "frameHeight": 1080,
+      "overflow": 0
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,2297 @@
+{
+  "status": "complete",
+  "approved": [
+    "HeatmapLegend",
+    "ReplayControls",
+    "DataCoverage"
+  ],
+  "sourceFileKey": "SNBSKtwsO81j3BdjRGFpAw",
+  "targetFileKey": "1LeVoicxDT7Sl8TpMPs4hr",
+  "libraryConnected": true,
+  "componentCount": 22,
+  "variantCount": 168,
+  "sectionId": "82:45",
+  "foundationId": "82:15",
+  "createdComponents": [
+    {
+      "name": "HeatmapLegend",
+      "id": "83:730",
+      "type": "COMPONENT_SET",
+      "variants": [
+        {
+          "id": "83:694",
+          "name": "Mode=AllClicks",
+          "width": 684,
+          "height": 192
+        },
+        {
+          "id": "83:712",
+          "name": "Mode=FirstClick",
+          "width": 684,
+          "height": 192
+        }
+      ],
+      "properties": {
+        "SampleBase#83:4": {
+          "type": "TEXT",
+          "defaultValue": "84 клика · 18 участников"
+        },
+        "DefinitionNote#83:5": {
+          "type": "TEXT",
+          "defaultValue": "Для текущей страницы, состояния и выборки."
+        },
+        "Mode": {
+          "type": "VARIANT",
+          "defaultValue": "AllClicks",
+          "variantOptions": [
+            "AllClicks",
+            "FirstClick"
+          ]
+        }
+      },
+      "usedIn": [
+        "screens/heatmaps",
+        "screens/heatmaps-dynamic-state",
+        "screens/heatmaps-first-click"
+      ]
+    },
+    {
+      "name": "ReplayControls",
+      "id": "84:713",
+      "type": "COMPONENT_SET",
+      "variants": [
+        {
+          "id": "84:642",
+          "name": "Coverage=Complete, Playback=Paused",
+          "width": 1360,
+          "height": 245
+        },
+        {
+          "id": "84:678",
+          "name": "Coverage=Gap, Playback=Paused",
+          "width": 1360,
+          "height": 245
+        },
+        {
+          "id": "118:98",
+          "name": "Coverage=Complete, Playback=Playing",
+          "width": 1360,
+          "height": 245
+        },
+        {
+          "id": "118:168",
+          "name": "Coverage=Gap, Playback=Playing",
+          "width": 1360,
+          "height": 245
+        }
+      ],
+      "properties": {
+        "PositionLabel#84:2": {
+          "type": "TEXT",
+          "defaultValue": "02:18 / 04:32"
+        },
+        "Coverage": {
+          "type": "VARIANT",
+          "defaultValue": "Complete",
+          "variantOptions": [
+            "Complete",
+            "Gap"
+          ]
+        },
+        "Playback": {
+          "type": "VARIANT",
+          "defaultValue": "Paused",
+          "variantOptions": [
+            "Paused",
+            "Playing"
+          ]
+        }
+      },
+      "usedIn": [
+        "screens/finding-editor",
+        "screens/finding-saved",
+        "screens/replay",
+        "screens/replay-incomplete"
+      ],
+      "playbackAction": {
+        "background": "accent/strong",
+        "foreground": "text/inverse",
+        "hex": "#626E32",
+        "variants": 4
+      }
+    },
+    {
+      "name": "DataCoverage",
+      "id": "86:370",
+      "type": "COMPONENT_SET",
+      "variants": [
+        {
+          "id": "86:331",
+          "name": "Coverage=Complete",
+          "width": 684,
+          "height": 136
+        },
+        {
+          "id": "86:344",
+          "name": "Coverage=Partial",
+          "width": 684,
+          "height": 136
+        },
+        {
+          "id": "86:357",
+          "name": "Coverage=Unavailable",
+          "width": 684,
+          "height": 136
+        }
+      ],
+      "properties": {
+        "ShowAction#86:10": {
+          "type": "BOOLEAN",
+          "defaultValue": true
+        },
+        "DetailTextComplete#89:0": {
+          "type": "TEXT",
+          "defaultValue": "События и запись доступны для анализа."
+        },
+        "DetailTextPartial#89:4": {
+          "type": "TEXT",
+          "defaultValue": "Часть записи отсутствует. Это не означает неуспех задания."
+        },
+        "DetailTextUnavailable#89:8": {
+          "type": "TEXT",
+          "defaultValue": "Причина недоступности уточняется."
+        },
+        "Coverage": {
+          "type": "VARIANT",
+          "defaultValue": "Complete",
+          "variantOptions": [
+            "Complete",
+            "Partial",
+            "Unavailable"
+          ]
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "name": "ProductButton",
+      "id": "125:450",
+      "properties": {
+        "Kind": {
+          "type": "VARIANT",
+          "defaultValue": "Primary",
+          "variantOptions": [
+            "Primary",
+            "Secondary",
+            "Tertiary"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Pressed",
+            "Focus",
+            "Disabled",
+            "Loading"
+          ]
+        },
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "Small",
+          "variantOptions": [
+            "Small"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "125:312",
+          "name": "Kind=Primary, State=Default, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:319",
+          "name": "Kind=Secondary, State=Default, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:326",
+          "name": "Kind=Tertiary, State=Default, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:333",
+          "name": "Kind=Primary, State=Hover, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:340",
+          "name": "Kind=Secondary, State=Hover, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:347",
+          "name": "Kind=Tertiary, State=Hover, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:354",
+          "name": "Kind=Primary, State=Pressed, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:361",
+          "name": "Kind=Secondary, State=Pressed, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:368",
+          "name": "Kind=Tertiary, State=Pressed, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:375",
+          "name": "Kind=Primary, State=Focus, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:382",
+          "name": "Kind=Secondary, State=Focus, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:389",
+          "name": "Kind=Tertiary, State=Focus, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:396",
+          "name": "Kind=Primary, State=Disabled, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:403",
+          "name": "Kind=Secondary, State=Disabled, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:410",
+          "name": "Kind=Tertiary, State=Disabled, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:417",
+          "name": "Kind=Primary, State=Loading, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:428",
+          "name": "Kind=Secondary, State=Loading, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "125:439",
+          "name": "Kind=Tertiary, State=Loading, Size=Small",
+          "width": 180,
+          "height": 40
+        }
+      ],
+      "type": "COMPONENT_SET",
+      "issues": [],
+      "usedIn": [
+        "screens/connection-error",
+        "screens/control-result",
+        "screens/criteria-button",
+        "screens/criteria-u-r-l",
+        "screens/finding-details",
+        "screens/finding-editor",
+        "screens/finding-saved",
+        "screens/findings",
+        "screens/findings-empty",
+        "screens/funnel",
+        "screens/heatmaps",
+        "screens/heatmaps-dynamic-state",
+        "screens/heatmaps-first-click",
+        "screens/launch",
+        "screens/launch-active",
+        "screens/launch-error",
+        "screens/login",
+        "screens/participant-details",
+        "screens/participant-intro",
+        "screens/participant-intro-mobile",
+        "screens/participant-session",
+        "screens/participant-session-mobile",
+        "screens/participant-transfer-error",
+        "screens/participants",
+        "screens/participants-from-heatmap",
+        "screens/projects",
+        "screens/projects-default",
+        "screens/projects-empty",
+        "screens/prototype-unavailable",
+        "screens/replay",
+        "screens/replay-incomplete",
+        "screens/replay-unavailable",
+        "screens/report",
+        "screens/report-error",
+        "screens/report-ready",
+        "screens/results-empty",
+        "screens/results-free",
+        "screens/results-overview",
+        "screens/signals",
+        "screens/signals-by-page",
+        "screens/signals-page-details",
+        "screens/studies",
+        "screens/studies-empty",
+        "screens/study-setup",
+        "screens/study-setup-blank",
+        "screens/study-setup-free",
+        "screens/success-criteria",
+        "screens/task-briefing",
+        "screens/task-briefing-mobile",
+        "screens/task-editor",
+        "screens/task-picker",
+        "screens/unavailable-link"
+      ]
+    },
+    {
+      "name": "ProductNavItem",
+      "id": "128:563",
+      "properties": {
+        "Selected": {
+          "type": "VARIANT",
+          "defaultValue": "False",
+          "variantOptions": [
+            "False",
+            "True"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Pressed",
+            "Focus"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "128:491",
+          "name": "Selected=False, State=Default",
+          "width": 260,
+          "height": 48
+        },
+        {
+          "id": "128:500",
+          "name": "Selected=True, State=Default",
+          "width": 260,
+          "height": 48
+        },
+        {
+          "id": "128:509",
+          "name": "Selected=False, State=Hover",
+          "width": 260,
+          "height": 48
+        },
+        {
+          "id": "128:518",
+          "name": "Selected=True, State=Hover",
+          "width": 260,
+          "height": 48
+        },
+        {
+          "id": "128:527",
+          "name": "Selected=False, State=Pressed",
+          "width": 260,
+          "height": 48
+        },
+        {
+          "id": "128:536",
+          "name": "Selected=True, State=Pressed",
+          "width": 260,
+          "height": 48
+        },
+        {
+          "id": "128:545",
+          "name": "Selected=False, State=Focus",
+          "width": 260,
+          "height": 48
+        },
+        {
+          "id": "128:554",
+          "name": "Selected=True, State=Focus",
+          "width": 260,
+          "height": 48
+        }
+      ],
+      "type": "COMPONENT_SET",
+      "issues": [],
+      "usedIn": [
+        "screens/connection-error",
+        "screens/control-result",
+        "screens/criteria-button",
+        "screens/criteria-u-r-l",
+        "screens/finding-details",
+        "screens/finding-editor",
+        "screens/finding-saved",
+        "screens/findings",
+        "screens/findings-empty",
+        "screens/funnel",
+        "screens/heatmaps",
+        "screens/heatmaps-dynamic-state",
+        "screens/heatmaps-first-click",
+        "screens/launch",
+        "screens/launch-active",
+        "screens/launch-error",
+        "screens/participant-details",
+        "screens/participants",
+        "screens/participants-from-heatmap",
+        "screens/projects",
+        "screens/projects-default",
+        "screens/projects-empty",
+        "screens/replay",
+        "screens/replay-incomplete",
+        "screens/replay-unavailable",
+        "screens/report",
+        "screens/report-error",
+        "screens/report-generating",
+        "screens/report-ready",
+        "screens/results-empty",
+        "screens/results-free",
+        "screens/results-overview",
+        "screens/signals",
+        "screens/signals-by-page",
+        "screens/signals-page-details",
+        "screens/studies",
+        "screens/studies-empty",
+        "screens/study-setup",
+        "screens/study-setup-blank",
+        "screens/study-setup-free",
+        "screens/success-criteria",
+        "screens/task-editor",
+        "screens/task-picker"
+      ]
+    },
+    {
+      "name": "ProductTab",
+      "id": "128:1055",
+      "properties": {
+        "Selected": {
+          "type": "VARIANT",
+          "defaultValue": "False",
+          "variantOptions": [
+            "False",
+            "True"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Pressed",
+            "Focus"
+          ]
+        },
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "Small",
+          "variantOptions": [
+            "Small"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "128:981",
+          "name": "Selected=False, State=Default, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "128:992",
+          "name": "Selected=True, State=Default, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "128:1004",
+          "name": "Selected=False, State=Hover, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "128:1012",
+          "name": "Selected=True, State=Hover, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "128:1021",
+          "name": "Selected=False, State=Pressed, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "128:1029",
+          "name": "Selected=True, State=Pressed, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "128:1038",
+          "name": "Selected=False, State=Focus, Size=Small",
+          "width": 180,
+          "height": 40
+        },
+        {
+          "id": "128:1046",
+          "name": "Selected=True, State=Focus, Size=Small",
+          "width": 180,
+          "height": 40
+        }
+      ],
+      "type": "COMPONENT_SET",
+      "issues": [],
+      "usedIn": []
+    },
+    {
+      "name": "SuccessMetric",
+      "id": "132:574",
+      "variants": [
+        {
+          "id": "132:547",
+          "name": "Data=Value",
+          "width": 200,
+          "height": 88
+        },
+        {
+          "id": "132:556",
+          "name": "Data=Zero",
+          "width": 200,
+          "height": 88
+        },
+        {
+          "id": "132:565",
+          "name": "Data=NoData",
+          "width": 200,
+          "height": 88
+        }
+      ],
+      "properties": {
+        "FractionValue#132:0": {
+          "type": "TEXT",
+          "defaultValue": "14 / 18"
+        },
+        "PercentValue#132:4": {
+          "type": "TEXT",
+          "defaultValue": "78%"
+        },
+        "BaseValue#132:8": {
+          "type": "TEXT",
+          "defaultValue": "Оценены 18 из 20"
+        },
+        "FractionZero#132:12": {
+          "type": "TEXT",
+          "defaultValue": "0 / 18"
+        },
+        "PercentZero#132:16": {
+          "type": "TEXT",
+          "defaultValue": "0%"
+        },
+        "BaseZero#132:20": {
+          "type": "TEXT",
+          "defaultValue": "Оценены 18 из 20"
+        },
+        "FractionNoData#132:24": {
+          "type": "TEXT",
+          "defaultValue": "—"
+        },
+        "PercentNoData#132:28": {
+          "type": "TEXT",
+          "defaultValue": "—"
+        },
+        "BaseNoData#132:32": {
+          "type": "TEXT",
+          "defaultValue": "Нет оценённых попыток"
+        },
+        "Data": {
+          "type": "VARIANT",
+          "defaultValue": "Value",
+          "variantOptions": [
+            "Value",
+            "Zero",
+            "NoData"
+          ]
+        }
+      },
+      "type": "COMPONENT_SET",
+      "auditPassed": true,
+      "usedIn": [
+        "screens/results-overview"
+      ]
+    },
+    {
+      "name": "FirstClickTargetRow",
+      "id": "132:634",
+      "variants": [
+        {
+          "id": "132:578",
+          "name": "Selected=False, State=Default",
+          "width": 512,
+          "height": 88
+        },
+        {
+          "id": "132:589",
+          "name": "Selected=False, State=Hover",
+          "width": 512,
+          "height": 88
+        },
+        {
+          "id": "132:598",
+          "name": "Selected=False, State=Focus",
+          "width": 512,
+          "height": 88
+        },
+        {
+          "id": "132:607",
+          "name": "Selected=True, State=Default",
+          "width": 512,
+          "height": 88
+        },
+        {
+          "id": "132:616",
+          "name": "Selected=True, State=Hover",
+          "width": 512,
+          "height": 88
+        },
+        {
+          "id": "132:625",
+          "name": "Selected=True, State=Focus",
+          "width": 512,
+          "height": 88
+        }
+      ],
+      "properties": {
+        "TargetIcon#132:36": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "132:579",
+          "preferredValues": []
+        },
+        "Title#132:43": {
+          "type": "TEXT",
+          "defaultValue": "Добавить в корзину"
+        },
+        "Description#132:50": {
+          "type": "TEXT",
+          "defaultValue": "Основное действие страницы"
+        },
+        "Count#132:57": {
+          "type": "TEXT",
+          "defaultValue": "6"
+        },
+        "Share#132:64": {
+          "type": "TEXT",
+          "defaultValue": "33%"
+        },
+        "Selected": {
+          "type": "VARIANT",
+          "defaultValue": "False",
+          "variantOptions": [
+            "False",
+            "True"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focus"
+          ]
+        }
+      },
+      "type": "COMPONENT_SET",
+      "auditPassed": true,
+      "usedIn": []
+    },
+    {
+      "name": "FirstClickTargets",
+      "id": "135:778",
+      "variants": [
+        {
+          "id": "135:663",
+          "name": "State=Ready",
+          "width": 560,
+          "height": 640
+        },
+        {
+          "id": "135:723",
+          "name": "State=Loading",
+          "width": 560,
+          "height": 640
+        },
+        {
+          "id": "135:734",
+          "name": "State=Empty",
+          "width": 560,
+          "height": 640
+        },
+        {
+          "id": "135:742",
+          "name": "State=FilteredEmpty",
+          "width": 560,
+          "height": 640
+        },
+        {
+          "id": "135:761",
+          "name": "State=Error",
+          "width": 560,
+          "height": 640
+        }
+      ],
+      "properties": {
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Ready",
+          "variantOptions": [
+            "Ready",
+            "Loading",
+            "Empty",
+            "FilteredEmpty",
+            "Error"
+          ]
+        }
+      },
+      "type": "COMPONENT_SET",
+      "auditPassed": true,
+      "usedIn": []
+    },
+    {
+      "name": "ScenarioRow",
+      "id": "135:1062",
+      "variants": [
+        {
+          "id": "135:854",
+          "name": "Selected=False, State=Default",
+          "width": 1360,
+          "height": 136
+        },
+        {
+          "id": "135:890",
+          "name": "Selected=False, State=Hover",
+          "width": 1360,
+          "height": 136
+        },
+        {
+          "id": "135:923",
+          "name": "Selected=False, State=Focus",
+          "width": 1360,
+          "height": 136
+        },
+        {
+          "id": "135:956",
+          "name": "Selected=True, State=Default",
+          "width": 1360,
+          "height": 136
+        },
+        {
+          "id": "135:994",
+          "name": "Selected=True, State=Hover",
+          "width": 1360,
+          "height": 136
+        },
+        {
+          "id": "135:1028",
+          "name": "Selected=True, State=Focus",
+          "width": 1360,
+          "height": 136
+        }
+      ],
+      "properties": {
+        "Title#135:0": {
+          "type": "TEXT",
+          "defaultValue": "Найти товар и добавить в корзину"
+        },
+        "Description#135:7": {
+          "type": "TEXT",
+          "defaultValue": "Поиск → Карточка товара → Клик «В корзину»"
+        },
+        "Started#135:14": {
+          "type": "TEXT",
+          "defaultValue": "20"
+        },
+        "Completed#135:21": {
+          "type": "TEXT",
+          "defaultValue": "16"
+        },
+        "Incomplete#135:28": {
+          "type": "TEXT",
+          "defaultValue": "2"
+        },
+        "Selected": {
+          "type": "VARIANT",
+          "defaultValue": "False",
+          "variantOptions": [
+            "False",
+            "True"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focus"
+          ]
+        }
+      },
+      "type": "COMPONENT_SET",
+      "auditPassed": true,
+      "usedIn": [
+        "screens/results-overview"
+      ]
+    },
+    {
+      "name": "ScenarioTable",
+      "id": "136:715",
+      "variants": [
+        {
+          "id": "136:477",
+          "name": "State=Ready",
+          "width": 1408,
+          "height": 920
+        },
+        {
+          "id": "136:638",
+          "name": "State=Loading",
+          "width": 1408,
+          "height": 920
+        },
+        {
+          "id": "136:656",
+          "name": "State=Empty",
+          "width": 1408,
+          "height": 920
+        },
+        {
+          "id": "136:671",
+          "name": "State=FilteredEmpty",
+          "width": 1408,
+          "height": 920
+        },
+        {
+          "id": "136:693",
+          "name": "State=Error",
+          "width": 1408,
+          "height": 920
+        },
+        {
+          "id": "172:1756",
+          "name": "State=OverviewUnselected",
+          "width": 1536,
+          "height": 512
+        },
+        {
+          "id": "172:1877",
+          "name": "State=OverviewSelected",
+          "width": 1536,
+          "height": 512
+        }
+      ],
+      "properties": {
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Ready",
+          "variantOptions": [
+            "Ready",
+            "Loading",
+            "Empty",
+            "FilteredEmpty",
+            "Error",
+            "OverviewUnselected",
+            "OverviewSelected"
+          ]
+        }
+      },
+      "type": "COMPONENT_SET",
+      "auditPassed": true,
+      "usedIn": [
+        "screens/results-overview"
+      ]
+    },
+    {
+      "name": "TaskOutcome",
+      "id": "152:948",
+      "variants": [
+        {
+          "id": "152:932",
+          "name": "Status=Achieved",
+          "width": 224,
+          "height": 32
+        },
+        {
+          "id": "152:938",
+          "name": "Status=NotAchieved",
+          "width": 224,
+          "height": 32
+        },
+        {
+          "id": "152:942",
+          "name": "Status=NotAssessed",
+          "width": 224,
+          "height": 32
+        }
+      ],
+      "properties": {
+        "Status": {
+          "type": "VARIANT",
+          "defaultValue": "Achieved",
+          "variantOptions": [
+            "Achieved",
+            "NotAchieved",
+            "NotAssessed"
+          ]
+        }
+      },
+      "type": "COMPONENT_SET",
+      "auditPassed": true,
+      "usedIn": [
+        "screens/participants",
+        "screens/participants-from-heatmap"
+      ]
+    },
+    {
+      "name": "RecordingCoverage",
+      "id": "152:964",
+      "variants": [
+        {
+          "id": "152:952",
+          "name": "Status=Complete",
+          "width": 224,
+          "height": 32
+        },
+        {
+          "id": "152:956",
+          "name": "Status=Partial",
+          "width": 224,
+          "height": 32
+        },
+        {
+          "id": "152:960",
+          "name": "Status=Unavailable",
+          "width": 224,
+          "height": 32
+        }
+      ],
+      "properties": {
+        "Status": {
+          "type": "VARIANT",
+          "defaultValue": "Complete",
+          "variantOptions": [
+            "Complete",
+            "Partial",
+            "Unavailable"
+          ]
+        }
+      },
+      "type": "COMPONENT_SET",
+      "auditPassed": true,
+      "usedIn": [
+        "screens/participants",
+        "screens/participants-from-heatmap"
+      ]
+    },
+    {
+      "name": "AttemptAction",
+      "id": "152:996",
+      "variants": [
+        {
+          "id": "152:968",
+          "name": "Mode=Single",
+          "width": 232,
+          "height": 64
+        },
+        {
+          "id": "152:981",
+          "name": "Mode=Multiple",
+          "width": 232,
+          "height": 64
+        },
+        {
+          "id": "152:993",
+          "name": "Mode=Unavailable",
+          "width": 232,
+          "height": 64
+        }
+      ],
+      "properties": {
+        "Mode": {
+          "type": "VARIANT",
+          "defaultValue": "Single",
+          "variantOptions": [
+            "Single",
+            "Multiple",
+            "Unavailable"
+          ]
+        }
+      },
+      "type": "COMPONENT_SET",
+      "auditPassed": true,
+      "usedIn": [
+        "screens/participants",
+        "screens/participants-from-heatmap"
+      ]
+    },
+    {
+      "name": "ParticipantRow",
+      "id": "153:692",
+      "variants": [
+        {
+          "id": "153:610",
+          "name": "State=Default",
+          "width": 1360,
+          "height": 96
+        },
+        {
+          "id": "153:640",
+          "name": "State=Hover",
+          "width": 1360,
+          "height": 96
+        },
+        {
+          "id": "153:666",
+          "name": "State=Focus",
+          "width": 1360,
+          "height": 96
+        }
+      ],
+      "properties": {
+        "ParticipantId#153:0": {
+          "type": "TEXT",
+          "defaultValue": "014"
+        },
+        "Attempt#153:4": {
+          "type": "TEXT",
+          "defaultValue": "1"
+        },
+        "Duration#153:8": {
+          "type": "TEXT",
+          "defaultValue": "04:32"
+        },
+        "SignalCount#153:12": {
+          "type": "TEXT",
+          "defaultValue": "4"
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focus"
+          ]
+        }
+      },
+      "type": "COMPONENT_SET",
+      "auditPassed": true,
+      "usedIn": [
+        "screens/participants",
+        "screens/participants-from-heatmap"
+      ]
+    },
+    {
+      "name": "ParticipantsTable",
+      "id": "153:1605",
+      "variants": [
+        {
+          "id": "153:702",
+          "name": "State=Ready",
+          "width": 1408,
+          "height": 578
+        },
+        {
+          "id": "153:1081",
+          "name": "State=Loading",
+          "width": 1408,
+          "height": 434
+        },
+        {
+          "id": "153:1127",
+          "name": "State=Empty",
+          "width": 1408,
+          "height": 338
+        },
+        {
+          "id": "153:1170",
+          "name": "State=FilteredEmpty",
+          "width": 1408,
+          "height": 394
+        },
+        {
+          "id": "153:1220",
+          "name": "State=Error",
+          "width": 1408,
+          "height": 394
+        }
+      ],
+      "properties": {
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Ready",
+          "variantOptions": [
+            "Ready",
+            "Loading",
+            "Empty",
+            "FilteredEmpty",
+            "Error"
+          ]
+        }
+      },
+      "type": "COMPONENT_SET",
+      "auditPassed": true,
+      "usedIn": [
+        "screens/participants",
+        "screens/participants-from-heatmap"
+      ]
+    },
+    {
+      "name": "NavMenu",
+      "id": "153:2777",
+      "variants": [
+        {
+          "id": "153:1609",
+          "name": "Active=Projects",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:1637",
+          "name": "Active=Studies",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:1677",
+          "name": "Active=Setup",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:1825",
+          "name": "Active=Launch",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:1961",
+          "name": "Active=Overview",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:2097",
+          "name": "Active=Heatmap",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:2233",
+          "name": "Active=Funnel",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:2369",
+          "name": "Active=Participants",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:2505",
+          "name": "Active=Signals",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:2641",
+          "name": "Active=PDF",
+          "width": 320,
+          "height": 1080
+        }
+      ],
+      "properties": {
+        "FooterText#153:16": {
+          "type": "TEXT",
+          "defaultValue": "Рабочее пространство команды"
+        },
+        "ProjectLabel#153:27": {
+          "type": "TEXT",
+          "defaultValue": "ПРОЕКТ: ИНТЕРНЕТ-МАГАЗИН"
+        },
+        "StudyLabel#153:38": {
+          "type": "TEXT",
+          "defaultValue": "ИССЛЕДОВАНИЕ: ПОКУПКА"
+        },
+        "Active": {
+          "type": "VARIANT",
+          "defaultValue": "Projects",
+          "variantOptions": [
+            "Projects",
+            "Studies",
+            "Setup",
+            "Launch",
+            "Overview",
+            "Heatmap",
+            "Funnel",
+            "Participants",
+            "Signals",
+            "PDF"
+          ]
+        }
+      },
+      "type": "COMPONENT_SET",
+      "auditPassed": true,
+      "usedIn": [
+        "screens/connection-error",
+        "screens/control-result",
+        "screens/criteria-button",
+        "screens/criteria-u-r-l",
+        "screens/finding-details",
+        "screens/finding-editor",
+        "screens/finding-saved",
+        "screens/findings",
+        "screens/findings-empty",
+        "screens/funnel",
+        "screens/heatmaps",
+        "screens/heatmaps-dynamic-state",
+        "screens/heatmaps-first-click",
+        "screens/launch",
+        "screens/launch-active",
+        "screens/launch-error",
+        "screens/participant-details",
+        "screens/participants",
+        "screens/participants-from-heatmap",
+        "screens/projects",
+        "screens/projects-default",
+        "screens/projects-empty",
+        "screens/replay",
+        "screens/replay-incomplete",
+        "screens/replay-unavailable",
+        "screens/report",
+        "screens/report-error",
+        "screens/report-generating",
+        "screens/report-ready",
+        "screens/results-empty",
+        "screens/results-free",
+        "screens/results-overview",
+        "screens/signals",
+        "screens/signals-by-page",
+        "screens/signals-page-details",
+        "screens/studies",
+        "screens/studies-empty",
+        "screens/study-setup",
+        "screens/study-setup-blank",
+        "screens/study-setup-free",
+        "screens/success-criteria",
+        "screens/task-editor",
+        "screens/task-picker"
+      ]
+    },
+    {
+      "id": "171:1801",
+      "name": "SummaryMetric",
+      "type": "COMPONENT_SET",
+      "variants": [
+        {
+          "id": "171:1764",
+          "name": "State=Ready",
+          "width": 496,
+          "height": 248
+        },
+        {
+          "id": "171:1779",
+          "name": "State=Loading",
+          "width": 496,
+          "height": 248
+        },
+        {
+          "id": "171:1790",
+          "name": "State=NoData",
+          "width": 496,
+          "height": 248
+        }
+      ],
+      "properties": {
+        "Label#171:0": {
+          "type": "TEXT",
+          "defaultValue": "Участников"
+        },
+        "Value#171:4": {
+          "type": "TEXT",
+          "defaultValue": "20"
+        },
+        "Hint#171:8": {
+          "type": "TEXT",
+          "defaultValue": "Уникальных в текущей выборке"
+        },
+        "ShowLink#171:12": {
+          "type": "BOOLEAN",
+          "defaultValue": false
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Ready",
+          "variantOptions": [
+            "Ready",
+            "Loading",
+            "NoData"
+          ]
+        }
+      },
+      "usedIn": [
+        "screens/funnel",
+        "screens/participant-details",
+        "screens/results-free",
+        "screens/results-overview",
+        "screens/studies"
+      ]
+    },
+    {
+      "type": "COMPONENT_SET",
+      "id": "203:4474",
+      "name": "ProductField",
+      "variants": [
+        {
+          "id": "203:4108",
+          "name": "Type=Text, State=Default",
+          "width": 480,
+          "height": 76
+        },
+        {
+          "id": "203:4124",
+          "name": "Type=Text, State=Focus",
+          "width": 480,
+          "height": 76
+        },
+        {
+          "id": "203:4141",
+          "name": "Type=Text, State=Invalid",
+          "width": 480,
+          "height": 76
+        },
+        {
+          "id": "203:4158",
+          "name": "Type=Text, State=Disabled",
+          "width": 480,
+          "height": 76
+        },
+        {
+          "id": "203:4174",
+          "name": "Type=Textarea, State=Default",
+          "width": 480,
+          "height": 148
+        },
+        {
+          "id": "203:4190",
+          "name": "Type=Textarea, State=Focus",
+          "width": 480,
+          "height": 148
+        },
+        {
+          "id": "203:4207",
+          "name": "Type=Textarea, State=Invalid",
+          "width": 480,
+          "height": 148
+        },
+        {
+          "id": "203:4224",
+          "name": "Type=Textarea, State=Disabled",
+          "width": 480,
+          "height": 148
+        },
+        {
+          "id": "203:4240",
+          "name": "Type=Select, State=Default",
+          "width": 480,
+          "height": 76
+        },
+        {
+          "id": "203:4256",
+          "name": "Type=Select, State=Focus",
+          "width": 480,
+          "height": 76
+        },
+        {
+          "id": "203:4273",
+          "name": "Type=Select, State=Invalid",
+          "width": 480,
+          "height": 76
+        },
+        {
+          "id": "203:4293",
+          "name": "Type=Select, State=Disabled",
+          "width": 480,
+          "height": 76
+        },
+        {
+          "id": "203:4309",
+          "name": "Type=Search, State=Default",
+          "width": 480,
+          "height": 76
+        },
+        {
+          "id": "203:4328",
+          "name": "Type=Search, State=Focus",
+          "width": 480,
+          "height": 76
+        },
+        {
+          "id": "203:4348",
+          "name": "Type=Search, State=Invalid",
+          "width": 480,
+          "height": 76
+        },
+        {
+          "id": "203:4368",
+          "name": "Type=Search, State=Disabled",
+          "width": 480,
+          "height": 76
+        },
+        {
+          "id": "203:4387",
+          "name": "Type=Password, State=Default",
+          "width": 480,
+          "height": 76
+        },
+        {
+          "id": "203:4409",
+          "name": "Type=Password, State=Focus",
+          "width": 480,
+          "height": 76
+        },
+        {
+          "id": "203:4432",
+          "name": "Type=Password, State=Invalid",
+          "width": 480,
+          "height": 76
+        },
+        {
+          "id": "203:4452",
+          "name": "Type=Password, State=Disabled",
+          "width": 480,
+          "height": 76
+        }
+      ],
+      "usedIn": [
+        "screens/connection-error",
+        "screens/criteria-button",
+        "screens/criteria-u-r-l",
+        "screens/finding-editor",
+        "screens/finding-saved",
+        "screens/heatmaps",
+        "screens/heatmaps-dynamic-state",
+        "screens/heatmaps-first-click",
+        "screens/launch-active",
+        "screens/participant-session",
+        "screens/projects",
+        "screens/projects-default",
+        "screens/replay",
+        "screens/replay-incomplete",
+        "screens/studies",
+        "screens/study-setup",
+        "screens/study-setup-blank",
+        "screens/study-setup-free",
+        "screens/success-criteria",
+        "screens/task-editor",
+        "screens/task-picker"
+      ]
+    },
+    {
+      "type": "COMPONENT_SET",
+      "id": "203:5669",
+      "name": "ResearchTableRow",
+      "variants": [
+        {
+          "id": "203:4940",
+          "name": "Columns=2, State=Default",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:4952",
+          "name": "Columns=2, State=Zebra",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:4963",
+          "name": "Columns=2, State=Selected",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:4974",
+          "name": "Columns=2, State=Header",
+          "width": 1536,
+          "height": 48
+        },
+        {
+          "id": "203:4985",
+          "name": "Columns=3, State=Default",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5001",
+          "name": "Columns=3, State=Zebra",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5017",
+          "name": "Columns=3, State=Selected",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5033",
+          "name": "Columns=3, State=Header",
+          "width": 1536,
+          "height": 48
+        },
+        {
+          "id": "203:5049",
+          "name": "Columns=4, State=Default",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5070",
+          "name": "Columns=4, State=Zebra",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5091",
+          "name": "Columns=4, State=Selected",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5112",
+          "name": "Columns=4, State=Header",
+          "width": 1536,
+          "height": 48
+        },
+        {
+          "id": "203:5133",
+          "name": "Columns=5, State=Default",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5159",
+          "name": "Columns=5, State=Zebra",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5185",
+          "name": "Columns=5, State=Selected",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5211",
+          "name": "Columns=5, State=Header",
+          "width": 1536,
+          "height": 48
+        },
+        {
+          "id": "203:5237",
+          "name": "Columns=6, State=Default",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5268",
+          "name": "Columns=6, State=Zebra",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5299",
+          "name": "Columns=6, State=Selected",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5330",
+          "name": "Columns=6, State=Header",
+          "width": 1536,
+          "height": 48
+        },
+        {
+          "id": "203:5361",
+          "name": "Columns=7, State=Default",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5397",
+          "name": "Columns=7, State=Zebra",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5433",
+          "name": "Columns=7, State=Selected",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5469",
+          "name": "Columns=7, State=Header",
+          "width": 1536,
+          "height": 48
+        },
+        {
+          "id": "203:5505",
+          "name": "Columns=8, State=Default",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5546",
+          "name": "Columns=8, State=Zebra",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5587",
+          "name": "Columns=8, State=Selected",
+          "width": 1536,
+          "height": 80
+        },
+        {
+          "id": "203:5628",
+          "name": "Columns=8, State=Header",
+          "width": 1536,
+          "height": 48
+        }
+      ],
+      "usedIn": [
+        "screens/control-result",
+        "screens/finding-details",
+        "screens/findings",
+        "screens/funnel",
+        "screens/participant-details",
+        "screens/projects",
+        "screens/projects-default",
+        "screens/results-free",
+        "screens/signals",
+        "screens/signals-by-page",
+        "screens/signals-page-details",
+        "screens/studies"
+      ]
+    },
+    {
+      "id": "260:3028",
+      "name": "TaskChoiceCard",
+      "type": "COMPONENT_SET",
+      "variants": [
+        {
+          "id": "260:2936",
+          "name": "Selected=False, State=Default",
+          "width": 672,
+          "height": 104
+        },
+        {
+          "id": "260:2947",
+          "name": "Selected=True, State=Default",
+          "width": 672,
+          "height": 104
+        },
+        {
+          "id": "260:2959",
+          "name": "Selected=False, State=Hover",
+          "width": 672,
+          "height": 104
+        },
+        {
+          "id": "260:2970",
+          "name": "Selected=True, State=Hover",
+          "width": 672,
+          "height": 104
+        },
+        {
+          "id": "260:2982",
+          "name": "Selected=False, State=Focus",
+          "width": 672,
+          "height": 104
+        },
+        {
+          "id": "260:2993",
+          "name": "Selected=True, State=Focus",
+          "width": 672,
+          "height": 104
+        },
+        {
+          "id": "260:3005",
+          "name": "Selected=False, State=Disabled",
+          "width": 672,
+          "height": 104
+        },
+        {
+          "id": "260:3016",
+          "name": "Selected=True, State=Disabled",
+          "width": 672,
+          "height": 104
+        }
+      ],
+      "properties": {
+        "Title#260:0": {
+          "type": "TEXT",
+          "defaultValue": "Найти товар"
+        },
+        "Description#260:9": {
+          "type": "TEXT",
+          "defaultValue": "Найдите подходящий товар и откройте его карточку."
+        },
+        "Selected": {
+          "type": "VARIANT",
+          "defaultValue": "False",
+          "variantOptions": [
+            "False",
+            "True"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focus",
+            "Disabled"
+          ]
+        }
+      },
+      "usedIn": [
+        "screens/task-picker"
+      ],
+      "source": "Composition of themed Elastic Radio instances from ScenarioRow; source Radio set 135:828",
+      "auditPassed": true,
+      "visualCheckPassed": true
+    },
+    {
+      "name": "ProductCheckbox",
+      "id": "282:2918",
+      "type": "COMPONENT_SET",
+      "properties": {
+        "Label#282:0": {
+          "type": "TEXT",
+          "defaultValue": "Включить раздел в отчёт"
+        },
+        "Value": {
+          "type": "VARIANT",
+          "defaultValue": "Off",
+          "variantOptions": [
+            "Off",
+            "On",
+            "Mixed"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focus",
+            "Disabled"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "281:2824",
+          "name": "Value=Off, State=Default",
+          "width": 448,
+          "height": 32
+        },
+        {
+          "id": "281:2837",
+          "name": "Value=On, State=Default",
+          "width": 448,
+          "height": 32
+        },
+        {
+          "id": "281:2850",
+          "name": "Value=Mixed, State=Default",
+          "width": 448,
+          "height": 32
+        },
+        {
+          "id": "281:2859",
+          "name": "Value=Off, State=Hover",
+          "width": 448,
+          "height": 32
+        },
+        {
+          "id": "281:2866",
+          "name": "Value=On, State=Hover",
+          "width": 448,
+          "height": 32
+        },
+        {
+          "id": "281:2875",
+          "name": "Value=Mixed, State=Hover",
+          "width": 448,
+          "height": 32
+        },
+        {
+          "id": "281:2884",
+          "name": "Value=Off, State=Focus",
+          "width": 448,
+          "height": 32
+        },
+        {
+          "id": "281:2891",
+          "name": "Value=On, State=Focus",
+          "width": 448,
+          "height": 32
+        },
+        {
+          "id": "281:2900",
+          "name": "Value=Mixed, State=Focus",
+          "width": 448,
+          "height": 32
+        },
+        {
+          "id": "281:2909",
+          "name": "Value=Off, State=Disabled",
+          "width": 448,
+          "height": 32
+        },
+        {
+          "id": "281:2916",
+          "name": "Value=On, State=Disabled",
+          "width": 448,
+          "height": 32
+        },
+        {
+          "id": "281:2925",
+          "name": "Value=Mixed, State=Disabled",
+          "width": 448,
+          "height": 32
+        }
+      ],
+      "source": "Elastic Checkbox 203:4618; original source marked Deprecated; existing selected generation retained",
+      "usage": [
+        "screens/report"
+      ],
+      "documentation": "ProductCheckbox: Off / On / Mixed × Default / Hover / Focus / Disabled; editable Label. Olive selected square and white glyph; visible neutral outline when unchecked."
+    }
+  ],
+  "auditPassed": true,
+  "completed": "2026-09-22",
+  "remainingScope": "Full interactive state matrix and final screen assembly are separate tasks.",
+  "replayReferenceUpdate": {
+    "date": "2026-09-22",
+    "componentId": "84:713",
+    "variants": [
+      {
+        "id": "84:642",
+        "width": 1360,
+        "height": 245,
+        "speeds": [
+          {
+            "id": "96:145",
+            "width": 48,
+            "label": "1×"
+          },
+          {
+            "id": "96:151",
+            "width": 48,
+            "label": "1.5×"
+          },
+          {
+            "id": "96:157",
+            "width": 48,
+            "label": "2×"
+          }
+        ]
+      },
+      {
+        "id": "84:678",
+        "width": 1360,
+        "height": 245,
+        "speeds": [
+          {
+            "id": "96:208",
+            "width": 48,
+            "label": "1×"
+          },
+          {
+            "id": "96:214",
+            "width": 48,
+            "label": "1.5×"
+          },
+          {
+            "id": "96:220",
+            "width": 48,
+            "label": "2×"
+          }
+        ]
+      }
+    ],
+    "features": [
+      "proportional time scale",
+      "event rings",
+      "olive playhead",
+      "hatched missing interval",
+      "seek -5/+5 seconds",
+      "speed 1/1.5/2",
+      "fit",
+      "full screen"
+    ],
+    "bindingsAuditPassed": true,
+    "scope": "UI Kit only; static design, existing low-fi Replay frame unchanged",
+    "documentation": "ds/replay-reference-update.md"
+  },
+  "replayPlayheadToken": {
+    "createdVariableIds": [
+      "VariableID:102:94"
+    ],
+    "mutatedNodeIds": [
+      "96:67",
+      "96:68",
+      "96:108",
+      "96:109"
+    ],
+    "variable": {
+      "id": "VariableID:102:94",
+      "name": "replay/playhead",
+      "collectionId": "VariableCollectionId:67:106",
+      "values": {
+        "67:0": {
+          "r": 0.7764706015586853,
+          "g": 0.11764705926179886,
+          "b": 0.14509804546833038,
+          "a": 1
+        }
+      }
+    },
+    "hex": "#C61E25"
+  },
+  "replayVariantsUpdate": {
+    "date": "2026-09-22",
+    "status": "complete",
+    "componentId": "84:713",
+    "variants": [
+      {
+        "id": "84:642",
+        "name": "Coverage=Complete, Playback=Paused",
+        "width": 1360,
+        "height": 245,
+        "buttonWidth": 155,
+        "position": {
+          "characters": "PositionLabel#84:2"
+        },
+        "playheads": [
+          {
+            "id": "96:67",
+            "variable": "VariableID:102:94"
+          },
+          {
+            "id": "96:68",
+            "variable": "VariableID:102:94"
+          }
+        ],
+        "speeds": [
+          {
+            "width": 48
+          },
+          {
+            "width": 48
+          },
+          {
+            "width": 48
+          }
+        ]
+      },
+      {
+        "id": "84:678",
+        "name": "Coverage=Gap, Playback=Paused",
+        "width": 1360,
+        "height": 245,
+        "buttonWidth": 155,
+        "position": {
+          "characters": "PositionLabel#84:2"
+        },
+        "playheads": [
+          {
+            "id": "96:108",
+            "variable": "VariableID:102:94"
+          },
+          {
+            "id": "96:109",
+            "variable": "VariableID:102:94"
+          }
+        ],
+        "speeds": [
+          {
+            "width": 48
+          },
+          {
+            "width": 48
+          },
+          {
+            "width": 48
+          }
+        ]
+      },
+      {
+        "id": "118:98",
+        "name": "Coverage=Complete, Playback=Playing",
+        "width": 1360,
+        "height": 245,
+        "buttonWidth": 155,
+        "position": {
+          "characters": "PositionLabel#84:2"
+        },
+        "playheads": [
+          {
+            "id": "118:112",
+            "variable": "VariableID:102:94"
+          },
+          {
+            "id": "118:113",
+            "variable": "VariableID:102:94"
+          }
+        ],
+        "speeds": [
+          {
+            "width": 48
+          },
+          {
+            "width": 48
+          },
+          {
+            "width": 48
+          }
+        ]
+      },
+      {
+        "id": "118:168",
+        "name": "Coverage=Gap, Playback=Playing",
+        "width": 1360,
+        "height": 245,
+        "buttonWidth": 155,
+        "position": {
+          "characters": "PositionLabel#84:2"
+        },
+        "playheads": [
+          {
+            "id": "118:204",
+            "variable": "VariableID:102:94"
+          },
+          {
+            "id": "118:205",
+            "variable": "VariableID:102:94"
+          }
+        ],
+        "speeds": [
+          {
+            "width": 48
+          },
+          {
+            "width": 48
+          },
+          {
+            "width": 48
+          }
+        ]
+      }
+    ],
+    "properties": {
+      "PositionLabel#84:2": {
+        "type": "TEXT",
+        "defaultValue": "02:18 / 04:32"
+      },
+      "Coverage": {
+        "type": "VARIANT",
+        "defaultValue": "Complete",
+        "variantOptions": [
+          "Complete",
+          "Gap"
+        ]
+      },
+      "Playback": {
+        "type": "VARIANT",
+        "defaultValue": "Paused",
+        "variantOptions": [
+          "Paused",
+          "Playing"
+        ]
+      }
+    },
+    "newTokens": [],
+    "auditPassed": true,
+    "visualCheckPassed": true
+  },
+  "interactionAliases": [
+    {
+      "id": "VariableID:125:154",
+      "name": "action/hover",
+      "target": "text/primary",
+      "values": {
+        "67:0": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:67:113"
+        }
+      }
+    },
+    {
+      "id": "VariableID:125:155",
+      "name": "action/pressed",
+      "target": "text/secondary",
+      "values": {
+        "67:0": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:67:114"
+        }
+      }
+    },
+    {
+      "id": "VariableID:125:156",
+      "name": "surface/hover",
+      "target": "background/sidebar",
+      "values": {
+        "67:0": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:67:109"
+        }
+      }
+    },
+    {
+      "id": "VariableID:125:157",
+      "name": "surface/pressed",
+      "target": "accent/soft",
+      "values": {
+        "67:0": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:67:117"
+        }
+      }
+    },
+    {
+      "id": "VariableID:125:158",
+      "name": "border/focus",
+      "target": "accent/strong",
+      "values": {
+        "67:0": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:67:118"
+        }
+      }
+    }
+  ],
+  "componentVariantsReview": "complete",
+  "participantsNavigation": {
+    "status": "complete",
+    "report": "ds/participants-navigation.md",
+    "auditPassed": true
+  },
+  "finalScreensExtension": {
+    "date": "2026-09-23",
+    "pageId": "191:847",
+    "screenCount": 55,
+    "newComponents": [
+      "SummaryMetric",
+      "ProductField",
+      "ResearchTableRow"
+    ],
+    "audit": "ds/screens/final-pack-audit.json",
+    "prototypeWired": false
+  },
+  "secondaryChoice": {
+    "status": "approved and applied",
+    "date": "2026-09-23",
+    "choice": "A without outline",
+    "componentSetId": "125:450",
+    "tokens": [
+      {
+        "name": "action/secondary/background",
+        "id": "VariableID:252:3",
+        "primitiveId": "VariableID:252:2",
+        "hex": "#E4E5DC",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "codeSyntax": {
+          "WEB": "var(--action-secondary-background)"
+        }
+      },
+      {
+        "name": "action/secondary/hover",
+        "id": "VariableID:252:5",
+        "primitiveId": "VariableID:252:4",
+        "hex": "#D8DACD",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "codeSyntax": {
+          "WEB": "var(--action-secondary-hover)"
+        }
+      },
+      {
+        "name": "action/secondary/pressed",
+        "id": "VariableID:252:7",
+        "primitiveId": "VariableID:252:6",
+        "hex": "#CCD0BE",
+        "scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL"
+        ],
+        "codeSyntax": {
+          "WEB": "var(--action-secondary-pressed)"
+        }
+      }
+    ],
+    "audit": "ds/secondary-choice-audit.json",
+    "scannedPages": 7,
+    "verifiedControls": 378,
+    "focusRingRetained": true,
+    "selectedOliveRetained": true
+  }
+}

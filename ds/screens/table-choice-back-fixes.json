@@ -1,0 +1,43 @@
+{
+  "scenarioTable": {
+    "set": "136:715",
+    "instance": "175:2683",
+    "rowDividers": true,
+    "shadow": "shadow/card",
+    "headingOutsideTable": true,
+    "noteOutsideTable": true,
+    "transparentOuterContainer": true,
+    "tableSurfaceIds": [
+      "359:2910",
+      "359:2911",
+      "359:2912",
+      "359:2913",
+      "359:2914",
+      "359:2915",
+      "359:2916"
+    ]
+  },
+  "projectTables": [
+    "203:7354",
+    "207:6525"
+  ],
+  "criterionGroups": [
+    "210:8131",
+    "210:9927",
+    "210:10262"
+  ],
+  "backLinks": [
+    "354:10762",
+    "354:10765",
+    "354:10768"
+  ],
+  "screenshotsReviewed": [
+    "210:8131",
+    "210:7862",
+    "175:2683",
+    "172:1877",
+    "203:7354",
+    "205:6728"
+  ],
+  "reactSynchronized": false
+}

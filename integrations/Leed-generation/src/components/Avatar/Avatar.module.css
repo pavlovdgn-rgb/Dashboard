@@ -1,0 +1,26 @@
+.circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-surface-secondary);
+  color: var(--color-text-on-dark);
+  font-family: var(--font-sans);
+  flex-shrink: 0;
+}
+
+.sm {
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: var(--weight-medium);
+}
+
+.md {
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: var(--weight-semibold);
+}

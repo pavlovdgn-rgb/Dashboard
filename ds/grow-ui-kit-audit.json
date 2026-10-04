@@ -1,0 +1,1546 @@
+{
+  "date": "2026-09-22",
+  "fileKey": "1LeVoicxDT7Sl8TpMPs4hr",
+  "pageId": "82:3",
+  "sectionId": "82:45",
+  "foundationId": "82:15",
+  "report": [
+    {
+      "name": "HeatmapLegend",
+      "id": "83:730",
+      "type": "COMPONENT_SET",
+      "variants": [
+        {
+          "id": "83:694",
+          "name": "Mode=AllClicks"
+        },
+        {
+          "id": "83:712",
+          "name": "Mode=FirstClick"
+        }
+      ],
+      "properties": {
+        "SampleBase#83:4": {
+          "type": "TEXT",
+          "defaultValue": "84 клика · 18 участников"
+        },
+        "DefinitionNote#83:5": {
+          "type": "TEXT",
+          "defaultValue": "Для текущей страницы, состояния и выборки."
+        },
+        "Mode": {
+          "type": "VARIANT",
+          "defaultValue": "AllClicks",
+          "variantOptions": [
+            "AllClicks",
+            "FirstClick"
+          ]
+        }
+      },
+      "issues": [],
+      "texts": [
+        {
+          "id": "83:695",
+          "name": "ModeLabel",
+          "text": "Тепловая карта · Все клики",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "83:708",
+          "name": "Low",
+          "text": "Меньше кликов",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        },
+        {
+          "id": "83:709",
+          "name": "High",
+          "text": "Больше кликов",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        },
+        {
+          "id": "83:710",
+          "name": "SampleBase",
+          "text": "84 клика · 18 участников",
+          "styleId": "S:055057128653b8e0591ad4af0f3f89ef9b2a5065,55268:232"
+        },
+        {
+          "id": "83:711",
+          "name": "DefinitionNote",
+          "text": "Для текущей страницы, состояния и выборки.",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        },
+        {
+          "id": "83:713",
+          "name": "ModeLabel",
+          "text": "Тепловая карта · Первый клик",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "83:726",
+          "name": "Low",
+          "text": "Меньше кликов",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        },
+        {
+          "id": "83:727",
+          "name": "High",
+          "text": "Больше кликов",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        },
+        {
+          "id": "83:728",
+          "name": "SampleBase",
+          "text": "18 первых кликов · 18 участников",
+          "styleId": "S:055057128653b8e0591ad4af0f3f89ef9b2a5065,55268:232"
+        },
+        {
+          "id": "83:729",
+          "name": "DefinitionNote",
+          "text": "Единица отсчёта: требуется определить.",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        }
+      ]
+    },
+    {
+      "name": "ReplayControls",
+      "id": "84:713",
+      "type": "COMPONENT_SET",
+      "variants": [
+        {
+          "id": "84:642",
+          "name": "Coverage=Complete, Playback=Paused"
+        },
+        {
+          "id": "84:678",
+          "name": "Coverage=Gap, Playback=Paused"
+        },
+        {
+          "id": "118:98",
+          "name": "Coverage=Complete, Playback=Playing"
+        },
+        {
+          "id": "118:168",
+          "name": "Coverage=Gap, Playback=Playing"
+        }
+      ],
+      "properties": {
+        "PositionLabel#84:2": {
+          "type": "TEXT",
+          "defaultValue": "02:18 / 04:32"
+        },
+        "Coverage": {
+          "type": "VARIANT",
+          "defaultValue": "Complete",
+          "variantOptions": [
+            "Complete",
+            "Gap"
+          ]
+        },
+        "Playback": {
+          "type": "VARIANT",
+          "defaultValue": "Paused",
+          "variantOptions": [
+            "Paused",
+            "Playing"
+          ]
+        }
+      },
+      "issues": [],
+      "texts": [
+        {
+          "id": "96:55",
+          "name": "Tick0",
+          "text": "00:00",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:56",
+          "name": "Tick48",
+          "text": "00:48",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:57",
+          "name": "Tick96",
+          "text": "01:36",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:58",
+          "name": "Tick144",
+          "text": "02:24",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:59",
+          "name": "Tick192",
+          "text": "03:12",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:60",
+          "name": "Tick272",
+          "text": "04:32",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:71",
+          "name": "CoverageNote",
+          "text": "Запись доступна на всём интервале",
+          "styleId": "S:055057128653b8e0591ad4af0f3f89ef9b2a5065,55268:232"
+        },
+        {
+          "id": "I96:116;31735:391847",
+          "name": "Text",
+          "text": "Воспроизвести",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I96:125;31735:391859",
+          "name": "Text",
+          "text": "−5 с",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I96:134;31735:391859",
+          "name": "Text",
+          "text": "+5 с",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:141",
+          "name": "PositionLabel",
+          "text": "02:18 / 04:32",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:144",
+          "name": "SpeedLabel",
+          "text": "Скорость:",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        },
+        {
+          "id": "I96:145;31735:391859",
+          "name": "Text",
+          "text": "1×",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I96:151;31735:391859",
+          "name": "Text",
+          "text": "1.5×",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I96:157;31735:391859",
+          "name": "Text",
+          "text": "2×",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I96:163;31735:391859",
+          "name": "Text",
+          "text": "Вписать",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I96:170;31735:391859",
+          "name": "Text",
+          "text": "На весь экран",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:180",
+          "name": "PrivacyText",
+          "text": "Содержимое полей — демонстрационные данные. Камера и голос не записываются.",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        },
+        {
+          "id": "96:74",
+          "name": "Tick0",
+          "text": "00:00",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:75",
+          "name": "Tick48",
+          "text": "00:48",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:76",
+          "name": "Tick96",
+          "text": "01:36",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:77",
+          "name": "Tick144",
+          "text": "02:24",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:78",
+          "name": "Tick192",
+          "text": "03:12",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:79",
+          "name": "Tick272",
+          "text": "04:32",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:112",
+          "name": "CoverageNote",
+          "text": "Нет данных с 01:40 до 02:05 · разрыв записи сессии",
+          "styleId": "S:055057128653b8e0591ad4af0f3f89ef9b2a5065,55268:232"
+        },
+        {
+          "id": "I96:183;31735:391847",
+          "name": "Text",
+          "text": "Воспроизвести",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I96:190;31735:391859",
+          "name": "Text",
+          "text": "−5 с",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I96:197;31735:391859",
+          "name": "Text",
+          "text": "+5 с",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:204",
+          "name": "PositionLabel",
+          "text": "02:18 / 04:32",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:207",
+          "name": "SpeedLabel",
+          "text": "Скорость:",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        },
+        {
+          "id": "I96:208;31735:391859",
+          "name": "Text",
+          "text": "1×",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I96:214;31735:391859",
+          "name": "Text",
+          "text": "1.5×",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I96:220;31735:391859",
+          "name": "Text",
+          "text": "2×",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I96:226;31735:391859",
+          "name": "Text",
+          "text": "Вписать",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I96:233;31735:391859",
+          "name": "Text",
+          "text": "На весь экран",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "96:243",
+          "name": "PrivacyText",
+          "text": "Содержимое полей — демонстрационные данные. Камера и голос не записываются.",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        },
+        {
+          "id": "118:100",
+          "name": "Tick0",
+          "text": "00:00",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:101",
+          "name": "Tick48",
+          "text": "00:48",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:102",
+          "name": "Tick96",
+          "text": "01:36",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:103",
+          "name": "Tick144",
+          "text": "02:24",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:104",
+          "name": "Tick192",
+          "text": "03:12",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:105",
+          "name": "Tick272",
+          "text": "04:32",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:116",
+          "name": "CoverageNote",
+          "text": "Запись доступна на всём интервале",
+          "styleId": "S:055057128653b8e0591ad4af0f3f89ef9b2a5065,55268:232"
+        },
+        {
+          "id": "I118:120;31735:391847",
+          "name": "Text",
+          "text": "Пауза",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I118:121;31735:391859",
+          "name": "Text",
+          "text": "−5 с",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I118:122;31735:391859",
+          "name": "Text",
+          "text": "+5 с",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:123",
+          "name": "PositionLabel",
+          "text": "02:18 / 04:32",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:126",
+          "name": "SpeedLabel",
+          "text": "Скорость:",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        },
+        {
+          "id": "I118:127;31735:391859",
+          "name": "Text",
+          "text": "1×",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I118:128;31735:391859",
+          "name": "Text",
+          "text": "1.5×",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I118:129;31735:391859",
+          "name": "Text",
+          "text": "2×",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I118:130;31735:391859",
+          "name": "Text",
+          "text": "Вписать",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I118:131;31735:391859",
+          "name": "Text",
+          "text": "На весь экран",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:134",
+          "name": "PrivacyText",
+          "text": "Содержимое полей — демонстрационные данные. Камера и голос не записываются.",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        },
+        {
+          "id": "118:170",
+          "name": "Tick0",
+          "text": "00:00",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:171",
+          "name": "Tick48",
+          "text": "00:48",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:172",
+          "name": "Tick96",
+          "text": "01:36",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:173",
+          "name": "Tick144",
+          "text": "02:24",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:174",
+          "name": "Tick192",
+          "text": "03:12",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:175",
+          "name": "Tick272",
+          "text": "04:32",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:208",
+          "name": "CoverageNote",
+          "text": "Нет данных с 01:40 до 02:05 · разрыв записи сессии",
+          "styleId": "S:055057128653b8e0591ad4af0f3f89ef9b2a5065,55268:232"
+        },
+        {
+          "id": "I118:212;31735:391847",
+          "name": "Text",
+          "text": "Пауза",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I118:213;31735:391859",
+          "name": "Text",
+          "text": "−5 с",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I118:214;31735:391859",
+          "name": "Text",
+          "text": "+5 с",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:215",
+          "name": "PositionLabel",
+          "text": "02:18 / 04:32",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:218",
+          "name": "SpeedLabel",
+          "text": "Скорость:",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        },
+        {
+          "id": "I118:219;31735:391859",
+          "name": "Text",
+          "text": "1×",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I118:220;31735:391859",
+          "name": "Text",
+          "text": "1.5×",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I118:221;31735:391859",
+          "name": "Text",
+          "text": "2×",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I118:222;31735:391859",
+          "name": "Text",
+          "text": "Вписать",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "I118:223;31735:391859",
+          "name": "Text",
+          "text": "На весь экран",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "118:226",
+          "name": "PrivacyText",
+          "text": "Содержимое полей — демонстрационные данные. Камера и голос не записываются.",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        }
+      ]
+    },
+    {
+      "name": "DataCoverage",
+      "id": "86:370",
+      "type": "COMPONENT_SET",
+      "variants": [
+        {
+          "id": "86:331",
+          "name": "Coverage=Complete"
+        },
+        {
+          "id": "86:344",
+          "name": "Coverage=Partial"
+        },
+        {
+          "id": "86:357",
+          "name": "Coverage=Unavailable"
+        }
+      ],
+      "properties": {
+        "ShowAction#86:10": {
+          "type": "BOOLEAN",
+          "defaultValue": true
+        },
+        "DetailTextComplete#89:0": {
+          "type": "TEXT",
+          "defaultValue": "События и запись доступны для анализа."
+        },
+        "DetailTextPartial#89:4": {
+          "type": "TEXT",
+          "defaultValue": "Часть записи отсутствует. Это не означает неуспех задания."
+        },
+        "DetailTextUnavailable#89:8": {
+          "type": "TEXT",
+          "defaultValue": "Причина недоступности уточняется."
+        },
+        "Coverage": {
+          "type": "VARIANT",
+          "defaultValue": "Complete",
+          "variantOptions": [
+            "Complete",
+            "Partial",
+            "Unavailable"
+          ]
+        }
+      },
+      "issues": [],
+      "texts": [
+        {
+          "id": "86:335",
+          "name": "StatusLabel",
+          "text": "Данные полные",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "86:336",
+          "name": "DetailText",
+          "text": "События и запись доступны для анализа.",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        },
+        {
+          "id": "I86:338;31735:391859",
+          "name": "Text",
+          "text": "Посмотреть данные",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "86:348",
+          "name": "StatusLabel",
+          "text": "Данные неполные",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "86:349",
+          "name": "DetailText",
+          "text": "Часть записи отсутствует. Это не означает неуспех задания.",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        },
+        {
+          "id": "I86:351;31735:391859",
+          "name": "Text",
+          "text": "Посмотреть данные",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "86:361",
+          "name": "StatusLabel",
+          "text": "Запись недоступна",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        },
+        {
+          "id": "86:362",
+          "name": "DetailText",
+          "text": "Причина недоступности уточняется.",
+          "styleId": "S:0ffe9932b31ce3305d4041a590cc8ec20d95f4d2,55268:233"
+        },
+        {
+          "id": "I86:364;31735:391859",
+          "name": "Text",
+          "text": "К участнику",
+          "styleId": "S:f9812c3b501de2fc60a2086c9d855d94e3bd1950,55268:252"
+        }
+      ]
+    },
+    {
+      "name": "ProductButton",
+      "id": "125:450",
+      "properties": {
+        "Kind": {
+          "type": "VARIANT",
+          "defaultValue": "Primary",
+          "variantOptions": [
+            "Primary",
+            "Secondary",
+            "Tertiary"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Pressed",
+            "Focus",
+            "Disabled",
+            "Loading"
+          ]
+        },
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "Small",
+          "variantOptions": [
+            "Small"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "125:312",
+          "name": "Kind=Primary, State=Default, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 0,
+          "instance": {
+            "id": "125:313",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "6196d9e8ae460a7af7a949e08e5710d45fd0ed92",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:319",
+          "name": "Kind=Secondary, State=Default, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 0,
+          "instance": {
+            "id": "125:320",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "dc5e57a495fb01dedbd541858cdf1a843067ccf5",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:326",
+          "name": "Kind=Tertiary, State=Default, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 392,
+          "y": 0,
+          "instance": {
+            "id": "125:327",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "57021db1dd4c9c7ed29144a6d0174f026e1efc89",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:333",
+          "name": "Kind=Primary, State=Hover, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 56,
+          "instance": {
+            "id": "125:334",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "6196d9e8ae460a7af7a949e08e5710d45fd0ed92",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:340",
+          "name": "Kind=Secondary, State=Hover, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 56,
+          "instance": {
+            "id": "125:341",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "dc5e57a495fb01dedbd541858cdf1a843067ccf5",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:347",
+          "name": "Kind=Tertiary, State=Hover, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 392,
+          "y": 56,
+          "instance": {
+            "id": "125:348",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "57021db1dd4c9c7ed29144a6d0174f026e1efc89",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:354",
+          "name": "Kind=Primary, State=Pressed, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 112,
+          "instance": {
+            "id": "125:355",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "6196d9e8ae460a7af7a949e08e5710d45fd0ed92",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:361",
+          "name": "Kind=Secondary, State=Pressed, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 112,
+          "instance": {
+            "id": "125:362",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "dc5e57a495fb01dedbd541858cdf1a843067ccf5",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:368",
+          "name": "Kind=Tertiary, State=Pressed, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 392,
+          "y": 112,
+          "instance": {
+            "id": "125:369",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "57021db1dd4c9c7ed29144a6d0174f026e1efc89",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:375",
+          "name": "Kind=Primary, State=Focus, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 168,
+          "instance": {
+            "id": "125:376",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "6196d9e8ae460a7af7a949e08e5710d45fd0ed92",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:382",
+          "name": "Kind=Secondary, State=Focus, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 168,
+          "instance": {
+            "id": "125:383",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "dc5e57a495fb01dedbd541858cdf1a843067ccf5",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:389",
+          "name": "Kind=Tertiary, State=Focus, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 392,
+          "y": 168,
+          "instance": {
+            "id": "125:390",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "57021db1dd4c9c7ed29144a6d0174f026e1efc89",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:396",
+          "name": "Kind=Primary, State=Disabled, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 224,
+          "instance": {
+            "id": "125:397",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "6196d9e8ae460a7af7a949e08e5710d45fd0ed92",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:403",
+          "name": "Kind=Secondary, State=Disabled, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 224,
+          "instance": {
+            "id": "125:404",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "dc5e57a495fb01dedbd541858cdf1a843067ccf5",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:410",
+          "name": "Kind=Tertiary, State=Disabled, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 392,
+          "y": 224,
+          "instance": {
+            "id": "125:411",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "57021db1dd4c9c7ed29144a6d0174f026e1efc89",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:417",
+          "name": "Kind=Primary, State=Loading, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 280,
+          "instance": {
+            "id": "125:418",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "6196d9e8ae460a7af7a949e08e5710d45fd0ed92",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:428",
+          "name": "Kind=Secondary, State=Loading, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 280,
+          "instance": {
+            "id": "125:429",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "dc5e57a495fb01dedbd541858cdf1a843067ccf5",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:439",
+          "name": "Kind=Tertiary, State=Loading, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 392,
+          "y": 280,
+          "instance": {
+            "id": "125:440",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "57021db1dd4c9c7ed29144a6d0174f026e1efc89",
+            "exposed": true
+          }
+        }
+      ],
+      "issues": [],
+      "passed": true,
+      "documentation": {
+        "id": "125:309",
+        "y": 40,
+        "height": 512
+      },
+      "size": {
+        "width": 572,
+        "height": 320
+      }
+    },
+    {
+      "name": "ProductNavItem",
+      "id": "128:563",
+      "properties": {
+        "Selected": {
+          "type": "VARIANT",
+          "defaultValue": "False",
+          "variantOptions": [
+            "False",
+            "True"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Pressed",
+            "Focus"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "128:491",
+          "name": "Selected=False, State=Default",
+          "width": 260,
+          "height": 48,
+          "x": 0,
+          "y": 0,
+          "instance": {
+            "id": "128:492",
+            "width": 252,
+            "height": 40,
+            "sourceKey": "ed329b9098a9ee03c94eb61e4758022b42335fbc",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:500",
+          "name": "Selected=True, State=Default",
+          "width": 260,
+          "height": 48,
+          "x": 276,
+          "y": 0,
+          "instance": {
+            "id": "128:501",
+            "width": 252,
+            "height": 40,
+            "sourceKey": "13e66a4c0b11a60b1f35c8d4f872e07205480845",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:509",
+          "name": "Selected=False, State=Hover",
+          "width": 260,
+          "height": 48,
+          "x": 0,
+          "y": 64,
+          "instance": {
+            "id": "128:510",
+            "width": 252,
+            "height": 40,
+            "sourceKey": "ed329b9098a9ee03c94eb61e4758022b42335fbc",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:518",
+          "name": "Selected=True, State=Hover",
+          "width": 260,
+          "height": 48,
+          "x": 276,
+          "y": 64,
+          "instance": {
+            "id": "128:519",
+            "width": 252,
+            "height": 40,
+            "sourceKey": "13e66a4c0b11a60b1f35c8d4f872e07205480845",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:527",
+          "name": "Selected=False, State=Pressed",
+          "width": 260,
+          "height": 48,
+          "x": 0,
+          "y": 128,
+          "instance": {
+            "id": "128:528",
+            "width": 252,
+            "height": 40,
+            "sourceKey": "ed329b9098a9ee03c94eb61e4758022b42335fbc",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:536",
+          "name": "Selected=True, State=Pressed",
+          "width": 260,
+          "height": 48,
+          "x": 276,
+          "y": 128,
+          "instance": {
+            "id": "128:537",
+            "width": 252,
+            "height": 40,
+            "sourceKey": "13e66a4c0b11a60b1f35c8d4f872e07205480845",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:545",
+          "name": "Selected=False, State=Focus",
+          "width": 260,
+          "height": 48,
+          "x": 0,
+          "y": 192,
+          "instance": {
+            "id": "128:546",
+            "width": 252,
+            "height": 40,
+            "sourceKey": "ed329b9098a9ee03c94eb61e4758022b42335fbc",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:554",
+          "name": "Selected=True, State=Focus",
+          "width": 260,
+          "height": 48,
+          "x": 276,
+          "y": 192,
+          "instance": {
+            "id": "128:555",
+            "width": 252,
+            "height": 40,
+            "sourceKey": "13e66a4c0b11a60b1f35c8d4f872e07205480845",
+            "exposed": true
+          }
+        }
+      ],
+      "issues": [],
+      "passed": true,
+      "documentation": {
+        "id": "128:220",
+        "y": 650,
+        "height": 432
+      },
+      "size": {
+        "width": 536,
+        "height": 240
+      }
+    },
+    {
+      "name": "ProductTab",
+      "id": "128:1055",
+      "properties": {
+        "Selected": {
+          "type": "VARIANT",
+          "defaultValue": "False",
+          "variantOptions": [
+            "False",
+            "True"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Pressed",
+            "Focus"
+          ]
+        },
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "Small",
+          "variantOptions": [
+            "Small"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "128:981",
+          "name": "Selected=False, State=Default, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 0,
+          "instance": {
+            "id": "128:982",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "00195840374e5109e5a27a7f08a2597d21349075",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:992",
+          "name": "Selected=True, State=Default, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 0,
+          "instance": {
+            "id": "128:993",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "63f2193cac0c648d0922468fe49e2e25ef8e6da6",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:1004",
+          "name": "Selected=False, State=Hover, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 56,
+          "instance": {
+            "id": "128:1005",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "00195840374e5109e5a27a7f08a2597d21349075",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:1012",
+          "name": "Selected=True, State=Hover, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 56,
+          "instance": {
+            "id": "128:1013",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "63f2193cac0c648d0922468fe49e2e25ef8e6da6",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:1021",
+          "name": "Selected=False, State=Pressed, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 112,
+          "instance": {
+            "id": "128:1022",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "00195840374e5109e5a27a7f08a2597d21349075",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:1029",
+          "name": "Selected=True, State=Pressed, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 112,
+          "instance": {
+            "id": "128:1030",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "63f2193cac0c648d0922468fe49e2e25ef8e6da6",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:1038",
+          "name": "Selected=False, State=Focus, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 168,
+          "instance": {
+            "id": "128:1039",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "00195840374e5109e5a27a7f08a2597d21349075",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:1046",
+          "name": "Selected=True, State=Focus, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 168,
+          "instance": {
+            "id": "128:1047",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "63f2193cac0c648d0922468fe49e2e25ef8e6da6",
+            "exposed": true
+          }
+        }
+      ],
+      "issues": [],
+      "passed": true,
+      "documentation": {
+        "id": "128:900",
+        "y": 1110,
+        "height": 400
+      },
+      "size": {
+        "width": 376,
+        "height": 208
+      }
+    }
+  ],
+  "heatmapVariables": [
+    {
+      "id": "VariableID:82:5",
+      "name": "heatmap/intensity/1",
+      "values": {
+        "82:0": {
+          "r": 0.9490196108818054,
+          "g": 0.95686274766922,
+          "b": 0.9137254953384399,
+          "a": 1
+        }
+      },
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    },
+    {
+      "id": "VariableID:82:6",
+      "name": "heatmap/intensity/2",
+      "values": {
+        "82:0": {
+          "r": 0.8901960849761963,
+          "g": 0.9098039269447327,
+          "b": 0.800000011920929,
+          "a": 1
+        }
+      },
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    },
+    {
+      "id": "VariableID:82:7",
+      "name": "heatmap/intensity/3",
+      "values": {
+        "82:0": {
+          "r": 0.8274509906768799,
+          "g": 0.8666666746139526,
+          "b": 0.6823529601097107,
+          "a": 1
+        }
+      },
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    },
+    {
+      "id": "VariableID:82:8",
+      "name": "heatmap/intensity/4",
+      "values": {
+        "82:0": {
+          "r": 0.7450980544090271,
+          "g": 0.8117647171020508,
+          "b": 0.5607843399047852,
+          "a": 1
+        }
+      },
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    },
+    {
+      "id": "VariableID:82:9",
+      "name": "heatmap/intensity/5",
+      "values": {
+        "82:0": {
+          "r": 0.6549019813537598,
+          "g": 0.7411764860153198,
+          "b": 0.43921568989753723,
+          "a": 1
+        }
+      },
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    },
+    {
+      "id": "VariableID:82:10",
+      "name": "heatmap/intensity/6",
+      "values": {
+        "82:0": {
+          "r": 0.5607843399047852,
+          "g": 0.6509804129600525,
+          "b": 0.32549020648002625,
+          "a": 1
+        }
+      },
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    },
+    {
+      "id": "VariableID:82:11",
+      "name": "heatmap/intensity/7",
+      "values": {
+        "82:0": {
+          "r": 0.47058823704719543,
+          "g": 0.5568627715110779,
+          "b": 0.23529411852359772,
+          "a": 1
+        }
+      },
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    },
+    {
+      "id": "VariableID:82:12",
+      "name": "heatmap/intensity/8",
+      "values": {
+        "82:0": {
+          "r": 0.3843137323856354,
+          "g": 0.47058823704719543,
+          "b": 0.18039216101169586,
+          "a": 1
+        }
+      },
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    },
+    {
+      "id": "VariableID:82:13",
+      "name": "heatmap/intensity/9",
+      "values": {
+        "82:0": {
+          "r": 0.2980392277240753,
+          "g": 0.3843137323856354,
+          "b": 0.1411764770746231,
+          "a": 1
+        }
+      },
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    },
+    {
+      "id": "VariableID:82:14",
+      "name": "heatmap/intensity/10",
+      "values": {
+        "82:0": {
+          "r": 0.21960784494876862,
+          "g": 0.3019607961177826,
+          "b": 0.09803921729326248,
+          "a": 1
+        }
+      },
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ]
+    }
+  ],
+  "passed": true,
+  "semanticAliases": [
+    {
+      "id": "VariableID:125:154",
+      "name": "action/hover",
+      "target": "text/primary",
+      "values": {
+        "67:0": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:67:113"
+        }
+      }
+    },
+    {
+      "id": "VariableID:125:155",
+      "name": "action/pressed",
+      "target": "text/secondary",
+      "values": {
+        "67:0": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:67:114"
+        }
+      }
+    },
+    {
+      "id": "VariableID:125:156",
+      "name": "surface/hover",
+      "target": "background/sidebar",
+      "values": {
+        "67:0": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:67:109"
+        }
+      }
+    },
+    {
+      "id": "VariableID:125:157",
+      "name": "surface/pressed",
+      "target": "accent/soft",
+      "values": {
+        "67:0": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:67:117"
+        }
+      }
+    },
+    {
+      "id": "VariableID:125:158",
+      "name": "border/focus",
+      "target": "accent/strong",
+      "values": {
+        "67:0": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:67:118"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "tables": [
+    {
+      "id": "203:7354",
+      "name": "ProjectsTable",
+      "gap": 0,
+      "actualGaps": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "205:6239",
+      "name": "StudiesTable",
+      "gap": 0,
+      "actualGaps": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "207:6525",
+      "name": "ProjectsTable",
+      "gap": 0,
+      "actualGaps": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "210:7729",
+      "name": "FunnelTable",
+      "gap": 0,
+      "actualGaps": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "210:11005",
+      "name": "ControlChecklist",
+      "gap": 0,
+      "actualGaps": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "210:12824",
+      "name": "ParticipantTasks",
+      "gap": 0,
+      "actualGaps": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "210:13390",
+      "name": "SignalsTable",
+      "gap": 0,
+      "actualGaps": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "210:14133",
+      "name": "ExploredPages",
+      "gap": 0,
+      "actualGaps": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "210:17463",
+      "name": "PageSignalsTable",
+      "gap": 0,
+      "actualGaps": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "210:17934",
+      "name": "PageEvents",
+      "gap": 0,
+      "actualGaps": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "210:18363",
+      "name": "FindingsTable",
+      "gap": 0,
+      "actualGaps": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "210:19089",
+      "name": "FindingsTable",
+      "gap": 0,
+      "actualGaps": [
+        0,
+        0
+      ]
+    }
+  ],
+  "buttons": [
+    {
+      "id": "205:5716",
+      "h": 40,
+      "outerFill": 0,
+      "visibleBackgroundHeight": 32
+    },
+    {
+      "id": "210:8146",
+      "h": 40,
+      "outerFill": 0,
+      "visibleBackgroundHeight": 32
+    },
+    {
+      "id": "210:8596",
+      "h": 40,
+      "outerFill": 0,
+      "visibleBackgroundHeight": 32
+    },
+    {
+      "id": "210:8933",
+      "h": 40,
+      "outerFill": 0,
+      "visibleBackgroundHeight": 32
+    },
+    {
+      "id": "210:9928",
+      "h": 40,
+      "outerFill": 0,
+      "visibleBackgroundHeight": 32
+    },
+    {
+      "id": "210:10270",
+      "h": 40,
+      "outerFill": 0,
+      "visibleBackgroundHeight": 32
+    },
+    {
+      "id": "210:10628",
+      "h": 40,
+      "outerFill": 0,
+      "visibleBackgroundHeight": 32
+    },
+    {
+      "id": "210:13376",
+      "h": 40,
+      "outerFill": 0,
+      "visibleBackgroundHeight": 32
+    },
+    {
+      "id": "210:14529",
+      "h": 40,
+      "outerFill": 0,
+      "visibleBackgroundHeight": 32
+    },
+    {
+      "id": "210:14979",
+      "h": 40,
+      "outerFill": 0,
+      "visibleBackgroundHeight": 32
+    },
+    {
+      "id": "210:17454",
+      "h": 40,
+      "outerFill": 0,
+      "visibleBackgroundHeight": 32
+    }
+  ],
+  "passed": true
+}

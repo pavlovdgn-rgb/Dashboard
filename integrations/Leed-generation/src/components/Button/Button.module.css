@@ -1,0 +1,92 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  font-family: var(--font-sans);
+  font-weight: var(--weight-medium);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 180ms ease, opacity 180ms ease;
+}
+
+.button:focus-visible {
+  outline: var(--border-width-thick) solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* Size */
+.sizeM {
+  height: 44px;
+  padding: 0 var(--space-lg);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.sizeS {
+  height: 36px;
+  padding: 0 var(--space-md);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Style: Primary */
+.stylePrimary {
+  background: var(--color-brand-primary);
+  color: var(--color-text-on-button);
+}
+.stylePrimary:hover:not(:disabled) {
+  background: var(--color-generated-button-primary-hover);
+}
+.stylePrimary:active:not(:disabled) {
+  background: var(--color-generated-button-primary-pressed);
+}
+
+/* Style: Secondary */
+.styleSecondary {
+  background: var(--color-generated-button-secondary-bg);
+  color: var(--color-text-primary);
+}
+.styleSecondary:hover:not(:disabled) {
+  background: var(--color-generated-button-secondary-hover);
+}
+.styleSecondary:active:not(:disabled) {
+  background: var(--color-generated-button-secondary-pressed);
+}
+
+/* Style: Tertiary — not detailed in ds/components.md, inferred: ghost/text-on-transparent, same family as Text Button */
+.styleTertiary {
+  background: transparent;
+  color: var(--color-text-primary);
+}
+.styleTertiary:hover:not(:disabled) {
+  background: var(--color-bg-hover-subtle);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.icon {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+}
+
+.loadingSpinner {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  border: var(--border-width-thick) solid currentColor;
+  border-top-color: transparent;
+  animation: ds-spin 0.6s linear infinite;
+}
+
+@keyframes ds-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

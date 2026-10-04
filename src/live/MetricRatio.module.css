@@ -1,0 +1,6 @@
+.ratio { display:flex; align-items:center; gap:var(--size-medium); min-inline-size:calc(var(--size-base)*10); inline-size:100%; }
+.track[class] { flex:1; min-inline-size:0; block-size:var(--size-small); background:var(--border-subtle); border-radius:var(--size-small); }
+.track[class]::-webkit-progress-bar { background:var(--border-subtle); }
+.track[class]::-webkit-progress-value { background:var(--accent-strong); }
+.track[class]::-moz-progress-bar { background:var(--accent-strong); }
+.value { flex:0 0 4ch; font-variant-numeric:tabular-nums; font-weight:var(--font-weight-medium); white-space:nowrap; }

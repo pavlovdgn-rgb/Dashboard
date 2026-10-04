@@ -1,0 +1,156 @@
+{
+  "date": "2026-09-22",
+  "status": "complete",
+  "componentId": "84:713",
+  "variants": [
+    {
+      "id": "84:642",
+      "name": "Coverage=Complete, Playback=Paused",
+      "width": 1360,
+      "height": 245,
+      "buttonWidth": 155,
+      "position": {
+        "characters": "PositionLabel#84:2"
+      },
+      "playheads": [
+        {
+          "id": "96:67",
+          "variable": "VariableID:102:94"
+        },
+        {
+          "id": "96:68",
+          "variable": "VariableID:102:94"
+        }
+      ],
+      "speeds": [
+        {
+          "width": 48
+        },
+        {
+          "width": 48
+        },
+        {
+          "width": 48
+        }
+      ]
+    },
+    {
+      "id": "84:678",
+      "name": "Coverage=Gap, Playback=Paused",
+      "width": 1360,
+      "height": 245,
+      "buttonWidth": 155,
+      "position": {
+        "characters": "PositionLabel#84:2"
+      },
+      "playheads": [
+        {
+          "id": "96:108",
+          "variable": "VariableID:102:94"
+        },
+        {
+          "id": "96:109",
+          "variable": "VariableID:102:94"
+        }
+      ],
+      "speeds": [
+        {
+          "width": 48
+        },
+        {
+          "width": 48
+        },
+        {
+          "width": 48
+        }
+      ]
+    },
+    {
+      "id": "118:98",
+      "name": "Coverage=Complete, Playback=Playing",
+      "width": 1360,
+      "height": 245,
+      "buttonWidth": 155,
+      "position": {
+        "characters": "PositionLabel#84:2"
+      },
+      "playheads": [
+        {
+          "id": "118:112",
+          "variable": "VariableID:102:94"
+        },
+        {
+          "id": "118:113",
+          "variable": "VariableID:102:94"
+        }
+      ],
+      "speeds": [
+        {
+          "width": 48
+        },
+        {
+          "width": 48
+        },
+        {
+          "width": 48
+        }
+      ]
+    },
+    {
+      "id": "118:168",
+      "name": "Coverage=Gap, Playback=Playing",
+      "width": 1360,
+      "height": 245,
+      "buttonWidth": 155,
+      "position": {
+        "characters": "PositionLabel#84:2"
+      },
+      "playheads": [
+        {
+          "id": "118:204",
+          "variable": "VariableID:102:94"
+        },
+        {
+          "id": "118:205",
+          "variable": "VariableID:102:94"
+        }
+      ],
+      "speeds": [
+        {
+          "width": 48
+        },
+        {
+          "width": 48
+        },
+        {
+          "width": 48
+        }
+      ]
+    }
+  ],
+  "properties": {
+    "PositionLabel#84:2": {
+      "type": "TEXT",
+      "defaultValue": "02:18 / 04:32"
+    },
+    "Coverage": {
+      "type": "VARIANT",
+      "defaultValue": "Complete",
+      "variantOptions": [
+        "Complete",
+        "Gap"
+      ]
+    },
+    "Playback": {
+      "type": "VARIANT",
+      "defaultValue": "Paused",
+      "variantOptions": [
+        "Paused",
+        "Playing"
+      ]
+    }
+  },
+  "newTokens": [],
+  "auditPassed": true,
+  "visualCheckPassed": true
+}

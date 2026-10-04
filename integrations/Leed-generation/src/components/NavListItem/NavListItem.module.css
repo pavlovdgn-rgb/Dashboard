@@ -1,0 +1,34 @@
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 32px;
+  padding: 0 var(--space-md);
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.item:hover {
+  background: var(--color-bg-hover-subtle);
+}
+
+/* Active — ds/components.md → NavListItem: красит только текст в brand/primary, фон не меняется — сверено напрямую в Figma (191:2641) */
+.item.active {
+  color: var(--color-brand-primary);
+}
+
+.pin {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--color-text-icons);
+}

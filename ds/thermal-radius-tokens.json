@@ -1,0 +1,483 @@
+[
+  {
+    "id": "VariableID:82:5",
+    "name": "heatmap/intensity/1",
+    "collectionId": "VariableCollectionId:82:4",
+    "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+    ],
+    "codeSyntax": {
+      "WEB": "var(--heatmap-intensity-1)"
+    },
+    "valuesByMode": {
+      "82:0": {
+        "type": "VARIABLE_ALIAS",
+        "id": "VariableID:212:2884"
+      }
+    }
+  },
+  {
+    "id": "VariableID:82:6",
+    "name": "heatmap/intensity/2",
+    "collectionId": "VariableCollectionId:82:4",
+    "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+    ],
+    "codeSyntax": {
+      "WEB": "var(--heatmap-intensity-2)"
+    },
+    "valuesByMode": {
+      "82:0": {
+        "type": "VARIABLE_ALIAS",
+        "id": "VariableID:212:2885"
+      }
+    }
+  },
+  {
+    "id": "VariableID:82:7",
+    "name": "heatmap/intensity/3",
+    "collectionId": "VariableCollectionId:82:4",
+    "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+    ],
+    "codeSyntax": {
+      "WEB": "var(--heatmap-intensity-3)"
+    },
+    "valuesByMode": {
+      "82:0": {
+        "type": "VARIABLE_ALIAS",
+        "id": "VariableID:212:2886"
+      }
+    }
+  },
+  {
+    "id": "VariableID:82:8",
+    "name": "heatmap/intensity/4",
+    "collectionId": "VariableCollectionId:82:4",
+    "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+    ],
+    "codeSyntax": {
+      "WEB": "var(--heatmap-intensity-4)"
+    },
+    "valuesByMode": {
+      "82:0": {
+        "type": "VARIABLE_ALIAS",
+        "id": "VariableID:212:2887"
+      }
+    }
+  },
+  {
+    "id": "VariableID:82:9",
+    "name": "heatmap/intensity/5",
+    "collectionId": "VariableCollectionId:82:4",
+    "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+    ],
+    "codeSyntax": {
+      "WEB": "var(--heatmap-intensity-5)"
+    },
+    "valuesByMode": {
+      "82:0": {
+        "type": "VARIABLE_ALIAS",
+        "id": "VariableID:212:2888"
+      }
+    }
+  },
+  {
+    "id": "VariableID:82:10",
+    "name": "heatmap/intensity/6",
+    "collectionId": "VariableCollectionId:82:4",
+    "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+    ],
+    "codeSyntax": {
+      "WEB": "var(--heatmap-intensity-6)"
+    },
+    "valuesByMode": {
+      "82:0": {
+        "type": "VARIABLE_ALIAS",
+        "id": "VariableID:212:2889"
+      }
+    }
+  },
+  {
+    "id": "VariableID:82:11",
+    "name": "heatmap/intensity/7",
+    "collectionId": "VariableCollectionId:82:4",
+    "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+    ],
+    "codeSyntax": {
+      "WEB": "var(--heatmap-intensity-7)"
+    },
+    "valuesByMode": {
+      "82:0": {
+        "type": "VARIABLE_ALIAS",
+        "id": "VariableID:212:2890"
+      }
+    }
+  },
+  {
+    "id": "VariableID:82:12",
+    "name": "heatmap/intensity/8",
+    "collectionId": "VariableCollectionId:82:4",
+    "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+    ],
+    "codeSyntax": {
+      "WEB": "var(--heatmap-intensity-8)"
+    },
+    "valuesByMode": {
+      "82:0": {
+        "type": "VARIABLE_ALIAS",
+        "id": "VariableID:212:2891"
+      }
+    }
+  },
+  {
+    "id": "VariableID:82:13",
+    "name": "heatmap/intensity/9",
+    "collectionId": "VariableCollectionId:82:4",
+    "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+    ],
+    "codeSyntax": {
+      "WEB": "var(--heatmap-intensity-9)"
+    },
+    "valuesByMode": {
+      "82:0": {
+        "type": "VARIABLE_ALIAS",
+        "id": "VariableID:212:2892"
+      }
+    }
+  },
+  {
+    "id": "VariableID:82:14",
+    "name": "heatmap/intensity/10",
+    "collectionId": "VariableCollectionId:82:4",
+    "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+    ],
+    "codeSyntax": {
+      "WEB": "var(--heatmap-intensity-10)"
+    },
+    "valuesByMode": {
+      "82:0": {
+        "type": "VARIABLE_ALIAS",
+        "id": "VariableID:212:2893"
+      }
+    }
+  },
+  {
+    "id": "VariableID:202:3804",
+    "name": "radius/12",
+    "collectionId": "VariableCollectionId:171:1756",
+    "scopes": [],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "171:0": 12
+    }
+  },
+  {
+    "id": "VariableID:202:3805",
+    "name": "radius/surface",
+    "collectionId": "VariableCollectionId:67:106",
+    "scopes": [
+      "CORNER_RADIUS"
+    ],
+    "codeSyntax": {
+      "WEB": "var(--radius-surface)"
+    },
+    "valuesByMode": {
+      "67:0": {
+        "type": "VARIABLE_ALIAS",
+        "id": "VariableID:202:3804"
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2884",
+    "name": "thermal/intensity/1",
+    "collectionId": "VariableCollectionId:171:1756",
+    "scopes": [],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "171:0": {
+        "r": 1,
+        "g": 0.9725490212440491,
+        "b": 0.8745098114013672,
+        "a": 1
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2885",
+    "name": "thermal/intensity/2",
+    "collectionId": "VariableCollectionId:171:1756",
+    "scopes": [],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "171:0": {
+        "r": 1,
+        "g": 0.9411764740943909,
+        "b": 0.7215686440467834,
+        "a": 1
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2886",
+    "name": "thermal/intensity/3",
+    "collectionId": "VariableCollectionId:171:1756",
+    "scopes": [],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "171:0": {
+        "r": 1,
+        "g": 0.9058823585510254,
+        "b": 0.5333333611488342,
+        "a": 1
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2887",
+    "name": "thermal/intensity/4",
+    "collectionId": "VariableCollectionId:171:1756",
+    "scopes": [],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "171:0": {
+        "r": 1,
+        "g": 0.8588235378265381,
+        "b": 0.21176470816135406,
+        "a": 1
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2888",
+    "name": "thermal/intensity/5",
+    "collectionId": "VariableCollectionId:171:1756",
+    "scopes": [],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "171:0": {
+        "r": 1,
+        "g": 0.7764706015586853,
+        "b": 0.1882352977991104,
+        "a": 1
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2889",
+    "name": "thermal/intensity/6",
+    "collectionId": "VariableCollectionId:171:1756",
+    "scopes": [],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "171:0": {
+        "r": 1,
+        "g": 0.6745098233222961,
+        "b": 0.16078431904315948,
+        "a": 1
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2890",
+    "name": "thermal/intensity/7",
+    "collectionId": "VariableCollectionId:171:1756",
+    "scopes": [],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "171:0": {
+        "r": 1,
+        "g": 0.5490196347236633,
+        "b": 0.13333334028720856,
+        "a": 1
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2891",
+    "name": "thermal/intensity/8",
+    "collectionId": "VariableCollectionId:171:1756",
+    "scopes": [],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "171:0": {
+        "r": 0.9686274528503418,
+        "g": 0.45098039507865906,
+        "b": 0.13725490868091583,
+        "a": 1
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2892",
+    "name": "thermal/intensity/9",
+    "collectionId": "VariableCollectionId:171:1756",
+    "scopes": [],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "171:0": {
+        "r": 0.929411768913269,
+        "g": 0.3333333432674408,
+        "b": 0.14509804546833038,
+        "a": 1
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2893",
+    "name": "thermal/intensity/10",
+    "collectionId": "VariableCollectionId:171:1756",
+    "scopes": [],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "171:0": {
+        "r": 0.8901960849761963,
+        "g": 0.23529411852359772,
+        "b": 0.14901961386203766,
+        "a": 1
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2894",
+    "name": "thermal/spot/core",
+    "collectionId": "VariableCollectionId:171:1756",
+    "scopes": [],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "171:0": {
+        "r": 0.8901960849761963,
+        "g": 0.23529411852359772,
+        "b": 0.14901961386203766,
+        "a": 0.699999988079071
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2895",
+    "name": "heatmap/spot/core",
+    "collectionId": "VariableCollectionId:82:4",
+    "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+    ],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "82:0": {
+        "type": "VARIABLE_ALIAS",
+        "id": "VariableID:212:2894"
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2896",
+    "name": "thermal/spot/middle",
+    "collectionId": "VariableCollectionId:171:1756",
+    "scopes": [],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "171:0": {
+        "r": 1,
+        "g": 0.5490196347236633,
+        "b": 0.13333334028720856,
+        "a": 0.5600000023841858
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2897",
+    "name": "heatmap/spot/middle",
+    "collectionId": "VariableCollectionId:82:4",
+    "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+    ],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "82:0": {
+        "type": "VARIABLE_ALIAS",
+        "id": "VariableID:212:2896"
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2898",
+    "name": "thermal/spot/outer",
+    "collectionId": "VariableCollectionId:171:1756",
+    "scopes": [],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "171:0": {
+        "r": 1,
+        "g": 0.8549019694328308,
+        "b": 0.21176470816135406,
+        "a": 0.30000001192092896
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2899",
+    "name": "heatmap/spot/outer",
+    "collectionId": "VariableCollectionId:82:4",
+    "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+    ],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "82:0": {
+        "type": "VARIABLE_ALIAS",
+        "id": "VariableID:212:2898"
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2900",
+    "name": "thermal/spot/edge",
+    "collectionId": "VariableCollectionId:171:1756",
+    "scopes": [],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "171:0": {
+        "r": 1,
+        "g": 0.8745098114013672,
+        "b": 0.21960784494876862,
+        "a": 0
+      }
+    }
+  },
+  {
+    "id": "VariableID:212:2901",
+    "name": "heatmap/spot/edge",
+    "collectionId": "VariableCollectionId:82:4",
+    "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+    ],
+    "codeSyntax": {},
+    "valuesByMode": {
+      "82:0": {
+        "type": "VARIABLE_ALIAS",
+        "id": "VariableID:212:2900"
+      }
+    }
+  }
+]

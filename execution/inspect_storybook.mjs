@@ -1,0 +1,10 @@
+import {chromium} from '@playwright/test';
+const browser=await chromium.launch({channel:'chrome',headless:true});
+const page=await browser.newPage({viewport:{width:1600,height:1100}});
+await page.goto('http://127.0.0.1:6006/?path=/docs/ds-125-450--docs');
+const iframe=page.frameLocator('#storybook-preview-iframe');
+await iframe.getByRole('heading',{name:/ProductButton/}).first().waitFor();
+console.log((await iframe.locator('body').innerText()).slice(0,12000));
+console.log(await iframe.getByRole('button').evaluateAll(nodes=>nodes.map(n=>({text:n.textContent,label:n.getAttribute('aria-label'),title:n.getAttribute('title')}))));
+await page.screenshot({path:'.tmp/storybook/docs-inspect.png',fullPage:true});
+await browser.close();

@@ -1,0 +1,94 @@
+{
+  "navMenu": {
+    "id": "153:2777",
+    "variants": 10,
+    "paddingInline": 12,
+    "iconGap": 8,
+    "iconWidth": 20,
+    "menuWidth": 320,
+    "text": "#626E32",
+    "selectedBackground": "#ECEEDC",
+    "contrast": 4.69730171821008,
+    "geometryIssues": 0
+  },
+  "dropdownButtons": {
+    "scope": "UX-Lab · UI Kit",
+    "replacedFilterControls": 10,
+    "textArrowCharactersRemaining": 0,
+    "icon": "arrowDown"
+  },
+  "secondaryProposals": {
+    "boardId": "164:1681",
+    "status": "historical comparison; replaced by approved choice 237:11664",
+    "options": {
+      "A": {
+        "id": "164:1685",
+        "background": "border/subtle"
+      },
+      "B": {
+        "id": "164:1746",
+        "background": "background/sidebar",
+        "border": "border/control"
+      },
+      "C": {
+        "id": "164:1803",
+        "background": "accent/soft",
+        "border": "accent/strong"
+      }
+    },
+    "recommended": "B",
+    "appliedToMasters": true,
+    "currentChoice": {
+      "status": "approved and applied",
+      "date": "2026-09-23",
+      "choice": "A without outline",
+      "componentSetId": "125:450",
+      "tokens": [
+        {
+          "name": "action/secondary/background",
+          "id": "VariableID:252:3",
+          "primitiveId": "VariableID:252:2",
+          "hex": "#E4E5DC",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--action-secondary-background)"
+          }
+        },
+        {
+          "name": "action/secondary/hover",
+          "id": "VariableID:252:5",
+          "primitiveId": "VariableID:252:4",
+          "hex": "#D8DACD",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--action-secondary-hover)"
+          }
+        },
+        {
+          "name": "action/secondary/pressed",
+          "id": "VariableID:252:7",
+          "primitiveId": "VariableID:252:6",
+          "hex": "#CCD0BE",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--action-secondary-pressed)"
+          }
+        }
+      ],
+      "audit": "ds/secondary-choice-audit.json",
+      "scannedPages": 7,
+      "verifiedControls": 378,
+      "focusRingRetained": true,
+      "selectedOliveRetained": true
+    }
+  }
+}

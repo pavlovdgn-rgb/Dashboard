@@ -1,0 +1,2 @@
+.root[class] { padding:0; max-inline-size:100%; }
+.root button[class] { min-block-size:calc(var(--size-base)*3.5); padding-inline:var(--size-large); border-radius:var(--radius-surface); font-size:var(--font-size-medium); }

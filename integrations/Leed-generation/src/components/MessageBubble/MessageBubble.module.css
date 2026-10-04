@@ -1,0 +1,43 @@
+.row {
+  display: flex;
+  width: 100%;
+  font-family: var(--font-sans);
+}
+
+.row.client {
+  justify-content: flex-start;
+}
+
+.row.manager {
+  justify-content: flex-end;
+}
+
+.bubble {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  max-width: 320px;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+}
+
+.client .bubble {
+  background: var(--color-bg-hover-subtle);
+}
+
+.manager .bubble {
+  background: var(--color-extra-blue-10);
+}
+
+.meta {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-text-secondary);
+}
+
+.message {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-primary);
+  white-space: pre-line;
+}

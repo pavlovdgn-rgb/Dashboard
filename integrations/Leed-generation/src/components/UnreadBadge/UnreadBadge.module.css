@@ -1,0 +1,26 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--radius-full);
+  background: var(--color-system-error);
+  color: var(--color-text-on-dark);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.sm {
+  min-width: 18px;
+  height: 18px;
+  font-size: 10px;
+}
+
+.md {
+  min-width: 22px;
+  height: 22px;
+  font-size: 12px;
+}

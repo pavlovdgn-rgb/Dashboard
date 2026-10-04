@@ -1,0 +1,871 @@
+{
+  "fileKey": "1LeVoicxDT7Sl8TpMPs4hr",
+  "pageId": "191:847",
+  "sectionId": "175:613",
+  "date": "2026-09-23",
+  "screenCount": 55,
+  "desktopCount": 51,
+  "mobileCount": 4,
+  "prototypeWired": false,
+  "screens": [
+    {
+      "name": "ResultsOverview",
+      "id": "175:614",
+      "sourceId": "22:3",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=175-614",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "171:1801",
+        "136:715",
+        "135:1062",
+        "132:574"
+      ]
+    },
+    {
+      "name": "ProjectsDefault",
+      "id": "203:7278",
+      "sourceId": "46:14",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=203-7278",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "203:4474",
+        "203:5669"
+      ]
+    },
+    {
+      "name": "StudySetup",
+      "id": "205:5418",
+      "sourceId": "32:3",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=205-5418",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "203:4474"
+      ]
+    },
+    {
+      "name": "Studies",
+      "id": "205:6055",
+      "sourceId": "31:70",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=205-6055",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "171:1801",
+        "203:4474",
+        "203:5669"
+      ]
+    },
+    {
+      "name": "Heatmaps",
+      "id": "205:6345",
+      "sourceId": "22:95",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=205-6345",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "203:4474",
+        "83:730"
+      ]
+    },
+    {
+      "name": "Projects",
+      "id": "207:6449",
+      "sourceId": "31:3",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=207-6449",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "203:4474",
+        "203:5669"
+      ]
+    },
+    {
+      "name": "Replay",
+      "id": "209:6256",
+      "sourceId": "24:93",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=209-6256",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "203:4474",
+        "125:450",
+        "84:713"
+      ]
+    },
+    {
+      "name": "Launch",
+      "id": "209:6806",
+      "sourceId": "32:94",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=209-6806",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450"
+      ]
+    },
+    {
+      "name": "ProjectsEmpty",
+      "id": "209:7255",
+      "sourceId": "46:89",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=209-7255",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450"
+      ]
+    },
+    {
+      "name": "StudiesEmpty",
+      "id": "209:7311",
+      "sourceId": "46:137",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=209-7311",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450"
+      ]
+    },
+    {
+      "name": "Funnel",
+      "id": "210:7274",
+      "sourceId": "24:3",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-7274",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "171:1801",
+        "203:5669"
+      ]
+    },
+    {
+      "name": "SuccessCriteria",
+      "id": "210:7862",
+      "sourceId": "24:173",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-7862",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "203:4474"
+      ]
+    },
+    {
+      "name": "Login",
+      "id": "210:8295",
+      "sourceId": "46:4",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-8295",
+      "componentSets": [
+        "125:450"
+      ]
+    },
+    {
+      "name": "StudySetupBlank",
+      "id": "210:8311",
+      "sourceId": "47:4",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-8311",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "203:4474",
+        "125:450"
+      ]
+    },
+    {
+      "name": "StudySetupFree",
+      "id": "210:8643",
+      "sourceId": "47:68",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-8643",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "203:4474",
+        "125:450"
+      ]
+    },
+    {
+      "name": "TaskEditor",
+      "id": "210:8977",
+      "sourceId": "47:134",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-8977",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "203:4474",
+        "125:450"
+      ]
+    },
+    {
+      "name": "TaskPicker",
+      "id": "210:9300",
+      "sourceId": "47:201",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-9300",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "203:4474",
+        "125:450"
+      ]
+    },
+    {
+      "name": "CriteriaURL",
+      "id": "210:9660",
+      "sourceId": "47:289",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-9660",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "203:4474"
+      ]
+    },
+    {
+      "name": "CriteriaButton",
+      "id": "210:9995",
+      "sourceId": "47:358",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-9995",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "203:4474"
+      ]
+    },
+    {
+      "name": "ConnectionError",
+      "id": "210:10330",
+      "sourceId": "47:427",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-10330",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "203:4474"
+      ]
+    },
+    {
+      "name": "ControlResult",
+      "id": "210:10736",
+      "sourceId": "47:530",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-10736",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "203:5669",
+        "125:450"
+      ]
+    },
+    {
+      "name": "LaunchActive",
+      "id": "210:11108",
+      "sourceId": "48:4",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11108",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "203:4474"
+      ]
+    },
+    {
+      "name": "LaunchError",
+      "id": "210:11450",
+      "sourceId": "48:85",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11450",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450"
+      ]
+    },
+    {
+      "name": "ParticipantIntro",
+      "id": "210:11783",
+      "sourceId": "48:164",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11783",
+      "componentSets": [
+        "125:450"
+      ]
+    },
+    {
+      "name": "TaskBriefing",
+      "id": "210:11803",
+      "sourceId": "48:180",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11803",
+      "componentSets": [
+        "125:450"
+      ]
+    },
+    {
+      "name": "ParticipantSession",
+      "id": "210:11819",
+      "sourceId": "48:192",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11819",
+      "componentSets": [
+        "203:4474",
+        "125:450"
+      ]
+    },
+    {
+      "name": "ParticipantFinish",
+      "id": "210:11879",
+      "sourceId": "48:224",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11879",
+      "componentSets": []
+    },
+    {
+      "name": "UnavailableLink",
+      "id": "210:11890",
+      "sourceId": "48:236",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11890",
+      "componentSets": [
+        "125:450"
+      ]
+    },
+    {
+      "name": "PrototypeUnavailable",
+      "id": "210:11905",
+      "sourceId": "48:247",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11905",
+      "componentSets": [
+        "125:450"
+      ]
+    },
+    {
+      "name": "ParticipantTransferError",
+      "id": "210:11927",
+      "sourceId": "49:4",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11927",
+      "componentSets": [
+        "125:450"
+      ]
+    },
+    {
+      "name": "Participants",
+      "id": "210:11942",
+      "sourceId": "49:79",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-11942",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "153:1605",
+        "153:692",
+        "152:948",
+        "152:964",
+        "152:996"
+      ]
+    },
+    {
+      "name": "ParticipantDetails",
+      "id": "210:12490",
+      "sourceId": "49:170",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-12490",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "171:1801",
+        "203:5669"
+      ]
+    },
+    {
+      "name": "Signals",
+      "id": "210:12947",
+      "sourceId": "49:263",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-12947",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "203:5669"
+      ]
+    },
+    {
+      "name": "ResultsEmpty",
+      "id": "210:13536",
+      "sourceId": "50:4",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-13536",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450"
+      ]
+    },
+    {
+      "name": "ResultsFree",
+      "id": "210:13812",
+      "sourceId": "50:51",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-13812",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "171:1801",
+        "203:5669",
+        "125:450"
+      ]
+    },
+    {
+      "name": "HeatmapsFirstClick",
+      "id": "210:14240",
+      "sourceId": "50:137",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-14240",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "203:4474",
+        "83:730"
+      ]
+    },
+    {
+      "name": "HeatmapsDynamicState",
+      "id": "210:14633",
+      "sourceId": "50:229",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-14633",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "203:4474",
+        "83:730"
+      ]
+    },
+    {
+      "name": "ReplayIncomplete",
+      "id": "210:15045",
+      "sourceId": "50:322",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-15045",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "203:4474",
+        "125:450",
+        "84:713"
+      ]
+    },
+    {
+      "name": "ReplayUnavailable",
+      "id": "210:15490",
+      "sourceId": "50:416",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-15490",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450"
+      ]
+    },
+    {
+      "name": "Report",
+      "id": "210:15773",
+      "sourceId": "50:465",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-15773",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "282:2918"
+      ]
+    },
+    {
+      "name": "ReportGenerating",
+      "id": "210:16193",
+      "sourceId": "50:531",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-16193",
+      "componentSets": [
+        "153:2777",
+        "128:563"
+      ]
+    },
+    {
+      "name": "ReportReady",
+      "id": "210:16468",
+      "sourceId": "51:4",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-16468",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450"
+      ]
+    },
+    {
+      "name": "ReportError",
+      "id": "210:16767",
+      "sourceId": "51:68",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-16767",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450"
+      ]
+    },
+    {
+      "name": "ParticipantIntroMobile",
+      "id": "210:17054",
+      "sourceId": "49:15",
+      "width": 390,
+      "height": 844,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-17054",
+      "componentSets": [
+        "125:450"
+      ]
+    },
+    {
+      "name": "TaskBriefingMobile",
+      "id": "210:17074",
+      "sourceId": "49:31",
+      "width": 390,
+      "height": 844,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-17074",
+      "componentSets": [
+        "125:450"
+      ]
+    },
+    {
+      "name": "ParticipantSessionMobile",
+      "id": "210:17090",
+      "sourceId": "49:43",
+      "width": 390,
+      "height": 844,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-17090",
+      "componentSets": [
+        "125:450"
+      ]
+    },
+    {
+      "name": "ParticipantFinishMobile",
+      "id": "210:17130",
+      "sourceId": "49:67",
+      "width": 390,
+      "height": 844,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-17130",
+      "componentSets": []
+    },
+    {
+      "name": "SignalsByPage",
+      "id": "210:17141",
+      "sourceId": "105:3",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-17141",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "203:5669",
+        "128:1055"
+      ]
+    },
+    {
+      "name": "SignalsPageDetails",
+      "id": "210:17611",
+      "sourceId": "105:90",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-17611",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "203:5669",
+        "128:1055"
+      ]
+    },
+    {
+      "name": "Findings",
+      "id": "210:18056",
+      "sourceId": "105:177",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-18056",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "203:5669",
+        "128:1055"
+      ]
+    },
+    {
+      "name": "FindingsEmpty",
+      "id": "210:18458",
+      "sourceId": "105:264",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-18458",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450"
+      ]
+    },
+    {
+      "name": "FindingDetails",
+      "id": "210:18782",
+      "sourceId": "105:351",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-18782",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "203:5669",
+        "128:1055"
+      ]
+    },
+    {
+      "name": "FindingEditor",
+      "id": "210:19268",
+      "sourceId": "105:438",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-19268",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "203:4474",
+        "125:450",
+        "84:713"
+      ]
+    },
+    {
+      "name": "FindingSaved",
+      "id": "210:19805",
+      "sourceId": "105:545",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-19805",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "203:4474",
+        "125:450",
+        "84:713"
+      ]
+    },
+    {
+      "name": "ParticipantsFromHeatmap",
+      "id": "210:20237",
+      "sourceId": "109:313",
+      "width": 1920,
+      "height": 1080,
+      "auditPassed": true,
+      "visuallyReviewed": true,
+      "url": "https://www.figma.com/design/1LeVoicxDT7Sl8TpMPs4hr/Dashboard?node-id=210-20237",
+      "componentSets": [
+        "153:2777",
+        "128:563",
+        "125:450",
+        "153:1605",
+        "153:692",
+        "152:948",
+        "152:964",
+        "152:996"
+      ]
+    }
+  ]
+}

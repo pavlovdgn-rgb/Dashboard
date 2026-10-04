@@ -1,0 +1,51 @@
+.row {
+  display: flex;
+  gap: var(--space-sm);
+  width: 432px;
+  font-family: var(--font-sans);
+}
+
+.iconBadge {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+}
+
+.call {
+  background: var(--color-extra-blue-30);
+}
+
+.form {
+  background: var(--color-extra-purple-30);
+}
+
+.chat {
+  background: var(--color-extra-green-30);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.title {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: var(--weight-medium);
+  color: var(--color-text-primary);
+}
+
+.meta {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-text-secondary);
+}
+
+.quote {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-secondary);
+}

@@ -1,0 +1,490 @@
+{
+  "report": [
+    {
+      "name": "TaskOutcome",
+      "id": "152:948",
+      "type": "COMPONENT_SET",
+      "variants": [
+        {
+          "id": "152:932",
+          "name": "Status=Achieved",
+          "width": 224,
+          "height": 32
+        },
+        {
+          "id": "152:938",
+          "name": "Status=NotAchieved",
+          "width": 224,
+          "height": 32
+        },
+        {
+          "id": "152:942",
+          "name": "Status=NotAssessed",
+          "width": 224,
+          "height": 32
+        }
+      ],
+      "properties": {
+        "Status": {
+          "type": "VARIANT",
+          "defaultValue": "Achieved",
+          "variantOptions": [
+            "Achieved",
+            "NotAchieved",
+            "NotAssessed"
+          ]
+        }
+      },
+      "issues": []
+    },
+    {
+      "name": "RecordingCoverage",
+      "id": "152:964",
+      "type": "COMPONENT_SET",
+      "variants": [
+        {
+          "id": "152:952",
+          "name": "Status=Complete",
+          "width": 224,
+          "height": 32
+        },
+        {
+          "id": "152:956",
+          "name": "Status=Partial",
+          "width": 224,
+          "height": 32
+        },
+        {
+          "id": "152:960",
+          "name": "Status=Unavailable",
+          "width": 224,
+          "height": 32
+        }
+      ],
+      "properties": {
+        "Status": {
+          "type": "VARIANT",
+          "defaultValue": "Complete",
+          "variantOptions": [
+            "Complete",
+            "Partial",
+            "Unavailable"
+          ]
+        }
+      },
+      "issues": []
+    },
+    {
+      "name": "AttemptAction",
+      "id": "152:996",
+      "type": "COMPONENT_SET",
+      "variants": [
+        {
+          "id": "152:968",
+          "name": "Mode=Single",
+          "width": 232,
+          "height": 64
+        },
+        {
+          "id": "152:981",
+          "name": "Mode=Multiple",
+          "width": 232,
+          "height": 64
+        },
+        {
+          "id": "152:993",
+          "name": "Mode=Unavailable",
+          "width": 232,
+          "height": 64
+        }
+      ],
+      "properties": {
+        "Mode": {
+          "type": "VARIANT",
+          "defaultValue": "Single",
+          "variantOptions": [
+            "Single",
+            "Multiple",
+            "Unavailable"
+          ]
+        }
+      },
+      "issues": []
+    },
+    {
+      "name": "ParticipantRow",
+      "id": "153:692",
+      "type": "COMPONENT_SET",
+      "variants": [
+        {
+          "id": "153:610",
+          "name": "State=Default",
+          "width": 1360,
+          "height": 96
+        },
+        {
+          "id": "153:640",
+          "name": "State=Hover",
+          "width": 1360,
+          "height": 96
+        },
+        {
+          "id": "153:666",
+          "name": "State=Focus",
+          "width": 1360,
+          "height": 96
+        }
+      ],
+      "properties": {
+        "ParticipantId#153:0": {
+          "type": "TEXT",
+          "defaultValue": "014"
+        },
+        "Attempt#153:4": {
+          "type": "TEXT",
+          "defaultValue": "1"
+        },
+        "Duration#153:8": {
+          "type": "TEXT",
+          "defaultValue": "04:32"
+        },
+        "SignalCount#153:12": {
+          "type": "TEXT",
+          "defaultValue": "4"
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focus"
+          ]
+        }
+      },
+      "issues": []
+    },
+    {
+      "name": "ParticipantsTable",
+      "id": "153:1605",
+      "type": "COMPONENT_SET",
+      "variants": [
+        {
+          "id": "153:702",
+          "name": "State=Ready",
+          "width": 1408,
+          "height": 696
+        },
+        {
+          "id": "153:1081",
+          "name": "State=Loading",
+          "width": 1408,
+          "height": 696
+        },
+        {
+          "id": "153:1127",
+          "name": "State=Empty",
+          "width": 1408,
+          "height": 696
+        },
+        {
+          "id": "153:1170",
+          "name": "State=FilteredEmpty",
+          "width": 1408,
+          "height": 696
+        },
+        {
+          "id": "153:1220",
+          "name": "State=Error",
+          "width": 1408,
+          "height": 696
+        }
+      ],
+      "properties": {
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Ready",
+          "variantOptions": [
+            "Ready",
+            "Loading",
+            "Empty",
+            "FilteredEmpty",
+            "Error"
+          ]
+        }
+      },
+      "issues": []
+    },
+    {
+      "name": "NavMenu",
+      "id": "153:2777",
+      "type": "COMPONENT_SET",
+      "variants": [
+        {
+          "id": "153:1609",
+          "name": "Active=Projects",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:1637",
+          "name": "Active=Studies",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:1677",
+          "name": "Active=Setup",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:1825",
+          "name": "Active=Launch",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:1961",
+          "name": "Active=Overview",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:2097",
+          "name": "Active=Heatmap",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:2233",
+          "name": "Active=Funnel",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:2369",
+          "name": "Active=Participants",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:2505",
+          "name": "Active=Signals",
+          "width": 320,
+          "height": 1080
+        },
+        {
+          "id": "153:2641",
+          "name": "Active=PDF",
+          "width": 320,
+          "height": 1080
+        }
+      ],
+      "properties": {
+        "FooterText#153:16": {
+          "type": "TEXT",
+          "defaultValue": "Рабочее пространство команды"
+        },
+        "ProjectLabel#153:27": {
+          "type": "TEXT",
+          "defaultValue": "ПРОЕКТ: ИНТЕРНЕТ-МАГАЗИН"
+        },
+        "StudyLabel#153:38": {
+          "type": "TEXT",
+          "defaultValue": "ИССЛЕДОВАНИЕ: ПОКУПКА"
+        },
+        "Active": {
+          "type": "VARIANT",
+          "defaultValue": "Projects",
+          "variantOptions": [
+            "Projects",
+            "Studies",
+            "Setup",
+            "Launch",
+            "Overview",
+            "Heatmap",
+            "Funnel",
+            "Participants",
+            "Signals",
+            "PDF"
+          ]
+        }
+      },
+      "issues": []
+    }
+  ],
+  "badges": [
+    {
+      "id": "135:854",
+      "selected": "False",
+      "hasFill": true
+    },
+    {
+      "id": "135:890",
+      "selected": "False",
+      "hasFill": true
+    },
+    {
+      "id": "135:923",
+      "selected": "False",
+      "hasFill": true
+    },
+    {
+      "id": "135:956",
+      "selected": "True",
+      "hasFill": false
+    },
+    {
+      "id": "135:994",
+      "selected": "True",
+      "hasFill": false
+    },
+    {
+      "id": "135:1028",
+      "selected": "True",
+      "hasFill": false
+    }
+  ],
+  "secondary": [
+    {
+      "id": "125:319",
+      "state": "Default",
+      "fills": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 0.9529411792755127,
+            "g": 0.9529411792755127,
+            "b": 0.9333333373069763
+          },
+          "boundVariables": {
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:67:109"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "125:340",
+      "state": "Hover",
+      "fills": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 0.8941176533699036,
+            "g": 0.8980392217636108,
+            "b": 0.8627451062202454
+          },
+          "boundVariables": {
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:67:111"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "125:361",
+      "state": "Pressed",
+      "fills": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 0.9254902005195618,
+            "g": 0.9333333373069763,
+            "b": 0.8627451062202454
+          },
+          "boundVariables": {
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:67:117"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "125:382",
+      "state": "Focus",
+      "fills": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 0.9529411792755127,
+            "g": 0.9529411792755127,
+            "b": 0.9333333373069763
+          },
+          "boundVariables": {
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:67:109"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "125:403",
+      "state": "Disabled",
+      "fills": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 0.9529411792755127,
+            "g": 0.9529411792755127,
+            "b": 0.9333333373069763
+          },
+          "boundVariables": {
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:67:109"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "125:428",
+      "state": "Loading",
+      "fills": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "opacity": 1,
+          "blendMode": "NORMAL",
+          "color": {
+            "r": 0.9529411792755127,
+            "g": 0.9529411792755127,
+            "b": 0.9333333373069763
+          },
+          "boundVariables": {
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:67:109"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "passed": true
+}

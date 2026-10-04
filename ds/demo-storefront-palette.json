@@ -1,0 +1,175 @@
+{
+  "date": "2026-09-23",
+  "scope": "Nine external storefront views on Final Screens; deliberately separate from product UI",
+  "createdVariableIds": [
+    "VariableCollectionId:269:10323",
+    "VariableID:269:10324"
+  ],
+  "mutatedNodeIds": [
+    "I209:6687;125:313",
+    "I210:15356;125:313",
+    "I210:19579;125:313",
+    "I210:20116;125:313"
+  ],
+  "collectionId": "VariableCollectionId:269:10323",
+  "tokenId": "VariableID:269:10324",
+  "token": "demo/storefront/action",
+  "hex": "#7C3AED",
+  "checks": [
+    {
+      "buttonId": "209:6687",
+      "controlId": "I209:6687;125:313",
+      "background": "VariableID:269:10324",
+      "text": [
+        {
+          "label": "Отправить заказ",
+          "fill": [
+            {
+              "type": "SOLID",
+              "visible": true,
+              "opacity": 1,
+              "blendMode": "NORMAL",
+              "color": {
+                "r": 1,
+                "g": 1,
+                "b": 1
+              },
+              "boundVariables": {
+                "color": {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:67:115"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "buttonId": "210:15356",
+      "controlId": "I210:15356;125:313",
+      "background": "VariableID:269:10324",
+      "text": [
+        {
+          "label": "Отправить заказ",
+          "fill": [
+            {
+              "type": "SOLID",
+              "visible": true,
+              "opacity": 1,
+              "blendMode": "NORMAL",
+              "color": {
+                "r": 1,
+                "g": 1,
+                "b": 1
+              },
+              "boundVariables": {
+                "color": {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:67:115"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "buttonId": "210:19579",
+      "controlId": "I210:19579;125:313",
+      "background": "VariableID:269:10324",
+      "text": [
+        {
+          "label": "Отправить заказ",
+          "fill": [
+            {
+              "type": "SOLID",
+              "visible": true,
+              "opacity": 1,
+              "blendMode": "NORMAL",
+              "color": {
+                "r": 1,
+                "g": 1,
+                "b": 1
+              },
+              "boundVariables": {
+                "color": {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:67:115"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "buttonId": "210:20116",
+      "controlId": "I210:20116;125:313",
+      "background": "VariableID:269:10324",
+      "text": [
+        {
+          "label": "Отправить заказ",
+          "fill": [
+            {
+              "type": "SOLID",
+              "visible": true,
+              "opacity": 1,
+              "blendMode": "NORMAL",
+              "color": {
+                "r": 1,
+                "g": 1,
+                "b": 1
+              },
+              "boundVariables": {
+                "color": {
+                  "type": "VARIABLE_ALIAS",
+                  "id": "VariableID:67:115"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "visualCheck": "209:6649",
+  "tokens": {
+    "canvas": "VariableID:273:17939",
+    "surface": "VariableID:273:17940",
+    "tint": "VariableID:273:17941",
+    "field": "VariableID:273:17942",
+    "border": "VariableID:273:17943",
+    "text": "VariableID:273:17944",
+    "muted": "VariableID:273:17945",
+    "action": "VariableID:269:10324",
+    "accent": "VariableID:273:17946",
+    "inverse": "VariableID:273:17947",
+    "radius": "VariableID:273:17948",
+    "controlRadius": "VariableID:273:17949",
+    "padding": "VariableID:273:17950",
+    "gap": "VariableID:273:17951"
+  },
+  "styles": {
+    "body": "S:d472d46d95d09183e2c6e17532c9bba056efef66,",
+    "label": "S:30dfee8e601433bbd6ff31a3076b918f4d811a1b,",
+    "title": "S:ccce2062b0ed91eeed1221a7f9354b27c2806421,",
+    "section": "S:332bb064c8a227929380cfedc12ec541fccf3663,",
+    "price": "S:83572874d8147bfb4357de3ba95511ecd902aec7,",
+    "button": "S:3a327212eb575cc6739eb6f3b6e281b13d3c60b4,",
+    "brand": "S:944e0781da915a8150de6331810b4e32c834d323,"
+  },
+  "rootIds": [
+    "205:6763",
+    "209:6649",
+    "210:11825",
+    "210:14538",
+    "210:14931",
+    "210:15318",
+    "210:19541",
+    "210:20078",
+    "210:17114"
+  ],
+  "photo": "assets/demo-storefront/city-backpack.png",
+  "imageHash": "d6ed599147ffc6640ab8795c34a162ca83aa4093"
+}

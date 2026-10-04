@@ -1,0 +1,80 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  width: 340px;
+  padding: var(--space-md);
+  background: var(--color-bg-surface-primary);
+  border: var(--border-width-thin) solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--font-sans);
+}
+
+.card.overdue {
+  border-color: var(--color-system-error);
+}
+
+.channelTag {
+  align-self: flex-start;
+  padding: 2px var(--space-sm);
+  background: var(--color-bg-hover-subtle);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: var(--weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.nameCompany {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: var(--weight-medium);
+  color: var(--color-text-primary);
+}
+
+.scoreRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+}
+
+.scoreLabel {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-text-secondary);
+}
+
+.scoreValue {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.timeText {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-text-secondary);
+}
+
+.timeText.overdue {
+  color: var(--color-system-error);
+}
+
+.managerRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-xs);
+}
+
+.managerName {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-text-primary);
+}
+
+.managerName.unassigned {
+  color: var(--color-text-secondary);
+}

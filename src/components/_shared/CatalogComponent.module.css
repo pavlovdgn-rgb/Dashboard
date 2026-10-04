@@ -1,0 +1,8 @@
+.sample { color: var(--text-primary); font-family: var(--font-sans); max-inline-size: 100%; }
+.sample[data-source='elastic'] { color:var(--elastic-text-default); background:var(--elastic-backgrounds-opaque-plain); }
+.icon { display: inline-block; inline-size: var(--size-base); block-size: var(--size-base); flex-shrink: 0; }
+.sample[data-state='Focus'] > :is(button, input, select, textarea), .sample[data-state='Focus'] :global(.euiFormControlLayout) { outline: var(--size-xx-small) solid var(--border-focus); outline-offset: var(--size-xx-small); }
+.sample[data-state='Hover'] :global(.euiButton), .sample[data-state='Hover'] :global(.euiButtonEmpty) { filter: brightness(.95); }
+.sample[data-state='Focus'] :global(.euiRadio__circle),.sample[data-state='Focus'] :global(.euiCheckbox__square) { outline:var(--size-xx-small) solid var(--elastic-brand-primary); outline-offset:var(--size-xx-small); }
+.sample[data-source='elastic'][data-state='Focus'] > :is(button,input,select,textarea),.sample[data-source='elastic'][data-state='Focus'] :global(.euiFormControlLayout) { outline-color:var(--elastic-brand-primary); }
+.sample[data-source='elastic'][data-state='Hover'] :global(.euiTableRow) { background:var(--elastic-backgrounds-opaque-subdued); }

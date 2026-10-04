@@ -1,0 +1,36 @@
+.layoutThumbnail { display:flex; position:relative; overflow:hidden; padding:0; inline-size:calc(var(--size-base)*12.1875); block-size:calc(var(--size-base)*7.25); background:var(--elastic-shades-empty); border:thin solid var(--elastic-shades-light); border-radius:var(--radius-small); cursor:pointer; }
+.layoutThumbnail[data-selected='true'],.layoutThumbnail:focus-visible { border-color:var(--elastic-brand-primary); outline:0; }
+.sidebar { display:flex; flex-direction:column; gap:var(--size-small); padding:var(--size-small); inline-size:28%; background:var(--elastic-special-body-aka-page); }
+.sidebar>span { block-size:var(--size-x-small); background:var(--elastic-shades-light); }
+.body { flex:1; background:var(--elastic-shades-empty); box-shadow:0 var(--size-xx-small) var(--size-small) var(--elastic-shadow-3); }
+.layoutThumbnail[data-type='Multiple'] .body { display:grid; grid-template-columns:1fr 1fr; gap:var(--size-x-small); padding:var(--size-x-small); }
+.body>span { background:var(--elastic-shades-lightest); min-block-size:var(--size-xx-large); border-radius:var(--size-xx-small); }
+.layoutThumbnail[data-type='Empty'] { background:var(--elastic-special-body-aka-page); align-items:center; justify-content:center; }
+.layoutThumbnail[data-type='Empty'] .body { flex:none; inline-size:60%; block-size:72%; border-radius:var(--radius-small); }
+.layoutThumbnail[data-type='Empty'][data-selected='true'] .body { visibility:hidden; }
+.selectedIcon { position:absolute; right:var(--size-small); top:var(--size-small); }
+.emptyThumbnail { inline-size:calc(var(--size-base)*19); block-size:calc(var(--size-base)*14.75); background:var(--elastic-shades-empty); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:var(--size-medium); border-radius:var(--radius-medium); }
+.title,.line { display:block; background:var(--elastic-shades-light); border-radius:var(--radius-medium); }
+.title { inline-size:43%; block-size:var(--size-large); }
+.line { inline-size:65%; block-size:var(--size-medium); }
+.line:nth-last-child(2) { inline-size:54%; }
+.action { background:var(--elastic-button-filled-backgrounds-neutral); inline-size:30%; block-size:var(--size-large); border-radius:var(--radius-medium); display:grid; place-items:center; }
+.action>span { inline-size:44%; block-size:var(--size-x-small); background:var(--elastic-shades-empty); }
+.emptyThumbnail[data-primary='true'] { gap:var(--size-small); }
+.emptyThumbnail[data-primary='true'] .action { background:var(--elastic-text-primary); }
+.illustration { block-size:calc(var(--size-base)*3.7); }
+.checkableCard[class] { display:flex; max-inline-size:calc(var(--size-base)*20); }
+.checkableCard[data-checked='true'] { border-color:var(--elastic-brand-primary); }
+.cardCheck { display:flex; align-items:flex-start; padding:var(--size-base); background:var(--elastic-backgrounds-opaque-subdued); border-start-start-radius:var(--radius-medium); border-end-start-radius:var(--radius-medium); }
+.checkableCard[data-checked='true'] .cardCheck { background:var(--elastic-backgrounds-opaque-primary); }
+.cardDescription { padding:var(--size-base); font:var(--font-weight-regular) var(--font-size-medium)/var(--line-height-medium) var(--font-family-sans-serif-default); cursor:pointer; }
+.cardImage { block-size:calc(var(--size-base)*11); inline-size:100%; background:var(--elastic-backgrounds-opaque-subdued); }
+.avatarGroup { display:flex; align-items:center; padding:0; background:transparent; cursor:pointer; }
+.avatar { --avatar-fill:var(--elastic-shades-light); background-color:var(--avatar-fill)!important; color:var(--elastic-text-default)!important; }
+.avatarGroup>:global(.euiAvatar) { border:var(--size-xx-small) solid var(--elastic-shades-empty); box-sizing:content-box; }
+.avatarGroup>:global(.euiAvatar):not(:first-child) { margin-inline-start:calc(var(--size-small)*-1); }
+.avatarGroup[data-size='m']>:global(.euiAvatar):not(:first-child) { margin-inline-start:calc(var(--size-small)*-1.25); }
+.avatarGroup[data-size='l']>:global(.euiAvatar):not(:first-child) { margin-inline-start:calc(var(--size-medium)*-1); }
+.avatarGroup[data-size='xl']>:global(.euiAvatar):not(:first-child) { margin-inline-start:calc(var(--size-base)*-1); }
+.avatarList { inline-size:calc(var(--size-base)*16.5); }
+.sourceCard[class] { inline-size:calc(var(--size-base)*20); max-inline-size:100%; box-shadow:none; padding:var(--size-base); }

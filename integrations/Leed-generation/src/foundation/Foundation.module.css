@@ -1,0 +1,97 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  font-family: var(--font-sans);
+  padding: var(--space-lg);
+}
+
+.groupTitle {
+  margin: 0 0 var(--space-md);
+  color: var(--color-text-primary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-md);
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.swatchColor {
+  height: 56px;
+  border-radius: var(--radius-sm);
+  border: var(--border-width-thin) solid var(--color-border-default);
+}
+
+.swatchName {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-text-secondary);
+  word-break: break-word;
+}
+
+.swatchAlias {
+  font-size: 11px;
+  color: var(--color-text-icons);
+}
+
+.typeRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-lg);
+  padding: var(--space-sm) 0;
+  border-bottom: var(--border-width-thin) solid var(--color-border-default);
+}
+
+.typeRowLabel {
+  width: 280px;
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.scaleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-xs) 0;
+}
+
+.scaleLabel {
+  width: 160px;
+  flex-shrink: 0;
+  font-size: 13px;
+  color: var(--color-text-primary);
+}
+
+.scaleValue {
+  width: 60px;
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.spacingBox {
+  background: var(--color-brand-primary);
+  height: 16px;
+}
+
+.radiusBox {
+  width: 56px;
+  height: 56px;
+  background: var(--color-bg-hover-subtle);
+  border: var(--border-width-default) solid var(--color-border-default);
+}
+
+.shadowBox {
+  width: 120px;
+  height: 56px;
+  background: var(--color-bg-surface-primary);
+  border-radius: var(--radius-sm);
+}

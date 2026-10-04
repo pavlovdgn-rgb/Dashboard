@@ -1,0 +1,111 @@
+{
+  "status": "полный",
+  "complete": true,
+  "expectedComponents": 204,
+  "readComponents": 204,
+  "expectedSets": 157,
+  "readSets": 157,
+  "expectedSingles": 47,
+  "readSingles": 47,
+  "expectedVariables": 273,
+  "readVariables": 273,
+  "textStyles": 29,
+  "noSourceDescription": 94,
+  "deprecatedComponents": 57,
+  "ambiguousPurpose": 24,
+  "duplicateComponentNames": {
+    "Background": 2
+  },
+  "setsWithoutProperties": [],
+  "unresolvedAliasTargets": [],
+  "componentBatches": [
+    [
+      0,
+      20
+    ],
+    [
+      20,
+      20
+    ],
+    [
+      40,
+      20
+    ],
+    [
+      60,
+      20
+    ],
+    [
+      80,
+      20
+    ],
+    [
+      100,
+      20
+    ],
+    [
+      120,
+      20
+    ],
+    [
+      140,
+      20
+    ],
+    [
+      160,
+      20
+    ],
+    [
+      180,
+      20
+    ],
+    [
+      200,
+      4
+    ]
+  ],
+  "variableBatches": [
+    [
+      0,
+      45
+    ],
+    [
+      45,
+      30
+    ],
+    [
+      75,
+      15
+    ],
+    [
+      90,
+      45
+    ],
+    [
+      135,
+      30
+    ],
+    [
+      165,
+      30
+    ],
+    [
+      195,
+      30
+    ],
+    [
+      225,
+      30
+    ],
+    [
+      255,
+      18
+    ]
+  ],
+  "remainingPayloads": [],
+  "scope": "Components: direct children + one FRAME/SECTION level; all local Variables; local Text Styles",
+  "externalAliasTargetCount": 102,
+  "externalAliasValuesResolved": false,
+  "snapshotVerified": true,
+  "cyrillicChecked": false
+}

@@ -1,0 +1,418 @@
+{
+  "report": [
+    {
+      "name": "SuccessMetric",
+      "id": "132:574",
+      "properties": {
+        "FractionValue#132:0": {
+          "type": "TEXT",
+          "defaultValue": "14 / 18"
+        },
+        "PercentValue#132:4": {
+          "type": "TEXT",
+          "defaultValue": "78%"
+        },
+        "BaseValue#132:8": {
+          "type": "TEXT",
+          "defaultValue": "Оценены 18 из 20"
+        },
+        "FractionZero#132:12": {
+          "type": "TEXT",
+          "defaultValue": "0 / 18"
+        },
+        "PercentZero#132:16": {
+          "type": "TEXT",
+          "defaultValue": "0%"
+        },
+        "BaseZero#132:20": {
+          "type": "TEXT",
+          "defaultValue": "Оценены 18 из 20"
+        },
+        "FractionNoData#132:24": {
+          "type": "TEXT",
+          "defaultValue": "—"
+        },
+        "PercentNoData#132:28": {
+          "type": "TEXT",
+          "defaultValue": "—"
+        },
+        "BaseNoData#132:32": {
+          "type": "TEXT",
+          "defaultValue": "Нет оценённых попыток"
+        },
+        "Data": {
+          "type": "VARIANT",
+          "defaultValue": "Value",
+          "variantOptions": [
+            "Value",
+            "Zero",
+            "NoData"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "132:547",
+          "name": "Data=Value",
+          "width": 200,
+          "height": 88
+        },
+        {
+          "id": "132:556",
+          "name": "Data=Zero",
+          "width": 200,
+          "height": 88
+        },
+        {
+          "id": "132:565",
+          "name": "Data=NoData",
+          "width": 200,
+          "height": 88
+        }
+      ],
+      "documentation": {
+        "id": "132:308",
+        "x": 40,
+        "y": 40,
+        "width": 740,
+        "height": 220
+      },
+      "issues": []
+    },
+    {
+      "name": "FirstClickTargetRow",
+      "id": "132:634",
+      "properties": {
+        "TargetIcon#132:36": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "132:579",
+          "preferredValues": []
+        },
+        "Title#132:43": {
+          "type": "TEXT",
+          "defaultValue": "Добавить в корзину"
+        },
+        "Description#132:50": {
+          "type": "TEXT",
+          "defaultValue": "Основное действие страницы"
+        },
+        "Count#132:57": {
+          "type": "TEXT",
+          "defaultValue": "6"
+        },
+        "Share#132:64": {
+          "type": "TEXT",
+          "defaultValue": "33%"
+        },
+        "Selected": {
+          "type": "VARIANT",
+          "defaultValue": "False",
+          "variantOptions": [
+            "False",
+            "True"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focus"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "132:578",
+          "name": "Selected=False, State=Default",
+          "width": 512,
+          "height": 88
+        },
+        {
+          "id": "132:589",
+          "name": "Selected=False, State=Hover",
+          "width": 512,
+          "height": 88
+        },
+        {
+          "id": "132:598",
+          "name": "Selected=False, State=Focus",
+          "width": 512,
+          "height": 88
+        },
+        {
+          "id": "132:607",
+          "name": "Selected=True, State=Default",
+          "width": 512,
+          "height": 88
+        },
+        {
+          "id": "132:616",
+          "name": "Selected=True, State=Hover",
+          "width": 512,
+          "height": 88
+        },
+        {
+          "id": "132:625",
+          "name": "Selected=True, State=Focus",
+          "width": 512,
+          "height": 88
+        }
+      ],
+      "documentation": {
+        "id": "132:575",
+        "x": 40,
+        "y": 350,
+        "width": 600,
+        "height": 804
+      },
+      "issues": []
+    },
+    {
+      "name": "FirstClickTargets",
+      "id": "135:778",
+      "properties": {
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Ready",
+          "variantOptions": [
+            "Ready",
+            "Loading",
+            "Empty",
+            "FilteredEmpty",
+            "Error"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "135:663",
+          "name": "State=Ready",
+          "width": 560,
+          "height": 640
+        },
+        {
+          "id": "135:723",
+          "name": "State=Loading",
+          "width": 560,
+          "height": 640
+        },
+        {
+          "id": "135:734",
+          "name": "State=Empty",
+          "width": 560,
+          "height": 640
+        },
+        {
+          "id": "135:742",
+          "name": "State=FilteredEmpty",
+          "width": 560,
+          "height": 640
+        },
+        {
+          "id": "135:761",
+          "name": "State=Error",
+          "width": 560,
+          "height": 640
+        }
+      ],
+      "documentation": {
+        "id": "135:660",
+        "x": 40,
+        "y": 1200,
+        "width": 1200,
+        "height": 2100
+      },
+      "issues": []
+    },
+    {
+      "name": "ScenarioRow",
+      "id": "135:1062",
+      "properties": {
+        "Title#135:0": {
+          "type": "TEXT",
+          "defaultValue": "Найти товар и добавить в корзину"
+        },
+        "Description#135:7": {
+          "type": "TEXT",
+          "defaultValue": "Поиск → Карточка товара → Клик «В корзину»"
+        },
+        "Started#135:14": {
+          "type": "TEXT",
+          "defaultValue": "20"
+        },
+        "Completed#135:21": {
+          "type": "TEXT",
+          "defaultValue": "16"
+        },
+        "Incomplete#135:28": {
+          "type": "TEXT",
+          "defaultValue": "2"
+        },
+        "Selected": {
+          "type": "VARIANT",
+          "defaultValue": "False",
+          "variantOptions": [
+            "False",
+            "True"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focus"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "135:854",
+          "name": "Selected=False, State=Default",
+          "width": 1360,
+          "height": 136
+        },
+        {
+          "id": "135:890",
+          "name": "Selected=False, State=Hover",
+          "width": 1360,
+          "height": 136
+        },
+        {
+          "id": "135:923",
+          "name": "Selected=False, State=Focus",
+          "width": 1360,
+          "height": 136
+        },
+        {
+          "id": "135:956",
+          "name": "Selected=True, State=Default",
+          "width": 1360,
+          "height": 136
+        },
+        {
+          "id": "135:994",
+          "name": "Selected=True, State=Hover",
+          "width": 1360,
+          "height": 136
+        },
+        {
+          "id": "135:1028",
+          "name": "Selected=True, State=Focus",
+          "width": 1360,
+          "height": 136
+        }
+      ],
+      "documentation": {
+        "id": "135:779",
+        "x": 700,
+        "y": 40,
+        "width": 1440,
+        "height": 1068
+      },
+      "issues": []
+    },
+    {
+      "name": "ScenarioTable",
+      "id": "136:715",
+      "properties": {
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Ready",
+          "variantOptions": [
+            "Ready",
+            "Loading",
+            "Empty",
+            "FilteredEmpty",
+            "Error"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "136:477",
+          "name": "State=Ready",
+          "width": 1408,
+          "height": 920
+        },
+        {
+          "id": "136:638",
+          "name": "State=Loading",
+          "width": 1408,
+          "height": 920
+        },
+        {
+          "id": "136:656",
+          "name": "State=Empty",
+          "width": 1408,
+          "height": 920
+        },
+        {
+          "id": "136:671",
+          "name": "State=FilteredEmpty",
+          "width": 1408,
+          "height": 920
+        },
+        {
+          "id": "136:693",
+          "name": "State=Error",
+          "width": 1408,
+          "height": 920
+        }
+      ],
+      "documentation": {
+        "id": "136:474",
+        "x": 1300,
+        "y": 1200,
+        "width": 1480,
+        "height": 4828
+      },
+      "issues": []
+    }
+  ],
+  "ratios": [
+    {
+      "id": "I136:488;135:973",
+      "fraction": "14 / 18",
+      "percent": "78%",
+      "fillWidth": 155.55555725097656,
+      "trackWidth": 200
+    },
+    {
+      "id": "I136:531;135:869",
+      "fraction": "12 / 17",
+      "percent": "71%",
+      "fillWidth": 141.1764678955078,
+      "trackWidth": 200
+    },
+    {
+      "id": "I136:572;135:869",
+      "fraction": "10 / 15",
+      "percent": "67%",
+      "fillWidth": 133.3333282470703,
+      "trackWidth": 200
+    }
+  ],
+  "ratioIssues": [],
+  "metricStates": [
+    {
+      "name": "Data=Value",
+      "trackVisible": true,
+      "fillVisible": true
+    },
+    {
+      "name": "Data=Zero",
+      "trackVisible": true,
+      "fillVisible": false
+    },
+    {
+      "name": "Data=NoData",
+      "trackVisible": false,
+      "fillVisible": false
+    }
+  ],
+  "passed": true
+}

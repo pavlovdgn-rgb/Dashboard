@@ -1,0 +1,4890 @@
+{
+  "status": "complete",
+  "scope": "Screen-scoped bulk review, approved autonomous selection; not a full redesign of Elastic UI",
+  "date": "2026-09-22",
+  "reviewedOriginalEntries": 207,
+  "sourceLiveRead": 204,
+  "completed": [
+    "ReplayControls",
+    "ProductButton",
+    "ProductNavItem",
+    "ProductTab"
+  ],
+  "unchangedByAgreement": [
+    "HeatmapLegend",
+    "DataCoverage"
+  ],
+  "pendingBrief": [],
+  "newVariantCount": 34,
+  "totalProductVariantCount": 43,
+  "decisions": [
+    {
+      "id": "32609:392204",
+      "name": "Accordion",
+      "key": "5d61c13b9c9ef5a688e5d6993215be248ec9b0eb",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Expand": [
+          "False",
+          "True"
+        ],
+        "Arrow display": [
+          "Left",
+          "Right"
+        ],
+        "Loading": [
+          "False",
+          "True"
+        ],
+        "Disabled": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 16,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "22632:275537",
+      "name": "Refresh Interval",
+      "key": "4c09d7731fc7036fe7b024236af215c2ebdf0a83",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "On": [
+          "True",
+          "False"
+        ],
+        "In popover": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "23938:281323",
+      "name": "Auto Refresh",
+      "key": "0f93ce2752950769a1ad8d3ffe17dfa64dfacd39",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Paused": [
+          "true",
+          "false"
+        ],
+        "Open": [
+          "false",
+          "true"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "23938:282840",
+      "name": "Auto Refresh Button",
+      "key": "3e254c7c2f5a372c328f9eb5e30b5a4455914319",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Paused": [
+          "true",
+          "false"
+        ],
+        "Open": [
+          "false",
+          "true"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "14755:585",
+      "name": "☠️ Avatar",
+      "key": "42f74b7eba683d2bb100274c301fd98dffd82738",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Type": [
+          "User",
+          "Spaces"
+        ],
+        "Content": [
+          "Initials",
+          "Image",
+          "Icon"
+        ],
+        "Size": [
+          "Small - 24px",
+          "Medium - 32px (default)",
+          "Large - 40px",
+          "X-Large - 64px"
+        ]
+      },
+      "cellCount": 24,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "26768:281544",
+      "name": "Avatar Group",
+      "key": "602a1e38c9ceed059a20ae873d558c817763484e",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Large",
+          "Medium",
+          "Small",
+          "X-Large"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "26769:282323",
+      "name": "💡 Avatar Group List",
+      "key": "3dcc54a473fe58f9861a4c9869d750eed96e2e88",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "13546:25393",
+      "name": "☠️ Notification Badge",
+      "key": "969da7418eed303a8ec14eddb0cb57f25d2cef38",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Color": [
+          "Subdued",
+          "Accent",
+          "Success"
+        ],
+        "Size": [
+          "Medium",
+          "Small"
+        ]
+      },
+      "cellCount": 6,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "31918:390303",
+      "name": "☠️ Badge",
+      "key": "51dd36b8d094d6f4483efe0cffec9674215ad622",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Color": [
+          "Default",
+          "Hollow",
+          "Primary",
+          "Accent",
+          "Success",
+          "Danger",
+          "Warning"
+        ],
+        "Disabled": [
+          "False",
+          "True"
+        ],
+        "Icon only": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 16,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "31998:390412",
+      "name": "☠️ Beta Badge",
+      "key": "d16e38de19171fd934c47bf753dfcb8e1da03d4d",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Small",
+          "Medium*"
+        ],
+        "Color": [
+          "Hollow*",
+          "Accent",
+          "Subdued"
+        ],
+        "Icon only": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 12,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "44964:58721",
+      "name": "Bottom bar",
+      "key": "c1ded5c42abc8200c6a54dd638a29b32b253f973",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "42289:81",
+      "name": ".Breadcrumb",
+      "key": "5d7cf01d26e1c271195b462d7027b9df1d9844ff",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Truncated": [
+          "True",
+          "False"
+        ],
+        "Interactive": [
+          "False",
+          "True"
+        ],
+        "Hover": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 5,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "42289:57842",
+      "name": "Breadcrumbs",
+      "key": "851823c66b4b0a1e846c8965eb3e4f24cecbb6b2",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "31735:392753",
+      "name": "☠️ Button Group",
+      "key": "279fea69d9e193fa6f76a16973f2fc3625aa7c48",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Medium",
+          "Small*",
+          "Compressed"
+        ],
+        "Full width": [
+          "False",
+          "True"
+        ],
+        "Color": [
+          "Primary",
+          "Neutral*"
+        ],
+        "Disabled": [
+          "False",
+          "True"
+        ],
+        "Icon only": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 27,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "31735:392943",
+      "name": ".Button Group / Button",
+      "key": "4458604dc6ab94c6e37132d13dcb44b9f4869305",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Selected": [
+          "True",
+          "False"
+        ],
+        "Color": [
+          "Primary",
+          "Neutral*"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Disabled": [
+          "True",
+          "False"
+        ],
+        "Icon only": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 24,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "31735:391399",
+      "name": "☠️ Button",
+      "key": "6a543e9d0f1be76a826caf57c45ccfe45097c0e4",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Style": [
+          "Default*",
+          "Filled",
+          "Empty"
+        ],
+        "Color": [
+          "Primary*",
+          "Neutral",
+          "Success",
+          "Warning",
+          "Danger",
+          "Accent"
+        ],
+        "Size": [
+          "Medium*",
+          "Small",
+          "Extra Small"
+        ],
+        "Disabled": [
+          "False",
+          "True"
+        ],
+        "Loading": [
+          "False",
+          "True"
+        ],
+        "Icon only": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 128,
+      "decision": "расширен локально",
+      "reason": "Недостающие взаимодействия добавлены в ProductButton, исходный набор сохранён."
+    },
+    {
+      "id": "32350:392160",
+      "name": "Callout",
+      "key": "b9aa043b75948779de186d30ca97d54f6a9dc024",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Color": [
+          "Success",
+          "Danger",
+          "Warning",
+          "Primary",
+          "Accent"
+        ],
+        "Size": [
+          "Medium",
+          "Small"
+        ]
+      },
+      "cellCount": 10,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "45915:7922",
+      "name": ".Callout / Children",
+      "key": "34fcc46e1105a235b41b62c0512f1ccd0e59bd92",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "36238:395217",
+      "name": "Title",
+      "key": "b5abdfafba4e6d4ba3ee906018bad105dab7f8e5",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Title size": [
+          "Small (default)",
+          "XSmall"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "36238:395223",
+      "name": "Background",
+      "key": "3f5ca540afa964127227c30fdba0fdf90745b2af",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Display": [
+          "Plain",
+          "Subdued",
+          "Primary",
+          "Success",
+          "Warning",
+          "Danger",
+          "Accent",
+          "Transparent"
+        ],
+        "Shadow": [
+          "false",
+          "true"
+        ],
+        "Border": [
+          "false",
+          "true"
+        ],
+        "Disabled": [
+          "false",
+          "true"
+        ]
+      },
+      "cellCount": 11,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "36238:395236",
+      "name": "Background",
+      "key": "5ed0f2677d7ccc4e1c3424c4ed1ac16bfffcf845",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Shadow": [
+          "true",
+          "false"
+        ],
+        "Checked": [
+          "false",
+          "true"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "36238:395246",
+      "name": "Footer",
+      "key": "b7607b041b0837ec8932ca694e92946c3c40ec11",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Align": [
+          "Left",
+          "Center",
+          "Right"
+        ],
+        "Disabled": [
+          "false",
+          "true"
+        ]
+      },
+      "cellCount": 6,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "36238:395271",
+      "name": "Card",
+      "key": "cf0eb03c56a55a24e95a5aa618210dff6109e96d",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Layout": [
+          "Vertical",
+          "Horizontal"
+        ],
+        "Image": [
+          "false",
+          "true"
+        ],
+        "Text Align": [
+          "Left",
+          "Center",
+          "Right"
+        ],
+        "Disabled": [
+          "false",
+          "true"
+        ],
+        "Checkable": [
+          "NA",
+          "Radio",
+          "Checkbox"
+        ],
+        "Checked": [
+          "false",
+          "true"
+        ]
+      },
+      "cellCount": 20,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "36606:398160",
+      "name": "Example content",
+      "key": "4a0417e5c7c235723c2f15c94ddcbe30693953a0",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Content": [
+          "1",
+          "2",
+          "3"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15173:122940",
+      "name": "Code",
+      "key": "6f903290ef69dfa832233b5c8ea1c3dea8107a73",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "X-Small",
+          "Small",
+          "Medium (default)"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15996:5",
+      "name": "💡 Code - Inline with text",
+      "key": "8fc484942ebaeabe5eb3ce300a75ef1e28dc22ce",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "X-Small",
+          "Medium",
+          "Small"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "34271:392432",
+      "name": ".📦 Code line/.📦 Code block annotation",
+      "key": "4644e18ab9283fb3776a57b066dc2c0fcc688210",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "41028:3667",
+      "name": ".📦 Code line",
+      "key": "c68ba273ebb1930bbf21981a276876f1997a2ce4",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "41035:20638",
+      "name": "Code Block",
+      "key": "f1be557e6d41eff90dc931cbc27879840ab13dff",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Controls": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15884:167851",
+      "name": "Color Picker",
+      "key": "5f991ade36265c88f2c1d09dac22d96f27fcfb95",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Filled",
+          "Focus",
+          "Invalid",
+          "Disabled"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Column display": [
+          "False",
+          "True"
+        ],
+        "Label": [
+          "True",
+          "False"
+        ],
+        "Help text": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 40,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15884:173636",
+      "name": "Color Palette Picker",
+      "key": "ccc92b7c27d63b6d43cb529f14f0d4c8631f4981",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Filled",
+          "Focus",
+          "Invalid",
+          "Disabled"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Column display": [
+          "False",
+          "True"
+        ],
+        "Label": [
+          "True",
+          "False"
+        ],
+        "Help text": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 40,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15884:173623",
+      "name": "📦 Color Palette Display",
+      "key": "5829898d82fbbefe4a7858252a4670bbe7bd61ad",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Palette": [
+          "Color blind",
+          "Color blind (natural)"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "20785:279182",
+      "name": "Collapsible Nav Group",
+      "key": "c307835a4345db35221234497f057276a1ede052",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Background": [
+          "None",
+          "Light",
+          "Dark"
+        ],
+        "Collapsed": [
+          "Yes",
+          "No"
+        ]
+      },
+      "cellCount": 6,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "20785:286768",
+      "name": "Collapsible Nav",
+      "key": "0ade40d9ae971ac831fbc091d130730c9b47146f",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15213:169",
+      "name": "Collapsible Nav - With overlay",
+      "key": "99c70429981e17f20eb9a365a3eddbc71183014c",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "20785:283722",
+      "name": ".📦 Collapsible Nav Group -- Base",
+      "key": "555c9a007b40ca45a146c3ff765a4e151cb4e647",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "44991:80757",
+      "name": ".Collapsible Nav Group Header",
+      "key": "9f3acf26ef99f69d998dcb0b10f1041f7923e79e",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "15883:161301",
+      "name": "☠️ Combobox",
+      "key": "300282dc7c2db6c3b63715c091e643c110ee1f99",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Filled",
+          "Focus",
+          "Invalid",
+          "Disabled",
+          "Placeholder"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Column display": [
+          "False",
+          "True"
+        ],
+        "Label": [
+          "True",
+          "False"
+        ],
+        "Help text": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 50,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "20788:280525",
+      "name": "Comment",
+      "key": "9ded5a83b966811dd29898f23841818cc17395f2",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Type": [
+          "Update",
+          "Collapsed",
+          "Regular"
+        ],
+        "Color": [
+          "Primary",
+          "Plain"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "20788:280591",
+      "name": ".📦Comment -- Timeline icon",
+      "key": "db43deaa6f06e55486fdc3ec70e7f77a161bf390",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Type": [
+          "Avatar",
+          "Collapsed"
+        ],
+        "Size": [
+          "Medium",
+          "Small"
+        ],
+        "Position": [
+          "Last",
+          "Center",
+          "Top"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "20788:283520",
+      "name": ".📦Comment -- Base",
+      "key": "03af3935594ef4d37d14bdf639e30b9370cdd01c",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "20788:288513",
+      "name": "💡Comment List",
+      "key": "40d47eb7a63bd061d6d9950526f24714b736f437",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "46305:10098",
+      "name": ".🧱 Data Grid - Body Row",
+      "key": "8ce34282db63c4b871f76f28c23b77b605d22f42",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Borders": [
+          "None",
+          "Horizontal",
+          "All"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "46305:10129",
+      "name": ".🧱 Data Grid - Header Row",
+      "key": "c6efda3998e472a25510af55e4efca281159484c",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Border": [
+          "None",
+          "Horizontal",
+          "All"
+        ],
+        "Style": [
+          "Shade",
+          "Underline"
+        ]
+      },
+      "cellCount": 6,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "46305:10170",
+      "name": ".🧱 Data Grid - Toolbar",
+      "key": "6b18563d785d5016d034397d173911537e8a64fd",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Border": [
+          "None",
+          "All",
+          "Horizontal"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "46305:10412",
+      "name": "Data Grid Popover",
+      "key": "d5fef42778ab6185fe91fbbd0bff1d1eb3dfb18b",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Content": [
+          "Display Options",
+          "Columns",
+          "Sorting",
+          "Keyboard shortcuts"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "46305:10421",
+      "name": "Data Grid",
+      "key": "841463762ec2804e1822c98ea501e0a00503880f",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Border": [
+          "None",
+          "Horizontal",
+          "All"
+        ],
+        "Padding": [
+          "Condensed",
+          "Normal",
+          "Expanded"
+        ],
+        "Structured By": [
+          "Row",
+          "Column"
+        ]
+      },
+      "cellCount": 18,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15884:158445",
+      "name": "Date Picker - Range",
+      "key": "57df63b5025c9d30e025574d28febf0e0a1e9845",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Filled",
+          "Focus",
+          "Invalid",
+          "Disabled"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Column display": [
+          "False",
+          "True"
+        ],
+        "Label": [
+          "True",
+          "False"
+        ],
+        "Help text": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 40,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15884:160184",
+      "name": "Date Picker",
+      "key": "27ff3cbc983a34f7ca59afa50eeeeb628b6e9c80",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Filled",
+          "Focus",
+          "Invalid",
+          "Disabled"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Column display": [
+          "False",
+          "True"
+        ],
+        "Label": [
+          "True",
+          "False"
+        ],
+        "Help text": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 40,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15884:162483",
+      "name": "Date Picker - Time only",
+      "key": "e35012ce25790ee788311a276ef770c77bc399fe",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Filled",
+          "Focus",
+          "Invalid",
+          "Disabled"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Column display": [
+          "False",
+          "True"
+        ],
+        "Label": [
+          "True",
+          "False"
+        ],
+        "Help text": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 40,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "14787:3001",
+      "name": "📦 Date Picker - Calendar",
+      "key": "bdbbe2cbb816f05df30b9252c15210de0759a738",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Time": [
+          "Off",
+          "On",
+          "Only"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "14711:170",
+      "name": "Description List Item",
+      "key": "5326e54efe6600bc4cdf87b265765230a191fc27",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Type": [
+          "Stacked",
+          "Column",
+          "Inline"
+        ],
+        "Reverse": [
+          "No",
+          "Yes"
+        ],
+        "Compressed": [
+          "No",
+          "Yes"
+        ],
+        "Align": [
+          "Left",
+          "Center"
+        ]
+      },
+      "cellCount": 18,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "22764:276696",
+      "name": ".📦Number indicator (right side)",
+      "key": "9afb6f40dc8f17522468c91292d9892befd5ef30",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "22907:283773",
+      "name": ".📦Layout thumbnail",
+      "key": "aa6924aaa7784222d2b862b583b75841ef672352",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Type": [
+          "Sidebar",
+          "Empty",
+          "Multiple"
+        ],
+        "State": [
+          "Default",
+          "Selected"
+        ]
+      },
+      "cellCount": 6,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "23023:279440",
+      "name": ".📦Empty prompt thumbnail",
+      "key": "3eedaa7146310c744a61baa552bdad688123e4c0",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Type": [
+          "Primary",
+          "Secondary"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "25126:282385",
+      "name": ".📦Footer",
+      "key": "73ff9e5723b5d3138db36ac6d3956df28cc41760",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "36674:395683",
+      "name": ".Footer",
+      "key": "e559894664191913e7f075fc896915ccd6e5ad37",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Color": [
+          "Transparent",
+          "Subdued"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "36674:396011",
+      "name": ".Body-Vertical",
+      "key": "32d9c5664735c689605a1595821c0419b6a9e59c",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Padding Size": [
+          "Large",
+          "Medium",
+          "Small",
+          "None"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "36686:394689",
+      "name": ".Body-Horizontal",
+      "key": "7e857adc01f57821e9872e6f30d5bc4dd9b25452",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Padding size": [
+          "Large",
+          "Medium",
+          "Small",
+          "None"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "36674:394711",
+      "name": "Empty Prompt",
+      "key": "acaaeb602e41ce4c9cb2ee1eee833ae411bf066d",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Color": [
+          "Transparent",
+          "Plain",
+          "Plain + Border",
+          "Plain + Shadow",
+          "Subdued",
+          "Primary",
+          "Success",
+          "Warning",
+          "Danger",
+          "Accent"
+        ],
+        "Layout": [
+          "Vertical",
+          "Horizontal"
+        ]
+      },
+      "cellCount": 20,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "14849:51",
+      "name": "Expression - Inline",
+      "key": "411adbd436dc0dc0a0a67fc127cce5127084bfe6",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Clickable": [
+          "False",
+          "True"
+        ],
+        "Active": [
+          "False",
+          "True"
+        ],
+        "Color": [
+          "Success",
+          "Primary",
+          "Accent",
+          "Warning",
+          "Danger",
+          "Subdued"
+        ],
+        "Invalid": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 21,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "14850:110142",
+      "name": "Expression - Column",
+      "key": "a9c27a0a5f25287314bf5d08624c25f4e9ca44ed",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Clickable": [
+          "True",
+          "False"
+        ],
+        "Active": [
+          "False",
+          "True"
+        ],
+        "Color": [
+          "Success",
+          "Primary",
+          "Accent",
+          "Warning",
+          "Danger",
+          "Subdued"
+        ],
+        "Invalid": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 21,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "13653:64632",
+      "name": "Facet",
+      "key": "93ef9828c1b1709084c2e3da3f887cd581321ead",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Default",
+          "Hover",
+          "Focus"
+        ],
+        "Icon": [
+          "True",
+          "False"
+        ],
+        "Selected": [
+          "False",
+          "True"
+        ],
+        "Disabled": [
+          "False",
+          "True"
+        ],
+        "Loading": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 16,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "135:602",
+      "name": "💡 Facet Group - Horizontal",
+      "key": "dcdad42eaa83061ea3d08de8a40245d0df25e347",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "134:23060",
+      "name": ".📦Facet / Button",
+      "key": "68aedf70a14d0fcf76fc238d7e8c5b83c69d502a",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "39838:192",
+      "name": "☠️ Filter Button - Single toggle",
+      "key": "4daf0e238e4667f75ab09d86c387275b99ed3015",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Compressed": [
+          "false",
+          "true"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "39838:185",
+      "name": "☠️ Filter Button - Dual toggle",
+      "key": "93a9ca1f4155a33fa9a6ba1f208e8d62015c78fa",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Compressed": [
+          "false",
+          "true"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "39838:166",
+      "name": "☠️ Filter Group",
+      "key": "a15598a03157480a27ffd4dbe1b37c910c28b3ad",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Compressed": [
+          "false",
+          "true"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "39838:197",
+      "name": ".📦 Filter Button",
+      "key": "a88174ee02becef4dee898eed50a47e14c69b665",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Active": [
+          "False",
+          "true"
+        ],
+        "Count": [
+          "true",
+          "false"
+        ],
+        "Icon": [
+          "None",
+          "Left",
+          "Right"
+        ],
+        "Disabled": [
+          "False",
+          "True"
+        ],
+        "Size": [
+          "Medium*",
+          "Small"
+        ]
+      },
+      "cellCount": 18,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "13581:24745",
+      "name": ".📦 Form Control / Background",
+      "key": "221a420e523a2b39285ba2f3781458233f1b46f9",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Disabled",
+          "Focus",
+          "Invalid",
+          "Normal",
+          "Read-Only"
+        ]
+      },
+      "cellCount": 5,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "28545:409159",
+      "name": ".📦 Form Control / Range content",
+      "key": "3954cf300e7e90b8c9905436603708ee78e12c6f",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Invalid": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "13610:44963",
+      "name": ".📦 Form Control / Content - Right",
+      "key": "b2af17c19e8162922df34e124c532d7db725e3ee",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Append": [
+          "True",
+          "False"
+        ],
+        "Clearable": [
+          "True",
+          "False"
+        ],
+        "Loading": [
+          "True",
+          "False"
+        ],
+        "Icon": [
+          "True",
+          "False"
+        ],
+        "State": [
+          "Default",
+          "Disabled",
+          "Invalid"
+        ],
+        "Compressed": [
+          "True",
+          "False"
+        ],
+        "Number": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 82,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "13610:44523",
+      "name": ".📦 Form Control / Content - Left",
+      "key": "ee1a4aae1e013de9f2f9b56ff8a13467f28f8506",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Prepend": [
+          "True",
+          "False"
+        ],
+        "Icon": [
+          "True",
+          "False"
+        ],
+        "State": [
+          "Filled",
+          "Placeholder",
+          "Disabled"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 24,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "14787:3326",
+      "name": "☠️ Form Control - Delimited",
+      "key": "973dc096fcd8a5a212e4fc11ca095ae438480089",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Filled",
+          "Placeholder",
+          "Focus",
+          "Invalid",
+          "Disabled",
+          "Read-only"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Prepend / Append": [
+          "None",
+          "Prepend",
+          "Append",
+          "Both"
+        ],
+        "Icon": [
+          "None",
+          "Left"
+        ],
+        "Loading?": [
+          "False",
+          "True"
+        ],
+        "Clearable?": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 288,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "13580:25572",
+      "name": "☠️ Form Control",
+      "key": "c9bc49b3e9b9c85ac1d72917b84d94320ff84577",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Type": [
+          "Text",
+          "Search",
+          "Select",
+          "Number",
+          "Textarea",
+          "Password",
+          "Combobox",
+          "Color palette"
+        ],
+        "Compressed": [
+          "True",
+          "False"
+        ],
+        "State": [
+          "Filled",
+          "Placeholder",
+          "Focus",
+          "Invalid",
+          "Read-only",
+          "Disabled"
+        ],
+        "Prepend / Append": [
+          "None",
+          "Prepend",
+          "Append",
+          "Both"
+        ],
+        "Icon": [
+          "None",
+          "Left",
+          "Right",
+          "Both"
+        ],
+        "Loading": [
+          "False",
+          "True"
+        ],
+        "Clearble": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 672,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "16160:207356",
+      "name": ".Selects info box",
+      "key": "41c3e9aa986529bca430cc4ab4cd93cde6080009",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "16160:207647",
+      "name": ".Clearable info box",
+      "key": "ea7115064e06e48041862f2ec32bea4f1db4e363",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "16160:208428",
+      "name": ".Palette info box",
+      "key": "83f8ffda328a540b3307cc90227d5d2ce434e100",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "16160:208934",
+      "name": ".Combobox info box",
+      "key": "2a30a4af4de49f742f0a71c702b17244bbfe12ba",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "13676:796",
+      "name": "☠️ Text field",
+      "key": "8680d6d2c9b0e93aabde7dbe4f091af65acd24c8",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Filled",
+          "Focus",
+          "Invalid",
+          "Disabled"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Column display": [
+          "False",
+          "True"
+        ],
+        "Label": [
+          "True",
+          "False"
+        ],
+        "Help text": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 40,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "15883:139856",
+      "name": "☠️ Number field",
+      "key": "69bfc3d03c74d9b04456514c1e3bd7edf986280d",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Filled",
+          "Focus",
+          "Invalid",
+          "Disabled"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Column display": [
+          "False",
+          "True"
+        ],
+        "Label": [
+          "True",
+          "False"
+        ],
+        "Help text": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 40,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15883:136359",
+      "name": "☠️ Search field",
+      "key": "e20002c1de6f3f7fa720fd0080d8ac3701566932",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Placeholder",
+          "Focus",
+          "Invalid",
+          "Disabled"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Column display": [
+          "False",
+          "True"
+        ],
+        "Label": [
+          "True",
+          "False"
+        ],
+        "Help text": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 40,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "15883:129716",
+      "name": "☠️ Select field",
+      "key": "aa84aea73d227fe6caa390e56227b6f80809eb45",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Default",
+          "Focus",
+          "Invalid",
+          "Disabled"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Column display": [
+          "False",
+          "True"
+        ],
+        "Label": [
+          "True",
+          "False"
+        ],
+        "Help text": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 40,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "15883:143147",
+      "name": "☠️ Password field",
+      "key": "22b27130b6be5624c8713212c7c297d3a0c0713a",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Filled",
+          "Focus",
+          "Invalid",
+          "Disabled"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Column display": [
+          "False",
+          "True"
+        ],
+        "Label": [
+          "True",
+          "False"
+        ],
+        "Help text": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 40,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15883:148276",
+      "name": "☠️ Textarea",
+      "key": "430c29a40a31498b4494383d5d7342c2aefc1579",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Filled",
+          "Focus",
+          "Invalid",
+          "Disabled"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Column display": [
+          "False",
+          "True"
+        ],
+        "Label": [
+          "True",
+          "False"
+        ],
+        "Help text": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 40,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "26803:282479",
+      "name": "File Picker",
+      "key": "72a0a7b13c8bde41afba796e4b7900ee04dc6c0a",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Default",
+          "Large"
+        ],
+        "State": [
+          "Disabled",
+          "Filled",
+          "Focus",
+          "Invalid",
+          "Placeholder"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Column display": [
+          "False",
+          "True"
+        ],
+        "Label": [
+          "False",
+          "True"
+        ],
+        "Help text": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 120,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "44632:22134",
+      "name": ".File Picker / Large Input",
+      "key": "35ee270536e10e4f06f4330b1ace82e48fd51680",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Disabled",
+          "Placeholder",
+          "Focus",
+          "Invalid",
+          "Filled"
+        ]
+      },
+      "cellCount": 5,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "15884:200789",
+      "name": "💡 Form - Basic",
+      "key": "a6b7e2e29d01831ee4f8455cf561c9219491aa5b",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Invalid": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "15884:202224",
+      "name": "💡 Form - Compressed",
+      "key": "d83886d50476ad45502f7dc98792f0b335aa3e4a",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Invalid": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "15883:126354",
+      "name": "☠️📦 Form Row / Label",
+      "key": "e2981cedb91c50ba9503f86d4f514424290984b5",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Default",
+          "Focus",
+          "Invalid"
+        ],
+        "Append": [
+          "None",
+          "Text",
+          "Icon"
+        ]
+      },
+      "cellCount": 9,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15883:126375",
+      "name": "☠️📦 Form Row / Help text",
+      "key": "7e5bc2b5b45b28331e4b2cd6a1cef5f90de5fa70",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Default",
+          "Invalid"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15884:208950",
+      "name": "☠️📦 Form Row",
+      "key": "e913c119e2facceb26df11bb5c88c167873c9ef9",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Column": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "27008:287534",
+      "name": "☠️ Described Form Group",
+      "key": "fe46f28efcbbdb80c5846c72cd8f177eb314fffe",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Ratio": [
+          "Half*",
+          "Third",
+          "Quarter"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "32618:396153",
+      "name": "Flyout",
+      "key": "dca8d07eace634d1dd85ab9fddb34095aea8d428",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Type": [
+          "Overlay",
+          "Push"
+        ],
+        "Tabs": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "9871:3787",
+      "name": "📦 Header Breadcrumbs",
+      "key": "1fed2f6924ab32eaa6ffb8418b2791281318db72",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "15079:109018",
+      "name": "📦 Header Breadcrumb",
+      "key": "ea0240c9bf95d05f110d711dc65af05d5bb96424",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Position": [
+          "First & Only",
+          "First",
+          "Middle",
+          "Last"
+        ],
+        "Linked": [
+          "False",
+          "True"
+        ],
+        "Collapsed": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 8,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "26824:282882",
+      "name": "Header - Dark",
+      "key": "59aa90826f03668c93b60d995fc6cc4a59d0251f",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Mobile": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "26824:283060",
+      "name": "Header",
+      "key": "b7b9d3cf8dd4d454db23e4bdc41d58974e92866a",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Mobile": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "13622:59599",
+      "name": "☠️ Health",
+      "key": "534d0a33aafc863ae2738c6d778bfb210f754a02",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Medium",
+          "Small",
+          "X Small"
+        ],
+        "Color": [
+          "Custom",
+          "Failure",
+          "Healthy",
+          "Unknown",
+          "Warning",
+          "Active"
+        ]
+      },
+      "cellCount": 18,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15154:113938",
+      "name": "☠️ Horizontal Rule",
+      "key": "f428f519d8abc7d9ef0ab807c69e9dce515f3725",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Margin": [
+          "None - 0px",
+          "X-small - 8px",
+          "Small - 12px",
+          "Medium - 16px",
+          "Large* - 24px",
+          "X-large - 32px",
+          "XX-large - 40px"
+        ],
+        "Size": [
+          "Full",
+          "Half",
+          "Quarter"
+        ]
+      },
+      "cellCount": 21,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "14711:1",
+      "name": "Image",
+      "key": "691b2e9eeff468f0a0e82d8a1ba7d9233916f615",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Small (120)",
+          "Medium (200)",
+          "Large (360)",
+          "X Large (600)",
+          "Custom (resizable)"
+        ],
+        "hasShadow": [
+          "true",
+          "false"
+        ]
+      },
+      "cellCount": 10,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "13546:25989",
+      "name": "☠️ Key pad menu item",
+      "key": "d4c49b7a48f12cf91990c2a51177611fd2054cd6",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Default",
+          "Hover"
+        ],
+        "Disabled": [
+          "True",
+          "False"
+        ],
+        "Active": [
+          "True",
+          "False"
+        ],
+        "Beta badge": [
+          "Text",
+          "Icon",
+          "None"
+        ],
+        "Checkable": [
+          "None",
+          "Single",
+          "Multi"
+        ]
+      },
+      "cellCount": 20,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15132:132472",
+      "name": "List Group",
+      "key": "37d1e25e703f2bd583691b771e62e117064560ea",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15132:116102",
+      "name": "List Group Item",
+      "key": "d94b912aa08781cd251869a873723edf9e021b2c",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Medium",
+          "Small",
+          "X-Small"
+        ],
+        "Color": [
+          "Default",
+          "Primary",
+          "Subdued"
+        ],
+        "Icon": [
+          "True",
+          "False"
+        ],
+        "Extra action": [
+          "False",
+          "True"
+        ],
+        "State": [
+          "Default",
+          "Active",
+          "Hover",
+          "Disabled"
+        ]
+      },
+      "cellCount": 144,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15132:116026",
+      "name": ".📦 List Group / Item",
+      "key": "a9b3c308c729ea340019f7197d97b14503a94349",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "27320:288580",
+      "name": "☠️ Spinner / Animated",
+      "key": "01dd2c3271471f477018609948160978e64ec32c",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "XX-Large",
+          "X-Large",
+          "Large",
+          "Medium*",
+          "Small"
+        ],
+        "Keyframe": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      },
+      "cellCount": 20,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "13648:4315",
+      "name": "☠️ Spinner / Static",
+      "key": "664513406eaaaba39b3ea03f657cd7c49987e294",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "XX-Large",
+          "X-Large",
+          "Large",
+          "Medium*",
+          "Small"
+        ]
+      },
+      "cellCount": 5,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "13648:4313",
+      "name": "☠️ Elastic",
+      "key": "03e7e49d770e198425d56e469c446ff91855f1e2",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Medium (default)",
+          "Large",
+          "X Large",
+          "XX Large"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "13648:4314",
+      "name": "☠️ Logos",
+      "key": "47612c9698655d513c30fa2353a2fa0bccabecba",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Medium (default)",
+          "Large",
+          "X Large"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "13648:4291",
+      "name": "☠️ Chart",
+      "key": "a722aba5ad0093f20670a01e1a9c537d0aeca4a9",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Color": [
+          "True",
+          "False"
+        ],
+        "Size": [
+          "Medium (default)",
+          "Large",
+          "X Large"
+        ]
+      },
+      "cellCount": 6,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "16512:211159",
+      "name": "Markdown Editor",
+      "key": "0dd2686e5eab7ba840e97af75aa27397c07449eb",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Type": [
+          "Default",
+          "Errors",
+          "Attachment Error",
+          "Focus"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "16512:210927",
+      "name": ".📦Markdown Editor / Footer / Left side",
+      "key": "2483522564720e3218a8fe93e1e325b60d099ec7",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Type": [
+          "Attachment error",
+          "Errors",
+          "Attachment"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "16961:248689",
+      "name": ".📦Markdown Editor / Toolbar / Buttons",
+      "key": "aeccc0dfcff3ca58ea00b53b75bc0ec95c23d511",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "32634:391703",
+      "name": "Modal",
+      "key": "2788e1d47852f02594047416610444bd7b250743",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "24329:284522",
+      "name": ".📦 Page header content",
+      "key": "de803881d1d0db63ea331b6c013540737148768f",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "24329:291092",
+      "name": ".📦 Page header contents",
+      "key": "88d5830dddad4d5635886845844abd6bd5c93427",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Left content": [
+          "Tabs as titles",
+          "Title",
+          "Title & Tabs"
+        ],
+        "Right content": [
+          "Buttons",
+          "None",
+          "Time or Custom"
+        ],
+        "Description?": [
+          "False",
+          "True"
+        ],
+        "Breadcrumbs": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 30,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "20156:274200",
+      "name": "Page sidebar",
+      "key": "c5d215addf706ba924ef5f485d08017222d99763",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Default",
+          "Collapsed"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "24329:283356",
+      "name": "Page header",
+      "key": "1d8a570a63295c63570efc27d55c366e3d791c13",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Bottom border": [
+          "Extended",
+          "False",
+          "True"
+        ],
+        "Restrict width": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 6,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "24329:303983",
+      "name": "Page content",
+      "key": "e7bce7c25ae010044cbaf87c47beb582d0aa350c",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Bottom border": [
+          "Extended",
+          "False",
+          "True"
+        ],
+        "Restrict width": [
+          "False",
+          "True"
+        ],
+        "Vertical alignment": [
+          "Center",
+          "Top"
+        ],
+        "Panelled": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 18,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "24329:308827",
+      "name": "Page templates",
+      "key": "34e232a96110fed8848eb73b6a6ff446ac61e8e6",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Template": [
+          "Default",
+          "Empty content",
+          "Empty page"
+        ],
+        "Restrict width": [
+          "False",
+          "True"
+        ],
+        "Side bar": [
+          "Collapsed",
+          "False",
+          "True"
+        ],
+        "Bottom bar": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 24,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "44950:72050",
+      "name": "Page globals",
+      "key": "c0c0235983e69424b4e7d38737645b753c94fce4",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "14939:107721",
+      "name": "Pagination",
+      "key": "d3d38c407f1fc5ee43124cadc79cc07b23411538",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Type": [
+          "Few",
+          "Many",
+          "Many in between",
+          "Mobile / Indeterminate",
+          "Compressed",
+          "Many is last"
+        ]
+      },
+      "cellCount": 6,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "14939:107463",
+      "name": ".📦 Pagination / Button",
+      "key": "20746bef2ba66b00c7d064e1976859008faf4ef5",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Active",
+          "Default",
+          "Disabled",
+          "Ellipsis"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "22524:279617",
+      "name": "💡Pagination / Rows per page",
+      "key": "b51d5d8156587b0944585a17d6a9bac1f30cbddd",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "32642:391756",
+      "name": "Panel",
+      "key": "285fdd3aa1947b00a6b1d2850abdb10f4eaba8e2",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Padding size": [
+          "None",
+          "Small",
+          "Medium*",
+          "Large"
+        ],
+        "Color": [
+          "Plain*",
+          "Subdued",
+          "Primary",
+          "Success",
+          "Warning",
+          "Danger",
+          "Accent",
+          "Transparent"
+        ],
+        "Shadow": [
+          "True",
+          "False"
+        ],
+        "Border": [
+          "False",
+          "True"
+        ],
+        "Border radius": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 88,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "32670:392917",
+      "name": "Split Panel",
+      "key": "6c2795e2a94085dd1e927292b5121b6838d6507f",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Direction": [
+          "Vertical",
+          "Horizontal",
+          "Direction3"
+        ],
+        "Border": [
+          "False",
+          "True"
+        ],
+        "Shadow": [
+          "True",
+          "False"
+        ],
+        "Border radius": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 8,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "38872:21191",
+      "name": "Popover",
+      "key": "a8f22a864d36790a6d0f5f925e87d94a327500e1",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Arrow": [
+          "12:00 ↑",
+          "3:00 →",
+          "6:00 ↓",
+          "9:00 ←"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "38872:21244",
+      "name": ".📦 Popover / Body",
+      "key": "f89308bf51bfd32a01941531b8d573ab5e081fca",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "38872:21246",
+      "name": ".📦 Popover / Footer",
+      "key": "504ac8c21904570d5fa814210f9adc941472e78e",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "38872:21248",
+      "name": ".📦 Popover / Arrow",
+      "key": "561a4da03250d9059571095c2c0b80ac2f3a1a73",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "13648:4438",
+      "name": "Progress",
+      "key": "1e71a04d04075b1538692698958e06344b92bce5",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "X-Small - 2px",
+          "Small - 4px",
+          "Medium* - 8px",
+          "Large - 16px"
+        ],
+        "Color": [
+          "Success*",
+          "Primary",
+          "Warning",
+          "Danger",
+          "Subdued",
+          "Accent"
+        ],
+        "Label": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 48,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "16011:195480",
+      "name": "💡 Progress - Fixed panel",
+      "key": "fa488b3fc6e2f4c5a64e18d34e348026b88f4077",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "14755:6227",
+      "name": "☠️ Range Slider",
+      "key": "346482cc7f47e2bf70cccf75d6dc7be882fc607d",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Label": [
+          "None",
+          "Left",
+          "Right",
+          "Both"
+        ],
+        "Input": [
+          "None",
+          "Left",
+          "Right",
+          "Both"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 14,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "14757:83541",
+      "name": ".📦 Slider / Range",
+      "key": "eebd375b3b6865a16b7d61c063ff4fb38e769bd6",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Default",
+          "Empty"
+        ],
+        "Compressed": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "14757:86523",
+      "name": ".📦 Slider",
+      "key": "9714bd0c28f2b05cb8491130f7e202dbe3dd6c18",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Type": [
+          "Single",
+          "Dual"
+        ],
+        "Show range": [
+          "True",
+          "False"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Ticks": [
+          "False",
+          "True"
+        ],
+        "Levels": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 32,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "14757:83542",
+      "name": ".📦 Slider / Thumb",
+      "key": "fafab81e122769a3b81445cea8929e2c86812ad1",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Tooltip": [
+          "None",
+          "Left",
+          "Right"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "15222:126396",
+      "name": ".📦 Slider / Levels",
+      "key": "3be82c187c45c2d71e9e2a825c6e0db98ebc2c33",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Labels": [
+          "True",
+          "False"
+        ],
+        "Compressed": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "17068:2",
+      "name": "Slider / Track",
+      "key": "37403251f1ab014a1703d3374882e2a20f701afe",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Compressed": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15884:193897",
+      "name": "☠️ Range",
+      "key": "1db25cfc90618da72ac9e8cd9005180ca8688924",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Filled",
+          "Invalid",
+          "Disabled"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Column display": [
+          "False",
+          "True"
+        ],
+        "Label": [
+          "True",
+          "False"
+        ],
+        "Help text": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 30,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15138:3267",
+      "name": "Search Bar",
+      "key": "ed1ff1ffaa924e18413bb27220137811b778253d",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "14664:0",
+      "name": "☠️ Selectable List Item",
+      "key": "70df4d8a37c2a3d9f38373e8239e97725f097791",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Type": [
+          "Selectable",
+          "Group title",
+          "Super select",
+          "Context menu (S)",
+          "Context menu (M)",
+          "Search",
+          "Color palette",
+          "Loading",
+          "Empty",
+          "Custom (S)",
+          "Custom (M)"
+        ],
+        "Checked?": [
+          "Off",
+          "On",
+          "N/A"
+        ],
+        "Disabled?": [
+          "False",
+          "True"
+        ],
+        "State": [
+          "Default",
+          "Focus"
+        ],
+        "Extras": [
+          "None",
+          "Prepend",
+          "Append",
+          "Both"
+        ]
+      },
+      "cellCount": 82,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "14665:82129",
+      "name": "☠️ Selectable List",
+      "key": "0c146d43eb856b2193a3c242ab78ec7711094283",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "14674:8052",
+      "name": "☠️ Selectable List - Searchable",
+      "key": "6b93f814279e07c9b9ac4358ec7ec8cb911d0b8e",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "16122:18050",
+      "name": "☠️ Selectable List - Loading",
+      "key": "da9a44b814c138ff772ac74d9bcc5ce9513b1978",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "16122:18049",
+      "name": "☠️ Selectable List - Empty",
+      "key": "12bc75e402fbe1e22be302fc72fc512bc39deb5f",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "14674:1139",
+      "name": "☠️ Selectable List - Grouped",
+      "key": "16b62171b1bd5602f586316979ff70ef94dcb6c8",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "14665:82478",
+      "name": "☠️ Selectable List - Descriptive",
+      "key": "4bc71fa1b89f1fef860d25327951da0c7c4e0e7b",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15884:184289",
+      "name": "☠️ Selectable List - Color palletes",
+      "key": "c907f2fa2723ea3f7c3e841c3fdb1dc650cd1d93",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15884:145646",
+      "name": "☠️ Checkbox group",
+      "key": "79bb58259a98d3a43abe8a01f1b98319a68ff718",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Default",
+          "Invalid"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Column display": [
+          "False",
+          "True"
+        ],
+        "Label": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 10,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "13581:24987",
+      "name": "☠️ Checkbox",
+      "key": "66960155b3bfaa7b30a75921499c1cde094ed0e8",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Label": [
+          "True",
+          "False"
+        ],
+        "Checked": [
+          "True",
+          "False"
+        ],
+        "Indeterminate": [
+          "False",
+          "True"
+        ],
+        "Disabled": [
+          "False",
+          "True"
+        ],
+        "Focus": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 14,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "15884:149603",
+      "name": "☠️ Radio group",
+      "key": "d73e653b31e84f75d581dce9b47b0404821e603b",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Default",
+          "Invalid"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Column display": [
+          "False",
+          "True"
+        ],
+        "Label": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 10,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "13581:25220",
+      "name": "☠️ Radio",
+      "key": "ebcbecc6d9b52e46bcb32c4582d219d4044dd8f7",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Label": [
+          "True",
+          "False"
+        ],
+        "Checked": [
+          "True",
+          "False"
+        ],
+        "State": [
+          "Default",
+          "Disabled",
+          "Focus"
+        ]
+      },
+      "cellCount": 10,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "16034:2",
+      "name": ".📦 Checkbox / Box",
+      "key": "9d3a8871a2ec9e11058f2c506889722de4d02318",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Checked": [
+          "True",
+          "False"
+        ],
+        "Indeterminate": [
+          "False",
+          "True"
+        ],
+        "Disabled": [
+          "False",
+          "True"
+        ],
+        "Focus": [
+          "False",
+          "True"
+        ],
+        "Size": [
+          "Medium",
+          "Small"
+        ]
+      },
+      "cellCount": 14,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "16033:196057",
+      "name": ".📦 Radio / Button",
+      "key": "5359280bc930ce5a20ebf4adab38d07a36e2373e",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Checked": [
+          "True",
+          "False"
+        ],
+        "Disabled": [
+          "False",
+          "True"
+        ],
+        "Focus": [
+          "False",
+          "True"
+        ],
+        "Size": [
+          "Medium",
+          "Small"
+        ]
+      },
+      "cellCount": 10,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "37824:395926",
+      "name": ".Default",
+      "key": "812126a772f6bf542f1f83c744a97218e844e893",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Checked": [
+          "True",
+          "False"
+        ],
+        "Disabled": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "37824:396026",
+      "name": ".Compressed",
+      "key": "04de4a65cd89e62da10ae2abbff9f0a21d722b14",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Checked": [
+          "True",
+          "False"
+        ],
+        "Disabled": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "37824:396069",
+      "name": "☠️ Switch",
+      "key": "edc310b633b2658d36e182a9c6e3b062c8aca5c1",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Checked": [
+          "True",
+          "False"
+        ],
+        "Compressed": [
+          "True",
+          "False"
+        ],
+        "Disabled": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 8,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "14645:214",
+      "name": "Side Nav Item",
+      "key": "7ed7b852338d4112272932beb8b3a742b9eedfd8",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Nested level": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "Open?": [
+          "False",
+          "True"
+        ],
+        "Has child items?": [
+          "False",
+          "True"
+        ],
+        "Icon?": [
+          "True",
+          "False"
+        ],
+        "Active?": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 24,
+      "decision": "расширен локально",
+      "reason": "Недостающие взаимодействия добавлены в ProductNavItem, исходный набор сохранён."
+    },
+    {
+      "id": "14643:2",
+      "name": ".📦 Side Nav / Nested indicator",
+      "key": "dcdbbfe562d8bccd0acf3d4ebf3f1b1d1e066254",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Show": [
+          "True",
+          "False"
+        ],
+        "Is child?": [
+          "True",
+          "False"
+        ],
+        "Is last?": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 5,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "14917:33",
+      "name": "☠️ Spacer",
+      "key": "2f9a937d7f83327bcc2397dbbfc00d0430be86ef",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "XS - 4px",
+          "S - 8px",
+          "M - 16px",
+          "L - 24px (Default)",
+          "XL - 32px",
+          "XXL - 40px"
+        ],
+        "Direction": [
+          "Horizontal",
+          "Vertical"
+        ]
+      },
+      "cellCount": 12,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "44287:4510",
+      "name": "Steps",
+      "key": "5f09814279bee2283b229d469481096ab1c4bed9",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "titleSize": [
+          "Medium",
+          "Small",
+          "XSmall",
+          "XXSmall"
+        ],
+        "Status": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 8,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "44199:23052",
+      "name": "StepsHorizontal",
+      "key": "1692c0ea31ad44cf8247552b91d611c438c2bc5f",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Medium",
+          "Small",
+          "XSmall"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "14775:90261",
+      "name": ".📦 Step / Indicator",
+      "key": "aade7ebe595003d3115bed02ee3d674e4af8bafc",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Status": [
+          "default",
+          "complete",
+          "incomplete",
+          "disabled",
+          "loading",
+          "warning",
+          "danger",
+          "current"
+        ],
+        "Size": [
+          "Small/Medium",
+          "XSmall",
+          "XXSmall"
+        ]
+      },
+      "cellCount": 24,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "14775:90378",
+      "name": ".📦 Step - Horizontal",
+      "key": "efd7ffd4d59344037fad2b00e3cf019f18528816",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Medium",
+          "Small",
+          "XSmall"
+        ],
+        "Position": [
+          "First",
+          "Last",
+          "Middle"
+        ],
+        "Status": [
+          "default",
+          "incomplete",
+          "disabled",
+          "loading",
+          "warning",
+          "danger",
+          "complete",
+          "current"
+        ]
+      },
+      "cellCount": 72,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "44287:2876",
+      "name": ".Status",
+      "key": "48816a0b7030196d691e809f2467fc729ab73307",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "titleSize": [
+          "Medium",
+          "Small",
+          "XSmall",
+          "XXSmall"
+        ],
+        "status": [
+          "complete",
+          "incomplete",
+          "disabled",
+          "loading",
+          "warning",
+          "danger",
+          "current"
+        ]
+      },
+      "cellCount": 28,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "44287:2331",
+      "name": ".No status",
+      "key": "1b756940e15e41d9c7841fabb2ac00ebc4def0af",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "titleSize": [
+          "Medium",
+          "Small",
+          "XSmall",
+          "XXSmall"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "44287:3458",
+      "name": ".Step - Vertical",
+      "key": "fb577f7b014941709fb5463cdb8a34499235005f",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Status": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "14638:71133",
+      "name": "Stat",
+      "key": "015a9c121b3f831b2d2dbc6b6938bf8e182ead09",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Large",
+          "Small",
+          "X-Small"
+        ],
+        "Color": [
+          "Text (Defualt)",
+          "Primary",
+          "Secondary",
+          "Warning",
+          "Danger",
+          "Accent"
+        ],
+        "Align": [
+          "Left",
+          "Center",
+          "Right"
+        ],
+        "Reverse": [
+          "True",
+          "False"
+        ],
+        "Loading": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 126,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "22805:276912",
+      "name": ".📦 Super Date Picker / Prepend",
+      "key": "297a059b5f83a30e7b14e2e992d3f76ce061a8d8",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "14792:135915",
+      "name": "Super Date Picker - Dropdown",
+      "key": "2762ed0ee9d737a1990074e66d47cd4310270c2f",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Tab select": [
+          "Calendar",
+          "Quick select"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "14795:111805",
+      "name": "Super Date Picker - Button",
+      "key": "158ab82ed3a5477cd7cf5bd2f2c3e2f75a399230",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "State": [
+          "Default",
+          "Active / Open",
+          "Needs updating",
+          "Auto refresh"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "20307:323509",
+      "name": ".📦Super Date Picker / Dropdown -> Relative",
+      "key": "9b0c59f0e1f7b65cc0e31895021b39236f8be608",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "20307:328531",
+      "name": ".📦Super Date Picker / Dropdown -> Footer",
+      "key": "362295c5c93c12a2b856f5ac1f721123552b6e2a",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Disabled": [
+          "True",
+          "False"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "22805:277057",
+      "name": "Super Date Picker - Input",
+      "key": "c7106aefb8965b9ccf8bbc0ae7bcce282500037f",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Needs update": [
+          "False",
+          "True"
+        ],
+        "Time": [
+          "Absolute",
+          "Relative"
+        ],
+        "Show update button": [
+          "True",
+          "Icon only",
+          "False"
+        ],
+        "Auto refresh": [
+          "On",
+          "Off"
+        ]
+      },
+      "cellCount": 24,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "15035:3348",
+      "name": "📦 Table Cell -> Header",
+      "key": "9c024d1f201a5c9cc5c3580d4ef6ea04962f7637",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Sort": [
+          "Ascending",
+          "Descending",
+          "None"
+        ],
+        "Compressed": [
+          "No",
+          "Yes"
+        ],
+        "Tooltip": [
+          "No",
+          "Yes"
+        ]
+      },
+      "cellCount": 12,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "15129:1692",
+      "name": "📦 Table Cell -> Footer",
+      "key": "20a1d479c77a1a137693ef34cd3230484b2e6295",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Compressed": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "15038:108556",
+      "name": "📦 Table Cell",
+      "key": "be846ca65525a78bec7cfc378deb0ad1498c5cec",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Content": [
+          "Text",
+          "Link",
+          "Icon",
+          "Checkbox",
+          "Badge",
+          "Status",
+          "Expander",
+          "Actions",
+          "Text + Icon"
+        ],
+        "State": [
+          "Default",
+          "Hover",
+          "Selected"
+        ],
+        "Compressed": [
+          "False",
+          "True"
+        ],
+        "Disabled": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 60,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "20805:282225",
+      "name": "Table Utility Bar",
+      "key": "46455c1da68eb6be7b956b80f151a4b6edcf4752",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Multiple pages": [
+          "False",
+          "True"
+        ],
+        "Selection": [
+          "None",
+          "Whole page",
+          "Few"
+        ],
+        "Extra actions": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 10,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "20805:284019",
+      "name": ".📦 Table Utility Bar -- Base",
+      "key": "ca89de0cf2ac66c6586a6f6a5f512b872743630d",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "32617:392183",
+      "name": "☠️ Tab",
+      "key": "f979852d8fd397a422c7eb5f93bab7c569662642",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Selected": [
+          "False",
+          "True"
+        ],
+        "Disabled": [
+          "False",
+          "True"
+        ],
+        "Size": [
+          "Small",
+          "Large",
+          "X-Large",
+          "Medium*"
+        ]
+      },
+      "cellCount": 12,
+      "decision": "расширен локально",
+      "reason": "Недостающие взаимодействия добавлены в ProductTab, исходный набор сохранён."
+    },
+    {
+      "id": "32618:392277",
+      "name": "☠️ Tabs",
+      "key": "089719d8c0219a38c9c14d42fc22b4b908c6e3fd",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Medium*",
+          "Small",
+          "Large",
+          "X-Large"
+        ],
+        "Expand": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 8,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "32296:391640",
+      "name": "☠️ Text - Heading",
+      "key": "f40af2495fabde1d3c0f9335235544a0f77c786e",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Medium",
+          "Small",
+          "X-Small"
+        ],
+        "Level": [
+          "Heading 1",
+          "Heading 2",
+          "Heading 3",
+          "Heading 4",
+          "Heading 5",
+          "Heading 6"
+        ]
+      },
+      "cellCount": 18,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "32296:391647",
+      "name": "☠️ Text - Paragraph",
+      "key": "e4bb11b5d795030e11c7a89eab70bddf9f69fe43",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Medium",
+          "Small",
+          "X-Small"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "32350:391882",
+      "name": "☠️ Text - <small>",
+      "key": "1166f9b2ee63dac92498addd5ad5d835d91c91dd",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Medium",
+          "Small",
+          "X-Small"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "32177:399780",
+      "name": "☠️ Text - Link",
+      "key": "ee9241fe389b967945b0401e10591219c368eb98",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Medium",
+          "Small",
+          "X-Small"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "32296:392036",
+      "name": "☠️ Text - Blockquote",
+      "key": "19fd34b95c4e36494a7c7635950e269e3378843b",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Medium",
+          "Small",
+          "X-Small"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "32296:392060",
+      "name": "☠️ Text - Pre Code",
+      "key": "99214f902d952d12004e9591059e6e5ac167ae71",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Medium",
+          "Small",
+          "X-Small"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "32286:391636",
+      "name": "☠️ Text - Keyboard",
+      "key": "847b5f12026558110bbee9c63d76fbab09fcb01a",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Medium",
+          "Small",
+          "X-Small"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "32347:391902",
+      "name": "Text in a Sentence",
+      "key": "56bb39d272532c4ad93213ed023e8f44e0e43ad3",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Example": [
+          "Keyboard",
+          "Link"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "32350:391695",
+      "name": "Heading with a paragraph",
+      "key": "50baa422353b0b04c70388e24e16cd9404707429",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Medium",
+          "Small",
+          "X-Small"
+        ]
+      },
+      "cellCount": 3,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "26861:283314",
+      "name": ".📦Timeline -- icon",
+      "key": "3db4c748609931cd8f0462a0a0ceaddee20b0171",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Type": [
+          "Avatar",
+          "Icon",
+          "Photo"
+        ],
+        "Size": [
+          "Medium",
+          "Small"
+        ],
+        "Position": [
+          "Middle",
+          "Top",
+          "Top (no lines)"
+        ]
+      },
+      "cellCount": 18,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "26861:285156",
+      "name": ".📦Timeline -- Top aligned",
+      "key": "7f50a71b04553a68513113e1786189c0e194b434",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "26861:293163",
+      "name": ".📦Timeline -- Middle aligned",
+      "key": "b729d9d76be55ac1622184aa6163a21f0293df37",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "26861:286195",
+      "name": "Timeline",
+      "key": "9611535e78834e0be670c5a0f3c02a170759ce63",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "verticalAlign": [
+          "Center",
+          "Top"
+        ],
+        "Children": [
+          "Markdown Editor",
+          "Panel transparent",
+          "Panel with color",
+          "Split Panel"
+        ]
+      },
+      "cellCount": 5,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "14222:67769",
+      "name": "☠️ Title",
+      "key": "82febd78ff7cecd99c05d40472a6cd51eb08fe7e",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Size": [
+          "Large",
+          "Medium*",
+          "Small",
+          "X-Small",
+          "XX-Small",
+          "XXX-Small"
+        ]
+      },
+      "cellCount": 6,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "13555:24644",
+      "name": "Toast",
+      "key": "4798cbb4655bd967fd485ac5f51e7c2ed0ba31c5",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Type": [
+          "Default",
+          "Success",
+          "Danger",
+          "Warning",
+          "Info"
+        ],
+        "Icon": [
+          "False",
+          "True"
+        ],
+        "Button": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 20,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "39196:447",
+      "name": "💡 Toast - List",
+      "key": "20f809fb9342a928d950db205a1f3df943703c83",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "showClearAllButtonAt": [
+          "false",
+          "true"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "часть композиции / пример",
+      "reason": "Используется внутри базового элемента или как пример; отдельная декартова матрица не нужна."
+    },
+    {
+      "id": "32039:390707",
+      "name": "☠️ Tooltip",
+      "key": "5d59930b845cc8d237686fc7c709310c95becfa4",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Direction": [
+          "12:00 ↑",
+          "11:00",
+          "10:00",
+          "8:00",
+          "7:00",
+          "6:00 ↓",
+          "5:00",
+          "4:00",
+          "3:00 →",
+          "2:00",
+          "1::00",
+          "9:00 ←"
+        ]
+      },
+      "cellCount": 12,
+      "decision": "переиспользовать",
+      "reason": "Существующие оси и ячейки покрывают выбранный паттерн экранов; события вложенных контролов не дублируются на контейнере."
+    },
+    {
+      "id": "36391:398493",
+      "name": "Arrow",
+      "key": "ec1e97a64b16781588a50b3af6b0b9e5254dacc1",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "36458:395127",
+      "name": "Beacon",
+      "key": "ff84fc3ed3e2712738349534240d1f179b419c8b",
+      "type": "COMPONENT",
+      "axes": {},
+      "cellCount": 1,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "36391:398507",
+      "name": "Dots",
+      "key": "a188f3112960a0e8111341a19ee0436548377cba",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Active step": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      },
+      "cellCount": 5,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "36391:398502",
+      "name": "Dot",
+      "key": "24c5fa1bdadbbf488693d8bb8714f29023e7e277",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Filled": [
+          "true",
+          "false"
+        ]
+      },
+      "cellCount": 2,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "36391:397462",
+      "name": "Tour",
+      "key": "adcd0b167d5e862b31c7eae8223b7a2dbf59ac50",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Arrow": [
+          "↑ Top",
+          "-> Right",
+          "↓ Bottom",
+          "← Left"
+        ]
+      },
+      "cellCount": 4,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "14652:151",
+      "name": "Tree view item",
+      "key": "9b61e6c0f13fbf2e1be17dff6b39a39e45c08def",
+      "type": "COMPONENT_SET",
+      "axes": {
+        "Open?": [
+          "False",
+          "True"
+        ],
+        "Icon?": [
+          "True",
+          "False"
+        ],
+        "Arrow?": [
+          "True",
+          "False"
+        ],
+        "State": [
+          "Default",
+          "Focus"
+        ],
+        "Compressed?": [
+          "False",
+          "True"
+        ]
+      },
+      "cellCount": 32,
+      "decision": "без расширения в текущем объёме",
+      "reason": "Отдельное недостающее состояние этого элемента не следует из текущих экранов; расширение всей библиотеки не является задачей."
+    },
+    {
+      "id": "83:730",
+      "name": "HeatmapLegend",
+      "cellCount": 2,
+      "decision": "оставлено по согласованию",
+      "reason": "Не добавлять загрузку/пустоту в легенду и Pending в DataCoverage."
+    },
+    {
+      "id": "84:713",
+      "name": "ReplayControls",
+      "cellCount": 4,
+      "decision": "выполнено ранее",
+      "reason": "Replay: 2 Coverage × 2 Playback."
+    },
+    {
+      "id": "86:370",
+      "name": "DataCoverage",
+      "cellCount": 3,
+      "decision": "оставлено по согласованию",
+      "reason": "Не добавлять загрузку/пустоту в легенду и Pending в DataCoverage."
+    }
+  ],
+  "newComponents": [
+    {
+      "name": "ProductButton",
+      "id": "125:450",
+      "properties": {
+        "Kind": {
+          "type": "VARIANT",
+          "defaultValue": "Primary",
+          "variantOptions": [
+            "Primary",
+            "Secondary",
+            "Tertiary"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Pressed",
+            "Focus",
+            "Disabled",
+            "Loading"
+          ]
+        },
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "Small",
+          "variantOptions": [
+            "Small"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "125:312",
+          "name": "Kind=Primary, State=Default, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 0,
+          "instance": {
+            "id": "125:313",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "6196d9e8ae460a7af7a949e08e5710d45fd0ed92",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:319",
+          "name": "Kind=Secondary, State=Default, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 0,
+          "instance": {
+            "id": "125:320",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "dc5e57a495fb01dedbd541858cdf1a843067ccf5",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:326",
+          "name": "Kind=Tertiary, State=Default, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 392,
+          "y": 0,
+          "instance": {
+            "id": "125:327",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "57021db1dd4c9c7ed29144a6d0174f026e1efc89",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:333",
+          "name": "Kind=Primary, State=Hover, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 56,
+          "instance": {
+            "id": "125:334",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "6196d9e8ae460a7af7a949e08e5710d45fd0ed92",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:340",
+          "name": "Kind=Secondary, State=Hover, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 56,
+          "instance": {
+            "id": "125:341",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "dc5e57a495fb01dedbd541858cdf1a843067ccf5",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:347",
+          "name": "Kind=Tertiary, State=Hover, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 392,
+          "y": 56,
+          "instance": {
+            "id": "125:348",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "57021db1dd4c9c7ed29144a6d0174f026e1efc89",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:354",
+          "name": "Kind=Primary, State=Pressed, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 112,
+          "instance": {
+            "id": "125:355",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "6196d9e8ae460a7af7a949e08e5710d45fd0ed92",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:361",
+          "name": "Kind=Secondary, State=Pressed, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 112,
+          "instance": {
+            "id": "125:362",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "dc5e57a495fb01dedbd541858cdf1a843067ccf5",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:368",
+          "name": "Kind=Tertiary, State=Pressed, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 392,
+          "y": 112,
+          "instance": {
+            "id": "125:369",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "57021db1dd4c9c7ed29144a6d0174f026e1efc89",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:375",
+          "name": "Kind=Primary, State=Focus, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 168,
+          "instance": {
+            "id": "125:376",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "6196d9e8ae460a7af7a949e08e5710d45fd0ed92",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:382",
+          "name": "Kind=Secondary, State=Focus, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 168,
+          "instance": {
+            "id": "125:383",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "dc5e57a495fb01dedbd541858cdf1a843067ccf5",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:389",
+          "name": "Kind=Tertiary, State=Focus, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 392,
+          "y": 168,
+          "instance": {
+            "id": "125:390",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "57021db1dd4c9c7ed29144a6d0174f026e1efc89",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:396",
+          "name": "Kind=Primary, State=Disabled, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 224,
+          "instance": {
+            "id": "125:397",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "6196d9e8ae460a7af7a949e08e5710d45fd0ed92",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:403",
+          "name": "Kind=Secondary, State=Disabled, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 224,
+          "instance": {
+            "id": "125:404",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "dc5e57a495fb01dedbd541858cdf1a843067ccf5",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:410",
+          "name": "Kind=Tertiary, State=Disabled, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 392,
+          "y": 224,
+          "instance": {
+            "id": "125:411",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "57021db1dd4c9c7ed29144a6d0174f026e1efc89",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:417",
+          "name": "Kind=Primary, State=Loading, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 280,
+          "instance": {
+            "id": "125:418",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "6196d9e8ae460a7af7a949e08e5710d45fd0ed92",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:428",
+          "name": "Kind=Secondary, State=Loading, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 280,
+          "instance": {
+            "id": "125:429",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "dc5e57a495fb01dedbd541858cdf1a843067ccf5",
+            "exposed": true
+          }
+        },
+        {
+          "id": "125:439",
+          "name": "Kind=Tertiary, State=Loading, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 392,
+          "y": 280,
+          "instance": {
+            "id": "125:440",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "57021db1dd4c9c7ed29144a6d0174f026e1efc89",
+            "exposed": true
+          }
+        }
+      ],
+      "issues": [],
+      "passed": true,
+      "documentation": {
+        "id": "125:309",
+        "y": 40,
+        "height": 512
+      },
+      "size": {
+        "width": 572,
+        "height": 320
+      }
+    },
+    {
+      "name": "ProductNavItem",
+      "id": "128:563",
+      "properties": {
+        "Selected": {
+          "type": "VARIANT",
+          "defaultValue": "False",
+          "variantOptions": [
+            "False",
+            "True"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Pressed",
+            "Focus"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "128:491",
+          "name": "Selected=False, State=Default",
+          "width": 260,
+          "height": 48,
+          "x": 0,
+          "y": 0,
+          "instance": {
+            "id": "128:492",
+            "width": 252,
+            "height": 40,
+            "sourceKey": "ed329b9098a9ee03c94eb61e4758022b42335fbc",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:500",
+          "name": "Selected=True, State=Default",
+          "width": 260,
+          "height": 48,
+          "x": 276,
+          "y": 0,
+          "instance": {
+            "id": "128:501",
+            "width": 252,
+            "height": 40,
+            "sourceKey": "13e66a4c0b11a60b1f35c8d4f872e07205480845",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:509",
+          "name": "Selected=False, State=Hover",
+          "width": 260,
+          "height": 48,
+          "x": 0,
+          "y": 64,
+          "instance": {
+            "id": "128:510",
+            "width": 252,
+            "height": 40,
+            "sourceKey": "ed329b9098a9ee03c94eb61e4758022b42335fbc",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:518",
+          "name": "Selected=True, State=Hover",
+          "width": 260,
+          "height": 48,
+          "x": 276,
+          "y": 64,
+          "instance": {
+            "id": "128:519",
+            "width": 252,
+            "height": 40,
+            "sourceKey": "13e66a4c0b11a60b1f35c8d4f872e07205480845",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:527",
+          "name": "Selected=False, State=Pressed",
+          "width": 260,
+          "height": 48,
+          "x": 0,
+          "y": 128,
+          "instance": {
+            "id": "128:528",
+            "width": 252,
+            "height": 40,
+            "sourceKey": "ed329b9098a9ee03c94eb61e4758022b42335fbc",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:536",
+          "name": "Selected=True, State=Pressed",
+          "width": 260,
+          "height": 48,
+          "x": 276,
+          "y": 128,
+          "instance": {
+            "id": "128:537",
+            "width": 252,
+            "height": 40,
+            "sourceKey": "13e66a4c0b11a60b1f35c8d4f872e07205480845",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:545",
+          "name": "Selected=False, State=Focus",
+          "width": 260,
+          "height": 48,
+          "x": 0,
+          "y": 192,
+          "instance": {
+            "id": "128:546",
+            "width": 252,
+            "height": 40,
+            "sourceKey": "ed329b9098a9ee03c94eb61e4758022b42335fbc",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:554",
+          "name": "Selected=True, State=Focus",
+          "width": 260,
+          "height": 48,
+          "x": 276,
+          "y": 192,
+          "instance": {
+            "id": "128:555",
+            "width": 252,
+            "height": 40,
+            "sourceKey": "13e66a4c0b11a60b1f35c8d4f872e07205480845",
+            "exposed": true
+          }
+        }
+      ],
+      "issues": [],
+      "passed": true,
+      "documentation": {
+        "id": "128:220",
+        "y": 650,
+        "height": 432
+      },
+      "size": {
+        "width": 536,
+        "height": 240
+      }
+    },
+    {
+      "name": "ProductTab",
+      "id": "128:1055",
+      "properties": {
+        "Selected": {
+          "type": "VARIANT",
+          "defaultValue": "False",
+          "variantOptions": [
+            "False",
+            "True"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Pressed",
+            "Focus"
+          ]
+        },
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "Small",
+          "variantOptions": [
+            "Small"
+          ]
+        }
+      },
+      "variants": [
+        {
+          "id": "128:981",
+          "name": "Selected=False, State=Default, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 0,
+          "instance": {
+            "id": "128:982",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "00195840374e5109e5a27a7f08a2597d21349075",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:992",
+          "name": "Selected=True, State=Default, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 0,
+          "instance": {
+            "id": "128:993",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "63f2193cac0c648d0922468fe49e2e25ef8e6da6",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:1004",
+          "name": "Selected=False, State=Hover, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 56,
+          "instance": {
+            "id": "128:1005",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "00195840374e5109e5a27a7f08a2597d21349075",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:1012",
+          "name": "Selected=True, State=Hover, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 56,
+          "instance": {
+            "id": "128:1013",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "63f2193cac0c648d0922468fe49e2e25ef8e6da6",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:1021",
+          "name": "Selected=False, State=Pressed, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 112,
+          "instance": {
+            "id": "128:1022",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "00195840374e5109e5a27a7f08a2597d21349075",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:1029",
+          "name": "Selected=True, State=Pressed, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 112,
+          "instance": {
+            "id": "128:1030",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "63f2193cac0c648d0922468fe49e2e25ef8e6da6",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:1038",
+          "name": "Selected=False, State=Focus, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 0,
+          "y": 168,
+          "instance": {
+            "id": "128:1039",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "00195840374e5109e5a27a7f08a2597d21349075",
+            "exposed": true
+          }
+        },
+        {
+          "id": "128:1046",
+          "name": "Selected=True, State=Focus, Size=Small",
+          "width": 180,
+          "height": 40,
+          "x": 196,
+          "y": 168,
+          "instance": {
+            "id": "128:1047",
+            "width": 172,
+            "height": 32,
+            "sourceKey": "63f2193cac0c648d0922468fe49e2e25ef8e6da6",
+            "exposed": true
+          }
+        }
+      ],
+      "issues": [],
+      "passed": true,
+      "documentation": {
+        "id": "128:900",
+        "y": 1110,
+        "height": 400
+      },
+      "size": {
+        "width": 376,
+        "height": 208
+      }
+    }
+  ],
+  "semanticAliases": [
+    {
+      "id": "VariableID:125:154",
+      "name": "action/hover",
+      "target": "text/primary",
+      "values": {
+        "67:0": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:67:113"
+        }
+      }
+    },
+    {
+      "id": "VariableID:125:155",
+      "name": "action/pressed",
+      "target": "text/secondary",
+      "values": {
+        "67:0": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:67:114"
+        }
+      }
+    },
+    {
+      "id": "VariableID:125:156",
+      "name": "surface/hover",
+      "target": "background/sidebar",
+      "values": {
+        "67:0": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:67:109"
+        }
+      }
+    },
+    {
+      "id": "VariableID:125:157",
+      "name": "surface/pressed",
+      "target": "accent/soft",
+      "values": {
+        "67:0": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:67:117"
+        }
+      }
+    },
+    {
+      "id": "VariableID:125:158",
+      "name": "border/focus",
+      "target": "accent/strong",
+      "values": {
+        "67:0": {
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:67:118"
+        }
+      }
+    }
+  ],
+  "validation": {
+    "bindingsPassed": true,
+    "visualPassed": true,
+    "matricesPassed": true
+  },
+  "limits": [
+    "Static Figma states, no event-handling implementation.",
+    "Existing low-fi screens were not replaced by final UI.",
+    "Original library remains unchanged; selected deprecated version was preserved."
+  ]
+}

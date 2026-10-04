@@ -1,0 +1,34 @@
+flowchart TD
+    linkType{"Тип ссылки"}
+    participantIntro["ParticipantIntro"]
+    taskBriefing["TaskBriefing"]
+    participantSession["ParticipantSession"]
+    participantFinish["ParticipantFinish"]
+    interfaceOnly["ParticipantInterfaceOnly / Mobile: только подключённый интерфейс"]
+    collector["Подключённый сборщик: события, клики и запись"]
+    researchMode{"Режим исследования"}
+    criteria["Задание выдано заранее; оценка по настроенным критериям"]
+    freeExplore["Свободное изучение: без оценки успеха задания"]
+    dashboard["Дашборд: тип ссылки, действия, данные и источник оценки"]
+    resultChoice["Равнозначный выбор: выполнил / не удалось"]
+    nextTask{"Есть следующее задание?"}
+    linkType -->|"С панелью UX-Lab"| participantIntro
+    linkType -->|"Только интерфейс"| interfaceOnly
+    interfaceOnly --> collector
+    collector --> researchMode
+    researchMode -->|"Задания"| criteria
+    researchMode -->|"Свободное изучение"| freeExplore
+    criteria -->|"Недостаточно оснований — Нет оценки"| dashboard
+    freeExplore --> dashboard
+    participantIntro -->|"Ссылка недоступна"| participantIntro
+    participantIntro -->|"Инструкция прочитана; начать"| taskBriefing
+    taskBriefing -->|"Задание или свободное изучение"| participantSession
+    participantSession -->|"Прототип недоступен; повторить"| participantSession
+    participantSession -->|"Режим заданий"| resultChoice
+    resultChoice -->|"Далее доступно после выбора"| nextTask
+    nextTask -->|"Да"| taskBriefing
+    nextTask -->|"Нет"| participantFinish
+    participantSession -->|"Свободное изучение завершено"| participantFinish
+    participantSession -.->|"События также собираются"| collector
+    participantFinish -->|"Обновить статус передачи"| participantFinish
+    participantFinish --> dashboard
