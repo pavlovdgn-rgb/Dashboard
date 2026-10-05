@@ -2,7 +2,20 @@
 import os
 import sqlite3
 from contextlib import contextmanager
+from contextvars import ContextVar
 from pathlib import Path
+
+_read_only = ContextVar('cloud_db_read_only', default=False)
+
+
+@contextmanager
+def read_only():
+    """Scope read access to this request, without changing concurrent writers."""
+    token = _read_only.set(True)
+    try:
+        yield
+    finally:
+        _read_only.reset(token)
 
 
 class Row:
@@ -61,7 +74,8 @@ def configured():
 @contextmanager
 def connect(_path=None):
     test_path = os.environ.get('UXLAB_TEST_DB')
-    if test_path and not os.environ.get('VERCEL'):
+    local_test = test_path and not os.environ.get('VERCEL')
+    if local_test:
         raw = sqlite3.connect(test_path, timeout=20)
     else:
         if not configured():
@@ -71,8 +85,14 @@ def connect(_path=None):
                              auth_token=os.environ['TURSO_AUTH_TOKEN'], isolation_level=None)
     db = Connection(raw)
     try:
-        # A whole API operation is atomic, including identity checks followed by inserts.
-        db.execute('BEGIN IMMEDIATE')
+        # Reads must not reserve the single writer while snapshots/clicks arrive.
+        # Keep one consistent snapshot per request; writes remain atomic.
+        if _read_only.get():
+            if local_test:
+                db.execute('PRAGMA query_only=ON')
+            db.execute('BEGIN' if local_test else 'BEGIN TRANSACTION READONLY')
+        else:
+            db.execute('BEGIN IMMEDIATE')
         yield db
         raw.commit()
     except BaseException:
@@ -83,6 +103,12 @@ def connect(_path=None):
 
 
 def migrate():
+    # The common cold-start path only checks the schema; it needs no writer lock.
+    with read_only():
+        with connect() as db:
+            existing = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='cloud_schema'").fetchone()
+            if existing and db.execute('SELECT version FROM cloud_schema WHERE version=1').fetchone():
+                return
     with connect() as db:
         existing = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='cloud_schema'").fetchone()
         if existing and db.execute('SELECT version FROM cloud_schema WHERE version=1').fetchone():

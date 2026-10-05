@@ -122,7 +122,8 @@ class handler(serve_heatmap.make_handler(None)):
             return self.reply(410, {'error': 'В облачной версии выгрузка карт выполняется кнопкой «Скачать» в браузере.'})
         try:
             if self.ready():
-                return super().do_GET()
+                with cloud_db.read_only():
+                    return super().do_GET()
         except Exception:
             return self.reply(503, {'error': 'Не удалось обратиться к облачному хранилищу. Проверьте подключение Turso и повторите запрос.'})
 

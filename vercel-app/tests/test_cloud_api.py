@@ -7,6 +7,7 @@ import sqlite3
 import sys
 import tempfile
 import threading
+import time
 import unittest
 from http.client import HTTPConnection
 from http.server import ThreadingHTTPServer
@@ -101,6 +102,29 @@ class CloudApiTests(unittest.TestCase):
         self.data('POST', '/api/heatmap/snapshots', snapshot)
         self.assertEqual(self.data('GET', '/api/heatmap/snapshots?id=cloud-snapshot')['html'], snapshot['html'])
 
+    def test_read_requests_do_not_wait_for_a_writer(self):
+        self.data('GET', '/api/project/config')
+        writer = sqlite3.connect(self.database)
+        try:
+            writer.execute('BEGIN IMMEDIATE')
+            writer.execute('INSERT INTO cloud_schema VALUES (99)')
+            api._migrated = False  # A cold instance also checks the schema without a write lock.
+            started = time.monotonic()
+            self.data('GET', '/api/project')
+            self.data('GET', '/api/heatmap?study=leed-local&aggregation=page')
+            self.assertLess(time.monotonic() - started, 2)
+            with api.cloud_db.read_only():
+                with api.cloud_db.connect() as db:
+                    self.assertIsNone(db.execute('SELECT version FROM cloud_schema WHERE version=99').fetchone())
+                with self.assertRaises(sqlite3.OperationalError):
+                    with api.cloud_db.connect() as db:
+                        db.execute('INSERT INTO cloud_schema VALUES (100)')
+        finally:
+            writer.rollback()
+            writer.close()
+        # Leaving the read scope must not turn later POST requests into read-only operations.
+        self.data('POST', '/api/project/config', {'enabled':True})
+
     def test_pdf_report(self):
         report = self.data('POST', '/api/project/reports', {'title': 'Облачный отчёт'})
         status, headers, pdf = self.request('GET', '/api/project/report-pdf?id=' + report['id'])
@@ -122,6 +146,11 @@ class CloudApiTests(unittest.TestCase):
             row = db.execute('SELECT * FROM sdk_check').fetchone()
             self.assertEqual(dict(row), {'id':7,'label':'Кириллица','data':b'\x00\xff'})
             self.assertEqual(row[1], 'Кириллица')
+            db.execute('BEGIN TRANSACTION READONLY')
+            self.assertEqual(db.execute('SELECT id FROM sdk_check').fetchone()[0], 7)
+            with self.assertRaises(sqlite3.OperationalError):
+                db.execute('INSERT INTO sdk_check VALUES (8,?,?)', ('blocked', b''))
+            raw.rollback()
         finally:
             raw.close()
 
