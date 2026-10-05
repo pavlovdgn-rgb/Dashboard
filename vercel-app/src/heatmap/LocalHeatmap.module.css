@@ -39,7 +39,7 @@
 .filterFooter { display:flex; align-items:center; justify-content:space-between; gap:var(--size-large); }
 .filterTabs[class] { display:flex; gap:var(--size-small); flex-shrink:0; margin-block-end:-1px; }
 .filterTabs[class]::before { display:none; }
-.filterTabs button { inline-size:calc(var(--size-base)*11.25); min-block-size:calc(var(--size-base)*2.5); font-size:var(--font-size-medium); }
+.filterTabs button { inline-size:calc(var(--size-base)*11.25); min-block-size:calc(var(--size-base)*2.5); font-size:var(--font-size-medium); display:flex; align-items:center; justify-content:center; text-align:center; }
 .filterStatus { display:flex; align-items:center; justify-content:flex-end; gap:var(--size-large); flex-wrap:wrap; }
 .filterStatus>span { white-space:nowrap; }
 .selectionCount { color:var(--accent-strong); font-size:var(--font-size-small); font-weight:var(--font-weight-medium); }

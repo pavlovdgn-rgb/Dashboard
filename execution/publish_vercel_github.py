@@ -103,6 +103,52 @@ def prepare(token):
         repo.close()
 
 
+def prepare_update(paths, message, token):
+    """Commit an explicit small update on top of the last verified publication."""
+    state = json.loads(STATE.read_text(encoding='utf-8'))
+    if not state.get('published'):
+        raise RuntimeError('Publish or review the pending commit before preparing another update')
+    current = porcelain.ls_remote(REMOTE, **options(token)).refs.get(REF, b'').decode()
+    if current != state['commit']:
+        raise RuntimeError('GitHub main moved; review and merge the new remote changes first')
+    files = {}
+    for relative in paths:
+        path = Path(relative)
+        source = (ROOT / path).resolve()
+        if path.is_absolute() or not source.is_relative_to(ROOT) or (ROOT / path).is_symlink():
+            raise RuntimeError('Source must be a regular workspace file')
+        if not (relative.startswith(('src/', 'vercel-app/src/')) or relative == 'execution/publish_vercel_github.py'):
+            raise RuntimeError('Small updates are restricted to app source and this publisher')
+        body = source.read_bytes()
+        decoded = body.decode('utf-8')
+        if (token and token in decoded) or any(pattern.search(decoded) for pattern in SECRET_PATTERNS.values()):
+            raise RuntimeError('Potential credential in source: ' + relative)
+        files[relative] = body
+    with Repo(state['checkout']) as repo:
+        status = porcelain.status(repo)
+        if repo.head().decode() != current or status.unstaged or any(status.staged.values()):
+            raise RuntimeError('The publication checkout has unreviewed changes')
+        for relative, body in files.items():
+            target = Path(state['checkout']) / relative
+            if target.is_symlink():
+                raise RuntimeError('Refusing symlink: ' + relative)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(body)
+        porcelain.add(repo, paths=list(files))
+        status = porcelain.status(repo)
+        if status.unstaged or not any(status.staged.values()):
+            raise RuntimeError('Expected a fully staged source update')
+        identity = repo[repo.head()].author
+        commit = porcelain.commit(repo, message=message.encode(), author=identity, committer=identity)
+        state.update(parent=current, commit=commit.decode(), published=False, files=len(files),
+                     bytes=sum(map(len, files.values())),
+                     source_hashes={key:hashlib.sha256(value).hexdigest() for key,value in files.items()},
+                     staged={key:len(value) for key,value in status.staged.items()})
+        state.pop('commit_url', None)
+        STATE.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding='utf-8')
+        print(json.dumps({'commit':state['commit'], 'parent':current, 'staged':state['staged']}))
+
+
 def publish(token):
     state = json.loads(STATE.read_text(encoding='utf-8'))
     with Repo(state['checkout']) as repo:
@@ -127,13 +173,18 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     action = parser.add_mutually_exclusive_group(required=True)
     action.add_argument('--prepare', action='store_true')
+    action.add_argument('--prepare-update', nargs='+', metavar='PATH')
     action.add_argument('--publish', action='store_true')
+    parser.add_argument('--message', default='Polish dashboard controls and layout')
     args = parser.parse_args()
     secret = os.environ.get('GH_TOKEN') or os.environ.get('GITHUB_TOKEN') or ''
     if args.publish and not secret:
         secret = getpass.getpass('GitHub token (hidden): ')
     try:
-        (prepare if args.prepare else publish)(secret)
+        if args.prepare_update:
+            prepare_update(args.prepare_update, args.message, secret)
+        else:
+            (prepare if args.prepare else publish)(secret)
     except Exception as error:
         message = str(error)
         if secret:

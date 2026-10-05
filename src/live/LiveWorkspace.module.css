@@ -29,7 +29,7 @@
 .lastActionsTable.table td,.lastActionsTable.table th { block-size:calc(var(--size-base)*2.5); padding:var(--size-small) var(--size-medium); font-size:var(--font-size-small); line-height:var(--line-height-small); }
 .lastActionsTable.table th:first-child { inline-size:46%; }
 .lastActionsTable.table th:last-child { inline-size:18%; }
-.funnelActions { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--size-medium); padding-block-start:var(--size-medium); border-block-start:thin solid var(--border-subtle); }
+.funnelActions { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--size-medium); padding-block-start:var(--size-medium); }
 @media(max-width:1000px) { .funnelEditor { grid-template-columns:minmax(0,1fr); gap:var(--size-large); } }
 .taskResultsTable { overflow:auto; }
 .taskResultsTable table { inline-size:100%; min-inline-size:calc(var(--size-base)*48); table-layout:fixed; }

@@ -1,7 +1,9 @@
 .header { display:flex; align-items:center; justify-content:space-between; gap:var(--size-large); }
 .status { width:fit-content; padding:var(--size-x-small) var(--size-medium); border-radius:var(--radius-small); background:var(--background-subtle); color:var(--text-secondary); font-weight:var(--font-weight-medium); }
 .status[data-enabled='true'] { background:var(--accent-soft); color:var(--accent-strong); }
-.control { display:flex; align-items:center; gap:var(--size-medium); min-block-size:calc(var(--size-base)*3.5); }
+/* Reserve the loading indicator's space so saving never moves the switch. */
+.control { position:relative; display:flex; align-items:center; flex-shrink:0; padding-inline-end:calc(var(--size-medium) + var(--size-base)); min-block-size:calc(var(--size-base)*3.5); }
+.control > :global(.euiLoadingSpinner) { position:absolute; inset-inline-end:0; }
 .switch[class] { transform:scale(1.4); transform-origin:right center; margin-inline-start:var(--size-base); }
 .switch button[aria-checked='true'] :global(.euiSwitch__body) { background:var(--accent-strong); }
 .switch button[aria-checked='false'] :global(.euiSwitch__body) { background:var(--border-control); }
