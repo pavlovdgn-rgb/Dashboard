@@ -1,0 +1,123 @@
+/* Переход между State=Expanded/Minimized — см. комментарий в ChatWindow.tsx. */
+@keyframes chatStateIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.stateTransition {
+  animation: chatStateIn 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stateTransition {
+    animation: none;
+  }
+}
+
+/* State=Expanded */
+.window {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-surface-primary);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.titleBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-sm) var(--space-md) var(--space-lg);
+  border-bottom: var(--border-width-thin) solid var(--color-border-default);
+  border-top-left-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-sm);
+}
+
+/* Кластер «имя + шеврон» — единый переключатель, читается как dropdown-триггер, визуально отделён от
+   пары свернуть/закрыть тем, что flex:1 spacer (в ChatWindow.tsx) разносит их по разным краям. Без
+   ведущей иконки — см. комментарий над ChatWindow() в ChatWindow.tsx. */
+.switcherTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.switcherTrigger:disabled {
+  cursor: default;
+}
+
+.switcherTrigger span:not(.switcherChevron) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.switcherChevron {
+  display: inline-flex;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.switcherAnchor {
+  position: relative;
+}
+
+.switcherAnchor > * {
+  position: absolute;
+  top: 0;
+  left: var(--space-lg);
+  z-index: 1;
+}
+
+.messageList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.composer {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  padding: var(--space-md) var(--space-lg);
+  border-top: var(--border-width-thin) solid var(--color-border-default);
+}
+
+/* State=Minimized */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-md) var(--space-xs) var(--space-xs);
+  border: var(--border-width-thin) solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-surface-primary);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+}
+
+.pillChevron {
+  display: inline-flex;
+  color: var(--color-text-secondary);
+  /* Развёрнутая на 180° копия того же шеврона, что в TitleBar — «сюда, чтобы развернуть». В Figma этот
+     атом нельзя было повернуть программно (instance-swap child, API отказал: relative-transform не
+     переопределяется на инстансе) — в React такого ограничения нет, поворот через transform настоящий,
+     не тот же глиф в обе стороны, как пришлось оставить в макете. */
+  transform: rotate(180deg);
+}

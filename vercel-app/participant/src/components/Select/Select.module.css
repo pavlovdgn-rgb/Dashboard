@@ -1,0 +1,106 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  font-family: var(--font-sans);
+}
+
+.select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  width: 100%;
+  height: 44px;
+  padding: 0 var(--space-md);
+  background: var(--color-bg-surface-primary);
+  border: var(--border-width-thin) solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: border-color 180ms ease, outline-color 180ms ease;
+}
+
+.value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.select:hover:not(.disabled) {
+  border-color: var(--color-border-hover);
+}
+
+.select.open {
+  border-color: var(--color-border-focus);
+  outline: var(--border-width-thick) solid var(--color-border-focus);
+  outline-offset: -2px;
+}
+
+.select.error {
+  border-color: var(--color-border-error);
+}
+
+.select.disabled {
+  background: var(--color-bg-disabled);
+  color: var(--color-text-on-disabled);
+  cursor: not-allowed;
+}
+
+.chevron {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+  color: var(--color-text-icons);
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+}
+
+/* Панель — тот же приём, что у Dropdown: всегда вниз, никогда не решает браузер за нас */
+@keyframes select-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + var(--space-xs));
+  left: 0;
+  right: 0;
+  z-index: 10;
+  max-height: 240px;
+  overflow-y: auto;
+  background: var(--color-bg-surface-primary);
+  border: var(--border-width-thin) solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  animation: select-panel-in 160ms ease;
+}
+
+.option {
+  display: block;
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.option:hover {
+  background: var(--color-bg-hover-subtle);
+}

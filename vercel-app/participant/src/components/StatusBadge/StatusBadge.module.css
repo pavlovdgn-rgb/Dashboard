@@ -1,0 +1,42 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 var(--space-md);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: var(--weight-regular);
+  white-space: nowrap;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.success {
+  background: var(--color-system-success-subtle);
+  color: var(--color-system-success);
+}
+
+.error {
+  background: var(--color-system-error-subtle);
+  color: var(--color-system-error);
+}
+
+.warning {
+  background: var(--color-system-notification-subtle);
+  color: var(--color-system-notification);
+}
+
+/* Neutral resolves to blue in this DS, not gray — see ds/components.md → Status Badge finding */
+.neutral {
+  background: var(--color-extra-blue-10);
+  color: var(--color-extra-blue-100);
+}

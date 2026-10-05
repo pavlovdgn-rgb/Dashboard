@@ -1,0 +1,139 @@
+/*
+ * Typography -- Text Styles from ds/foundation.md
+ * Naming mirrors Figma exactly, class per Device / Role / Weight combination.
+ * No color here by design -- in Figma a TextStyle never carries color, color comes from
+ * a separate semantic applied by the consumer.
+ */
+
+/* Desktop / Header 1 — 24/36 */
+.ds-desktop-header-1-regular,
+.ds-desktop-header-1-medium,
+.ds-desktop-header-1-semibold {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: var(--letter-spacing-default);
+}
+.ds-desktop-header-1-regular { font-weight: var(--weight-regular); }
+.ds-desktop-header-1-medium { font-weight: var(--weight-medium); }
+.ds-desktop-header-1-semibold { font-weight: var(--weight-semibold); }
+
+/* Desktop / Header 2 — 18/24, Medium only */
+.ds-desktop-header-2-medium {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--letter-spacing-default);
+}
+
+/* Desktop / Menu — 18/24 */
+.ds-desktop-menu-regular,
+.ds-desktop-menu-semibold {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: var(--letter-spacing-default);
+}
+.ds-desktop-menu-regular { font-weight: var(--weight-regular); }
+.ds-desktop-menu-semibold { font-weight: var(--weight-semibold); }
+
+/* Desktop / Main — 14/20 */
+.ds-desktop-main-regular,
+.ds-desktop-main-medium,
+.ds-desktop-main-semibold {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: var(--letter-spacing-default);
+}
+.ds-desktop-main-regular { font-weight: var(--weight-regular); }
+.ds-desktop-main-medium { font-weight: var(--weight-medium); }
+.ds-desktop-main-semibold { font-weight: var(--weight-semibold); }
+
+/* Desktop / Regular 16 — 16/20, Regular only */
+.ds-desktop-regular-16 {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--letter-spacing-default);
+}
+
+/* Desktop / Label — 12/16, Medium only */
+.ds-desktop-label-medium {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--letter-spacing-default);
+}
+
+/* Desktop / Breadcrumbs — 12/16 */
+.ds-desktop-breadcrumbs-regular,
+.ds-desktop-breadcrumbs-underline {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--letter-spacing-default);
+}
+.ds-desktop-breadcrumbs-underline { text-decoration: underline; }
+
+/* Mobile / Header 1 — 24/32 */
+.ds-mobile-header-1-medium,
+.ds-mobile-header-1-semibold {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: var(--letter-spacing-default);
+}
+.ds-mobile-header-1-medium { font-weight: var(--weight-medium); }
+.ds-mobile-header-1-semibold { font-weight: var(--weight-semibold); }
+
+/* Mobile / Header 2 — 16/24, SemiBold only */
+.ds-mobile-header-2-semibold {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--letter-spacing-default);
+}
+
+/* Mobile / Header 3 — 14/20, SemiBold only */
+.ds-mobile-header-3-semibold {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--letter-spacing-default);
+}
+
+/* Mobile / Main — 14/20, Regular only */
+.ds-mobile-main-regular {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--letter-spacing-default);
+}
+
+/* Mobile / Breadcrumbs — 12/16 */
+.ds-mobile-breadcrumbs-regular,
+.ds-mobile-breadcrumbs-underline {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--letter-spacing-default);
+}
+.ds-mobile-breadcrumbs-underline { text-decoration: underline; }
+
+/* Mobile / Button — 14/24, Regular only */
+.ds-mobile-button-regular {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--letter-spacing-default);
+}

@@ -1,0 +1,33 @@
+/* ChatIconButton — не отдельный компонент ДС (см. ds/components.md), композиция иконки + UnreadBadge, но
+   44×44 вместо дефолтных 24×28 у IconButton — увеличено намеренно под комфортный тач-таргет (тот же вывод,
+   что привёл к переезду бейджа с рельса Sidebar на этот отдельный элемент, см. историю в ds/components.md).
+   border-radius: 10px — сырое значение из Figma (не `--radius-sm`=4px и не привязано к переменной там же,
+   «radius/sm-подобный», см. ds/components.md → ChatIconButton), сверено 2026-08-29 через get_design_context. */
+.chatButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: var(--color-bg-hover-subtle);
+  color: var(--color-text-icons);
+  cursor: pointer;
+  transition: background-color 180ms ease;
+}
+
+.chatButton:hover:not(:disabled) {
+  background: var(--color-generated-button-secondary-bg);
+}
+
+.chatButton:focus-visible {
+  outline: var(--border-width-thick) solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.chatButton svg {
+  width: 20px;
+  height: 20px;
+}

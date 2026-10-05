@@ -1,0 +1,7 @@
+.root[class] { align-self:flex-start; max-inline-size:100%; }
+.root :global(.euiButtonGroup__buttons) { display:inline-flex; padding:var(--size-x-small); gap:var(--size-x-small); border:0; border-radius:var(--radius-small); background:var(--background-sidebar); box-shadow:none; }
+.root button[class] { min-inline-size:0; block-size:auto; min-block-size:var(--size-x-large); padding:var(--size-x-small) var(--size-medium); border:thin solid transparent; border-radius:var(--radius-small); background:transparent; color:var(--text-secondary); box-shadow:none; text-decoration:none; transform:none; transition:background-color var(--motion-feedback-duration) var(--motion-feedback-easing),color var(--motion-feedback-duration) var(--motion-feedback-easing); }
+.root button[class]::before { display:none; }
+.root button[class]:hover { background:var(--accent-soft); color:var(--accent-strong); }
+.root button[aria-pressed='true'] { background:var(--accent-soft); color:var(--accent-strong); border-color:transparent; font-weight:var(--font-weight-semi-bold); }
+.root button[class]:focus-visible { outline:var(--size-xx-small) solid var(--border-focus); outline-offset:var(--size-xx-small); }

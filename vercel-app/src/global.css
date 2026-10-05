@@ -1,0 +1,25 @@
+* { box-sizing:border-box; }
+html,body,#root { min-block-size:100%; margin:0; }
+/* Reserve the viewport scrollbar gutter across routes and overlay scroll locks. */
+html { scrollbar-gutter:stable; }
+body { font:var(--font-weight-regular) var(--font-size-medium)/var(--line-height-medium) var(--font-sans); background:var(--background-canvas); color:var(--text-primary); }
+button,input,select,textarea { font:inherit; }
+button { cursor:pointer; }
+button:disabled { cursor:not-allowed; }
+:focus-visible { outline:var(--size-xx-small) solid var(--border-focus); outline-offset:var(--size-xx-small); }
+
+/* Keep the close action inside the same content gutter as the modal header. */
+.euiModal .euiModal__closeIcon {
+  inset-block-start:var(--size-large);
+  inset-inline-end:var(--size-large);
+  inline-size:var(--size-x-large);
+  block-size:var(--size-x-large);
+}
+.euiModal .euiModalHeader {
+  padding-inline-end:calc(var(--size-large)*2 + var(--size-x-large));
+  min-block-size:calc(var(--size-large)*2 + var(--size-x-large));
+}
+@media(max-width:700px) {
+  .euiModal .euiModal__closeIcon { inset-block-start:var(--size-base); inset-inline-end:var(--size-base); }
+  .euiModal .euiModalHeader { padding-inline-end:calc(var(--size-base)*2 + var(--size-x-large)); min-block-size:calc(var(--size-base)*2 + var(--size-x-large)); }
+}

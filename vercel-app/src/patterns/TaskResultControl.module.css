@@ -1,0 +1,7 @@
+.panel { display:grid; gap:var(--size-base); padding:var(--size-base); background:var(--background-surface); border:thin solid var(--border-subtle); border-radius:var(--radius-surface); max-inline-size:calc(var(--size-xxxx-large)*5.5); }
+.panel h2 { font:var(--font-weight-semi-bold) var(--font-size-x-large)/var(--line-height-x-large) var(--font-sans); }
+.note { color:var(--text-secondary); font-size:var(--font-size-small); }
+.legend { font-size:var(--font-size-small); color:var(--text-secondary); }
+.panel > span { display:flex; }
+.panel > span > button { inline-size:100%; }
+.panel :global(.euiRadio) { min-block-size:var(--size-xx-large); align-items:center; }

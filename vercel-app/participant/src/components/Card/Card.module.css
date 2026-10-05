@@ -1,0 +1,19 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  background: var(--color-bg-surface-primary);
+  border-radius: var(--radius-sm);
+}
+
+.paddingDefault {
+  padding: var(--space-lg);
+}
+
+.paddingCompact {
+  padding: var(--space-sm);
+}
+
+.bordered {
+  border: var(--border-width-thin) solid var(--color-border-default);
+}

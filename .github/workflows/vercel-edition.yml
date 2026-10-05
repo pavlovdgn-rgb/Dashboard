@@ -1,0 +1,30 @@
+name: Vercel edition checks
+on:
+  push:
+    paths: ['vercel-app/**', '.github/workflows/vercel-edition.yml']
+  pull_request:
+    paths: ['vercel-app/**', '.github/workflows/vercel-edition.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: vercel-app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: |
+            vercel-app/package-lock.json
+            vercel-app/participant/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci && npm ci --prefix participant
+      - run: npm run build
+      - run: python -m pip install -r requirements.txt
+      - run: python tests/test_cloud_api.py

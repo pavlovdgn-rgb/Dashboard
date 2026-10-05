@@ -1,0 +1,7 @@
+.cloud-login{min-height:100dvh;display:grid;place-items:center;background:var(--background-canvas);color:var(--text-primary);font-family:inherit;padding:var(--size-large,24px);box-sizing:border-box}
+.cloud-login form{width:min(100%,360px);display:grid;gap:var(--size-medium,12px)}
+.cloud-login h1,.cloud-login p{margin:0}
+.cloud-login input,.cloud-login button{font:inherit;min-height:44px;padding:var(--size-small,8px) var(--size-medium,12px);border:1px solid var(--border-control,#b7bca9);border-radius:var(--radius-medium,8px);box-sizing:border-box}
+.cloud-login button{background:var(--accent-strong,#626e32);color:var(--text-inverse,#fff);cursor:pointer}
+.cloud-login button:disabled{opacity:.6;cursor:wait}
+.cloud-login [role=status]{color:var(--status-error-text,#b32232)}

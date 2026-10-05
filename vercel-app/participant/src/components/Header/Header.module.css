@@ -1,0 +1,34 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 84px;
+  padding: 0 var(--space-xl);
+  background: var(--color-bg-surface-primary);
+  font-family: var(--font-sans);
+}
+
+.title {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: var(--weight-medium);
+  color: var(--color-text-primary);
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.userName {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-primary);
+}
+
+.chevron {
+  width: 12px;
+  height: 12px;
+  color: var(--color-text-icons);
+}

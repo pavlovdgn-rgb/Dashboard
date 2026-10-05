@@ -1,0 +1,5 @@
+.root { min-inline-size:0; }
+.root a[class] { padding:0; min-inline-size:0; min-block-size:0; border:0; border-radius:0; background:transparent; box-shadow:none; color:var(--text-primary); font-weight:var(--font-weight-regular); text-decoration:none; }
+.root[class] a[href][class]:hover { color:var(--accent-strong); background:transparent; text-decoration:none; }
+.root a[class]:focus-visible { outline:var(--size-xx-small) solid var(--border-focus); outline-offset:var(--size-xx-small); background:transparent; }
+.root[class] [aria-current='page'][class] { color:var(--text-secondary); font-weight:var(--font-weight-regular); }

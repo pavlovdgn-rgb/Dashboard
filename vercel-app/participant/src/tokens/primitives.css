@@ -1,0 +1,89 @@
+/**
+ * Primitive tokens — Layer 1
+ * Source: ds/foundation.md, verified against Figma (Color Primitives collection, mode "Value")
+ * Do not reference these directly in components — use semantics.css.
+ */
+:root {
+  /* Brand */
+  --brand-primary: #B5E200;
+  --brand-secondary: #253858;
+  --brand-tertiary: #0083CC;
+
+  /* Neutral */
+  --neutral-white: #FFFFFF;
+  --neutral-25: #F9F9F9;
+  --neutral-50: #F5F5F5;
+  --neutral-150: #E5E5E5;
+  --neutral-200: #E1E2E7;
+  --neutral-300: #C3C3C3;
+  --neutral-400: #ADADAD;
+  --neutral-500: #8D8D8D;
+  --neutral-600: #6F6F6F;
+  --neutral-800: #333333;
+  --neutral-850: #303030;
+  --neutral-900: #1C1C1C;
+  --neutral-background: #F4F5F7;
+  --neutral-footer: #ECEEF2;
+
+  /* System */
+  --system-error-100: #CC4B41;
+  --system-error-20: #F5DBD9;
+  --system-success-100: #80B80A;
+  --system-success-20: #E6F1CE;
+  --system-notification-100: #FFBB38;
+  --system-notification-20: #FFF8EB;
+
+  /* Extra (accent) — 6 hues × 3 intensities */
+  --extra-blue-100: #4DABF5;
+  --extra-blue-30: #CAE6FC;
+  --extra-blue-10: #EDF7FE;
+  --extra-purple-100: #8561C5;
+  --extra-purple-30: #DAD0EE;
+  --extra-purple-10: #F3EFF9;
+  --extra-green-100: #70BF73;
+  --extra-green-30: #D4ECD5;
+  --extra-green-10: #F1F9F1;
+  --extra-pink-100: #ED4B82;
+  --extra-pink-30: #FAC9DA;
+  --extra-pink-10: #FDEDF3;
+  --extra-orange-100: #FF794E;
+  --extra-orange-30: #FFD7CA;
+  --extra-orange-10: #FFF2ED;
+  --extra-yellow-100: #FEE400;
+  --extra-yellow-30: #FFF7B3;
+  --extra-yellow-10: #FFFCE6;
+  --extra-gray-30: #C2C2C2;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-focus: 6px;
+  --radius-full: 999px;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+
+  /* Border width */
+  --border-width-thin: 1px;
+  --border-width-default: 1.5px;
+  --border-width-thick: 2px;
+
+  /* Shadows (Effect Styles) */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 8px 0 rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0 8px 24px 0 rgba(0, 0, 0, 0.15);
+  /* shadow-panel — как shadow-lg, но offset.y=28 (не 8): для панелей, докнутых впритык под хедером без
+     зазора сверху, где обычный shadow-lg визуально размывался бы на хедер. См. ds/foundation.md. */
+  --shadow-panel: 0 28px 24px 0 rgba(0, 0, 0, 0.15);
+
+  /* Typography primitives */
+  --font-sans: 'Montserrat', sans-serif;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --letter-spacing-default: 0;
+}

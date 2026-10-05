@@ -1,0 +1,10 @@
+import { ProductButton } from '../components';
+import { useResearch } from '../data/researchStore';
+import { selectParticipants } from '../data/research';
+import { useWireRoute } from './useWireRoute';
+import { Card, Table, Empty } from './WorkspaceUI';
+import s from './Workspace.module.css';
+export function FreeResults() {
+  const store=useResearch(),{route,navigate}=useWireRoute();const people=selectParticipants(store.observations,route.device);const complete=people.filter(x=>x.coverage==='Complete').length;
+  return <><Card><h2>Режим: свободное изучение</h2><p>Задания и критерии не заданы. Успешность и сценарная воронка не рассчитываются.</p></Card><div className={s.three}><Card><p>Участников</p><strong className={s.price}>{people.length}</strong><p className={s.muted}>Уникальные участники</p></Card><Card><p>С доступной записью</p><strong className={s.price}>{complete} из {people.length}</strong><ProductButton Kind="Tertiary" onClick={()=>navigate({screen:'participants',scenario:''})}>Открыть участников</ProductButton></Card><Card><p>С неполными данными</p><strong className={s.price}>{people.length-complete} из {people.length}</strong><ProductButton Kind="Tertiary" onClick={()=>navigate({screen:'participants',coverage:'partial',scenario:''})}>Проверить полноту</ProductButton></Card></div>{people.length?<Table label="Страницы свободного изучения" headers={['Страница','Участников','Действие']}><tr><td>Карточка товара · /products/backpack</td><td>{people.length}</td><td data-row-action><ProductButton Kind="Tertiary" onClick={()=>navigate({screen:'heatmap',scenario:''})}>Открыть карту</ProductButton></td></tr></Table>:<Empty>Пока нет данных. Отправьте участникам ссылку из раздела запуска.</Empty>}<div className={s.row}><ProductButton Kind="Secondary" onClick={()=>navigate({screen:'participants',scenario:''})}>Участники и записи</ProductButton><ProductButton Kind="Secondary" onClick={()=>navigate({screen:'signals',scenario:''})}>Сигналы затруднений</ProductButton><ProductButton Kind="Secondary" onClick={()=>navigate({screen:'report',scenario:''})}>Экспорт в PDF</ProductButton></div></>;
+}

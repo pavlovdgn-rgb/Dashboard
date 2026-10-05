@@ -4,6 +4,8 @@ Vite + React + TypeScript. Компонентная база из `ds/` и Figma
 
 ## Запуск
 
+Отдельная облачная версия находится в [`vercel-app`](vercel-app/README.md): дашборд, Lead Generation, Python API и хранение в Turso (libSQL). В Vercel выберите **Root Directory = `vercel-app`** и добавьте три переменные из инструкции. Корневая версия сохраняет прежний локальный запуск; локальная история в облако автоматически не копируется.
+
 ```sh
 npm install
 npm run dev

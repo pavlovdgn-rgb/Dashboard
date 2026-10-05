@@ -1,0 +1,101 @@
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  font-family: var(--font-sans);
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  height: 44px;
+  padding: 0 var(--space-md);
+  min-width: 160px;
+  background: var(--color-bg-surface-primary);
+  border: var(--border-width-thin) solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.triggerLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trigger:hover:not(.disabled) {
+  background: var(--color-bg-hover-subtle);
+}
+
+.trigger.open {
+  border-color: var(--color-border-focus);
+}
+
+.trigger.disabled {
+  background: var(--color-bg-disabled);
+  color: var(--color-text-on-disabled);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.chevron {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+  color: var(--color-text-icons);
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+}
+
+/* Появление панели — fade + лёгкий сдвиг вниз, ~160ms, синхронно со скоростью поворота шеврона */
+@keyframes dropdown-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + var(--space-xs));
+  left: 0;
+  right: 0;
+  z-index: 10;
+  max-height: 240px;
+  overflow-y: auto;
+  background: var(--color-bg-surface-primary);
+  border: var(--border-width-thin) solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  animation: dropdown-panel-in 160ms ease;
+}
+
+.option {
+  display: block;
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.option:hover {
+  background: var(--color-bg-hover-subtle);
+}

@@ -1,0 +1,80 @@
+/**
+ * Semantic tokens — Layer 2
+ * Source: ds/foundation.md "Слой 2 — смысловые токены" (коллекция Color, режим Light — единственный режим, тёмной темы нет)
+ * Every value here is a var() reference to a primitive in primitives.css — never a raw hex.
+ */
+:root {
+  /* Backgrounds */
+  --color-bg-page: var(--neutral-background);
+  --color-bg-surface-primary: var(--neutral-white);
+  --color-bg-surface-secondary: var(--neutral-800);
+  --color-bg-disabled: var(--neutral-150);
+  --color-bg-footer: var(--neutral-footer);
+  --color-bg-hover-subtle: var(--neutral-50);
+
+  /* Text */
+  --color-text-primary: var(--neutral-850);
+  --color-text-secondary: var(--neutral-600);
+  --color-text-icons: var(--neutral-400);
+  --color-text-link: var(--brand-tertiary);
+  --color-text-on-disabled: var(--neutral-500);
+  --color-text-on-dark: var(--neutral-25);
+  --color-text-on-button: var(--neutral-900);
+
+  /* Borders */
+  --color-border-default: var(--neutral-300);
+  --color-border-hover: var(--neutral-500);
+  --color-border-error: var(--system-error-100);
+  --color-border-focus-inset: var(--neutral-white);
+  --color-border-focus: var(--brand-primary);
+
+  /* Brand */
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-tertiary: var(--brand-tertiary);
+
+  /* System (feedback) */
+  --color-system-error: var(--system-error-100);
+  --color-system-error-subtle: var(--system-error-20);
+  --color-system-success: var(--system-success-100);
+  --color-system-success-subtle: var(--system-success-20);
+  --color-system-notification: var(--system-notification-100);
+  --color-system-notification-subtle: var(--system-notification-20);
+
+  /* Extra (accent) — used for TimelineItem/tag-style accents, not feedback */
+  --color-extra-blue-100: var(--extra-blue-100);
+  --color-extra-blue-30: var(--extra-blue-30);
+  --color-extra-blue-10: var(--extra-blue-10);
+  --color-extra-purple-100: var(--extra-purple-100);
+  --color-extra-purple-30: var(--extra-purple-30);
+  --color-extra-purple-10: var(--extra-purple-10);
+  --color-extra-green-100: var(--extra-green-100);
+  --color-extra-green-30: var(--extra-green-30);
+  --color-extra-green-10: var(--extra-green-10);
+  --color-extra-pink-100: var(--extra-pink-100);
+  --color-extra-pink-30: var(--extra-pink-30);
+  --color-extra-pink-10: var(--extra-pink-10);
+  --color-extra-orange-100: var(--extra-orange-100);
+  --color-extra-orange-30: var(--extra-orange-30);
+  --color-extra-orange-10: var(--extra-orange-10);
+  --color-extra-yellow-100: var(--extra-yellow-100);
+  --color-extra-yellow-30: var(--extra-yellow-30);
+  --color-extra-yellow-10: var(--extra-yellow-10);
+  --color-extra-gray-100: var(--neutral-800);
+  --color-extra-gray-30: var(--extra-gray-30);
+  --color-extra-gray-5: var(--neutral-50);
+
+  /* Generated — computed interaction states, not aliases of a single primitive step */
+  --color-generated-button-primary-hover: #A7D000;
+  --color-generated-button-primary-pressed: #98BE00;
+  --color-generated-button-secondary-bg: var(--neutral-200);
+  --color-generated-button-secondary-hover: #CFD0D5;
+  --color-generated-button-secondary-pressed: #BDBEC2;
+  --color-generated-control-checked-hover-border: #A3CB00;
+  --color-generated-toggle-on-hover: #A3CB00;
+  --color-generated-toggle-on-disabled: #DEF28C;
+
+  /* Overlay — Paint Style "scrim" (ds/foundation.md → «Затемнение»). Modals only — see ds/CONTRACT.md: slide-over panels do NOT use this. */
+  --color-overlay-scrim: var(--color-text-primary);
+  --opacity-scrim: 0.5;
+}

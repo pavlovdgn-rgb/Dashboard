@@ -1,0 +1,124 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-xl) 96px;
+}
+
+.pageTitle {
+  font-family: var(--font-sans);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.sectionTitle {
+  font-family: var(--font-sans);
+  padding-bottom: var(--space-sm);
+  border-bottom: var(--border-width-thin) solid var(--color-border-default);
+}
+
+.swatchGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-md);
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.swatchColor {
+  height: 56px;
+  border-radius: var(--radius-sm);
+  border: var(--border-width-thin) solid var(--color-border-default);
+}
+
+.swatchName {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-text-secondary);
+  word-break: break-word;
+}
+
+.typeRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-lg);
+  padding: var(--space-sm) 0;
+  border-bottom: var(--border-width-thin) solid var(--color-border-default);
+}
+
+.typeRowLabel {
+  width: 260px;
+  flex-shrink: 0;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.componentBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.componentBlockTitle {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+.surfacePrimary {
+  padding: var(--space-lg);
+  background: var(--color-bg-surface-primary);
+  border-radius: var(--radius-sm);
+}
+
+.surfaceDark {
+  padding: var(--space-lg);
+  background: var(--color-text-primary);
+  border-radius: var(--radius-sm);
+  display: flex;
+  gap: var(--space-md);
+}
+
+.narrow {
+  width: 320px;
+}
+
+.shellRow {
+  display: flex;
+  height: 100vh;
+  border-radius: var(--radius-sm);
+  overflow: visible;
+  border: var(--border-width-thin) solid var(--color-border-default);
+}
+
+.shellBody {
+  flex: 1;
+  background: var(--color-bg-page);
+}
