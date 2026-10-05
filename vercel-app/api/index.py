@@ -50,9 +50,13 @@ class handler(serve_heatmap.make_handler(None)):
         parsed = urlparse(self.path)
         pairs = parse_qsl(parsed.query, keep_blank_values=True)
         destination = next((value for key, value in pairs if key == '__path'), '')
+        path = parsed.path
         if parsed.path == '/api/index.py' and (destination.startswith('/api/') or destination in ('/sdk.js', '/health')):
-            query = urlencode([(key, value) for key, value in pairs if key != '__path'])
-            self.path = destination + ('?' + query if query else '')
+            path = destination
+        # Vercel may retain the public URL while adding the rewrite's query.
+        # Strip routing metadata for both URL forms, keeping the actual filters.
+        query = urlencode([(key, value) for key, value in pairs if key != '__path'])
+        self.path = path + ('?' + query if query else '')
 
     def allowed(self):
         origin = self.headers.get('Origin')

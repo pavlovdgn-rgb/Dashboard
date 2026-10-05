@@ -222,6 +222,7 @@ def make_handler(db_path):
         def do_POST(self):
             if not self.allowed():
                 return self.reply(403,{'error':'Origin is not allowed'})
+            request_path = urlparse(self.path).path
             if self.path.startswith('/api/recordings/'):
                 try:
                     path=urlparse(self.path);query=parse_qs(path.query)
@@ -247,7 +248,7 @@ def make_handler(db_path):
                     return self.reply(200,result) if result is not None else self.reply(404,{'error':'Not found'})
                 except (ValueError,TypeError,UnicodeDecodeError):return self.reply(400,{'error':'Invalid project request'})
                 except sqlite3.Error:return self.reply(503,{'error':'Storage unavailable'})
-            if self.path == '/api/heatmap/snapshots':
+            if request_path == '/api/heatmap/snapshots':
                 try:
                     length=int(self.headers.get('Content-Length','0'))
                     if not 0<length<=MAX_SNAPSHOT:
@@ -273,7 +274,7 @@ def make_handler(db_path):
                     return self.reply(400,{'error':'Invalid snapshot'})
                 except sqlite3.Error:
                     return self.reply(503,{'error':'Storage unavailable'})
-            if self.path != '/api/heatmap/events':
+            if request_path != '/api/heatmap/events':
                 return self.reply(404,{'error':'Not found'})
             try:
                 length = int(self.headers.get('Content-Length','0'))

@@ -6,6 +6,11 @@ const base=process.env.UXLAB_TEST_URL||'http://127.0.0.1:5184';
 const output=path.resolve('../.tmp/vercel-browser');await mkdir(output,{recursive:true});
 const browser=await chromium.launch({channel:'chrome',headless:true});
 const context=await browser.newContext({viewport:{width:1440,height:960},acceptDownloads:true});
+// Match Vercel's public-path rewrite form, including the appended query metadata.
+await context.route('**/api/**',route=>{
+  const url=new URL(route.request().url());url.searchParams.set('__path',url.pathname);
+  return route.continue({url:url.toString()});
+});
 const errors=[],failed=[];
 context.on('page',page=>{
   page.on('pageerror',error=>errors.push(error.message));

@@ -125,6 +125,27 @@ class CloudApiTests(unittest.TestCase):
         finally:
             raw.close()
 
+    def test_uploads_with_rewrite_queries(self):
+        # Production rewrites can preserve the public path and append __path.
+        # Other query parameters must not turn a valid upload into a 404 either.
+        for index, prefix in enumerate(('/api/heatmap/', '/api/index.py?__path=/api/heatmap/')):
+            snapshot_path = prefix + 'snapshots'
+            event_path = prefix + 'events'
+            if index == 0:
+                snapshot_path += '?__path=/api/heatmap/snapshots'
+                event_path += '?__path=/api/heatmap/events'
+            snapshot = {'id':f'rewrite-snapshot-{index}', 'html':'<!doctype html><html><body>Rewrite</body></html>', 'width':1280, 'height':720}
+            self.data('POST', snapshot_path, snapshot)
+            event = dict(id=f'rewrite-event-{index}', study='routing-check', session='rewrite-session',
+                         seq=index+1, page='leed-leads-table', version='leed-local-v2', target='button',
+                         x=.3, y=.4, vw=1280, vh=720, rw=1280, rh=720, scroll_x=0, scroll_y=0,
+                         timestamp=1000, context={'signature':'1234567890abcdef', 'scrolls':[], 'snapshot':snapshot['id']})
+            self.data('POST', event_path, {'events':[event]})
+            self.data('POST', '/api/heatmap/events?retry=1', {'events':[event]})
+        result = self.data('GET', '/api/heatmap?study=routing-check&aggregation=page')
+        self.assertEqual(result['total']['clicks'], 2)
+        self.assertEqual(len(result['groups']), 1)
+
     def test_video_chunks_ranges_and_download(self):
         self.data('GET', '/api/project/config')
         record = dict(id='cloud-video',study='leed-local',session='cloud-session-1',startedAt=1000,mime='video/webm')
