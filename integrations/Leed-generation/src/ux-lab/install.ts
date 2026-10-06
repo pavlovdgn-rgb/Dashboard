@@ -3,7 +3,7 @@ import { restoreScroll, viewContext, type ViewContext } from './view'
 import { captureSnapshot } from './snapshot'
 import { describeElement } from './element'
 import { clicksEnabled, startActivity } from './activity'
-import {startTaskTracking,taskElement} from './task'
+import {startTaskTracking} from './task'
 import { startReplay } from './replay'
 
 const VERSION='leed-local-v2'
@@ -69,7 +69,6 @@ if(preview) {
         const id=routes.get(location.pathname)
         if(!id)return null
         const described=describeElement(target)
-        taskElement(described.target,described.info.label)
         const view=viewContext()
         view.snapshot=captureSnapshot(view.signature)
         view.element=described.info

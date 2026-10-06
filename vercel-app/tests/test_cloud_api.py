@@ -102,6 +102,55 @@ class CloudApiTests(unittest.TestCase):
         self.data('POST', '/api/heatmap/snapshots', snapshot)
         self.assertEqual(self.data('GET', '/api/heatmap/snapshots?id=cloud-snapshot')['html'], snapshot['html'])
 
+    def test_automatic_tasks_finish_and_advance(self):
+        for kind, typ, value in [('screen_visited','screen','leed-dashboard'),
+                                 ('element_clicked','element','confirm-button'),
+                                 ('prototype_event','event','order_confirmed')]:
+            with self.subTest(type=typ):
+                study = self.data('POST','/api/project/studies',{'studyTitle':'Auto '+typ})['studyId']
+                config = '/api/project/config?study='+study
+                self.data('POST',config,{'enabled':True,'mode':'free'})
+                def send(event_id, action, task='', **extra):
+                    return self.data('POST','/api/project/task-events',dict(
+                        id=study+'-'+event_id,study=study,session='auto-session',kind=action,
+                        taskId=task,timestamp=1000,page='leed-dashboard',vw=1280,vh=900,**extra))['run']
+                send('catalog',kind,value=value)
+                check = dict(method='automatic',type=typ,value=value,page='' if typ=='event' else 'leed-dashboard')
+                task = dict(id='first',title='Первое',instruction='Выполните действие',criterion='custom',
+                            successDescription='Действие выполнено',verification=check)
+                self.data('POST',config,{'mode':'scenario','tasks':[task,{**task,'id':'second'},
+                    {**task,'id':'manual','verification':{'method':'manual'}}]})
+                self.assertEqual(send('start','started')['activeTaskId'],'first')
+                self.assertEqual(send('early-finish','finished','first')['finishedTasks'],0)
+                self.assertEqual(send('wrong','prototype_event','first',value='wrong')['succeededTasks'],0)
+                self.data('POST',config,{'enabled':False})
+                paused = dict(id=study+'-pause',study=study,session='auto-session',kind=kind,taskId='first',
+                              timestamp=1000,page='leed-dashboard',vw=1280,vh=900,value=value)
+                self.assertTrue(self.data('POST','/api/project/task-events',paused)['paused'])
+                self.data('POST',config,{'enabled':True})
+                run=send('success',kind,'first',value=value)
+                self.assertEqual(run['activeTaskId'],'second')
+                self.assertEqual(run['finishedTasks'],1)
+                self.assertEqual(run['tasks'][0]['status'],'succeeded')
+                self.assertEqual(run['tasks'][0]['finishedAt'],1000)
+                self.assertEqual(run['tasks'][0]['completedAt'],1000)
+                self.assertEqual(send('success',kind,'first',value=value)['finishedTasks'],1)
+                self.assertEqual(send('late',kind,'first',value=value)['finishedTasks'],1)
+                # An in-progress session keeps its original automatic criterion after edits.
+                self.data('POST',config,{'tasks':[{**task,'verification':{'method':'manual'}}]})
+                run=send('second-success',kind,'second',value=value)
+                self.assertEqual(run['activeTaskId'],'manual')
+                self.assertEqual(run['finishedTasks'],2)
+                self.assertEqual(send('manual-action',kind,'manual',value=value)['finishedTasks'],2)
+                run=send('manual-finish','finished','manual')
+                self.assertIsNone(run['activeTaskId'])
+                self.assertEqual(run['finishedTasks'],3)
+                self.assertEqual(run['tasks'][2]['status'],'needs_review')
+                api._migrated=False
+                saved=next(s for s in self.data('GET','/api/project?study='+study)['sessions'] if s['id']=='auto-session')['task']
+                self.assertEqual(saved['succeededTasks'],2)
+                self.assertEqual(saved['finishedTasks'],3)
+
     def test_read_requests_do_not_wait_for_a_writer(self):
         self.data('GET', '/api/project/config')
         writer = sqlite3.connect(self.database)

@@ -119,14 +119,21 @@ def record(db,data,identifier,pages,config):
     # Events queued for a completed task cannot satisfy a later task with the same criterion.
     if data['kind']!='started' and task_id and task_id==run['activeTaskId']:
         args=(data['study'],data['session'],task_id)
+        automatic=run.get('verification',{}).get('method')=='automatic'
+        completed=False
         if data['kind']==run['criterion'] or success_criteria.matches(run,data):
             db.execute("UPDATE study_task_attempts SET status='succeeded',completedAt=COALESCE(completedAt,?),updatedAt=? WHERE study=? AND session=? AND taskId=?",
                        (data['timestamp'],data['timestamp'],*args))
-        elif data['kind']=='finished':
+            if automatic:
+                db.execute('UPDATE study_task_attempts SET finishedAt=? WHERE study=? AND session=? AND taskId=?',(data['timestamp'],*args))
+                completed=True
+        elif data['kind']=='finished' and not automatic:
             db.execute("UPDATE study_task_attempts SET status=CASE WHEN status='pending' THEN 'failed' ELSE status END,finishedAt=?,updatedAt=? WHERE study=? AND session=? AND taskId=?",
                        (data['timestamp'],data['timestamp'],*args))
             if run.get('verification',{}).get('method')=='manual':
                 db.execute("UPDATE study_task_attempts SET status='needs_review' WHERE study=? AND session=? AND taskId=?",args)
+            completed=True
+        if completed:
             following=next((task for task in run['tasks'] if task['ordinal']>run['ordinal']),None)
             if following:
                 db.execute("UPDATE study_task_attempts SET status=CASE WHEN criterion='none' THEN 'unassessed' ELSE 'pending' END,startedAt=?,updatedAt=? WHERE study=? AND session=? AND taskId=?",

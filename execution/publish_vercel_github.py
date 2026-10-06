@@ -117,8 +117,14 @@ def prepare_update(paths, message, token):
         source = (ROOT / path).resolve()
         if path.is_absolute() or not source.is_relative_to(ROOT) or (ROOT / path).is_symlink():
             raise RuntimeError('Source must be a regular workspace file')
-        if not (relative.startswith(('src/', 'vercel-app/src/', 'vercel-app/api/', 'vercel-app/execution/', 'vercel-app/tests/'))
-                or relative in ('execution/publish_vercel_github.py', 'directives/directive_wire.md')):
+        if not (relative.startswith(('src/', 'vercel-app/src/', 'vercel-app/participant/src/', 'vercel-app/api/', 'vercel-app/execution/', 'vercel-app/tests/'))
+                or relative in ('execution/publish_vercel_github.py', 'directives/directive_wire.md',
+                                'execution/study_task_plan.py', 'execution/check_success_criteria.py',
+                                'execution/check_success_criteria.mjs', 'execution/check_multi_task.mjs',
+                                'execution/check_criteria_journey.mjs',
+                                'integrations/Leed-generation/src/ux-lab/task.ts',
+                                'integrations/Leed-generation/src/ux-lab/StudyTask.tsx',
+                                'integrations/Leed-generation/src/ux-lab/install.ts')):
             raise RuntimeError('Small updates are restricted to app source and this publisher')
         body = source.read_bytes()
         decoded = body.decode('utf-8')

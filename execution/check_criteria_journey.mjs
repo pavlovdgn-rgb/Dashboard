@@ -61,7 +61,7 @@ try{
    assert.equal((await run(sid)).tasks[1].status,'pending','Opening chat cannot complete sending task');
    await page.getByPlaceholder('Написать сообщение...').fill('   ');await expect(page.getByRole('button',{name:'Отправить',exact:true})).toBeDisabled();
    if(send){await message(page);await expect.poll(async()=> (await run(sid)).tasks[1].status).toBe('succeeded')}
-   await page.getByRole('button',{name:'Посмотреть задание'}).click();await dialog.getByRole('button',{name:'Завершить задание'}).click();await expect(dialog).toContainText('Попытка завершена');
+   if(send)await expect(dialog).toContainText('Попытка завершена');else {await page.getByRole('button',{name:'Посмотреть задание'}).click();await expect(dialog.getByRole('button',{name:'Завершить задание'})).toHaveCount(0)}
    await expect.poll(async()=> (await summary()).sessions.find(s=>s.id===sid)?.frames||0).toBeGreaterThan(0);
    await page.close();return sid;
  }
@@ -81,15 +81,15 @@ try{
  await assess(success,'Выполнено');await assess(failed,'Не выполнено');await assess(unknown,'Невозможно оценить');
  await dash.reload();await expect(dash.getByRole('table',{name:'Задания сессии'})).toContainText('Невозможно оценить');
  mark('Ручные оценки выставлены через историю сессий; критерии, способ оценки и запись доступны');
- const expected={ [success]:['succeeded','succeeded'],[failed]:['failed','failed'],[unknown]:['indeterminate','failed'],[awaiting]:['needs_review','failed'],[abandoned]:['pending','not_started']};
+ const expected={ [success]:['succeeded','succeeded'],[failed]:['failed','pending'],[unknown]:['indeterminate','pending'],[awaiting]:['needs_review','pending'],[abandoned]:['pending','not_started']};
  const data=await summary();assert.equal(data.sessions.length,5);
- for(const row of data.sessions){assert.deepEqual(row.task.tasks.map(t=>t.status),expected[row.id]);assert.equal(row.task.tasks.length,2);assert.ok(row.task.tasks[0].startedAt);assert.ok(row.visits>0);if(row.id!==abandoned){assert.ok(row.frames>0);assert.ok(row.clicks>0);assert.ok(row.task.tasks.every(t=>t.finishedAt))}}
+ for(const row of data.sessions){assert.deepEqual(row.task.tasks.map(t=>t.status),expected[row.id]);assert.equal(row.task.tasks.length,2);assert.ok(row.task.tasks[0].startedAt);assert.ok(row.visits>0);if(row.id!==abandoned){assert.ok(row.frames>0);assert.ok(row.clicks>0);assert.ok(row.task.tasks[0].finishedAt);assert.equal(Boolean(row.task.tasks[1].finishedAt),row.id===success)}}
  await dash.getByRole('button',{name:'Обзор результатов',exact:true}).click();const results=dash.getByRole('table',{name:'Результаты заданий'});
  await expect(results.getByText('1 из 5 сессий',{exact:true})).toHaveCount(2);
  for(const bar of await results.getByRole('progressbar').all())await expect(bar).toHaveAttribute('aria-valuetext','20% (1 из 5)');
  const manualRow=results.getByRole('row').filter({hasText:'Найти чат'}),autoRow=results.getByRole('row').filter({hasText:'Написать сообщение'});
  for(const text of ['Не выполнено: 1','Без итога: 1','Ожидает оценки: 1','Невозможно оценить: 1'])await expect(manualRow).toContainText(text);
- await expect(autoRow).toContainText('Не выполнено: 3');await expect(autoRow).toContainText('Не начато: 1');
+ await expect(autoRow).toContainText('Без итога: 3');await expect(autoRow).toContainText('Не начато: 1');
  await results.scrollIntoViewIfNeeded();await dash.screenshot({path:dir+'/overview.png'});
  mark('Обзор: по каждому заданию 1/5 = 20%, остальные статусы посчитаны отдельно');
  await dash.getByRole('button',{name:'Сессии',exact:true}).click();const list=dash.getByRole('table',{name:'Сессии Lead Generation'});

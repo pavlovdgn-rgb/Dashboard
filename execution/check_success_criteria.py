@@ -65,9 +65,11 @@ class SuccessCriteriaTests(unittest.TestCase):
         self.request('/api/project/config',{'enabled':False})
         self.assertTrue(self.send('prototype_event',task='second',value='booking_confirmed')[1]['paused'])
         self.request('/api/project/config',{'enabled':True})
-        self.send('finished',task='second')
+        self.assertEqual(self.send('finished',task='second')[1]['run']['finishedTasks'],1)
+        run=self.send('prototype_event',task='second',value='booking_confirmed')[1]['run']
+        self.assertEqual(run['succeededTasks'],2)
+        self.assertEqual(run['finishedTasks'],2)
         self.assertEqual(self.send('chat_message_sent',task='')[0],200)
-        self.assertEqual(self.send('prototype_event',task='second',value='booking_confirmed')[1]['run']['succeededTasks'],1)
 
     def test_screen_element_and_legacy_update(self):
         for kind,typ,value in [('screen_visited','screen','leed-leads-table'),('element_clicked','element','book-button')]:
