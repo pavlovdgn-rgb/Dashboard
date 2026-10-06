@@ -25,7 +25,8 @@ try{
   const target=await context.newPage();target.on('pageerror',e=>errors.push(e.message));
   await target.addInitScript(()=>{window.__captureCalls=0;Object.defineProperty(navigator.mediaDevices,'getDisplayMedia',{value:()=>{window.__captureCalls++;throw Error('Must not request screen capture');}});});
   await target.goto('http://127.0.0.1:5175/leads-table?ux_study=leed-local');
-  await expect(target.getByText('Действия и снимки интерфейса сохраняются автоматически. Значения полей скрыты.',{exact:true})).toBeVisible();
+  await target.waitForFunction(()=>Boolean(window.__uxLabStatus?.session));
+  await expect(target.getByText('Действия и снимки интерфейса сохраняются автоматически. Значения полей скрыты.',{exact:true})).toHaveCount(0);
   await expect(target.getByRole('button',{name:'Начать запись теста',exact:true})).toHaveCount(0);
   const session=await target.evaluate(()=>window.__uxLabStatus.session);
   const frames=async()=>(await get(`/api/project/frames?session=${session}`)).frames;

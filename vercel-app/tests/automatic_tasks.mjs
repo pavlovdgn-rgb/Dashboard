@@ -14,10 +14,14 @@ try{
  const seed=await post('/api/project/studies',{studyTitle:'Observed controls'});
  await post('/api/project/config?study='+seed.studyId,{enabled:true,mode:'free',collectClicks:false,recordingMode:'screenshots'});
  const catalogPage=await context.newPage();
+ const policy=catalogPage.waitForResponse(r=>r.url().includes('/api/project/config?')&&r.ok());
  await catalogPage.goto(base+'/participant/leads-table?ux_study='+seed.studyId);
- await expect(catalogPage.getByText('Действия и снимки интерфейса сохраняются автоматически. Значения полей скрыты.')).toBeVisible();
- await catalogPage.getByRole('button',{name:'Новый лид',exact:true}).click();
+ await policy;
  const catalog=async()=> (await get('/api/project/criteria-catalog?study='+seed.studyId)).signals;
+ await expect.poll(async()=> (await catalog()).some(s=>s.type==='screen'&&s.value==='leed-leads-table')).toBe(true);
+ await expect(catalogPage.getByText('Действия и снимки интерфейса сохраняются автоматически. Значения полей скрыты.')).toHaveCount(0);
+ await expect(catalogPage.getByRole('complementary',{name:'Запись теста'})).toHaveCount(0);
+ await catalogPage.getByRole('button',{name:'Новый лид',exact:true}).click();
  await expect.poll(async()=> (await catalog()).some(s=>s.type==='element'&&s.label==='Кнопка «Новый лид»')).toBe(true);
  const target=(await catalog()).find(s=>s.type==='element'&&s.label==='Кнопка «Новый лид»');
  await catalogPage.goto(base+'/participant/settings/telephony?ux_study='+seed.studyId);

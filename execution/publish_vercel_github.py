@@ -122,6 +122,8 @@ def prepare_update(paths, message, token):
                                 'execution/study_task_plan.py', 'execution/check_success_criteria.py',
                                 'execution/check_success_criteria.mjs', 'execution/check_multi_task.mjs',
                                 'execution/check_criteria_journey.mjs',
+                                'execution/check_session_snapshots.mjs',
+                                'integrations/Leed-generation/src/ux-lab/RecordingControls.tsx',
                                 'integrations/Leed-generation/src/ux-lab/task.ts',
                                 'integrations/Leed-generation/src/ux-lab/StudyTask.tsx',
                                 'integrations/Leed-generation/src/ux-lab/install.ts')):

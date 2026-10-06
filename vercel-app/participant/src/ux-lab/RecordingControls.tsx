@@ -1,6 +1,6 @@
 import {useEffect,useRef,useState} from 'react'
 import {beginVideo,finishVideo,flushVideos,saveVideoChunk,startVideoQueue,videoQueueState,type RecordingJob} from './videoQueue'
-import {videoEnabled,recordingMode,collectionEnabled,studyInstructions} from './activity'
+import {videoEnabled,recordingMode,studyInstructions} from './activity'
 import './recording.css'
 import {taskState} from './task'
 import {StudyTask} from './StudyTask'
@@ -13,10 +13,10 @@ export function RecordingControls(){
   return <div className="ux-participant-controls" data-ux-private="true" data-ux-overlay="true"><StudyTask studyTitle={task.studyTitle} scenario={run.run?.scenario||(task.mode==='scenario'?task.scenario:'')}/><RecordingControlsBody/></div>
 }
 function RecordingControlsBody(){
-  const [allowed,setAllowed]=useState(videoEnabled),[mode,setMode]=useState(recordingMode),[collecting,setCollecting]=useState(collectionEnabled)
+  const [allowed,setAllowed]=useState(videoEnabled),[mode,setMode]=useState(recordingMode)
   const [phase,setPhase]=useState<'idle'|'choosing'|'recording'|'saving'|'saved'>('idle'),[error,setError]=useState(''),[seconds,setSeconds]=useState(0),[queue,setQueue]=useState(videoQueueState),[recordedSession,setRecordedSession]=useState('')
   const recorder=useRef<MediaRecorder|null>(null),pending=useRef<Promise<void>>(Promise.resolve()),started=useRef(0),mounted=useRef(true)
-  useEffect(()=>{mounted.current=true;startVideoQueue();const update=()=>setQueue(videoQueueState());addEventListener('ux-video-queue',update);const timer=setInterval(()=>{setAllowed(videoEnabled());setMode(recordingMode());setCollecting(collectionEnabled());if(recorder.current?.state==='recording'){setSeconds(Math.floor((performance.now()-started.current)/1000));if(!videoEnabled()||performance.now()-started.current>=1800000)recorder.current.stop()}},500);const leaving=(event:BeforeUnloadEvent)=>{if(recorder.current?.state==='recording'||videoQueueState().pending){event.preventDefault();event.returnValue=''}};addEventListener('beforeunload',leaving);return()=>{mounted.current=false;clearInterval(timer);removeEventListener('ux-video-queue',update);removeEventListener('beforeunload',leaving);if(recorder.current?.state==='recording')recorder.current.stop()}},[])
+  useEffect(()=>{mounted.current=true;startVideoQueue();const update=()=>setQueue(videoQueueState());addEventListener('ux-video-queue',update);const timer=setInterval(()=>{setAllowed(videoEnabled());setMode(recordingMode());if(recorder.current?.state==='recording'){setSeconds(Math.floor((performance.now()-started.current)/1000));if(!videoEnabled()||performance.now()-started.current>=1800000)recorder.current.stop()}},500);const leaving=(event:BeforeUnloadEvent)=>{if(recorder.current?.state==='recording'||videoQueueState().pending){event.preventDefault();event.returnValue=''}};addEventListener('beforeunload',leaving);return()=>{mounted.current=false;clearInterval(timer);removeEventListener('ux-video-queue',update);removeEventListener('beforeunload',leaving);if(recorder.current?.state==='recording')recorder.current.stop()}},[])
   const stop=()=>{if(recorder.current?.state==='recording'){setPhase('saving');recorder.current.stop()}}
   async function start(){
     const session=(window.__uxLabStatus as {session?:string}|undefined)?.session
@@ -45,6 +45,6 @@ function RecordingControlsBody(){
     }catch(cause){stream?.getTracks().forEach(track=>track.stop());setPhase('idle');setError(cause instanceof DOMException&&cause.name==='NotAllowedError'?'Запись не началась: разрешение не выдано. Можно продолжать тест без видео.':'Не удалось начать запись. Проверьте разрешение на захват экрана.')}
   }
   if(new URLSearchParams(location.search).get('ux_preview')==='1'||!true)return null
-  if(mode==='screenshots'&&(phase==='idle'||phase==='saved')&&!queue.pending&&!queue.error)return <aside className="ux-recording" data-ux-private="true" data-ux-overlay="true" aria-label="Запись теста"><div><strong>Скриншоты действий</strong><span role="status">{collecting?'Действия и снимки интерфейса сохраняются автоматически. Значения полей скрыты.':'Сбор приостановлен. Новые снимки не сохраняются.'}</span></div></aside>
+  if(mode==='screenshots'&&(phase==='idle'||phase==='saved')&&!queue.pending&&!queue.error)return null
   return <aside className="ux-recording" data-ux-private="true" data-ux-overlay="true" aria-label="Запись теста"><div><strong>{phase==='recording'?`Идёт запись · ${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`:'Запись теста'}</strong><span role="status">{error||queue.error||(phase==='saved'?(queue.pending?'Передаём видео, не закрывайте вкладку…':'Видео сохранено. Откройте сессию в дашборде.'):phase==='saving'?'Сохраняем видео…':phase==='recording'?'Записывается выбранная вкладка.':!allowed?'Видеозапись выключена или сбор приостановлен.':'Видео без звука. Видимое содержимое и текст полей попадут в запись.')}</span></div>{phase==='recording'?<button onClick={stop}>Завершить запись</button>:<button disabled={!allowed||phase==='choosing'||phase==='saving'||queue.pending>0} onClick={()=>void start()}>{phase==='choosing'?'Выберите вкладку…':'Начать запись теста'}</button>}{phase==='saved'&&!queue.pending&&!queue.error?<a href={`/#/participant?participant=${recordedSession}`} target="_blank" rel="noopener">Посмотреть запись</a>:null}{queue.error?<button onClick={()=>void flushVideos()}>Повторить отправку</button>:null}</aside>
 }
