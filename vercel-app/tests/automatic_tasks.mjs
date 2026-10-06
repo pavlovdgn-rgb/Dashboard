@@ -36,7 +36,7 @@ try{
  const page=await context.newPage();await page.goto(base+'/participant/leads-table?ux_study='+id);
  const dialog=page.getByRole('dialog',{name:'Задание исследования'});
  await expect(dialog).toContainText('Задание завершится автоматически');
- await expect(dialog.getByRole('button',{name:'Завершить задание'})).toHaveCount(0);
+ await expect(dialog.getByRole('button',{name:'Завершить задание'})).toBeVisible();
  await dialog.getByRole('button',{name:'Понятно, к заданию'}).click();
  const session=await page.evaluate(()=>window.__uxLabStatus.session);
  const run=async()=> (await get('/api/project?study='+id)).sessions.find(s=>s.id===session)?.task;
@@ -45,7 +45,7 @@ try{
  expect((await run()).tasks[0].status).toBe('succeeded');expect((await run()).finishedTasks).toBe(1);
  await page.goto(base+'/participant/leads-table?ux_study='+id);
  await expect(dialog).toContainText('Задание 2 из 3');
- await expect(dialog.getByRole('button',{name:'Завершить задание'})).toHaveCount(0);
+ await expect(dialog.getByRole('button',{name:'Завершить задание'})).toBeVisible();
  await page.screenshot({path:'../.tmp/automatic-tasks/automatic.png'});
  await dialog.getByRole('button',{name:'Понятно, к заданию'}).click();
  // Lose one response before processing, then allow the persisted event queue to retry.
@@ -74,6 +74,22 @@ try{
  await expect(finalDialog.getByRole('button',{name:'Завершить задание'})).toHaveCount(0);
  await last.screenshot({path:'../.tmp/automatic-tasks/complete.png'});
  await last.reload();await expect(finalDialog).toContainText('Попытка завершена');
+ const exit=await context.newPage();await exit.goto(base+'/participant/leads-table?ux_study='+id);
+ const exitDialog=exit.getByRole('dialog');
+ await expect(exitDialog).toContainText('Задание 1 из 3');
+ await exitDialog.getByRole('button',{name:'Завершить задание'}).click();
+ await expect(exitDialog).toContainText('Задание 2 из 3');
+ await exitDialog.getByRole('button',{name:'Понятно, к заданию'}).click();
+ await exit.getByRole('button',{name:'Посмотреть задание'}).click();
+ await exitDialog.getByRole('button',{name:'Завершить задание'}).click();
+ await expect(exitDialog).toContainText('Задание 3 из 3');
+ await exitDialog.getByRole('button',{name:'Завершить задание'}).click();
+ await expect(exitDialog).toContainText('Попытка завершена');
+ const exitSession=await exit.evaluate(()=>window.__uxLabStatus.session);
+ const exitRun=(await get('/api/project?study='+id)).sessions.find(s=>s.id===exitSession).task;
+ expect(exitRun.tasks.map(t=>t.status)).toEqual(['failed','failed','needs_review']);
+ expect(exitRun.finishedTasks).toBe(3);expect(exitRun.succeededTasks).toBe(0);
+ await exit.reload();await expect(exitDialog).toContainText('Попытка завершена');
  expect(errors).toEqual([]);
- console.log('PASS screen and real button completion, hidden manual finish, next task, final dialog, manual review, disabled click/visit collection, retry and reload');
+ console.log('PASS automatic success, manual exit without success, next task, final dialog, manual review, retry and reload');
 }finally{await browser.close();}

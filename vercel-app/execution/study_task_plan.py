@@ -127,7 +127,7 @@ def record(db,data,identifier,pages,config):
             if automatic:
                 db.execute('UPDATE study_task_attempts SET finishedAt=? WHERE study=? AND session=? AND taskId=?',(data['timestamp'],*args))
                 completed=True
-        elif data['kind']=='finished' and not automatic:
+        elif data['kind']=='finished':
             db.execute("UPDATE study_task_attempts SET status=CASE WHEN status='pending' THEN 'failed' ELSE status END,finishedAt=?,updatedAt=? WHERE study=? AND session=? AND taskId=?",
                        (data['timestamp'],data['timestamp'],*args))
             if run.get('verification',{}).get('method')=='manual':

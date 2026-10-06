@@ -23,16 +23,16 @@ try{
  await post('/api/project/config?study='+id,{enabled:true,recordingMode:'screenshots'});
  await dash.screenshot({path:'.tmp/multi-task-editor.png'});
  const participant=await context.newPage();await participant.goto(config.url);const modal=participant.getByRole('dialog',{name:'Задание исследования'});
- await expect(modal).toContainText('Задание 1 из 2');await expect(modal).toContainText('Задание завершится автоматически');await expect(modal.getByRole('button',{name:'Завершить задание'})).toHaveCount(0);await modal.getByRole('button',{name:'Понятно, к заданию'}).click();
+ await expect(modal).toContainText('Задание 1 из 2');await expect(modal).toContainText('Задание завершится автоматически');await expect(modal.getByRole('button',{name:'Завершить задание'})).toBeVisible();await modal.getByRole('button',{name:'Понятно, к заданию'}).click();
  const session=await participant.evaluate(()=>window.__uxLabStatus.session);
  const run=async sid=>(await get('/api/project?study='+id)).sessions.find(s=>s.id===sid)?.task;
  await participant.getByRole('button',{name:'Чаты',exact:true}).click();await participant.getByRole('button',{name:/Дмитриев Олег/}).click();await participant.getByPlaceholder('Написать сообщение...').fill('Первое');await participant.getByRole('button',{name:'Отправить',exact:true}).click();
  await expect.poll(async()=>(await run(session))?.succeededTasks).toBe(1);
  await expect(modal).toContainText('Задание 2 из 2');assert.equal((await run(session)).tasks[1].status,'pending');
- await participant.reload();await expect(modal).toContainText('Задание 2 из 2');await expect(modal).toContainText('Задание завершится автоматически');await expect(modal.getByRole('button',{name:'Завершить задание'})).toHaveCount(0);await modal.getByRole('button',{name:'Понятно, к заданию'}).click();
+ await participant.reload();await expect(modal).toContainText('Задание 2 из 2');await expect(modal).toContainText('Задание завершится автоматически');await expect(modal.getByRole('button',{name:'Завершить задание'})).toBeVisible();await modal.getByRole('button',{name:'Понятно, к заданию'}).click();
  await participant.getByRole('button',{name:'Чаты',exact:true}).click();await participant.getByRole('button',{name:/Дмитриев Олег/}).click();await participant.getByPlaceholder('Написать сообщение...').fill('Второе');await participant.getByRole('button',{name:'Отправить',exact:true}).click();await expect.poll(async()=>(await run(session))?.succeededTasks).toBe(2);
  await expect(modal).toContainText('Попытка завершена');
- const unfinished=await context.newPage();await unfinished.goto(config.url);await expect(unfinished.getByRole('dialog')).toContainText('Задание завершится автоматически');await expect(unfinished.getByRole('button',{name:'Завершить задание'})).toHaveCount(0);await unfinished.close();
+ const unfinished=await context.newPage();await unfinished.goto(config.url);await expect(unfinished.getByRole('dialog')).toContainText('Задание завершится автоматически');await expect(unfinished.getByRole('button',{name:'Завершить задание'})).toBeVisible();await unfinished.close();
  const pending=await context.newPage();await pending.goto(config.url);await expect(pending.getByRole('dialog')).toContainText('Задание завершится автоматически');await pending.close();
  // Fourth session received the same tasks without automatic verification. It belongs in the denominator.
  await post('/api/project/config?study='+id,{tasks:saved.tasks.map(({revision,verification,successDescription,...t})=>({...t,criterion:'none'}))});

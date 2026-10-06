@@ -65,7 +65,6 @@ class SuccessCriteriaTests(unittest.TestCase):
         self.request('/api/project/config',{'enabled':False})
         self.assertTrue(self.send('prototype_event',task='second',value='booking_confirmed')[1]['paused'])
         self.request('/api/project/config',{'enabled':True})
-        self.assertEqual(self.send('finished',task='second')[1]['run']['finishedTasks'],1)
         run=self.send('prototype_event',task='second',value='booking_confirmed')[1]['run']
         self.assertEqual(run['succeededTasks'],2)
         self.assertEqual(run['finishedTasks'],2)

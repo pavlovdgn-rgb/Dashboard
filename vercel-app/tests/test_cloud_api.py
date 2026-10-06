@@ -121,7 +121,6 @@ class CloudApiTests(unittest.TestCase):
                 self.data('POST',config,{'mode':'scenario','tasks':[task,{**task,'id':'second'},
                     {**task,'id':'manual','verification':{'method':'manual'}}]})
                 self.assertEqual(send('start','started')['activeTaskId'],'first')
-                self.assertEqual(send('early-finish','finished','first')['finishedTasks'],0)
                 self.assertEqual(send('wrong','prototype_event','first',value='wrong')['succeededTasks'],0)
                 self.data('POST',config,{'enabled':False})
                 paused = dict(id=study+'-pause',study=study,session='auto-session',kind=kind,taskId='first',
@@ -150,6 +149,26 @@ class CloudApiTests(unittest.TestCase):
                 saved=next(s for s in self.data('GET','/api/project?study='+study)['sessions'] if s['id']=='auto-session')['task']
                 self.assertEqual(saved['succeededTasks'],2)
                 self.assertEqual(saved['finishedTasks'],3)
+                # Manual exit is available even without the success signal.
+                self.data('POST',config,{'tasks':[task,{**task,'id':'second'}]})
+                exit_event=dict(id=study+'-exit-start',study=study,session='exit-session',kind='started',
+                                taskId='',timestamp=2000,page='leed-dashboard',vw=1280,vh=900)
+                self.data('POST','/api/project/task-events',exit_event)
+                finish={**exit_event,'id':study+'-exit','kind':'finished','taskId':'first'}
+                run=self.data('POST','/api/project/task-events',finish)['run']
+                self.assertEqual(run['activeTaskId'],'second')
+                self.assertEqual(run['tasks'][0]['status'],'failed')
+                self.assertIsNone(run['tasks'][0]['completedAt'])
+                self.assertEqual(run['finishedTasks'],1)
+                self.assertEqual(self.data('POST','/api/project/task-events',finish)['run']['finishedTasks'],1)
+                late={**finish,'id':study+'-late-after-exit','kind':kind,'value':value}
+                run=self.data('POST','/api/project/task-events',late)['run']
+                self.assertEqual(run['succeededTasks'],0)
+                self.assertEqual(run['tasks'][0]['status'],'failed')
+                run=self.data('POST','/api/project/task-events',{**finish,'id':study+'-exit-last','taskId':'second'})['run']
+                self.assertIsNone(run['activeTaskId'])
+                self.assertEqual(run['finishedTasks'],2)
+                self.assertEqual(run['succeededTasks'],0)
 
     def test_read_requests_do_not_wait_for_a_writer(self):
         self.data('GET', '/api/project/config')

@@ -20,8 +20,8 @@ export function StudyTask({scenario,studyTitle}:{scenario:string;studyTitle:stri
     <dialog ref={dialog} className="ux-study-dialog" aria-labelledby={id} aria-describedby={`${id}-body`} data-ux-private="true" data-ux-overlay="true" onClose={()=>reopen.current?.querySelector('button')?.focus()}>
       <p className="ux-study-caption">{studyTitle}{total>1?` · Задание ${(current?.ordinal||0)+1} из ${total}`:''}</p><h2 id={id}>Задание исследования</h2>{title&&title!=='Задание 1'?<h3>{title}</h3>:null}<p id={`${id}-body`} className="ux-study-scenario">{instruction}</p>
       {state.error?<p role="alert">{state.error}</p>:null}
-      {automatic&&!run?.finishedAt?<p className="ux-study-caption">Задание завершится автоматически, когда вы выполните нужное действие.</p>:null}
+      {automatic&&!run?.finishedAt?<p className="ux-study-caption">Задание завершится автоматически, когда вы выполните нужное действие. Если не получается, нажмите «Завершить задание» — результат будет отмечен как «Не выполнено».</p>:null}
       {state.run?.finishedAt?<p role="status">Попытка завершена. Спасибо за участие!</p>:total>1?<p className="ux-study-caption">После завершения текущего задания откроется следующее. Пройдено: {run?.finishedTasks||0} из {total}.</p>:null}
-      <div className="ux-study-actions">{state.run&&!state.run.finishedAt&&!automatic?<Button variant="secondary" disabled={!collectionEnabled()||state.pending} onClick={()=>finishTask()}>{state.pending?'Сохраняем результат…':'Завершить задание'}</Button>:null}<Button autoFocus onClick={()=>dialog.current?.close()}>{state.run?.finishedAt?'Закрыть':'Понятно, к заданию'}</Button></div>
+      <div className="ux-study-actions">{state.run&&!state.run.finishedAt?<Button variant="secondary" disabled={!collectionEnabled()||state.pending} onClick={()=>finishTask()}>{state.pending?'Сохраняем результат…':'Завершить задание'}</Button>:null}<Button autoFocus onClick={()=>dialog.current?.close()}>{state.run?.finishedAt?'Закрыть':'Понятно, к заданию'}</Button></div>
     </dialog></>
 }

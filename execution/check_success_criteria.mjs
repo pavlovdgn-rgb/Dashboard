@@ -33,7 +33,7 @@ try{
  await expect(dash.getByText('Событие получено от этого прототипа. Условие можно сохранить.',{exact:true})).toBeVisible({timeout:15000});
  await dash.getByRole('button',{name:'Сохранить сценарий'}).click();await expect(dash.getByText('Сценарий сохранён',{exact:true})).toBeVisible();
  await dash.getByLabel('Или укажите имя своего события',{exact:true}).scrollIntoViewIfNeeded();await dash.screenshot({path:'.tmp/custom-success-automatic.png'});
- const auto=await context.newPage();await auto.goto(config.url);await expect(auto.getByRole('dialog')).toContainText('Задание завершится автоматически');await expect(auto.getByRole('button',{name:'Завершить задание'})).toHaveCount(0);const aid=await auto.evaluate(()=>window.__uxLabStatus.session);
+ const auto=await context.newPage();await auto.goto(config.url);await expect(auto.getByRole('dialog')).toContainText('Задание завершится автоматически');await expect(auto.getByRole('button',{name:'Завершить задание'})).toBeVisible();const aid=await auto.evaluate(()=>window.__uxLabStatus.session);
  const run=async()=> (await get('/api/project?study='+id)).sessions.find(s=>s.id===aid)?.task;
  assert.equal((await run()).status,'pending');
  await auto.evaluate(()=>window.dispatchEvent(new CustomEvent('ux-success-signal',{detail:{kind:'prototype_event',value:'booking_confirmed'}})));

@@ -24,7 +24,7 @@ export function startTaskTracking(study:string,session:string,routes:Map<string,
   const persist=()=>{try{sessionStorage.setItem(key,JSON.stringify(queue))}catch{/* Retry from memory. */}}
   function enqueue(kind:string,value='',label=''){
     if(!collectionEnabled())return
-    if(kind==='finished'&&(!state.run||state.run.finishedAt||state.pending||state.run.verification?.method==='automatic'))return
+    if(kind==='finished'&&(!state.run||state.run.finishedAt||state.pending))return
     if(kind==='started'&&!state.run&&studyInstructions().mode!=='scenario')return
     const page=routes.get((location.pathname.replace(/^\/participant(?=\/|$)/,'')||'/'));if(!page)return
     queue.push({id:crypto.randomUUID(),study,session,kind,timestamp:Date.now(),page:`leed-${page}`,vw:innerWidth,vh:innerHeight,taskId:kind==='started'?'':state.run?.activeTaskId||'',value,label});persist()

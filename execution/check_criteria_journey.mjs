@@ -61,7 +61,7 @@ try{
    assert.equal((await run(sid)).tasks[1].status,'pending','Opening chat cannot complete sending task');
    await page.getByPlaceholder('Написать сообщение...').fill('   ');await expect(page.getByRole('button',{name:'Отправить',exact:true})).toBeDisabled();
    if(send){await message(page);await expect.poll(async()=> (await run(sid)).tasks[1].status).toBe('succeeded')}
-   if(send)await expect(dialog).toContainText('Попытка завершена');else {await page.getByRole('button',{name:'Посмотреть задание'}).click();await expect(dialog.getByRole('button',{name:'Завершить задание'})).toHaveCount(0)}
+   if(send)await expect(dialog).toContainText('Попытка завершена');else {await page.getByRole('button',{name:'Посмотреть задание'}).click();await expect(dialog.getByRole('button',{name:'Завершить задание'})).toBeVisible()}
    await expect.poll(async()=> (await summary()).sessions.find(s=>s.id===sid)?.frames||0).toBeGreaterThan(0);
    await page.close();return sid;
  }
