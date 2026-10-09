@@ -41,6 +41,17 @@ def catalog(db,project):
             page='bb-'+name
             if ('screen',page,page) not in observed:
                 result.append({'type':'screen','value':page,'page':page,'label':label,'lastAt':0})
+        # Earlier rounds stored clicks for the heatmap before the success-signal catalog existed.
+        # Reuse their stable page/target pairs without changing or reopening those rounds.
+        for row in db.execute('''SELECT c.page,c.target,MAX(c.context) AS context,MAX(c.timestamp) AS lastAt
+            FROM clicks AS c JOIN live_studies AS s ON s.id=c.study
+            WHERE s.project_id=? AND c.version='biletberu-v1' AND c.page LIKE 'bb-%'
+            GROUP BY c.page,c.target ORDER BY lastAt DESC LIMIT 500''',(project,)):
+            key=('element',row['target'],row['page'])
+            if key in observed:continue
+            try:label=json.loads(row['context'] or '{}').get('element',{}).get('label') or 'Элемент'
+            except (AttributeError,TypeError,ValueError):label='Элемент'
+            result.append({'type':'element','value':row['target'],'page':row['page'],'label':label,'lastAt':row['lastAt']})
     # Old confirmed domain actions are valid connection evidence, without rewriting history.
     for row in db.execute("SELECT kind,MAX(timestamp) AS lastAt FROM study_task_events JOIN live_studies ON live_studies.id=study_task_events.study WHERE project_id=? AND kind IN ('chat_message_sent','lead_created') GROUP BY kind",(project,)):
         if not any(s['type']=='event' and s['value']==row['kind'] for s in result):result.append({'type':'event','value':row['kind'],'page':'','label':{'chat_message_sent':'Отправлено сообщение в чат','lead_created':'Создан новый лид'}[row['kind']],'lastAt':row['lastAt']})

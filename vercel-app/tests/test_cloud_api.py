@@ -269,6 +269,25 @@ class CloudApiTests(unittest.TestCase):
         saved=self.data('POST','/api/project/config?study='+study,{'mode':'scenario','tasks':[task]})
         self.assertEqual(saved['tasks'][0]['verification'],check)
 
+    def test_previous_round_clicks_are_available_as_element_checks(self):
+        study=self.data('POST','/api/project/studies',{'studyTitle':'Клики прошлых раундов'})['studyId']
+        self.data('POST','/api/project/config?study='+study,{'enabled':True})
+        click=dict(id='historical-element-click',study=study,session='earlier-tester',seq=1,
+                   page='bb-payment',version='biletberu-v1',target='el-fedcba9876543210',x=.4,y=.7,
+                   vw=390,vh=844,rw=390,rh=844,scroll_x=0,scroll_y=0,timestamp=5000,
+                   context={'signature':'1234567890abcdef','scrolls':[],
+                            'element':{'label':'Кнопка','rect':[.2,.6,.4,.1]}})
+        self.data('POST','/api/heatmap/events',{'events':[click]})
+        next_study=self.data('POST','/api/project/rounds?study='+study,{})['next']['studyId']
+        signals=self.data('GET','/api/project/criteria-catalog?study='+next_study)['signals']
+        element=next(signal for signal in signals if signal['type']=='element' and signal['value']==click['target'])
+        self.assertEqual((element['page'],element['label'],element['lastAt']),('bb-payment','Кнопка',5000))
+        check={'method':'automatic','type':'element','value':click['target'],'page':'bb-payment'}
+        task={'id':'payment-click','title':'Нажать кнопку','instruction':'Нажмите кнопку',
+              'criterion':'custom','successDescription':'Кнопка нажата','verification':check}
+        saved=self.data('POST','/api/project/config?study='+next_study,{'mode':'scenario','tasks':[task]})
+        self.assertEqual(saved['tasks'][0]['verification'],check)
+
     def test_read_requests_do_not_wait_for_a_writer(self):
         self.data('GET', '/api/project/config')
         writer = sqlite3.connect(self.database)
