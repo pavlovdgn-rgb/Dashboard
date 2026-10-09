@@ -16,6 +16,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 import live_project
+from mobile_pages import MOBILE_ROUTES
 import session_video
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -32,11 +33,6 @@ LEED_ROUTES = {'index':'/', 'showcase':'/showcase', 'leads-table':'/leads-table'
     'loading-dashboard':'/dashboard/loading', 'empty-user-roles-settings':'/settings/roles/empty',
     'loading-user-roles-settings':'/settings/roles/loading'}
 PAGES.update('leed-'+name for name in LEED_ROUTES)
-MOBILE_PATHS = ('main','events','filter','event','sessions','seats','seats/confirm','seats/selected',
-    'order-form','order-form/filled','payment','done','profile','profile/data','tickets','refund',
-    'refund/done','orders','ticket','no-ticket','plan','plan/add','map','map/route','story',
-    'gallery','reviews','review','activity','person','venue','favourites')
-MOBILE_ROUTES = {path.replace('/','--'):'/'+path for path in MOBILE_PATHS}
 PAGES.update('bb-'+name for name in MOBILE_ROUTES)
 MAX_BODY = 131072
 MAX_SNAPSHOT = 4 * 1024 * 1024

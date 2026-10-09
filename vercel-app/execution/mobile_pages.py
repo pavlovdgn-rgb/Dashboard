@@ -1,0 +1,38 @@
+"""Routes published by the Bilet Beru mobile prototype and their research labels."""
+
+MOBILE_SCREENS = {
+    'main': ('/main', 'Главная'),
+    'events': ('/events', 'Афиша'),
+    'filter': ('/filter', 'Фильтры'),
+    'event': ('/event', 'Событие'),
+    'sessions': ('/sessions', 'Выбор даты'),
+    'seats': ('/seats', 'Выбор мест'),
+    'seats--confirm': ('/seats/confirm', 'Выбор тарифа'),
+    'seats--selected': ('/seats/selected', 'Выбранные места'),
+    'order-form': ('/order-form', 'Оформление заказа'),
+    'order-form--filled': ('/order-form/filled', 'Заполненный заказ'),
+    'payment': ('/payment', 'Оплата'),
+    'done': ('/done', 'Оплата прошла'),
+    'profile': ('/profile', 'Профиль'),
+    'profile--data': ('/profile/data', 'Личные данные'),
+    'tickets': ('/tickets', 'Мои билеты'),
+    'refund': ('/refund', 'Возврат'),
+    'refund--done': ('/refund/done', 'Заявка на возврат'),
+    'orders': ('/orders', 'История заказов'),
+    'ticket': ('/ticket', 'Билет'),
+    'no-ticket': ('/no-ticket', 'Нет билетов'),
+    'plan': ('/plan', 'План дня'),
+    'plan--add': ('/plan/add', 'Добавление мест'),
+    'map': ('/map', 'Карта'),
+    'map--route': ('/map/route', 'Маршрут'),
+    'story': ('/story', 'История'),
+    'gallery': ('/gallery', 'Галерея'),
+    'reviews': ('/reviews', 'Отзывы'),
+    'review': ('/review', 'Написать отзыв'),
+    'activity': ('/activity', 'Активность'),
+    'person': ('/person', 'Персона'),
+    'venue': ('/venue', 'Площадка'),
+    'favourites': ('/favourites', 'Избранное'),
+}
+
+MOBILE_ROUTES = {name: path for name, (path, _label) in MOBILE_SCREENS.items()}

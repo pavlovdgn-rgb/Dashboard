@@ -256,6 +256,19 @@ class CloudApiTests(unittest.TestCase):
                 self.assertEqual(run['finishedTasks'],2)
                 self.assertEqual(run['succeededTasks'],0)
 
+    def test_mobile_screens_can_be_selected_before_first_visit(self):
+        study=self.data('POST','/api/project/studies',{'studyTitle':'Выбор экрана без событий'})['studyId']
+        signals=self.data('GET','/api/project/criteria-catalog?study='+study)['signals']
+        screens={signal['value']:signal for signal in signals if signal['type']=='screen'}
+        self.assertEqual(len(screens),len(api.serve_heatmap.MOBILE_ROUTES))
+        self.assertEqual(screens['bb-done']['label'],'Оплата прошла')
+        self.assertEqual(screens['bb-done']['lastAt'],0)
+        check={'method':'automatic','type':'screen','value':'bb-done','page':'bb-done'}
+        task={'id':'purchase','title':'Совершить покупку','instruction':'Совершить покупку',
+              'criterion':'custom','successDescription':'Открыт экран успешной оплаты','verification':check}
+        saved=self.data('POST','/api/project/config?study='+study,{'mode':'scenario','tasks':[task]})
+        self.assertEqual(saved['tasks'][0]['verification'],check)
+
     def test_read_requests_do_not_wait_for_a_writer(self):
         self.data('GET', '/api/project/config')
         writer = sqlite3.connect(self.database)

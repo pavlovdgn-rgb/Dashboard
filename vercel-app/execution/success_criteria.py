@@ -1,6 +1,7 @@
 """Custom success descriptions, immutable checks and explicit researcher reviews."""
 import json
 import time
+from mobile_pages import MOBILE_SCREENS
 
 TYPES={'screen','element','event'}
 
@@ -34,6 +35,12 @@ def validate(task,allow_incomplete=False):
 
 def catalog(db,project):
     result=[dict(row) for row in db.execute('SELECT type,value,page,label,lastAt FROM prototype_success_signals WHERE project=? ORDER BY type,label',(project,))]
+    if project=='biletberu-mobile':
+        observed={(signal['type'],signal['value'],signal['page']) for signal in result}
+        for name,(_path,label) in MOBILE_SCREENS.items():
+            page='bb-'+name
+            if ('screen',page,page) not in observed:
+                result.append({'type':'screen','value':page,'page':page,'label':label,'lastAt':0})
     # Old confirmed domain actions are valid connection evidence, without rewriting history.
     for row in db.execute("SELECT kind,MAX(timestamp) AS lastAt FROM study_task_events JOIN live_studies ON live_studies.id=study_task_events.study WHERE project_id=? AND kind IN ('chat_message_sent','lead_created') GROUP BY kind",(project,)):
         if not any(s['type']=='event' and s['value']==row['kind'] for s in result):result.append({'type':'event','value':row['kind'],'page':'','label':{'chat_message_sent':'Отправлено сообщение в чат','lead_created':'Создан новый лид'}[row['kind']],'lastAt':row['lastAt']})
