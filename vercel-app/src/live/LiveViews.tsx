@@ -35,6 +35,13 @@ const short=(id:string)=>id.slice(0,8);
 type Props={data:LiveSummary;refresh:()=>void;headerActions?:HTMLElement|null};
 function useMutation(refresh:()=>void){const [busy,setBusy]=useState(false),[error,setError]=useState('');return {busy,error,run:async(action:()=>Promise<unknown>)=>{if(busy)return;setBusy(true);setError('');try{await action();refresh();}catch(e){setError(e instanceof Error?e.message:'Не удалось сохранить.');}finally{setBusy(false);}}};}
 function ErrorMessage({message}:{message:string}){return message?<EuiCallOut color="danger" title={message}/>:null;}
+function RoundHistoryNotice({data}:{data:LiveSummary}){
+  const {navigate}=useWireRoute();
+  const number=data.project.roundNumber||1;
+  const previous=data.studies?.find(study=>study.roundGroupId===data.project.roundGroupId&&study.roundNumber===number-1);
+  if(number<2||!previous)return null;
+  return <Card><h2>Вы смотрите раунд {number}</h2><p>В новом раунде счётчики начинаются с нуля. Статистика раунда {number-1} сохранена отдельно.</p><EuiLink onClick={()=>navigate({screen:'overview',study:previous.studyId,device:'all'})}>Открыть результаты раунда {number-1}</EuiLink></Card>;
+}
 export function LiveViews(props:Props){const {route}=useWireRoute();switch(route.screen){
   case 'projects':case 'studies':return <ProjectList {...props}/>;
   case 'overview':return <Overview {...props}/>;
@@ -49,6 +56,7 @@ export function LiveViews(props:Props){const {route}=useWireRoute();switch(route
 }}
 function Overview({data,headerActions}:Props){const {navigate}=useWireRoute();return <>
   {headerActions?createPortal(<div className={s.reportAction}><ProductButton Kind="Primary" icon="document" onClick={()=>navigate({screen:'report',item:'create'})}>Отчёт PDF</ProductButton></div>,headerActions):null}
+  <RoundHistoryNotice data={data}/>
   <OverviewMetrics data={data}/>
   <p className={w.muted}>Сессия — посещение в одной вкладке, а не уникальный человек. {data.project.mode==='scenario'?'Исследование по сценарию: результат оценивается по заданному критерию.':'Режим свободного изучения: достижение целей не оценивается.'}</p>
   <TaskSummary data={data}/>
@@ -103,6 +111,7 @@ function StudyParameters({data,refresh}:Props){
 }
 function StudyLaunch({data,refresh}:Props){
   return <>
+    <RoundHistoryNotice data={data}/>
     <CollectionControl enabled={data.project.enabled} closed={Boolean(data.project.roundClosedAt)} refresh={refresh}/>
     <ParticipantLink url={data.project.url} enabled={data.project.enabled} closed={Boolean(data.project.roundClosedAt)}/>
     <Card><h2>Поступление данных</h2><p>Сохранено: {data.total.visits} посещений · {data.total.clicks} кликов · {data.total.sessions} сессий</p><p>{data.total.lastAt?`Последнее действие: ${date(data.total.lastAt)}`:'Действий пока нет. После включения сбора откройте интерфейс и выполните первое действие.'}</p><p className={w.muted}>Показатели обновляются автоматически. Время последнего действия относится к сохранённым событиям и не подтверждает, что участник сейчас онлайн.</p></Card>

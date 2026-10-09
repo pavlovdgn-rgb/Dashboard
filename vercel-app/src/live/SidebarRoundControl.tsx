@@ -46,7 +46,7 @@ export function SidebarRoundControl({data,connectionError,refresh,onRoundFixed}:
     </section>
     {confirm?<EuiModal onClose={()=>{if(!busy)setConfirm(false);}} aria-labelledby="fix-round-heading"><EuiModalHeader><EuiModalHeaderTitle><h2 id="fix-round-heading">Зафиксировать раунд?</h2></EuiModalHeaderTitle></EuiModalHeader><EuiModalBody>
       <p>Текущие сессии сохранятся в этом раунде, а сбор для него остановится. Создадим новый пустой раунд с отдельной ссылкой для участников.</p>
-      <p>После фиксации откроется страница новой ссылки. Перед её отправкой включите сбор.</p>
+      <p>После фиксации откроется новый раунд с нулевыми счётчиками. Результаты завершённого раунда останутся в меню исследований. Перед отправкой новой ссылки включите сбор.</p>
       {actionError?<EuiCallOut color="danger" title={actionError}/>:null}
     </EuiModalBody><EuiModalFooter><ProductButton Kind="Tertiary" State={busy?'Disabled':'Default'} onClick={()=>setConfirm(false)}>Отмена</ProductButton><ProductButton Kind="Primary" State={busy?'Loading':'Default'} onClick={()=>void fix()}>Зафиксировать раунд</ProductButton></EuiModalFooter></EuiModal>:null}
   </>;
