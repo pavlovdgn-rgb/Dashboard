@@ -6,7 +6,7 @@ import {liveApi} from './api';
 import type {LiveConfig,LiveSummary} from './types';
 import s from './SidebarRoundControl.module.css';
 
-type Props={data:LiveSummary|null;connectionError:string;refresh:()=>void;onRoundFixed:(studyId:string)=>void};
+type Props={data:LiveSummary|null;connectionError:string;refresh:()=>void;onRoundFixed:(fixedStudyId:string,nextStudyId:string)=>void};
 const stamp=(value:number)=>`${new Date(value).toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit'})} ${new Date(value).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})}`;
 
 export function SidebarRoundControl({data,connectionError,refresh,onRoundFixed}:Props){
@@ -30,7 +30,7 @@ export function SidebarRoundControl({data,connectionError,refresh,onRoundFixed}:
     locked.current=true;setBusy(true);setActionError('');
     try{
       const result=await liveApi<{fixed:LiveConfig;next:LiveConfig}>('/rounds',{});
-      setConfirm(false);onRoundFixed(result.next.studyId);
+      setConfirm(false);onRoundFixed(result.fixed.studyId,result.next.studyId);
     }catch(error){setActionError(error instanceof Error?error.message:'Не удалось зафиксировать раунд.');}
     finally{locked.current=false;setBusy(false);}
   }
@@ -46,7 +46,7 @@ export function SidebarRoundControl({data,connectionError,refresh,onRoundFixed}:
     </section>
     {confirm?<EuiModal onClose={()=>{if(!busy)setConfirm(false);}} aria-labelledby="fix-round-heading"><EuiModalHeader><EuiModalHeaderTitle><h2 id="fix-round-heading">Зафиксировать раунд?</h2></EuiModalHeaderTitle></EuiModalHeader><EuiModalBody>
       <p>Текущие сессии сохранятся в этом раунде, а сбор для него остановится. Создадим новый пустой раунд с отдельной ссылкой для участников.</p>
-      <p>После фиксации откроется новый раунд с нулевыми счётчиками. Результаты завершённого раунда останутся в меню исследований. Перед отправкой новой ссылки включите сбор.</p>
+      <p>После фиксации останетесь на результатах завершённого раунда. Новый раунд с нулевыми счётчиками будет доступен по отдельной ссылке; перед её отправкой включите сбор.</p>
       {actionError?<EuiCallOut color="danger" title={actionError}/>:null}
     </EuiModalBody><EuiModalFooter><ProductButton Kind="Tertiary" State={busy?'Disabled':'Default'} onClick={()=>setConfirm(false)}>Отмена</ProductButton><ProductButton Kind="Primary" State={busy?'Loading':'Default'} onClick={()=>void fix()}>Зафиксировать раунд</ProductButton></EuiModalFooter></EuiModal>:null}
   </>;

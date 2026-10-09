@@ -38,7 +38,9 @@ function ErrorMessage({message}:{message:string}){return message?<EuiCallOut col
 function RoundHistoryNotice({data}:{data:LiveSummary}){
   const {navigate}=useWireRoute();
   const number=data.project.roundNumber||1;
+  const next=data.studies?.find(study=>study.roundGroupId===data.project.roundGroupId&&study.roundNumber===number+1);
   const previous=data.studies?.find(study=>study.roundGroupId===data.project.roundGroupId&&study.roundNumber===number-1);
+  if(data.project.roundClosedAt)return <Card><h2>Раунд {number} зафиксирован</h2><p>Сбор остановлен. Результаты этого раунда сохранены ниже. Раунд {number+1} начинается с пустой статистикой.</p>{next?<EuiLink onClick={()=>navigate({screen:'launch',study:next.studyId,device:'all'})}>Открыть новый раунд {number+1}</EuiLink>:null}</Card>;
   if(number<2||!previous)return null;
   return <Card><h2>Вы смотрите раунд {number}</h2><p>В новом раунде счётчики начинаются с нуля. Статистика раунда {number-1} сохранена отдельно.</p><EuiLink onClick={()=>navigate({screen:'overview',study:previous.studyId,device:'all'})}>Открыть результаты раунда {number-1}</EuiLink></Card>;
 }
