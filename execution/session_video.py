@@ -33,6 +33,7 @@ def start(db,data,identifier):
     config=live_project.settings(db,data['study'])
     if data['mime'] not in ('video/webm','video/webm;codecs=vp8','video/webm;codecs=vp9'):raise ValueError('Invalid recording format')
     finite(data['startedAt'],0,1e14)
+    if config.get('roundClosedAt'):return {'closed':True}
     existing=db.execute('SELECT * FROM recordings WHERE id=?',(data['id'],)).fetchone()
     if existing and any(existing[key]!=value for key,value in data.items()):raise ValueError('Conflicting recording')
     if existing:return {'id':data['id']}
@@ -42,8 +43,9 @@ def start(db,data,identifier):
 
 def chunk(db,key,seq,body):
     if not 0<=seq<10000 or not 0<len(body)<=MAX_CHUNK:raise ValueError('Invalid chunk')
-    record=db.execute('SELECT status,bytes FROM recordings WHERE id=?',(key,)).fetchone()
+    record=db.execute('SELECT status,bytes,study FROM recordings WHERE id=?',(key,)).fetchone()
     if not record:raise ValueError('Unknown recording')
+    if live_project.round_closed(db,record['study']):return {'closed':True}
     digest=hashlib.sha256(body).hexdigest()
     previous=db.execute('SELECT digest FROM recording_chunks WHERE recording=? AND seq=?',(key,seq)).fetchone()
     if previous:
@@ -110,6 +112,7 @@ def finish(db,data,identifier):
     if type(count) is not int or not 1<=count<=10000 or not isinstance(data['interrupted'],bool):raise ValueError('Invalid completion')
     record=db.execute('SELECT * FROM recordings WHERE id=?',(key,)).fetchone()
     if not record:raise ValueError('Unknown recording')
+    if live_project.round_closed(db,record['study']):return {'closed':True}
     if record['status']=='ready':
         if record['chunks']!=count or record['duration']!=duration:raise ValueError('Conflicting completion')
         return {'id':key,'status':'ready'}

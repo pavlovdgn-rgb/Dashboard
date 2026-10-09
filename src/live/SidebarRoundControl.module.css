@@ -1,0 +1,14 @@
+.footer { display:grid; gap:var(--size-small); flex:none; padding:var(--size-base); border-block-start:thin solid var(--border-subtle); background:var(--background-sidebar); }
+.status { display:flex; align-items:center; gap:var(--size-small); color:var(--text-secondary); font-size:var(--font-size-small); }
+.dot { inline-size:var(--size-small); block-size:var(--size-small); flex:none; border-radius:50%; background:var(--text-secondary); }
+.status[data-enabled='true'] .dot { background:var(--status-warning-text); box-shadow:0 0 0 var(--size-x-small) var(--status-warning-background); }
+.status[data-error='true'] .dot { background:var(--status-error-text); box-shadow:none; }
+.detail { color:var(--text-secondary); font-size:var(--font-size-small); line-height:var(--line-height-medium); }
+.action { min-inline-size:0; }
+.action > div,.action > div > span { display:block; inline-size:100%; padding:0; }
+.footer .action :global(.euiThemeProvider) > span { display:flex; inline-size:100%; padding:0; }
+.footer .action :global(.euiButton) { inline-size:100%; }
+.action button[class] { inline-size:100%; min-block-size:var(--size-xxx-large); border:thin solid var(--border-subtle); border-radius:var(--radius-surface); background:var(--background-surface); color:var(--text-primary); }
+.action button[class]:hover { background:var(--surface-hover); }
+.action button[class]:disabled { background:var(--background-subtle); }
+.error { color:var(--status-error-text); font-size:var(--font-size-small); overflow-wrap:anywhere; }

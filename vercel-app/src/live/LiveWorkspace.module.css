@@ -1,4 +1,7 @@
 .main { min-inline-size:0; }
+.liveSidebar { display:flex; flex-direction:column; overflow:hidden; }
+.sidebarNavigation { flex:1; min-block-size:0; overflow:auto; }
+.liveSidebar[data-round-footer='true'] .sidebarNavigation nav>p:last-child { display:none; }
 .taskEditor { display:grid; gap:var(--size-large); max-inline-size:calc(var(--size-base)*52); }
 .taskEditorHint { color:var(--text-secondary); font-size:var(--font-size-small); line-height:var(--line-height-medium); }
 .criteriaEditor { display:grid; gap:var(--size-base); }

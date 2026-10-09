@@ -102,6 +102,31 @@ class CloudApiTests(unittest.TestCase):
         self.data('POST', '/api/heatmap/snapshots', snapshot)
         self.assertEqual(self.data('GET', '/api/heatmap/snapshots?id=cloud-snapshot')['html'], snapshot['html'])
 
+    def test_round_creates_new_cloud_participant_link(self):
+        study=self.data('POST','/api/project/studies',{'studyTitle':'Проверка раундов'})['studyId']
+        config='/api/project/config?study='+study
+        self.data('POST',config,{'enabled':True,'recordingMode':'screenshots'})
+        visit=dict(id='cloud-round-visit',study=study,session='tester',page='leed-dashboard',
+                   timestamp=2000,vw=1280,vh=720,context={'signature':'1234567890abcdef','scrolls':[]})
+        self.data('POST','/api/project/visit',visit)
+        fixed=self.data('POST','/api/project/rounds?study='+study,{})
+        new=fixed['next']
+        self.assertTrue(fixed['fixed']['roundClosedAt'])
+        self.assertFalse(fixed['fixed']['enabled'])
+        self.assertIn('ux_study='+new['studyId'],new['url'])
+        self.assertEqual(new['recordingMode'],'screenshots')
+        self.assertEqual(self.data('GET','/api/project?study='+new['studyId'])['total']['sessions'],0)
+        self.assertEqual(self.data('GET','/api/project?study='+study)['total']['sessions'],1)
+        late={**visit,'id':'cloud-round-late','session':'late'}
+        self.assertTrue(self.data('POST','/api/project/visit',late)['closed'])
+        click=dict(id='cloud-round-click',study=study,session='late',seq=1,page='leed-dashboard',
+                   version='leed-local-v2',target='button',x=.3,y=.4,vw=1280,vh=720,rw=1280,rh=720,
+                   scroll_x=0,scroll_y=0,timestamp=3000,context={'signature':'1234567890abcdef','scrolls':[]})
+        self.assertEqual(self.data('POST','/api/heatmap/events',{'events':[click]})['accepted'],[click['id']])
+        self.assertEqual(self.data('GET','/api/project?study='+study)['total']['sessions'],1)
+        self.assertEqual(self.data('GET','/api/project?study='+study)['total']['clicks'],0)
+        self.assertEqual(self.request('POST',config,{'enabled':True})[0],400)
+
     def test_automatic_tasks_finish_and_advance(self):
         for kind, typ, value in [('screen_visited','screen','leed-dashboard'),
                                  ('element_clicked','element','confirm-button'),

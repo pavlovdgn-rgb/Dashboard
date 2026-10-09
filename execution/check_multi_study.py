@@ -5,6 +5,7 @@ import subprocess
 from pathlib import Path
 from check_live_project import LiveProjectTests
 from serve_heatmap import connect, initialize
+import session_video
 
 
 class MultiStudyTests(LiveProjectTests):
@@ -12,6 +13,59 @@ class MultiStudyTests(LiveProjectTests):
         code,data=self.request('/api/project/studies',{'studyTitle':title,'scenario':'Найдите лид и откройте фильтр.'})
         self.assertEqual(code,200)
         return data['studyId']
+
+    def test_fix_round_preserves_results_and_creates_clean_link(self):
+        study=self.create('Раунд для проверки')
+        config='/api/project/config?study='+study
+        self.assertEqual(self.request(config,{'enabled':True,'collectClicks':False,'recordingMode':'screenshots'})[0],200)
+        self.assertEqual(self.request('/api/project/visit',self.visit(id='round-visit',study=study,session='tester'))[0],200)
+        before=self.request('/api/project?study='+study)[1]
+        self.assertEqual(self.request('/api/project?study='+study+'&device=mobile')[1]['lastEventAt'],before['lastEventAt'])
+        status,result=self.request('/api/project/rounds?study='+study,{})
+        self.assertEqual(status,200)
+        next_study=result['next']['studyId']
+        self.assertNotEqual(next_study,study)
+        self.assertTrue(result['fixed']['roundClosedAt'])
+        self.assertFalse(result['fixed']['enabled'])
+        self.assertFalse(result['next']['enabled'])
+        self.assertEqual(result['next']['roundNumber'],2)
+        self.assertEqual(result['next']['roundGroupId'],study)
+        self.assertFalse(result['next']['collectClicks'])
+        self.assertEqual(result['next']['recordingMode'],'screenshots')
+        self.assertIn('ux_study='+next_study,result['next']['url'])
+        self.assertEqual(self.request('/api/project?study='+next_study)[1]['total']['sessions'],0)
+        self.assertEqual(self.request('/api/project?study='+study)[1]['total'],before['total'])
+        click=self.click(41,id='late-round-click',study=study,session='late-session')
+        self.assertEqual(self.request('/api/heatmap/events',{'events':[click]})[1]['accepted'],[click['id']])
+        self.assertTrue(self.request('/api/project/visit',self.visit(id='late-round-visit',study=study,session='late-session'))[1]['closed'])
+        frame=dict(id='late-round-frame',study=study,session='late-session',seq=1,timestamp=3000,
+                   page='leed-dashboard',snapshot='sample',vw=1280,vh=900,kind='screen',label='Dashboard',target={})
+        self.assertTrue(self.request('/api/project/frames',frame)[1]['closed'])
+        task=dict(id='late-round-task',study=study,session='late-session',kind='started',timestamp=3000,
+                  page='leed-dashboard',vw=1280,vh=900)
+        self.assertTrue(self.request('/api/project/task-events',task)[1]['closed'])
+        recording=dict(id='late-round-video',study=study,session='late-session',startedAt=3000,mime='video/webm')
+        self.assertTrue(self.request('/api/recordings/start',recording)[1]['closed'])
+        self.assertEqual(self.request('/api/project?study='+study)[1]['total'],before['total'])
+        self.assertEqual(self.request('/api/project/frames?study='+study+'&session=late-session')[1]['frames'],[])
+        self.assertEqual(self.request('/api/project/config?study='+next_study,{'enabled':True})[0],200)
+        self.assertEqual(self.request('/api/project/visit',self.visit(id='next-round-visit',study=next_study,session='participant'))[0],200)
+        self.assertEqual(self.request('/api/project?study='+next_study)[1]['total']['sessions'],1)
+        self.assertEqual(self.request(config,{'enabled':True})[0],400)
+        self.assertEqual(self.request('/api/project/rounds?study='+study,{})[0],400)
+        self.assertEqual(len(self.request('/api/project/studies')[1]['studies']),3)
+
+    def test_fix_round_stops_recording_upload(self):
+        study=self.create('Запись раунда')
+        self.request('/api/project/config?study='+study,{'enabled':True,'recordingMode':'video'})
+        start=dict(id='round-video',study=study,session='recorded',startedAt=1000,mime='video/webm')
+        self.assertEqual(self.request('/api/recordings/start',start)[0],200)
+        self.assertEqual(self.request('/api/project/rounds?study='+study,{})[0],200)
+        self.assertTrue(self.request('/api/recordings/finish',{'id':'round-video','chunks':1,'duration':1,'interrupted':True})[1]['closed'])
+        with connect(self.db) as db:
+            self.assertTrue(session_video.chunk(db,'round-video',0,b'\x1aE\xdf\xa3').get('closed'))
+            self.assertEqual(db.execute('SELECT COUNT(*) FROM recording_chunks WHERE recording=?',('round-video',)).fetchone()[0],0)
+            self.assertEqual(db.execute('SELECT status FROM recordings WHERE id=?',('round-video',)).fetchone()[0],'stopped')
 
     def test_study_isolation(self):
         self.seed()

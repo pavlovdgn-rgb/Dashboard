@@ -14,7 +14,8 @@ async function write(store:string,value:unknown,key?:string){const connection=aw
 async function jobs(){const connection=await db();return new Promise<RecordingJob[]>((resolve,reject)=>{const request=connection.transaction('jobs').objectStore('jobs').getAll();request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error)})}
 async function chunks(id:string){const connection=await db();return new Promise<Chunk[]>((resolve,reject)=>{const request=connection.transaction('chunks').objectStore('chunks').index('recording').getAll(id);request.onsuccess=()=>resolve(request.result.sort((a:Chunk,b:Chunk)=>a.seq-b.seq));request.onerror=()=>reject(request.error)})}
 function publish(next:QueueState){state=next;window.dispatchEvent(new Event('ux-video-queue'))}
-async function send(path:string,body:BodyInit,type='application/json'){const response=await fetch(API+path,{method:'POST',headers:{'Content-Type':type},body,signal:AbortSignal.timeout(20000)});if(!response.ok)throw Error(`Не удалось передать запись (${response.status}). Она остаётся на этом компьютере; повторим отправку.`)}
+class ClosedRound extends Error {}
+async function send(path:string,body:BodyInit,type='application/json'){const response=await fetch(API+path,{method:'POST',headers:{'Content-Type':type},body,signal:AbortSignal.timeout(20000)});if(!response.ok)throw Error(`Не удалось передать запись (${response.status}). Она остаётся на этом компьютере; повторим отправку.`);const result=await response.json();if(result.closed)throw new ClosedRound()}
 export async function flushVideos(){if(busy)return;busy=true;try{const all=await jobs();let currentError='';publish({pending:currentPending(all),error:''});for(const job of all){
   if(!job.chunks)continue
   try {
@@ -22,7 +23,7 @@ export async function flushVideos(){if(busy)return;busy=true;try{const all=await
   for(const part of await chunks(job.id)){await send(`/chunk?id=${job.id}&seq=${part.seq}`,part.blob,'application/octet-stream');await write('chunks',null,part.key)}
   // Jobs are snapshotted before the upload; finishing is only allowed after the last Blob was stored.
   if(job.finished){await send('/finish',JSON.stringify({id:job.id,chunks:job.chunks,duration:job.duration,interrupted:job.interrupted}));await write('jobs',null,job.id)}
-  }catch(error){if(job.study===currentStudy())currentError=error instanceof Error?error.message:'Не удалось передать запись.'}
+  }catch(error){if(error instanceof ClosedRound){for(const part of await chunks(job.id))await write('chunks',null,part.key);await write('jobs',null,job.id);continue}if(job.study===currentStudy())currentError=error instanceof Error?error.message:'Не удалось передать запись.'}
 }publish({pending:currentPending(await jobs()),error:currentError})}catch(error){publish({...state,error:error instanceof Error?error.message:'Не удалось сохранить очередь видео.'})}finally{busy=false}}
 export async function beginVideo(job:RecordingJob){active.add(job.id);if(navigator.locks)await new Promise<void>(resolve=>{void navigator.locks.request(`ux-video-${job.id}`,async()=>{resolve();await new Promise<void>(release=>releases.set(job.id,release))})});await write('jobs',job)}
 export async function saveVideoChunk(job:RecordingJob,blob:Blob){const connection=await db();for(let offset=0;offset<blob.size;offset+=4*1024*1024){const seq=job.chunks;job.chunks++;await new Promise<void>((resolve,reject)=>{const tx=connection.transaction(['jobs','chunks'],'readwrite');tx.objectStore('chunks').put({key:`${job.id}:${seq}`,id:job.id,seq,blob:blob.slice(offset,offset+4*1024*1024)});tx.objectStore('jobs').put({...job});tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error)})}void flushVideos()}

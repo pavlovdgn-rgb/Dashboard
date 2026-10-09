@@ -53,6 +53,12 @@ def settings(db,study=STUDY):
     return {**config,'tasks':study_tasks.definitions(config)}
 
 
+def round_closed(db,study):
+    """Collector paths also serve non-project test studies, so unknown IDs stay open."""
+    row=db.execute('SELECT value FROM live_studies WHERE id=?',(study,)).fetchone()
+    return bool(row and json.loads(row[0]).get('roundClosedAt'))
+
+
 def participant_url(base,study):
     url=urlsplit(base)
     return urlunsplit((url.scheme,url.netloc,url.path,urlencode([(k,v) for k,v in parse_qsl(url.query) if k!='ux_study']+[('ux_study',study)]),url.fragment))
@@ -101,6 +107,7 @@ def summary(db,device='all',study=STUDY):
     if device not in ('all','desktop','mobile'):raise ValueError('Invalid device')
     config=settings(db,study)
     events=rows(db,study=study)
+    last_event_at=max((row['timestamp'] for row in events),default=None)
     if device!='all':events=[row for row in events if ('mobile' if row['vw']<768 else 'desktop')==device]
     by_session=defaultdict(list);by_page=defaultdict(list)
     for row in events:by_session[row['session']].append(row);by_page[row['page']].append(row)
@@ -155,7 +162,7 @@ def summary(db,device='all',study=STUDY):
                 last_actions.setdefault(key,[]).append(session)
         funnel[-1]['lastActions']=[{'kind':kind,'page':last_page,'label':label,'sessions':len(ids),'sessionIds':sorted(ids)}
                                   for (kind,last_page,label),ids in sorted(last_actions.items(),key=lambda item:(-len(item[1]),item[0]))]
-    return {'project':config,'total':{'clicks':sum(row['kind']=='click' for row in events),
+    return {'project':config,'lastEventAt':last_event_at,'total':{'clicks':sum(row['kind']=='click' for row in events),
         'visits':sum(row['kind']=='visit' for row in events),'sessions':len(sessions),'pages':len(pages),
         'lastAt':max([row['timestamp'] for row in events]+[row['lastAt'] for row in sessions],default=None)},
         'pages':pages,'sessions':sessions,'signals':signals,'funnel':funnel,
@@ -189,6 +196,25 @@ def get(db,path,query,identifier):
 
 def post(db,path,data,identifier,pages,study=STUDY):
     if not isinstance(data,dict):raise ValueError('Expected object')
+    if path=='/api/project/rounds':
+        if data:raise ValueError('Invalid round request')
+        current=settings(db,study)
+        if current.get('roundClosedAt'):raise ValueError('Round already fixed')
+        now=int(time.time()*1000)
+        group=current.get('roundGroupId') or study
+        number=current.get('roundNumber',1)
+        base=current.get('roundBaseTitle') or current['studyTitle']
+        next_id='study-'+str(uuid.uuid4())
+        archived={**current,'roundGroupId':group,'roundNumber':number,'roundBaseTitle':base,
+                  'roundClosedAt':now,'enabled':False}
+        next_round={**current,'studyId':next_id,'studyTitle':f'{base[:100]} · раунд {number+1}',
+                    'url':participant_url(current['url'],next_id),'enabled':False,
+                    'roundGroupId':group,'roundNumber':number+1,'roundBaseTitle':base,'roundClosedAt':None}
+        db.execute('UPDATE live_studies SET value=? WHERE id=?',(json.dumps(archived,ensure_ascii=False),study))
+        db.execute("UPDATE recordings SET status='stopped' WHERE study=? AND status='uploading'",(study,))
+        db.execute('INSERT INTO live_studies VALUES (?,?,?,?)',
+                   (next_id,current['id'],json.dumps(next_round,ensure_ascii=False),now))
+        return {'fixed':settings(db,study),'next':settings(db,next_id)}
     if path=='/api/project/studies':
         if set(data)-{'studyTitle','scenario'}:raise ValueError('Invalid study')
         key='study-'+str(uuid.uuid4())
@@ -199,7 +225,10 @@ def post(db,path,data,identifier,pages,study=STUDY):
         db.execute('INSERT INTO live_studies VALUES (?,?,?,?)',(key,DEFAULT['id'],json.dumps(config,ensure_ascii=False),int(time.time()*1000)))
         return settings(db,key)
     if path=='/api/project/task-events':
-        return study_tasks.record(db,data,identifier,pages,settings(db,identifier(data.get('study',''))))
+        config=settings(db,identifier(data.get('study','')))
+        if config.get('roundClosedAt'):
+            return {'accepted':identifier(data.get('id','')),'closed':True}
+        return study_tasks.record(db,data,identifier,pages,config)
     if path=='/api/project/task-review':
         settings(db,study)
         return success_criteria.review(db,study,data)
@@ -244,6 +273,7 @@ def post(db,path,data,identifier,pages,study=STUDY):
         for key in ('enabled','collectClicks','collectVisits','allowVideo'):
             if key in data:
                 if not isinstance(data[key],bool):raise ValueError('Invalid collection state')
+                if key=='enabled' and data[key] and config.get('roundClosedAt'):raise ValueError('Fixed round cannot be restarted')
                 config[key]=data[key]
         if 'funnel' in data:
             value=data['funnel']
@@ -267,6 +297,7 @@ def post(db,path,data,identifier,pages,study=STUDY):
         if 'rect' in target and (not isinstance(target['rect'],list) or len(target['rect'])!=4):raise ValueError('Invalid frame rectangle')
         for value in ([target['x'],target['y']]+target.get('rect',[]) if target else []):
             if isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value) or not 0<=value<=1:raise ValueError('Invalid target position')
+        if round_closed(db,data['study']):return {'accepted':data['id'],'closed':True}
         data={**data,'target':json.dumps(target,sort_keys=True)}
         previous=db.execute('SELECT * FROM replay_frames WHERE id=? OR (study=? AND session=? AND seq=?)',(data['id'],data['study'],data['session'],data['seq'])).fetchone()
         if previous and any(previous[key]!=value for key,value in data.items()):raise ValueError('Conflicting frame')
@@ -289,6 +320,7 @@ def post(db,path,data,identifier,pages,study=STUDY):
             for index,value in enumerate(scroll):
                 if isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value) or int(value)!=value or not (-1 if index==0 else -10000)<=value<=100000:raise ValueError('Invalid scroll')
         if 'snapshot' in context:identifier(context['snapshot'])
+        if round_closed(db,data['study']):return {'accepted':data['id'],'closed':True}
         encoded={**data,'context':json.dumps(context,sort_keys=True)}
         previous=db.execute('SELECT * FROM visits WHERE id=?',(data['id'],)).fetchone()
         if previous and any(previous[key]!=value for key,value in encoded.items()):raise ValueError('Conflicting visit')

@@ -285,7 +285,9 @@ def make_handler(db_path):
                     raise ValueError('Invalid batch')
                 events = [validate(event) for event in batch['events']]
                 with connect(db_path) as db:
+                    closed={study:live_project.round_closed(db,study) for study in {event['study'] for event in events}}
                     for event in events:
+                        if closed[event['study']]:continue # Acknowledge stale queued events without changing fixed statistics.
                         previous = db.execute('SELECT * FROM clicks WHERE id=? OR (study=? AND session=? AND seq=?)',
                             (event['id'],event['study'],event['session'],event['seq'])).fetchone()
                         if previous and any(previous[key] != value for key,value in event.items()):
