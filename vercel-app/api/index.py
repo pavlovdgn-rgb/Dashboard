@@ -26,7 +26,7 @@ session_video.media = cloud_video.media
 _migrated = False
 _lock = threading.Lock()
 MOBILE_ORIGIN = 'https://biletberu-mobile.vercel.app'
-PUBLIC_API_ORIGIN = 'https://dashboard-alex-p2.vercel.app'
+PUBLIC_API_ORIGIN = 'https://dashboard-woad-one-64.vercel.app'
 
 
 def password():
