@@ -45,6 +45,9 @@ export function CapturedHeatmap({group,points,exportMode=false,highlightPoints=[
   },[group.vw,background?.id]);
   useEffect(()=>{if(canvas.current)drawHeatmap(canvas.current,points,group.vw,group.vh);},[points,group.vw,group.vh]);
   const html=background?.id===id?background?.html:undefined;
+  const mobile=group.page.startsWith('bb-');
+  const fallback=mobile?`https://biletberu-mobile.vercel.app/app${group.path||'/main'}?ux_preview=1`:
+    `${location.origin}/participant${group.path||'/leads-table'}?ux_preview=1&parentOrigin=${encodeURIComponent(location.origin)}`;
   if(onlySaved&&!html)return <div ref={host} role="status">{error?'Снимок ещё не передан. Повторяем загрузку…':'Загружаем сохранённый снимок…'}</div>;
   return <>
     {error?<EuiCallOut color="warning" title="Используется исходный интерфейс"><p>Сохранённый фон недоступен. Клики отображаются поверх исходного экрана.</p></EuiCallOut>:null}
@@ -53,7 +56,7 @@ export function CapturedHeatmap({group,points,exportMode=false,highlightPoints=[
       style={exportMode?{width:group.vw,maxBlockSize:'none',border:0,borderRadius:0,overflow:'hidden'}:undefined}>
       <div style={{position:'relative',width:group.vw*scale,height:group.vh*scale}}>
         <div data-testid="heatmap-export-surface" className={s.capturedViewport} style={{width:group.vw,height:group.vh,transform:`scale(${scale})`,transformOrigin:'top left'}}>
-          {html?<iframe title="Сохранённый фон Lead Generation" sandbox="allow-same-origin" srcDoc={html} style={{width:group.vw,height:group.vh,pointerEvents:'none'}} onLoad={event=>{
+          {html?<iframe title="Сохранённый фон экрана" sandbox="allow-same-origin" srcDoc={html} style={{width:group.vw,height:group.vh,pointerEvents:'none'}} onLoad={event=>{
             const frame=event.currentTarget;
             const restore=()=>{
               const doc=frame.contentDocument;
@@ -63,7 +66,7 @@ export function CapturedHeatmap({group,points,exportMode=false,highlightPoints=[
               });
             };
             restore();void frame.contentDocument?.fonts.ready.then(restore);
-          }}/>:<iframe title="Исходный интерфейс Lead Generation" src={`${location.origin}/participant${group.path||'/leads-table'}?ux_preview=1&parentOrigin=${encodeURIComponent(location.origin)}`} style={{width:group.vw,height:group.vh,pointerEvents:'none'}}/>}
+          }}/>:<iframe title="Исходный интерфейс" src={fallback} style={{width:group.vw,height:group.vh,pointerEvents:'none'}}/>}
           <canvas ref={canvas} className={s.canvas} data-testid="captured-click-layer" aria-label="Тепловой слой реальных кликов"/>
           {highlightPoints.length?<svg className={s.elementHighlight} data-testid="heatmap-element-highlight" viewBox={`0 0 ${group.vw} ${group.vh}`} aria-hidden="true">
             {[...new Map(highlightPoints.map(point=>[point.element?JSON.stringify(point.element.rect):`${point.x}:${point.y}`,point])).values()].map((point,index)=>point.element?

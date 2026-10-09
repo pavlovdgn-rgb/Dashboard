@@ -1,6 +1,7 @@
 """One Vercel Python Function serving the existing research API with cloud persistence."""
 import hashlib
 import hmac
+import io
 import json
 import os
 import sys
@@ -8,7 +9,7 @@ import threading
 import time
 from http.cookies import SimpleCookie
 from pathlib import Path
-from urllib.parse import urlparse, parse_qsl, urlencode
+from urllib.parse import urlparse, urlsplit, urlunsplit, parse_qsl, urlencode, parse_qs
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'execution'))
@@ -24,6 +25,7 @@ session_video.finish = cloud_video.finish
 session_video.media = cloud_video.media
 _migrated = False
 _lock = threading.Lock()
+MOBILE_ORIGIN = 'https://biletberu-mobile.vercel.app'
 
 
 def password():
@@ -32,6 +34,10 @@ def password():
 
 def signature(value):
     return hmac.new(password().encode(), value.encode(), hashlib.sha256).hexdigest()
+
+
+def participant_token(study):
+    return signature('uxlab-participant-v1:' + study)
 
 
 def signed_in(headers):
@@ -66,7 +72,35 @@ class handler(serve_heatmap.make_handler(None)):
         scheme = 'https' if os.environ.get('VERCEL') else 'http'
         own = f"{scheme}://{self.headers.get('Host', '')}"
         additional = set(filter(None, os.environ.get('UXLAB_ALLOWED_ORIGINS', '').split(',')))
-        return origin == own or origin in additional
+        return origin == own or origin == MOBILE_ORIGIN or origin in additional
+
+    def participant_study(self):
+        if self.headers.get('Origin') != MOBILE_ORIGIN:
+            return None
+        study = parse_qs(urlparse(self.path).query).get('study', [''])[0]
+        try:
+            serve_heatmap.identifier(study)
+        except ValueError:
+            return None
+        token = self.headers.get('X-UXLab-Participant', '')
+        return study if len(password()) >= 12 and hmac.compare_digest(token, participant_token(study)) else None
+
+    def participant_body_matches(self, path, study):
+        try:
+            length = int(self.headers.get('Content-Length', '0'))
+            if not 0 < length <= serve_heatmap.MAX_BODY:
+                return False
+            body = self.rfile.read(length)
+            data = json.loads(body)
+            if path == '/api/heatmap/events':
+                matches = isinstance(data, dict) and isinstance(data.get('events'), list) and bool(data['events']) and all(
+                    isinstance(event, dict) and event.get('study') == study for event in data['events'])
+            else:
+                matches = isinstance(data, dict) and data.get('study') == study
+            self.rfile = io.BytesIO(body)
+            return matches
+        except (ValueError, TypeError, UnicodeDecodeError):
+            return False
 
     def reply(self, status, payload, mime='application/json; charset=utf-8', headers=None):
         def public_links(value):
@@ -75,6 +109,12 @@ class handler(serve_heatmap.make_handler(None)):
                 if isinstance(result.get('url'), str) and result['url'].startswith('/participant/'):
                     scheme = 'https' if os.environ.get('VERCEL') else 'http'
                     result['url'] = f"{scheme}://{self.headers.get('Host', '')}{result['url']}"
+                elif result.get('id') == 'biletberu-mobile' and isinstance(result.get('url'), str) and result['url'].startswith(MOBILE_ORIGIN + '/app/'):
+                    url = urlsplit(result['url'])
+                    scheme = 'https' if os.environ.get('VERCEL') else 'http'
+                    api_origin = f"{scheme}://{self.headers.get('Host', '')}"
+                    result['url'] = urlunsplit((url.scheme,url.netloc,url.path,url.query,
+                        urlencode({'ux_token':participant_token(result['studyId']),'ux_api':api_origin})))
                 return result
             if isinstance(value, list):
                 return [public_links(item) for item in value]
@@ -116,6 +156,15 @@ class handler(serve_heatmap.make_handler(None)):
             if len(password()) < 12:
                 return self.reply(503, {'error': 'В Vercel задайте UXLAB_ACCESS_PASSWORD длиной от 12 символов и выполните Redeploy.'})
             return self.reply(200 if signed_in(self.headers) else 401, {'authenticated': signed_in(self.headers)})
+        if path == '/api/project/config' and self.headers.get('Origin') == MOBILE_ORIGIN:
+            if not self.participant_study():
+                return self.reply(403, {'error': 'Invalid participant link'})
+            try:
+                if self.ready():
+                    with cloud_db.read_only():
+                        return super().do_GET()
+            except Exception:
+                return self.reply(503, {'error': 'Collection storage unavailable'})
         if not self.authorized():
             return
         if path == '/api/heatmap/export':
@@ -131,7 +180,8 @@ class handler(serve_heatmap.make_handler(None)):
         self.route()
         if not self.allowed():
             return self.reply(403, {'error': 'Origin is not allowed'})
-        if urlparse(self.path).path == '/api/auth':
+        path = urlparse(self.path).path
+        if path == '/api/auth':
             try:
                 length = int(self.headers.get('Content-Length', 0))
                 if not 0 < length <= 2048 or len(password()) < 12:
@@ -145,6 +195,15 @@ class handler(serve_heatmap.make_handler(None)):
                 return self.reply(200, {'authenticated': True}, headers={'Set-Cookie': cookie})
             except (ValueError, TypeError):
                 return self.reply(400, {'error': 'Некорректный запрос.'})
+        if path in ('/api/project/visit', '/api/project/task-events', '/api/heatmap/events') and self.headers.get('Origin') == MOBILE_ORIGIN:
+            study = self.participant_study()
+            if not study or not self.participant_body_matches(path, study):
+                return self.reply(403, {'error': 'Invalid participant link or study'})
+            try:
+                if self.ready():
+                    return super().do_POST()
+            except Exception:
+                return self.reply(503, {'error': 'Collection storage unavailable'})
         if not self.authorized():
             return
         try:
@@ -156,7 +215,7 @@ class handler(serve_heatmap.make_handler(None)):
     def do_OPTIONS(self):
         if not self.allowed():
             return self.reply(403, {'error': 'Origin is not allowed'})
-        return self.reply(204, b'', headers={'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Range'})
+        return self.reply(204, b'', headers={'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Range, X-UXLab-Participant'})
 
 
 if __name__ == '__main__':

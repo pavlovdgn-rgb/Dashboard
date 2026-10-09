@@ -6,12 +6,12 @@ export type WireRoute={screen:ScreenId;study:string;device:Device;scenario:strin
 function readRoute():WireRoute {
   const [path,query='']=location.hash.replace(/^#\/?/,'').split('?');
   const params=new URLSearchParams(query);
-  return {screen:Object.hasOwn(screenRegistry,path)?path as ScreenId:'overview',study:params.get('study')||'leed-local',device:params.get('device')==='mobile'?'mobile':params.get('device')==='desktop'?'desktop':'all',
+  return {screen:Object.hasOwn(screenRegistry,path)?path as ScreenId:'overview',study:params.get('study')||'biletberu-mobile',device:params.get('device')==='mobile'?'mobile':params.get('device')==='desktop'?'desktop':'all',
     scenario:params.get('scenario')||'',coverage:params.get('coverage')==='partial'?'partial':'all',reportId:params.get('report')||'',item:params.get('item')||'',participant:params.get('participant')||'014',heatmapSession:params.get('session')||'',time:Math.max(0,Number(params.get('time'))||0),link:params.get('link')||'',control:params.get('control')==='true',clean:params.get('clean')==='true'};
 }
 function routeHash(route:WireRoute) {
   const params=new URLSearchParams({device:route.device});
-  if(route.study!=='leed-local')params.set('study',route.study);
+  if(route.study!=='biletberu-mobile')params.set('study',route.study);
   if(route.scenario)params.set('scenario',route.scenario);
   if(route.coverage==='partial')params.set('coverage','partial');
   if(route.reportId)params.set('report',route.reportId);

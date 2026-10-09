@@ -31,7 +31,7 @@ export function LocalHeatmap({refreshRevision=0,onRefreshResult}:{refreshRevisio
   const frame=useRef<HTMLIFrameElement>(null);
   const selected=data.groups.find(item=>item.layout===group);
   const origin=location.origin;
-  const leed=study.startsWith('leed')||selected?.page.startsWith('leed-');
+  const leed=study.startsWith('leed')||selected?.page.startsWith('leed-')||selected?.page.startsWith('bb-');
   const previewOrigin=selected?.page.startsWith('leed-')?`${location.origin}/participant`:origin;
   const saveMap=async(format:'png'|'zip')=>{
     if(exportLock.current||!selected)return;
@@ -125,7 +125,7 @@ export function LocalHeatmap({refreshRevision=0,onRefreshResult}:{refreshRevisio
     {!data.groups.length?<Empty>{loading||!matchingScope?'Загружаем клики…':session?'В этой сессии нет собранных кликов. Выберите другую сессию или всех участников.':'Пока нет собранных кликов. Откройте подключённый интерфейс и выполните несколько действий.'}</Empty>:<>
       {previewError&&!leed?<EuiCallOut color="warning" title={previewError}/>:null}
       {exportError?<EuiCallOut color="danger" title="Не удалось скачать"><p>{exportError}</p></EuiCallOut>:null}
-        <div className={`${w.between} ${s.mapHeading}`}><h2>{pageLabels[selected?.page||'']||selected?.path} · {clicks} кликов</h2><div className={s.exportActions}><EuiLink className={s.layerToggle} onClick={()=>setLayer(!layer)}><DesignIcon type={layer?'eyeClosed':'eye'}/>{layer?'Скрыть клики':'Показать клики'}</EuiLink>{leed?<HeatmapDownload busy={!!exporting} disabled={!selected} onDownload={format=>void saveMap(format)}/>:null}</div></div>
+        <div className={`${w.between} ${s.mapHeading}`}><h2>{pageLabels[selected?.page||'']||selected?.path} · {clicks} кликов</h2><div className={s.exportActions}><EuiLink className={s.layerToggle} onClick={()=>setLayer(!layer)}><DesignIcon type={layer?'eyeClosed':'eye'}/>{layer?'Скрыть клики':'Показать клики'}</EuiLink>{leed&&selected?.context?.snapshot?<HeatmapDownload busy={!!exporting} disabled={!selected} onDownload={format=>void saveMap(format)}/>:null}</div></div>
       <div className={`${w.columns} ${s.liveColumns}`}><div className={w.stack}>
         {leed&&selected?<CapturedHeatmap key={selected.layout} group={selected} points={layer?points:[]} highlightPoints={highlightPoints}/>:<div ref={preview} className={s.preview}>{selected?<div style={{position:'relative',width:selected.vw*scale,height:Math.max(selected.vh,selected.rh+80)*scale}}><iframe key={selected.layout} ref={frame} title="Карта реальных кликов NOVA" src={previewUrl} style={{position:'absolute',pointerEvents:'none',width:selected.vw,height:Math.max(selected.vh,selected.rh+80),transform:`scale(${scale})`,transformOrigin:'top left'}} onLoad={send}/></div>:null}</div>}
         <div className={s.densityLegend}><span>Меньше кликов</span><div/><span>Больше кликов</span></div>

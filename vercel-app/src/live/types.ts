@@ -16,4 +16,4 @@ export type ReportSection='tasks'|'pages'|'sessions'|'funnel'|'signals'|'finding
 export type LiveReport=Omit<LiveSummary,'reports'>&{id:string;createdAt:number;device:string;title?:string;sections?:ReportSection[]};
 export type ReportEntry=Pick<LiveReport,'id'|'createdAt'|'device'|'title'|'sections'|'project'|'total'>;
 export type LiveEvent={id:string;kind:'click'|'visit';page:string;session:string;timestamp:number;vw:number;vh:number;version?:string;x?:number;y?:number;target?:string;context?:ClickGroup['context']&{element?:ClickPoint['element']}};
-export const LIVE_STUDY='leed-local';
+export const LIVE_STUDY='biletberu-mobile';

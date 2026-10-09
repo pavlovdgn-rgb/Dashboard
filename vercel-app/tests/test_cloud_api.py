@@ -11,6 +11,7 @@ import time
 import unittest
 from http.client import HTTPConnection
 from http.server import ThreadingHTTPServer
+from urllib.parse import urlsplit, parse_qs
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'execution'))
@@ -67,23 +68,24 @@ class CloudApiTests(unittest.TestCase):
         self.assertEqual(self.request('GET', '/api/project', authenticated=False)[0], 401)
         self.assertEqual(self.request('GET', '/api/project', extra={'Origin': 'https://untrusted.example'})[0], 403)
         self.assertEqual(self.request('POST', '/api/auth', {'password': 'wrong'})[0], 401)
-        config = self.data('GET', '/api/index.py?__path=/api/project/config&study=leed-local')
-        self.assertTrue(config['url'].startswith(f'http://127.0.0.1:{self.port}/participant/'))
-        self.assertNotIn(':5175', config['url'])
+        config = self.data('GET', '/api/index.py?__path=/api/project/config&study=biletberu-mobile')
+        self.assertTrue(config['url'].startswith('https://biletberu-mobile.vercel.app/app/main?ux_study=biletberu-mobile'))
+        self.assertIn('ux_token=', config['url'])
         self.assertEqual(self.request('GET', '/api/index.py?__path=/sdk.js')[0], 200)
 
     def test_clicks_retry_conflict_and_reconnect(self):
-        event = dict(id='cloud-event-1',study='leed-local',session='cloud-session-1',seq=1,
-                     page='leed-leads-table',version='leed-local-v2',target='test-button',x=.3,y=.4,
+        self.data('POST', '/api/project/config', {'enabled':True})
+        event = dict(id='cloud-event-1',study='biletberu-mobile',session='cloud-session-1',seq=1,
+                     page='bb-main',version='biletberu-v1',target='test-button',x=.3,y=.4,
                      vw=1280,vh=720,rw=1280,rh=720,scroll_x=0,scroll_y=0,timestamp=1000,
                      context={'signature':'1234567890abcdef','scrolls':[]})
         self.data('POST', '/api/heatmap/events', {'events':[event]})
         self.data('POST', '/api/heatmap/events', {'events':[event]})
         self.data('POST', '/api/heatmap/events', {'events':[{**event,'x':.9}]}, status=400)
-        result = self.data('GET', '/api/heatmap?study=leed-local&aggregation=page')
+        result = self.data('GET', '/api/heatmap?study=biletberu-mobile&aggregation=page')
         self.assertEqual(result['total']['clicks'], 1)
         api._migrated = False  # Simulate a cold function initialization, preserve the same database.
-        self.assertEqual(self.data('GET', '/api/heatmap?study=leed-local')['total']['clicks'], 1)
+        self.assertEqual(self.data('GET', '/api/heatmap?study=biletberu-mobile')['total']['clicks'], 1)
         with api.cloud_db.connect() as db:
             self.assertEqual(db.execute('SELECT COUNT(*) FROM clicks').fetchone()[0], 1)
         with self.assertRaises(ValueError):
@@ -96,17 +98,76 @@ class CloudApiTests(unittest.TestCase):
     def test_new_study_and_snapshot(self):
         study = self.data('POST', '/api/project/studies', {'studyTitle':'Облачное исследование'})
         self.assertFalse(study['enabled'])
-        self.assertIn('/participant/', study['url'])
+        self.assertIn('biletberu-mobile.vercel.app/app/main', study['url'])
         self.assertEqual(self.data('GET', '/api/project?study='+study['studyId'])['total']['clicks'], 0)
         snapshot = {'id':'cloud-snapshot','html':'<!doctype html><html><body>Тест</body></html>','width':1280,'height':720}
         self.data('POST', '/api/heatmap/snapshots', snapshot)
         self.assertEqual(self.data('GET', '/api/heatmap/snapshots?id=cloud-snapshot')['html'], snapshot['html'])
 
+    def test_mobile_link_collects_only_its_study(self):
+        origin='https://biletberu-mobile.vercel.app'
+        self.data('POST','/api/project/config',{'enabled':False})
+
+        config=self.data('GET','/api/project/config')
+        token=parse_qs(urlsplit(config['url']).fragment)['ux_token'][0]
+        headers={'Origin':origin,'X-UXLab-Participant':token}
+        path='/api/project/config?study=biletberu-mobile'
+        code,cors,payload=self.request('GET',path,extra=headers,authenticated=False)
+        self.assertEqual(code,200,payload)
+        self.assertEqual(cors['Access-Control-Allow-Origin'],origin)
+        self.assertEqual(self.request('GET',path,extra={'Origin':origin,'X-UXLab-Participant':'wrong'},authenticated=False)[0],403)
+        self.assertEqual(self.request('GET','/api/project?study=biletberu-mobile',extra=headers,authenticated=False)[0],401)
+        self.assertEqual(self.request('OPTIONS','/api/project/visit',extra={'Origin':origin},authenticated=False)[0],204)
+        visit=dict(id='mobile-link-visit',study='biletberu-mobile',session='mobile-link-session',page='bb-main',
+                   timestamp=3000,vw=390,vh=844,context={'signature':'1234567890abcdef','scrolls':[]})
+        endpoint='/api/project/visit?study=biletberu-mobile'
+        code,_,payload=self.request('POST',endpoint,visit,extra=headers,authenticated=False)
+        self.assertEqual(code,200,payload)
+        self.assertTrue(json.loads(payload)['paused'])
+        self.data('POST','/api/project/config',{'enabled':True})
+        self.assertEqual(self.request('POST',endpoint,{**visit,'study':'leed-local'},extra=headers,authenticated=False)[0],403)
+        code,_,payload=self.request('POST',endpoint,visit,extra=headers,authenticated=False)
+        self.assertEqual(code,200,payload)
+        self.assertEqual(self.data('GET','/api/project')['total']['sessions']>=1,True)
+        task=dict(id='mobile-link-task',study='biletberu-mobile',session='mobile-link-session',kind='screen_visited',
+                  taskId='',timestamp=3001,page='bb-main',vw=390,vh=844)
+        task_endpoint='/api/project/task-events?study=biletberu-mobile'
+        self.assertEqual(self.request('POST',task_endpoint,{**task,'study':'legacy-video'},extra=headers,authenticated=False)[0],403)
+        code,_,payload=self.request('POST',task_endpoint,task,extra=headers,authenticated=False)
+        self.assertEqual(code,200,payload)
+        self.assertTrue(json.loads(payload)['ignored'])
+        self.data('POST','/api/project/config',{'enabled':False})
+
+    def test_existing_lead_data_is_archived_without_mixing_mobile_results(self):
+        original=os.environ['UXLAB_TEST_DB']
+        with tempfile.TemporaryDirectory() as folder:
+            database=str(Path(folder)/'legacy.sqlite3')
+            raw=sqlite3.connect(database)
+            raw.executescript((ROOT/'execution/schema.sql').read_text())
+            raw.execute('INSERT INTO visits VALUES (?,?,?,?,?,?,?,?)',
+                        ('legacy-visit','leed-local','legacy-session','leed-dashboard',1000,390,844,'{}'))
+            raw.commit();raw.close()
+            try:
+                os.environ['UXLAB_TEST_DB']=database
+                api.cloud_db.migrate()
+                with api.cloud_db.connect() as db:
+                    legacy=json.loads(db.execute("SELECT value FROM live_studies WHERE id='leed-local'").fetchone()[0])
+                    mobile=json.loads(db.execute("SELECT value FROM live_studies WHERE id='biletberu-mobile'").fetchone()[0])
+                    self.assertFalse(legacy['enabled'])
+                    self.assertTrue(legacy['roundClosedAt'])
+                    self.assertEqual(db.execute("SELECT COUNT(*) FROM visits WHERE study='leed-local'").fetchone()[0],1)
+                    self.assertFalse(mobile['enabled'])
+                    self.assertEqual(db.execute("SELECT COUNT(*) FROM visits WHERE study='biletberu-mobile'").fetchone()[0],0)
+                    self.assertIsNotNone(db.execute('SELECT version FROM cloud_schema WHERE version=2').fetchone())
+                api.cloud_db.migrate()
+            finally:
+                os.environ['UXLAB_TEST_DB']=original
+
     def test_round_creates_new_cloud_participant_link(self):
         study=self.data('POST','/api/project/studies',{'studyTitle':'Проверка раундов'})['studyId']
         config='/api/project/config?study='+study
-        self.data('POST',config,{'enabled':True,'recordingMode':'screenshots'})
-        visit=dict(id='cloud-round-visit',study=study,session='tester',page='leed-dashboard',
+        self.data('POST',config,{'enabled':True})
+        visit=dict(id='cloud-round-visit',study=study,session='tester',page='bb-main',
                    timestamp=2000,vw=1280,vh=720,context={'signature':'1234567890abcdef','scrolls':[]})
         self.data('POST','/api/project/visit',visit)
         fixed=self.data('POST','/api/project/rounds?study='+study,{})
@@ -114,12 +175,12 @@ class CloudApiTests(unittest.TestCase):
         self.assertTrue(fixed['fixed']['roundClosedAt'])
         self.assertFalse(fixed['fixed']['enabled'])
         self.assertIn('ux_study='+new['studyId'],new['url'])
-        self.assertEqual(new['recordingMode'],'screenshots')
+        self.assertEqual(new['recordingMode'],'video')
         self.assertEqual(self.data('GET','/api/project?study='+new['studyId'])['total']['sessions'],0)
         self.assertEqual(self.data('GET','/api/project?study='+study)['total']['sessions'],1)
         late={**visit,'id':'cloud-round-late','session':'late'}
         self.assertTrue(self.data('POST','/api/project/visit',late)['closed'])
-        click=dict(id='cloud-round-click',study=study,session='late',seq=1,page='leed-dashboard',
+        click=dict(id='cloud-round-click',study=study,session='late',seq=1,page='bb-main',
                    version='leed-local-v2',target='button',x=.3,y=.4,vw=1280,vh=720,rw=1280,rh=720,
                    scroll_x=0,scroll_y=0,timestamp=3000,context={'signature':'1234567890abcdef','scrolls':[]})
         self.assertEqual(self.data('POST','/api/heatmap/events',{'events':[click]})['accepted'],[click['id']])
@@ -128,7 +189,7 @@ class CloudApiTests(unittest.TestCase):
         self.assertEqual(self.request('POST',config,{'enabled':True})[0],400)
 
     def test_automatic_tasks_finish_and_advance(self):
-        for kind, typ, value in [('screen_visited','screen','leed-dashboard'),
+        for kind, typ, value in [('screen_visited','screen','bb-main'),
                                  ('element_clicked','element','confirm-button'),
                                  ('prototype_event','event','order_confirmed')]:
             with self.subTest(type=typ):
@@ -138,9 +199,9 @@ class CloudApiTests(unittest.TestCase):
                 def send(event_id, action, task='', **extra):
                     return self.data('POST','/api/project/task-events',dict(
                         id=study+'-'+event_id,study=study,session='auto-session',kind=action,
-                        taskId=task,timestamp=1000,page='leed-dashboard',vw=1280,vh=900,**extra))['run']
+                        taskId=task,timestamp=1000,page='bb-main',vw=1280,vh=900,**extra))['run']
                 send('catalog',kind,value=value)
-                check = dict(method='automatic',type=typ,value=value,page='' if typ=='event' else 'leed-dashboard')
+                check = dict(method='automatic',type=typ,value=value,page='' if typ=='event' else 'bb-main')
                 task = dict(id='first',title='Первое',instruction='Выполните действие',criterion='custom',
                             successDescription='Действие выполнено',verification=check)
                 self.data('POST',config,{'mode':'scenario','tasks':[task,{**task,'id':'second'},
@@ -149,7 +210,7 @@ class CloudApiTests(unittest.TestCase):
                 self.assertEqual(send('wrong','prototype_event','first',value='wrong')['succeededTasks'],0)
                 self.data('POST',config,{'enabled':False})
                 paused = dict(id=study+'-pause',study=study,session='auto-session',kind=kind,taskId='first',
-                              timestamp=1000,page='leed-dashboard',vw=1280,vh=900,value=value)
+                              timestamp=1000,page='bb-main',vw=1280,vh=900,value=value)
                 self.assertTrue(self.data('POST','/api/project/task-events',paused)['paused'])
                 self.data('POST',config,{'enabled':True})
                 run=send('success',kind,'first',value=value)
@@ -177,7 +238,7 @@ class CloudApiTests(unittest.TestCase):
                 # Manual exit is available even without the success signal.
                 self.data('POST',config,{'tasks':[task,{**task,'id':'second'}]})
                 exit_event=dict(id=study+'-exit-start',study=study,session='exit-session',kind='started',
-                                taskId='',timestamp=2000,page='leed-dashboard',vw=1280,vh=900)
+                                taskId='',timestamp=2000,page='bb-main',vw=1280,vh=900)
                 self.data('POST','/api/project/task-events',exit_event)
                 finish={**exit_event,'id':study+'-exit','kind':'finished','taskId':'first'}
                 run=self.data('POST','/api/project/task-events',finish)['run']
@@ -204,7 +265,7 @@ class CloudApiTests(unittest.TestCase):
             api._migrated = False  # A cold instance also checks the schema without a write lock.
             started = time.monotonic()
             self.data('GET', '/api/project')
-            self.data('GET', '/api/heatmap?study=leed-local&aggregation=page')
+            self.data('GET', '/api/heatmap?study=biletberu-mobile&aggregation=page')
             self.assertLess(time.monotonic() - started, 2)
             with api.cloud_db.read_only():
                 with api.cloud_db.connect() as db:
@@ -271,7 +332,14 @@ class CloudApiTests(unittest.TestCase):
 
     def test_video_chunks_ranges_and_download(self):
         self.data('GET', '/api/project/config')
-        record = dict(id='cloud-video',study='leed-local',session='cloud-session-1',startedAt=1000,mime='video/webm')
+        with api.cloud_db.connect() as db:
+            old_study={'id':'leed-generation','title':'Lead Generation','studyId':'legacy-video',
+                       'studyTitle':'Legacy video','url':'/participant/leads-table?ux_study=legacy-video',
+                       'enabled':True,'allowVideo':True,'recordingMode':'video','collectClicks':True,'collectVisits':True,
+                       'funnel':[],'scenario':'','mode':'free','successCriterion':'none'}
+            db.execute('INSERT OR REPLACE INTO live_studies VALUES (?,?,?,?)',
+                       ('legacy-video','leed-generation',json.dumps(old_study),0))
+        record = dict(id='cloud-video',study='legacy-video',session='cloud-session-1',startedAt=1000,mime='video/webm')
         self.data('POST', '/api/recordings/start', record)
         # A minimal streaming EBML header plus padding, enough to test our byte transport.
         prefix = b'\x1aE\xdf\xa3\x80\x18\x53\x80\x67\xff\x15\x49\xa9\x66\x87\x2a\xd7\xb1\x83\x0f\x42\x40'
@@ -287,7 +355,7 @@ class CloudApiTests(unittest.TestCase):
         self.data('POST', '/api/recordings/chunk?id=cloud-video&seq=0', parts[0])
         assembled = b''
         while True:
-            status, headers, body = self.request('GET', '/api/recordings/media?id=cloud-video', extra={'Range':f'bytes={len(assembled)}-'})
+            status, headers, body = self.request('GET', '/api/recordings/media?id=cloud-video&study=legacy-video', extra={'Range':f'bytes={len(assembled)}-'})
             self.assertEqual(status, 206)
             self.assertLessEqual(len(body), api.cloud_video.MAX_RESPONSE)
             assembled += body
@@ -295,7 +363,7 @@ class CloudApiTests(unittest.TestCase):
                 break
         expected = api.session_video.webm_duration(source, 5.0)
         self.assertEqual(assembled, expected)
-        self.assertEqual(self.request('GET','/api/recordings/media?id=cloud-video',extra={'Range':'bytes=99999999-'})[0],416)
+        self.assertEqual(self.request('GET','/api/recordings/media?id=cloud-video&study=legacy-video',extra={'Range':'bytes=99999999-'})[0],416)
         self.assertEqual(self.request('GET','/api/recordings/media?id=cloud-video&study=missing')[0],400)
 
 

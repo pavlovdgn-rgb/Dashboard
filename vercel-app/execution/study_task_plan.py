@@ -94,7 +94,8 @@ def record(db,data,identifier,pages,config):
     if data['kind'] not in ('started','finished','chat_message_sent','lead_created','screen_visited','element_clicked','prototype_event'):raise ValueError('Invalid task action')
     for key in ('value','label'):
         if key in data and (not isinstance(data[key],str) or len(data[key])>200):raise ValueError('Invalid event target')
-    if data['page'] not in pages or not data['page'].startswith('leed-'):raise ValueError('Invalid task page')
+    prefix='bb-' if config['id']=='biletberu-mobile' else 'leed-'
+    if data['page'] not in pages or not data['page'].startswith(prefix):raise ValueError('Invalid task page')
     for key,low,high in [('timestamp',0,1e14),('vw',240,10000),('vh',200,10000)]:
         value=data[key]
         if isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value) or int(value)!=value or not low<=value<=high:raise ValueError('Invalid task measurement')

@@ -13,10 +13,10 @@ import project_reports
 from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
 from collections import defaultdict
 
-STUDY = 'leed-local'
-DEFAULT = {'id':'leed-generation','title':'Lead Generation','studyId':STUDY,
-           'studyTitle':'Исследование Lead Generation','url':'/participant/leads-table?ux_study=leed-local',
-           'enabled':True,'funnel':[],'collectClicks':True,'collectVisits':True,'allowVideo':True,'recordingMode':'video','scenario':'','mode':'free','successCriterion':'none'}
+STUDY = 'biletberu-mobile'
+DEFAULT = {'id':'biletberu-mobile','title':'Билет Беру','studyId':STUDY,
+           'studyTitle':'Тест мобильного приложения','url':'https://biletberu-mobile.vercel.app/app/main?ux_study=biletberu-mobile',
+           'enabled':False,'funnel':[],'collectClicks':True,'collectVisits':True,'allowVideo':False,'recordingMode':'video','scenario':'','mode':'free','successCriterion':'none'}
 
 
 def initialize(db):
@@ -37,8 +37,7 @@ def initialize(db):
     if 'target' not in {row[1] for row in db.execute('PRAGMA table_info(replay_frames)')}:
         db.execute("ALTER TABLE replay_frames ADD COLUMN target TEXT NOT NULL DEFAULT '{}'")
     db.execute('INSERT OR IGNORE INTO live_settings VALUES (?,?)',('project',json.dumps(DEFAULT)))
-    legacy={**DEFAULT,**json.loads(db.execute("SELECT value FROM live_settings WHERE id='project'").fetchone()[0])}
-    db.execute('INSERT OR IGNORE INTO live_studies VALUES (?,?,?,?)',(STUDY,DEFAULT['id'],json.dumps(legacy,ensure_ascii=False),0))
+    db.execute('INSERT OR IGNORE INTO live_studies VALUES (?,?,?,?)',(STUDY,DEFAULT['id'],json.dumps(DEFAULT,ensure_ascii=False),0))
     for table in ('live_findings','live_reports'):
         if 'study' not in {row[1] for row in db.execute('PRAGMA table_info('+table+')')}:
             db.execute("ALTER TABLE "+table+" ADD COLUMN study TEXT NOT NULL DEFAULT 'leed-local'")
@@ -57,6 +56,20 @@ def round_closed(db,study):
     """Collector paths also serve non-project test studies, so unknown IDs stay open."""
     row=db.execute('SELECT value FROM live_studies WHERE id=?',(study,)).fetchone()
     return bool(row and json.loads(row[0]).get('roundClosedAt'))
+
+
+def page_allowed(db,study,page,pages):
+    if page not in pages:return False
+    row=db.execute('SELECT project_id FROM live_studies WHERE id=?',(study,)).fetchone()
+    if not row:return True  # Legacy standalone heatmap fixtures have no workspace.
+    return page.startswith('bb-' if row['project_id']==DEFAULT['id'] else 'leed-')
+
+
+def collection_enabled(db,study,kind):
+    row=db.execute('SELECT value FROM live_studies WHERE id=?',(study,)).fetchone()
+    if not row:return True
+    config=json.loads(row[0])
+    return bool(config.get('enabled') and not config.get('roundClosedAt') and config.get('collectClicks' if kind=='click' else 'collectVisits',True))
 
 
 def participant_url(base,study):
@@ -268,16 +281,18 @@ def post(db,path,data,identifier,pages,study=STUDY):
             config['scenario']='';config['successCriterion']='none'
         if 'recordingMode' in data:
             if data['recordingMode'] not in ('video','screenshots'):raise ValueError('Invalid recording mode')
+            if config['id']==DEFAULT['id'] and data['recordingMode']!='video':raise ValueError('Mobile screen capture is unavailable')
             config['recordingMode']=data['recordingMode']
         if 'studyTitle' in data:config['studyTitle']=text(data['studyTitle'],120)
         for key in ('enabled','collectClicks','collectVisits','allowVideo'):
             if key in data:
                 if not isinstance(data[key],bool):raise ValueError('Invalid collection state')
                 if key=='enabled' and data[key] and config.get('roundClosedAt'):raise ValueError('Fixed round cannot be restarted')
+                if key=='allowVideo' and data[key] and config['id']==DEFAULT['id']:raise ValueError('Mobile video capture is unavailable')
                 config[key]=data[key]
         if 'funnel' in data:
             value=data['funnel']
-            if not isinstance(value,list) or len(value)>8 or any(item not in pages or not item.startswith('leed-') for item in value):raise ValueError('Invalid funnel')
+            if not isinstance(value,list) or len(value)>8 or any(not page_allowed(db,study,item,pages) for item in value):raise ValueError('Invalid funnel')
             config['funnel']=value
         db.execute('UPDATE live_studies SET value=? WHERE id=?',(json.dumps(config,ensure_ascii=False),study))
         return config
@@ -286,7 +301,7 @@ def post(db,path,data,identifier,pages,study=STUDY):
         if set(data)!=fields:raise ValueError('Invalid frame')
         for key in ('id','study','session','snapshot'):identifier(data[key])
         settings(db,data['study'])
-        if data['page'] not in pages or not data['page'].startswith('leed-'):raise ValueError('Invalid frame scope')
+        if not page_allowed(db,data['study'],data['page'],pages):raise ValueError('Invalid frame scope')
         if data['kind'] not in ('screen','click','change','scroll'):raise ValueError('Invalid frame kind')
         if not isinstance(data['label'],str) or len(data['label'])>160:raise ValueError('Invalid frame label')
         for key,low,high in [('seq',1,1e12),('timestamp',0,1e14),('vw',240,10000),('vh',200,10000)]:
@@ -307,7 +322,7 @@ def post(db,path,data,identifier,pages,study=STUDY):
         if set(data)!={'id','study','session','page','timestamp','vw','vh','context'}:raise ValueError('Invalid visit')
         for key in ('id','study','session'):identifier(data[key])
         settings(db,data['study'])
-        if data['page'] not in pages or not data['page'].startswith('leed-'):raise ValueError('Invalid page')
+        if not page_allowed(db,data['study'],data['page'],pages):raise ValueError('Invalid page')
         for key,low,high in [('timestamp',0,1e14),('vw',240,10000),('vh',200,10000)]:
             value=data[key]
             if isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value) or not low<=value<=high or int(value)!=value:raise ValueError('Invalid visit measurement')
@@ -321,6 +336,7 @@ def post(db,path,data,identifier,pages,study=STUDY):
                 if isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value) or int(value)!=value or not (-1 if index==0 else -10000)<=value<=100000:raise ValueError('Invalid scroll')
         if 'snapshot' in context:identifier(context['snapshot'])
         if round_closed(db,data['study']):return {'accepted':data['id'],'closed':True}
+        if not collection_enabled(db,data['study'],'visit'):return {'accepted':data['id'],'paused':True}
         encoded={**data,'context':json.dumps(context,sort_keys=True)}
         previous=db.execute('SELECT * FROM visits WHERE id=?',(data['id'],)).fetchone()
         if previous and any(previous[key]!=value for key,value in encoded.items()):raise ValueError('Conflicting visit')

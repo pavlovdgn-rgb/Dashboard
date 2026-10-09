@@ -32,6 +32,12 @@ LEED_ROUTES = {'index':'/', 'showcase':'/showcase', 'leads-table':'/leads-table'
     'loading-dashboard':'/dashboard/loading', 'empty-user-roles-settings':'/settings/roles/empty',
     'loading-user-roles-settings':'/settings/roles/loading'}
 PAGES.update('leed-'+name for name in LEED_ROUTES)
+MOBILE_PATHS = ('main','events','filter','event','sessions','seats','seats/confirm','seats/selected',
+    'order-form','order-form/filled','payment','done','profile','profile/data','tickets','refund',
+    'refund/done','orders','ticket','no-ticket','plan','plan/add','map','map/route','story',
+    'gallery','reviews','review','activity','person','venue','favourites')
+MOBILE_ROUTES = {path.replace('/','--'):'/'+path for path in MOBILE_PATHS}
+PAGES.update('bb-'+name for name in MOBILE_ROUTES)
 MAX_BODY = 131072
 MAX_SNAPSHOT = 4 * 1024 * 1024
 EXPORT_LOCK = threading.Lock()
@@ -100,8 +106,8 @@ def validate(event):
     data['page'] = event['page']
     context = event.get('context')
     data['context'] = ''
-    if data['page'].startswith('leed-') and context is None:
-        raise ValueError('Leed viewport context is required')
+    if data['page'].startswith(('leed-','bb-')) and context is None:
+        raise ValueError('Viewport context is required')
     if context is not None:
         if not isinstance(context,dict) or not {'signature','scrolls'} <= set(context) or set(context)-{'signature','scrolls','snapshot','element'}:
             raise ValueError('Invalid viewport context')
@@ -145,7 +151,7 @@ def page_groups(db, study, session=''):
     grouped={}
     ready={row['id'] for row in db.execute('SELECT id FROM snapshots')}
     for row in rows:
-        if row['page'].startswith('leed-'):
+        if row['page'].startswith(('leed-','bb-')):
             key='page-'+hashlib.sha256(json.dumps([row['page'],row['vw'],row['vh']]).encode()).hexdigest()[:20]
         else:
             key=row['layout']
@@ -172,6 +178,8 @@ def page_groups(db, study, session=''):
             clicks=len(items),sessions=len({row['session'] for row in items}),aggregation='page')
         if group['page'].startswith('leed-'):
             group['path']=LEED_ROUTES[group['page'][5:]]
+        elif group['page'].startswith('bb-'):
+            group['path']=MOBILE_ROUTES[group['page'][3:]]
             if not backgrounds:
                 group['context']={'signature':'0000000000000000','scrolls':[]}
             else:
@@ -288,6 +296,8 @@ def make_handler(db_path):
                     closed={study:live_project.round_closed(db,study) for study in {event['study'] for event in events}}
                     for event in events:
                         if closed[event['study']]:continue # Acknowledge stale queued events without changing fixed statistics.
+                        if not live_project.page_allowed(db,event['study'],event['page'],PAGES):raise ValueError('Page belongs to another project')
+                        if not live_project.collection_enabled(db,event['study'],'click'):continue
                         previous = db.execute('SELECT * FROM clicks WHERE id=? OR (study=? AND session=? AND seq=?)',
                             (event['id'],event['study'],event['session'],event['seq'])).fetchone()
                         if previous and any(previous[key] != value for key,value in event.items()):

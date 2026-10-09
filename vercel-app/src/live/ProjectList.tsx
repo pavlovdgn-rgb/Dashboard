@@ -23,15 +23,15 @@ export function ProjectList({data,refresh,headerActions}:{data:LiveSummary;refre
  return <>
   {route.screen==='studies'?(headerActions?createPortal(action,headerActions):action):null}
   {creating?<EuiModal onClose={()=>{if(!busy)setCreating(false);}} aria-labelledby="new-study-heading"><EuiModalHeader><EuiModalHeaderTitle><h2 id="new-study-heading">Новое исследование</h2></EuiModalHeaderTitle></EuiModalHeader><EuiModalBody><div className={s.form}>
-   <p>Прототип: Lead Generation. У исследования будут свои настройки, ссылка для участника и результаты.</p>
+   <p>Прототип: Билет Беру. У исследования будут свои настройки, ссылка для участника и результаты.</p>
    <Field label="Название исследования" value={title} onChange={setTitle} error={title.length>120}/>
    <Field label="Сценарий для участника (необязательно)" type="Textarea" value={scenario} onChange={setScenario} error={scenario.length>2000}/>
-   <p>Например: создайте лид, найдите его в таблице и перенесите в работу.</p>
+   <p>Например: найдите мероприятие и попробуйте оформить билет.</p>
    <p>Сбор будет выключен до запуска исследования.</p>
    {error?<EuiCallOut color="danger" title={error}/>:null}
   </div></EuiModalBody><EuiModalFooter><ProductButton Kind="Tertiary" State={busy?'Disabled':'Default'} onClick={()=>setCreating(false)}>Отмена</ProductButton><ProductButton Kind="Primary" State={busy?'Loading':!title.trim()||title.length>120||scenario.length>2000?'Disabled':'Default'} onClick={()=>void create()}>Создать</ProductButton></EuiModalFooter></EuiModal>:null}
   <div className={`${s.table} ${route.screen==='studies'?s.studyTable:''}`}><Table label={route.screen==='projects'?'Проекты':'Исследования'} headers={route.screen==='projects'?['Проект','Исследований','Сбор']:['Исследование','Сценарий','Сессий','Сбор']}>
-   {route.screen==='projects'?<tr><td><EuiLink data-row-action onClick={()=>navigate({screen:'studies'})}>Lead Generation</EuiLink><small>Лиды, канбан и аналитика</small></td><td>{studies.length}</td><td>{studies.some(study=>study.enabled)?'Включён':'Приостановлен'}</td></tr>:studies.map(study=><tr key={study.studyId}><td><EuiLink data-row-action onClick={()=>navigate({screen:'overview',study:study.studyId,device:'all'})}>{study.studyTitle}</EuiLink></td><td><span className={s.scenarioPreview} title={study.scenario}>{study.mode==='scenario'?`${study.tasks?.length||1} заданий · ${study.scenario||'По сценарию'}`:'Свободное изучение'}</span></td><td>{study.sessions}</td><td>{study.enabled?'Включён':'Приостановлен'}</td></tr>)}
+   {route.screen==='projects'?<tr><td><EuiLink data-row-action onClick={()=>navigate({screen:'studies'})}>Билет Беру</EuiLink><small>Мобильный прототип покупки билетов</small></td><td>{studies.length}</td><td>{studies.some(study=>study.enabled)?'Включён':'Приостановлен'}</td></tr>:studies.map(study=><tr key={study.studyId}><td><EuiLink data-row-action onClick={()=>navigate({screen:'overview',study:study.studyId,device:'all'})}>{study.studyTitle}</EuiLink></td><td><span className={s.scenarioPreview} title={study.scenario}>{study.mode==='scenario'?`${study.tasks?.length||1} заданий · ${study.scenario||'По сценарию'}`:'Свободное изучение'}</span></td><td>{study.sessions}</td><td>{study.enabled?'Включён':'Приостановлен'}</td></tr>)}
   </Table></div>
  </>;
 }
