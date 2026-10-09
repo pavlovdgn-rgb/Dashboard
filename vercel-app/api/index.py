@@ -26,6 +26,7 @@ session_video.media = cloud_video.media
 _migrated = False
 _lock = threading.Lock()
 MOBILE_ORIGIN = 'https://biletberu-mobile.vercel.app'
+PUBLIC_API_ORIGIN = 'https://dashboard-alex-p2.vercel.app'
 
 
 def password():
@@ -112,7 +113,7 @@ class handler(serve_heatmap.make_handler(None)):
                 elif result.get('id') == 'biletberu-mobile' and isinstance(result.get('url'), str) and result['url'].startswith(MOBILE_ORIGIN + '/app/'):
                     url = urlsplit(result['url'])
                     scheme = 'https' if os.environ.get('VERCEL') else 'http'
-                    api_origin = f"{scheme}://{self.headers.get('Host', '')}"
+                    api_origin = PUBLIC_API_ORIGIN if os.environ.get('VERCEL') else f"{scheme}://{self.headers.get('Host', '')}"
                     result['url'] = urlunsplit((url.scheme,url.netloc,url.path,url.query,
                         urlencode({'ux_token':participant_token(result['studyId']),'ux_api':api_origin})))
                 return result
