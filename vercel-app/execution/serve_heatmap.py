@@ -271,6 +271,8 @@ def make_handler(db_path):
                         raise ValueError('Invalid snapshot HTML')
                     number(data,'width',240,10000,True);number(data,'height',200,10000,True)
                     with connect(db_path) as db:
+                        if data.get('study') and live_project.study_deleted(db,data['study']):
+                            return self.reply(200,{'accepted':data['id'],'closed':True})
                         previous=db.execute('SELECT * FROM snapshots WHERE id=?',(data['id'],)).fetchone()
                         # v2 IDs were based on HTML only. Identical HTML can reflow at another viewport;
                         # acknowledge such legacy retries so they do not poison an upload queue.

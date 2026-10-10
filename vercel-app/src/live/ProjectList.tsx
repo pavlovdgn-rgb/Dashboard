@@ -1,16 +1,19 @@
 import {useState} from 'react';
 import {createPortal} from 'react-dom';
-import {EuiCallOut,EuiLink,EuiModal,EuiModalHeader,EuiModalHeaderTitle,EuiModalBody,EuiModalFooter} from '@elastic/eui';
+import {EuiButton,EuiButtonEmpty,EuiCallOut,EuiLink,EuiModal,EuiModalHeader,EuiModalHeaderTitle,EuiModalBody,EuiModalFooter} from '@elastic/eui';
 import {ProductButton} from '../components';
-import {Field,Table} from '../screens/WorkspaceUI';
+import {Empty,Field,Table} from '../screens/WorkspaceUI';
 import {useWireRoute} from '../screens/useWireRoute';
 import {liveApi} from './api';
 import type {LiveConfig,LiveSummary} from './types';
 import s from './LiveWorkspace.module.css';
 
+type Study=NonNullable<LiveSummary['studies']>[number];
+
 export function ProjectList({data,refresh,headerActions}:{data:LiveSummary;refresh:()=>void;headerActions?:HTMLElement|null}){
  const {route,navigate}=useWireRoute();
  const [creating,setCreating]=useState(false),[title,setTitle]=useState(''),[scenario,setScenario]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState('');
+ const [deleting,setDeleting]=useState<Study|null>(null),[deleteBusy,setDeleteBusy]=useState(false),[deleteError,setDeleteError]=useState('');
  const studies=data.studies||[{...data.project,sessions:data.total.sessions,createdAt:0}];
  const action=<span className={s.reportAction}><ProductButton Kind="Primary" icon="plus" onClick={()=>{setError('');setCreating(true);}}>Создать исследование</ProductButton></span>;
  async function create(){
@@ -19,6 +22,16 @@ export function ProjectList({data,refresh,headerActions}:{data:LiveSummary;refre
    try{const study=await liveApi<LiveConfig>('/studies',{studyTitle:title.trim(),scenario:scenario.trim()});setCreating(false);refresh();navigate({screen:'setup',study:study.studyId,device:'all'});}
    catch(e){setError(e instanceof Error?e.message:'Не удалось создать исследование.');}
    finally{setBusy(false);}
+ }
+ async function removeStudy(){
+   if(deleteBusy||!deleting)return;
+   setDeleteBusy(true);setDeleteError('');
+   try{
+     const result=await liveApi<{deleted:string;nextStudyId:string|null}>('/studies/delete',{studyId:deleting.studyId});
+     setDeleting(null);refresh();
+     if(route.study===result.deleted)navigate({screen:'studies',study:result.nextStudyId||'biletberu-mobile',device:'all'},true);
+   }catch(e){setDeleteError(e instanceof Error?e.message:'Не удалось удалить исследование.');}
+   finally{setDeleteBusy(false);}
  }
  return <>
   {route.screen==='studies'?(headerActions?createPortal(action,headerActions):action):null}
@@ -30,8 +43,12 @@ export function ProjectList({data,refresh,headerActions}:{data:LiveSummary;refre
    <p>Сбор будет выключен до запуска исследования.</p>
    {error?<EuiCallOut color="danger" title={error}/>:null}
   </div></EuiModalBody><EuiModalFooter><ProductButton Kind="Tertiary" State={busy?'Disabled':'Default'} onClick={()=>setCreating(false)}>Отмена</ProductButton><ProductButton Kind="Primary" State={busy?'Loading':!title.trim()||title.length>120||scenario.length>2000?'Disabled':'Default'} onClick={()=>void create()}>Создать</ProductButton></EuiModalFooter></EuiModal>:null}
-  <div className={`${s.table} ${route.screen==='studies'?s.studyTable:''}`}><Table label={route.screen==='projects'?'Проекты':'Исследования'} headers={route.screen==='projects'?['Проект','Исследований','Сбор']:['Исследование','Сценарий','Сессий','Сбор']}>
-   {route.screen==='projects'?<tr><td><EuiLink data-row-action onClick={()=>navigate({screen:'studies'})}>Билет Беру</EuiLink><small>Мобильный прототип покупки билетов</small></td><td>{studies.length}</td><td>{studies.some(study=>study.enabled)?'Включён':'Приостановлен'}</td></tr>:studies.map(study=><tr key={study.studyId}><td><EuiLink data-row-action onClick={()=>navigate({screen:'overview',study:study.studyId,device:'all'})}>{study.studyTitle}</EuiLink>{study.roundNumber?<small>Раунд {study.roundNumber}</small>:null}</td><td><span className={s.scenarioPreview} title={study.scenario}>{study.mode==='scenario'?`${study.tasks?.length||1} заданий · ${study.scenario||'По сценарию'}`:'Свободное изучение'}</span></td><td>{study.sessions}</td><td>{study.roundClosedAt?'Зафиксирован':study.enabled?'Включён':'Приостановлен'}</td></tr>)}
-  </Table></div>
+  {deleting?<EuiModal onClose={()=>{if(!deleteBusy)setDeleting(null);}} aria-labelledby="delete-study-heading"><EuiModalHeader><EuiModalHeaderTitle id="delete-study-heading">Удалить исследование?</EuiModalHeaderTitle></EuiModalHeader><EuiModalBody>
+    <p>Исследование «{deleting.studyTitle}» будет удалено вместе со всеми сессиями ({deleting.sessions}), результатами, записями и отчётами. Ссылка участника перестанет работать. Восстановить данные после удаления нельзя.</p>
+    {deleteError?<EuiCallOut color="danger" title={deleteError}/>:null}
+  </EuiModalBody><EuiModalFooter><ProductButton Kind="Tertiary" State={deleteBusy?'Disabled':'Default'} onClick={()=>setDeleting(null)}>Отмена</ProductButton><EuiButton color="danger" fill isLoading={deleteBusy} onClick={()=>void removeStudy()}>Удалить исследование</EuiButton></EuiModalFooter></EuiModal>:null}
+  {route.screen==='studies'&&!studies.length?<Empty>В проекте пока нет исследований. Создайте первое исследование.</Empty>:<div className={`${s.table} ${route.screen==='studies'?s.studyTable:''}`}><Table label={route.screen==='projects'?'Проекты':'Исследования'} headers={route.screen==='projects'?['Проект','Исследований','Сбор']:['Исследование','Сценарий','Сессий','Сбор','Действия']}>
+   {route.screen==='projects'?<tr><td><EuiLink data-row-action onClick={()=>navigate({screen:'studies'})}>Билет Беру</EuiLink><small>Мобильный прототип покупки билетов</small></td><td>{studies.length}</td><td>{studies.some(study=>study.enabled)?'Включён':'Приостановлен'}</td></tr>:studies.map(study=><tr key={study.studyId}><td><EuiLink data-row-action onClick={()=>navigate({screen:'overview',study:study.studyId,device:'all'})}>{study.studyTitle}</EuiLink>{study.roundNumber?<small>Раунд {study.roundNumber}</small>:null}</td><td><span className={s.scenarioPreview} title={study.scenario}>{study.mode==='scenario'?`${study.tasks?.length||1} заданий · ${study.scenario||'По сценарию'}`:'Свободное изучение'}</span></td><td>{study.sessions}</td><td>{study.roundClosedAt?'Зафиксирован':study.enabled?'Включён':'Приостановлен'}</td><td><EuiButtonEmpty color="danger" size="s" iconType="trash" aria-label={`Удалить исследование «${study.studyTitle}»`} onClick={()=>{setDeleteError('');setDeleting(study);}}>Удалить</EuiButtonEmpty></td></tr>)}
+  </Table></div>}
  </>;
 }

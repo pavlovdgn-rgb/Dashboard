@@ -24,6 +24,7 @@ def initialize(db):
     db.executescript('''
       CREATE TABLE IF NOT EXISTS live_settings (id TEXT PRIMARY KEY, value TEXT NOT NULL);
       CREATE TABLE IF NOT EXISTS live_studies (id TEXT PRIMARY KEY, project_id TEXT NOT NULL, value TEXT NOT NULL, created_at INTEGER NOT NULL);
+      CREATE TABLE IF NOT EXISTS deleted_studies (id TEXT PRIMARY KEY, deleted_at INTEGER NOT NULL);
       CREATE TABLE IF NOT EXISTS visits (id TEXT PRIMARY KEY, study TEXT NOT NULL, session TEXT NOT NULL,
         page TEXT NOT NULL, timestamp INTEGER NOT NULL, vw INTEGER NOT NULL, vh INTEGER NOT NULL, context TEXT NOT NULL);
       CREATE INDEX IF NOT EXISTS visits_study_session ON visits(study,session,timestamp);
@@ -37,7 +38,8 @@ def initialize(db):
     if 'target' not in {row[1] for row in db.execute('PRAGMA table_info(replay_frames)')}:
         db.execute("ALTER TABLE replay_frames ADD COLUMN target TEXT NOT NULL DEFAULT '{}'")
     db.execute('INSERT OR IGNORE INTO live_settings VALUES (?,?)',('project',json.dumps(DEFAULT)))
-    db.execute('INSERT OR IGNORE INTO live_studies VALUES (?,?,?,?)',(STUDY,DEFAULT['id'],json.dumps(DEFAULT,ensure_ascii=False),0))
+    if not db.execute('SELECT 1 FROM deleted_studies WHERE id=?',(STUDY,)).fetchone():
+        db.execute('INSERT OR IGNORE INTO live_studies VALUES (?,?,?,?)',(STUDY,DEFAULT['id'],json.dumps(DEFAULT,ensure_ascii=False),0))
     for table in ('live_findings','live_reports'):
         if 'study' not in {row[1] for row in db.execute('PRAGMA table_info('+table+')')}:
             db.execute("ALTER TABLE "+table+" ADD COLUMN study TEXT NOT NULL DEFAULT 'leed-local'")
@@ -52,20 +54,27 @@ def settings(db,study=STUDY):
     return {**config,'tasks':study_tasks.definitions(config)}
 
 
+def study_deleted(db,study):
+    return bool(db.execute('SELECT 1 FROM deleted_studies WHERE id=?',(study,)).fetchone())
+
+
 def round_closed(db,study):
     """Collector paths also serve non-project test studies, so unknown IDs stay open."""
+    if study_deleted(db,study):return True
     row=db.execute('SELECT value FROM live_studies WHERE id=?',(study,)).fetchone()
     return bool(row and json.loads(row[0]).get('roundClosedAt'))
 
 
 def page_allowed(db,study,page,pages):
     if page not in pages:return False
+    if study_deleted(db,study):return False
     row=db.execute('SELECT project_id FROM live_studies WHERE id=?',(study,)).fetchone()
     if not row:return True  # Legacy standalone heatmap fixtures have no workspace.
     return page.startswith('bb-' if row['project_id']==DEFAULT['id'] else 'leed-')
 
 
 def collection_enabled(db,study,kind):
+    if study_deleted(db,study):return False
     row=db.execute('SELECT value FROM live_studies WHERE id=?',(study,)).fetchone()
     if not row:return True
     config=json.loads(row[0])
@@ -84,6 +93,36 @@ def studies(db):
         count=db.execute('SELECT COUNT(DISTINCT session) FROM (SELECT session FROM clicks WHERE study=? UNION ALL SELECT session FROM visits WHERE study=? UNION ALL SELECT session FROM replay_frames WHERE study=? UNION ALL SELECT session FROM recordings WHERE study=? UNION ALL SELECT session FROM study_task_sessions WHERE study=?)',(row['id'],)*5).fetchone()[0]
         result.append({**config,'createdAt':row['created_at'],'sessions':count})
     return result
+
+
+def delete_study(db,study):
+    row=db.execute('SELECT project_id FROM live_studies WHERE id=?',(study,)).fetchone()
+    if not row or row['project_id']!=DEFAULT['id']:raise ValueError('Unknown study')
+    # Snapshot IDs are content-addressed and may be shared across studies.
+    snapshot_ids={entry[0] for table in ('clicks','visits') for entry in db.execute(
+        f"SELECT DISTINCT CASE WHEN json_valid(context) THEN json_extract(context,'$.snapshot') END FROM {table} WHERE study=?",(study,)) if entry[0]}
+    for table in ('clicks','visits','replay_frames','study_task_attempts','study_task_events',
+                  'study_task_runs','study_task_sessions','task_criteria_snapshots',
+                  'live_findings','live_reports'):
+        db.execute(f'DELETE FROM {table} WHERE study=?',(study,))
+    db.execute('DELETE FROM recording_chunks WHERE recording IN (SELECT id FROM recordings WHERE study=?)',(study,))
+    db.execute('DELETE FROM recordings WHERE study=?',(study,))
+    db.execute('DELETE FROM live_studies WHERE id=?',(study,))
+    db.execute('INSERT INTO deleted_studies VALUES (?,?)',(study,int(time.time()*1000)))
+    for snapshot_id in snapshot_ids:
+        referenced=any(db.execute(
+            f"SELECT 1 FROM {table} WHERE CASE WHEN json_valid(context) THEN json_extract(context,'$.snapshot') END=? LIMIT 1",(snapshot_id,)).fetchone()
+            for table in ('clicks','visits'))
+        if not referenced:db.execute('DELETE FROM snapshots WHERE id=?',(snapshot_id,))
+    remaining=db.execute('SELECT id FROM live_studies WHERE project_id=? ORDER BY created_at DESC,id LIMIT 1',(DEFAULT['id'],)).fetchone()
+    return {'deleted':study,'nextStudyId':remaining['id'] if remaining else None}
+
+
+def empty_summary(db):
+    return {'project':{**DEFAULT,'enabled':False,'tasks':[]},'lastEventAt':None,
+            'total':{'clicks':0,'visits':0,'sessions':0,'pages':0,'lastAt':None},
+            'pages':[],'sessions':[],'signals':[],'funnel':[],'studies':[],
+            'findings':[],'reports':[]}
 
 
 def rows(db,session=None,study=STUDY):
@@ -192,8 +231,12 @@ def text(value,limit=2000):
 def get(db,path,query,identifier):
     study=identifier(query.get('study',[STUDY])[0])
     if path=='/api/project/studies':return {'studies':studies(db)}
+    if path=='/api/project':
+        if db.execute('SELECT 1 FROM live_studies WHERE id=?',(study,)).fetchone():
+            return summary(db,query.get('device',['all'])[0],study)
+        remaining=db.execute('SELECT id FROM live_studies WHERE project_id=? ORDER BY created_at DESC,id LIMIT 1',(DEFAULT['id'],)).fetchone()
+        return summary(db,query.get('device',['all'])[0],remaining['id']) if remaining else empty_summary(db)
     settings(db,study)
-    if path=='/api/project':return summary(db,query.get('device',['all'])[0],study)
     if path=='/api/project/config':return settings(db,study)
     if path=='/api/project/reports':return {'reports':project_reports.catalog(db,settings(db,study)['id'])}
     if path=='/api/project/report':return project_reports.read(db,settings(db,study)['id'],identifier(query.get('id',[''])[0]))
@@ -209,6 +252,9 @@ def get(db,path,query,identifier):
 
 def post(db,path,data,identifier,pages,study=STUDY):
     if not isinstance(data,dict):raise ValueError('Expected object')
+    if path=='/api/project/studies/delete':
+        if set(data)!={'studyId'}:raise ValueError('Invalid delete request')
+        return delete_study(db,identifier(data['studyId']))
     if path=='/api/project/rounds':
         if data:raise ValueError('Invalid round request')
         current=settings(db,study)

@@ -104,6 +104,85 @@ class CloudApiTests(unittest.TestCase):
         self.data('POST', '/api/heatmap/snapshots', snapshot)
         self.assertEqual(self.data('GET', '/api/heatmap/snapshots?id=cloud-snapshot')['html'], snapshot['html'])
 
+    def test_delete_study_removes_only_its_data(self):
+        first=self.data('POST','/api/project/studies',{'studyTitle':'Удаляемое исследование'})['studyId']
+        second=self.data('POST','/api/project/studies',{'studyTitle':'Соседнее исследование'})['studyId']
+        self.assertEqual(self.request('POST','/api/project/studies/delete',{'studyId':first},authenticated=False)[0],401)
+        with api.cloud_db.connect() as db:
+            for key in ('shared-snapshot','only-first-snapshot'):
+                db.execute('INSERT INTO snapshots VALUES (?,?,?,?)',(key,'<!doctype html><html></html>',390,844))
+            for key,study,snapshot in (('first-click',first,'shared-snapshot'),('first-only-click',first,'only-first-snapshot'),('second-click',second,'shared-snapshot')):
+                db.execute('''INSERT INTO clicks (id,study,session,seq,page,version,layout,target,x,y,vw,vh,rw,rh,scroll_x,scroll_y,timestamp,context)
+                              VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
+                           (key,study,'session-'+key,1,'bb-main','v1','layout','button',.5,.5,390,844,390,844,0,0,1000,json.dumps({'snapshot':snapshot})))
+            db.execute('INSERT INTO visits VALUES (?,?,?,?,?,?,?,?)',('first-visit',first,'session-first','bb-main',1000,390,844,'{}'))
+            db.execute('INSERT INTO replay_frames (id,study,session,seq,timestamp,page,snapshot,vw,vh,kind,label) VALUES (?,?,?,?,?,?,?,?,?,?,?)',
+                       ('first-frame',first,'session-first',1,1000,'bb-main','<html></html>',390,844,'screen','Главная'))
+            db.execute('INSERT INTO recordings (id,study,session,startedAt,mime) VALUES (?,?,?,?,?)',('first-recording',first,'session-first',1000,'video/webm'))
+            db.execute('INSERT INTO recording_chunks VALUES (?,?,?,?)',('first-recording',0,b'video','digest'))
+            db.execute('INSERT INTO study_task_sessions VALUES (?,?,?,?,?)',(first,'session-first',1000,390,844))
+            db.execute('INSERT INTO live_findings (id,value,study) VALUES (?,?,?)',('first-finding','{}',first))
+            db.execute('INSERT INTO live_reports (id,value,study) VALUES (?,?,?)',('first-report','{}',first))
+        result=self.data('POST','/api/project/studies/delete',{'studyId':first})
+        self.assertEqual(result['deleted'],first)
+        self.assertNotIn(first,[item['studyId'] for item in self.data('GET','/api/project/studies')['studies']])
+        self.assertEqual(self.request('GET','/api/project/config?study='+first)[0],400)
+        self.assertNotEqual(self.data('GET','/api/project?study='+first)['project']['studyId'],first)
+        self.assertEqual(self.request('POST','/api/project/studies/delete',{'studyId':first})[0],400)
+        self.assertEqual(self.request('POST','/api/project/studies/delete',{'studyId':'leed-local'})[0],400)
+        with api.cloud_db.connect() as db:
+            for table in ('clicks','visits','replay_frames','recordings','study_task_sessions','live_findings','live_reports'):
+                self.assertEqual(db.execute(f'SELECT COUNT(*) FROM {table} WHERE study=?',(first,)).fetchone()[0],0,table)
+            self.assertEqual(db.execute('SELECT COUNT(*) FROM recording_chunks WHERE recording=?',('first-recording',)).fetchone()[0],0)
+            self.assertIsNone(db.execute('SELECT id FROM snapshots WHERE id=?',('only-first-snapshot',)).fetchone())
+            self.assertIsNotNone(db.execute('SELECT id FROM snapshots WHERE id=?',('shared-snapshot',)).fetchone())
+            self.assertIsNotNone(db.execute('SELECT id FROM clicks WHERE study=?',(second,)).fetchone())
+        late={'id':'late-deleted-snapshot','study':first,'html':'<!doctype html><html></html>','width':390,'height':844}
+        self.assertTrue(self.data('POST','/api/heatmap/snapshots',late)['closed'])
+        late_click=dict(id='late-deleted-click',study=first,session='late-session',seq=1,page='bb-main',
+                        version='biletberu-v1',target='button',x=.5,y=.5,vw=390,vh=844,rw=390,rh=844,
+                        scroll_x=0,scroll_y=0,timestamp=2000,context={'signature':'1234567890abcdef','scrolls':[]})
+        self.assertEqual(self.data('POST','/api/heatmap/events',{'events':[late_click]})['accepted'],[late_click['id']])
+        with api.cloud_db.connect() as db:
+            self.assertIsNone(db.execute('SELECT id FROM snapshots WHERE id=?',(late['id'],)).fetchone())
+            self.assertIsNone(db.execute('SELECT id FROM clicks WHERE id=?',(late_click['id'],)).fetchone())
+
+    def test_last_study_can_be_deleted_and_created_again(self):
+        import live_project
+        with tempfile.TemporaryDirectory() as folder:
+            db=sqlite3.connect(str(Path(folder)/'isolated.sqlite3'))
+            db.row_factory=sqlite3.Row
+            try:
+                db.executescript((ROOT/'execution/schema.sql').read_text(encoding='utf-8'))
+                live_project.initialize(db)
+                deleted=live_project.delete_study(db,'biletberu-mobile')
+                self.assertIsNone(deleted['nextStudyId'])
+                live_project.initialize(db)
+                self.assertEqual(live_project.get(db,'/api/project',{},lambda value:value)['studies'],[])
+                created=live_project.post(db,'/api/project/studies',{'studyTitle':'Новое первое'},lambda value:value,[])
+                self.assertEqual(live_project.get(db,'/api/project',{},lambda value:value)['project']['studyId'],created['studyId'])
+            finally:
+                db.close()
+
+    def test_existing_cloud_database_migrates_to_deletion_schema(self):
+        import live_project
+        with tempfile.TemporaryDirectory() as folder:
+            previous=os.environ['UXLAB_TEST_DB']
+            os.environ['UXLAB_TEST_DB']=str(Path(folder)/'version-two.sqlite3')
+            try:
+                with api.cloud_db.connect() as db:
+                    db.executescript((ROOT/'execution/schema.sql').read_text(encoding='utf-8'))
+                    live_project.initialize(db)
+                    db.execute('DROP TABLE deleted_studies')
+                    db.execute('INSERT INTO cloud_schema VALUES (2)')
+                api.cloud_db.migrate()
+                with api.cloud_db.connect() as db:
+                    self.assertIsNotNone(db.execute('SELECT version FROM cloud_schema WHERE version=3').fetchone())
+                    self.assertIsNotNone(db.execute('SELECT id FROM live_studies WHERE id=?',('biletberu-mobile',)).fetchone())
+                    self.assertIsNotNone(db.execute("SELECT name FROM sqlite_master WHERE name='deleted_studies'").fetchone())
+            finally:
+                os.environ['UXLAB_TEST_DB']=previous
+
     def test_mobile_link_collects_only_its_study(self):
         origin='https://biletberu-mobile.vercel.app'
         self.data('POST','/api/project/config',{'enabled':False})

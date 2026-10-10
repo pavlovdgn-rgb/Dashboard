@@ -109,23 +109,24 @@ def migrate():
     with read_only():
         with connect() as db:
             existing = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='cloud_schema'").fetchone()
-            if existing and db.execute('SELECT version FROM cloud_schema WHERE version=2').fetchone():
+            if existing and db.execute('SELECT version FROM cloud_schema WHERE version=3').fetchone():
                 return
     with connect() as db:
         existing = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='cloud_schema'").fetchone()
         if not existing or not db.execute('SELECT version FROM cloud_schema WHERE version=1').fetchone():
             db.executescript(Path(__file__).with_name('schema.sql').read_text(encoding='utf-8'))
-        if db.execute('SELECT version FROM cloud_schema WHERE version=2').fetchone():
-            return
-        import live_project
-        live_project.initialize(db)
-        # Keep Lead Generation results, but stop every old link before exposing the new project.
-        now = int(time.time() * 1000)
-        for row in db.execute("SELECT id,value FROM live_studies WHERE project_id='leed-generation'"):
-            config = json.loads(row['value'])
-            config['enabled'] = False
-            if not config.get('roundClosedAt'):
-                config['roundClosedAt'] = now
-            db.execute('UPDATE live_studies SET value=? WHERE id=?', (json.dumps(config, ensure_ascii=False), row['id']))
-            db.execute("UPDATE recordings SET status='stopped' WHERE study=? AND status='uploading'", (row['id'],))
-        db.execute('INSERT INTO cloud_schema VALUES (2)')
+        if not db.execute('SELECT version FROM cloud_schema WHERE version=2').fetchone():
+            import live_project
+            live_project.initialize(db)
+            # Keep Lead Generation results, but stop every old link before exposing the new project.
+            now = int(time.time() * 1000)
+            for row in db.execute("SELECT id,value FROM live_studies WHERE project_id='leed-generation'"):
+                config = json.loads(row['value'])
+                config['enabled'] = False
+                if not config.get('roundClosedAt'):
+                    config['roundClosedAt'] = now
+                db.execute('UPDATE live_studies SET value=? WHERE id=?', (json.dumps(config, ensure_ascii=False), row['id']))
+                db.execute("UPDATE recordings SET status='stopped' WHERE study=? AND status='uploading'", (row['id'],))
+            db.execute('INSERT INTO cloud_schema VALUES (2)')
+        db.execute('CREATE TABLE IF NOT EXISTS deleted_studies (id TEXT PRIMARY KEY, deleted_at INTEGER NOT NULL)')
+        db.execute('INSERT INTO cloud_schema VALUES (3)')

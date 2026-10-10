@@ -21,16 +21,21 @@ const titles:Record<string,string>={overview:'Обзор результатов'
 export function LiveWorkspace() {
   const {route,navigate}=useWireRoute();
   const [headerActions,setHeaderActions]=useState<HTMLDivElement|null>(null);
-  const [data,setData]=useState<LiveSummary|null>(null),[error,setError]=useState(''),[revision,setRevision]=useState(0);
+  const [data,setData]=useState<LiveSummary|null>(null),[error,setError]=useState(''),[revision,setRevision]=useState(0),[loadedStudy,setLoadedStudy]=useState('');
   const cached=useRef(new Map<string,LiveSummary>()),content=useRef<HTMLDivElement>(null),lastHeight=useRef(480);
   const map=['heatmap','heatmap-live'].includes(route.screen);
   const summaryDevice=map||['setup','launch','report'].includes(route.screen)?'all':route.device;
   useEffect(()=>{const reviewed=()=>setRevision(value=>value+1);addEventListener('ux-task-reviewed',reviewed);return()=>removeEventListener('ux-task-reviewed',reviewed);},[]);
   useEffect(()=>{
     let disposed=false,busy=false;
-    async function read(){if(busy)return;busy=true;try{const next=await liveApi<LiveSummary>(`?device=${summaryDevice}`);if(!disposed){cached.current.set(`${route.study}:${summaryDevice}`,next);setData(next);setError('');}}catch(e){if(!disposed){setError(e instanceof Error?e.message:'Не удалось загрузить проект.');}}finally{busy=false;}}
+    async function read(){if(busy)return;busy=true;try{const next=await liveApi<LiveSummary>(`?device=${summaryDevice}`);if(!disposed){cached.current.set(`${route.study}:${summaryDevice}`,next);setData(next);setLoadedStudy(route.study);setError('');}}catch(e){if(!disposed){setError(e instanceof Error?e.message:'Не удалось загрузить проект.');}}finally{busy=false;}}
     void read();const timer=setInterval(()=>void read(),2000);return()=>{disposed=true;clearInterval(timer);};
   },[summaryDevice,revision,route.study]);
+  useEffect(()=>{
+    if(route.screen==='projects'||loadedStudy!==route.study||!data?.studies||data.studies.some(study=>study.studyId===route.study))return;
+    const nextStudy=data.studies[0]?.studyId||'biletberu-mobile';
+    if(route.screen!=='studies'||route.study!==nextStudy)navigate({screen:'studies',study:nextStudy,device:'all'},true);
+  },[data,loadedStudy,route.screen,route.study]);
   // Retire the old product workspace; keep its state as a backup rather than mixing it with live data.
   useEffect(()=>{try {const old=localStorage.getItem('ux-lab-workspace-v1');if(old){if(!localStorage.getItem('ux-lab-workspace-archive-v1'))localStorage.setItem('ux-lab-workspace-archive-v1',old);localStorage.removeItem('ux-lab-workspace-v1');}}catch{/* Storage may be unavailable; live project still comes from SQLite. */}},[]);
   const title=titles[route.screen]||'Проверка и запуск';
