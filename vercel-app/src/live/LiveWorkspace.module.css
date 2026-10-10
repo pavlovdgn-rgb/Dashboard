@@ -131,10 +131,10 @@
   color:var(--status-error-text);
   font:var(--font-weight-medium) var(--font-size-small)/var(--line-height-small) var(--font-sans);
   cursor:pointer;
+  transition:color var(--motion-feedback-duration) var(--motion-feedback-easing);
 }
 .studyDeleteAction:hover,.studyDeleteAction:active { background:transparent; box-shadow:none; }
-.studyDeleteAction:hover { color:var(--status-error-text); }
-.studyDeleteAction:hover > :last-child { text-decoration:underline; }
+.studyDeleteAction:hover { color:color-mix(in srgb,var(--status-error-text) 75%,var(--text-primary)); }
 .studyDeleteAction:focus-visible { outline:var(--size-xx-small) solid var(--status-error-text); outline-offset:var(--size-xx-small); }
 .scenarioPreview { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
 .table td,.table th { block-size:calc(var(--size-base)*3); padding:var(--size-small) var(--size-medium); overflow-wrap:anywhere; }
