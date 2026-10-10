@@ -5,11 +5,12 @@ import { drawHeatmap } from './drawHeatmap';
 import s from './LocalHeatmap.module.css';
 
 /** Backgrounds are inert: no script execution, forms, navigation or remote app code. */
-export function inertDocument(html:string) {
+export function inertDocument(html:string,assetOrigin?:string) {
   const doc=new DOMParser().parseFromString(html,'text/html');
   doc.querySelectorAll('script,iframe,object,embed,meta[http-equiv],base').forEach(el=>el.remove());
   doc.querySelectorAll('*').forEach(el=>{
     for(const attr of Array.from(el.attributes))if(attr.name.startsWith('on')||['srcdoc','action','formaction'].includes(attr.name))el.removeAttribute(attr.name);
+    if(assetOrigin&&el.hasAttribute('style'))el.setAttribute('style',(el.getAttribute('style')||'').replace(/url\(\s*(["']?)(\/assets\/[^"')\s]+)\1\s*\)/g,(_match,_quote,path)=>`url("${assetOrigin}${path}")`));
   });
   const policy=doc.createElement('meta');policy.httpEquiv='Content-Security-Policy';
   policy.content=`default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data: ${location.origin} https://biletberu-mobile.vercel.app; img-src data: ${location.origin} https://biletberu-mobile.vercel.app; form-action 'none'; base-uri 'none'`;
@@ -33,13 +34,13 @@ export function CapturedHeatmap({group,points,exportMode=false,highlightPoints=[
         if(!response.ok)throw Error('Фон ещё загружается. Координаты кликов уже доступны.');
         const data=await response.json() as {id:string;html:string;width:number;height:number};
         if(!group.backgroundResponsive&&(data.width!==group.vw||data.height!==group.vh))throw Error('Размер сохранённого фона не совпадает с картой.');
-        if(!controller.signal.aborted){setBackground({id:id!,html:inertDocument(data.html)});setError('');}
+        if(!controller.signal.aborted){setBackground({id:id!,html:inertDocument(data.html,group.page.startsWith('bb-')?'https://biletberu-mobile.vercel.app':undefined)});setError('');}
       }catch(cause){if(!controller.signal.aborted)setError(cause instanceof Error?cause.message:'Не удалось загрузить фон');}
       finally{busy=false;}
     }
     void read();const timer=setInterval(()=>void read(),3000);
     return()=>{controller.abort();clearInterval(timer);};
-  },[id,group.vw,group.vh,group.backgroundResponsive]);
+  },[id,group.vw,group.vh,group.backgroundResponsive,group.page]);
   useEffect(()=>{
     if(!host.current)return;
     const observer=new ResizeObserver(()=>setScale(Math.min(1,host.current!.clientWidth/group.vw)));
