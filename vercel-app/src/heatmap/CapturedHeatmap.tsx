@@ -21,6 +21,8 @@ export function CapturedHeatmap({group,points,exportMode=false,highlightPoints=[
   const [scale,setScale]=useState(1);
   const host=useRef<HTMLDivElement>(null),canvas=useRef<HTMLCanvasElement>(null);
   const id=group.context?.snapshot;
+  const html=background?.id===id?background?.html:undefined;
+  const mobile=group.page.startsWith('bb-');
   useEffect(()=>{
     if(!id)return;
     const controller=new AbortController();let busy=false;
@@ -43,21 +45,18 @@ export function CapturedHeatmap({group,points,exportMode=false,highlightPoints=[
     const observer=new ResizeObserver(()=>setScale(Math.min(1,host.current!.clientWidth/group.vw)));
     observer.observe(host.current);return()=>observer.disconnect();
   },[group.vw,background?.id]);
-  useEffect(()=>{if(canvas.current)drawHeatmap(canvas.current,points,group.vw,group.vh);},[points,group.vw,group.vh]);
-  const html=background?.id===id?background?.html:undefined;
-  const mobile=group.page.startsWith('bb-');
-  const fallback=mobile?`https://biletberu-mobile.vercel.app/app${group.path||'/main'}?ux_preview=1`:
-    `${location.origin}/participant${group.path||'/leads-table'}?ux_preview=1&parentOrigin=${encodeURIComponent(location.origin)}`;
+  useEffect(()=>{if(canvas.current)drawHeatmap(canvas.current,points,group.vw,group.vh);},[points,group.vw,group.vh,html]);
+  const fallback=`${location.origin}/participant${group.path||'/leads-table'}?ux_preview=1&parentOrigin=${encodeURIComponent(location.origin)}`;
   if(onlySaved&&!html)return <div ref={host} role="status">{error?'Снимок ещё не передан. Повторяем загрузку…':'Загружаем сохранённый снимок…'}</div>;
   return <>
-    {error?<EuiCallOut color="warning" title="Снимок пока недоступен"><p>Повторяем загрузку сохранённого состояния. До его появления положение клика на фоне может быть неточным.</p></EuiCallOut>:null}
-    {mobile&&!id?<EuiCallOut color="warning" title="Для этих кликов нет снимка"><p>В старых мобильных сессиях состояние экрана в момент нажатия не сохранялось. Фон показывает текущую версию приложения, поэтому точное положение элемента восстановить нельзя.</p></EuiCallOut>:null}
+    {error?<EuiCallOut color="warning" title="Снимок пока недоступен"><p>Повторяем загрузку сохранённого состояния. Точки появятся вместе со снимком.</p></EuiCallOut>:null}
+    {mobile&&!id?<EuiCallOut color="warning" title="Для этих кликов нет снимка"><p>В старых мобильных сессиях состояние экрана в момент нажатия не сохранялось. Точное положение элемента восстановить нельзя. Новые клики будут показаны на неподвижном сохранённом состоянии.</p></EuiCallOut>:null}
     <div ref={host} className={s.preview} data-testid="captured-heatmap"
-      data-background={html?'saved':id&&!error?'loading':'fallback'}
+      data-background={html?'saved':mobile?id?'loading':'missing':'fallback'}
       style={exportMode?{width:group.vw,maxBlockSize:'none',border:0,borderRadius:0,overflow:'hidden'}:mobile?{maxBlockSize:'none',overflow:'hidden'}:undefined}>
       <div style={{position:'relative',width:group.vw*scale,height:group.vh*scale}}>
         <div data-testid="heatmap-export-surface" className={s.capturedViewport} style={{width:group.vw,height:group.vh,transform:`scale(${scale})`,transformOrigin:'top left'}}>
-          {html?<iframe title="Сохранённый фон экрана" sandbox="allow-same-origin" srcDoc={html} style={{width:group.vw,height:group.vh,pointerEvents:'none'}} onLoad={event=>{
+          {html?<iframe title="Сохранённый фон экрана" sandbox="allow-same-origin" scrolling="no" tabIndex={-1} srcDoc={html} style={{width:group.vw,height:group.vh,pointerEvents:'none',overflow:'hidden'}} onLoad={event=>{
             const frame=event.currentTarget;
             const restore=()=>{
               const doc=frame.contentDocument;
@@ -65,11 +64,16 @@ export function CapturedHeatmap({group,points,exportMode=false,highlightPoints=[
                 const [x,y]=(el.dataset.uxScroll||'0,0').split(',').map(Number);
                 if(el===doc.body)frame.contentWindow?.scrollTo(x,y);else el.scrollTo(x,y);
               });
+              doc?.querySelectorAll<HTMLElement>('*').forEach(el=>{
+                const style=doc.defaultView?.getComputedStyle(el);
+                if(style&&((el.scrollHeight>el.clientHeight+1&&/auto|scroll|overlay/.test(style.overflowY))||(el.scrollWidth>el.clientWidth+1&&/auto|scroll|overlay/.test(style.overflowX))))
+                  el.style.setProperty('overflow','hidden','important');
+              });
             };
             restore();void frame.contentDocument?.fonts.ready.then(restore);
-          }}/>:<iframe title="Исходный интерфейс" src={fallback} style={{width:group.vw,height:group.vh,pointerEvents:'none'}}/>}
-          <canvas ref={canvas} className={s.canvas} data-testid="captured-click-layer" aria-label="Тепловой слой реальных кликов"/>
-          {highlightPoints.length?<svg className={s.elementHighlight} data-testid="heatmap-element-highlight" viewBox={`0 0 ${group.vw} ${group.vh}`} aria-hidden="true">
+          }}/>:mobile?<div className={s.missingBackground} role="status">{id?'Загружаем сохранённое состояние экрана…':'Состояние экрана для этих кликов не сохранено.'}</div>:<iframe title="Исходный интерфейс" src={fallback} style={{width:group.vw,height:group.vh,pointerEvents:'none'}}/>}
+          {(!mobile||html)?<canvas ref={canvas} className={s.canvas} data-testid="captured-click-layer" aria-label="Тепловой слой реальных кликов"/>:null}
+          {(!mobile||html)&&highlightPoints.length?<svg className={s.elementHighlight} data-testid="heatmap-element-highlight" viewBox={`0 0 ${group.vw} ${group.vh}`} aria-hidden="true">
             {[...new Map(highlightPoints.map(point=>[point.element?JSON.stringify(point.element.rect):`${point.x}:${point.y}`,point])).values()].map((point,index)=>point.element?
               <rect key={index} x={point.element.rect[0]*group.vw} y={point.element.rect[1]*group.vh} width={point.element.rect[2]*group.vw} height={point.element.rect[3]*group.vh}/>:
               <circle key={index} cx={point.x*group.vw} cy={point.y*group.vh} r={24}/>)}

@@ -29,6 +29,7 @@
 .liveColumns table { min-inline-size:0; }
 .sessionList { max-block-size:calc(var(--size-base)*12); overflow:auto; font-size:var(--font-size-small); overflow-wrap:anywhere; }
 .capturedViewport { position:absolute; inset:0; overflow:hidden; background:var(--background-surface); }
+.missingBackground { display:grid; place-items:center; inline-size:100%; block-size:100%; padding:var(--size-large); color:var(--text-secondary); text-align:center; background:var(--background-canvas); }
 .coordinateGrid { position:absolute; inset:0; background-image:linear-gradient(var(--border-subtle) 1px,transparent 1px),linear-gradient(90deg,var(--border-subtle) 1px,transparent 1px); background-size:64px 64px; }
 .densityLegend { display:flex; align-items:center; gap:var(--size-base); font-size:var(--font-size-small); }
 .densityLegend > div { flex:1; height:var(--size-small); border-radius:var(--radius-surface); background:linear-gradient(90deg,var(--heatmap-spot-outer),var(--heatmap-spot-middle),var(--heatmap-spot-core)); }

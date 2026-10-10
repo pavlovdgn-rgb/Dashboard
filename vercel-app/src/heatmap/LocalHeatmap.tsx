@@ -66,13 +66,14 @@ export function LocalHeatmap({refreshRevision=0,onRefreshResult}:{refreshRevisio
           if(requested){setGroup(requested.layout);setTarget('');return;}
         }
         if(!next.groups.some(item=>item.layout===group)){setGroup(next.groups[0]?.layout||'');setTarget('');}
-      } catch(cause) {if(!cancelled){setError(cause instanceof Error?cause.message:'Не удалось загрузить клики');onRefreshResult?.(refreshRevision,false);}}
+      } catch(cause) {if(!cancelled){setError(cause instanceof TypeError?'Не удалось получить данные. Проверяем соединение и повторяем запрос.':cause instanceof Error?cause.message:'Не удалось загрузить клики');onRefreshResult?.(refreshRevision,false);}}
       finally {busy=false;if(!cancelled)setLoading(false);}
     };
     void read();const timer=setInterval(read,2000);
     return()=>{cancelled=true;controller.abort();clearInterval(timer);};
   },[study,session,group,mode,revision,refreshRevision,route.item,onRefreshResult]);
-  const currentPoints=responseKey===`${study}:${session}:${group}:${mode}`?data.points:[];
+  const selectionReady=responseKey===`${study}:${session}:${group}:${mode}`;
+  const currentPoints=selectionReady?data.points:[];
   const points=target?currentPoints.filter(point=>point.target===target):currentPoints;
   const clicks=points.reduce((sum,point)=>sum+point.count,0),sessions=[...new Set(points.flatMap(point=>point.sessions))];
   const targets=[...new Set(currentPoints.map(point=>point.target))];
@@ -119,10 +120,10 @@ export function LocalHeatmap({refreshRevision=0,onRefreshResult}:{refreshRevisio
       <ProductDropdown appearance="field" label={selected?.page.startsWith('bb-')?'Состояние экрана':'Размер окна'} value={group} disabled={!selected} placeholder="Нет снимков" onChange={value=>{setGroup(value);setTarget('');}} options={data.groups.filter(item=>item.page===selected?.page).map(item=>({value:item.layout,label:item.page.startsWith('bb-')?`${item.vw} × ${item.vh} · ${item.context?.snapshot?new Date(item.lastAt||0).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'без снимка'} · ${item.clicks} кликов`:`${item.vw} × ${item.vh} · ${item.clicks} кликов`}))}/>
     </div><div className={s.filterFooter}>
       <EuiTabs className={s.filterTabs} aria-label="Режим реальной карты" title="Все клики — все нажатия на экране. Первый клик — одно первое нажатие на экран за сессию."><EuiTab isSelected={mode==='all'} onClick={()=>{setMode('all');setTarget('');}}>Все клики</EuiTab><EuiTab isSelected={mode==='first'} onClick={()=>{setMode('first');setTarget('');}}>Первый клик</EuiTab></EuiTabs>
-      <div className={s.filterStatus}><span className={s.selectionCount}>{responseKey===`${study}:${session}:${group}:${mode}`?`Клики: ${clicks} · Сессии: ${sessions.length}`:'Обновляем выборку…'}</span><span className={w.muted}>Обновлено {matchingScope?updated||'—':'—'}</span></div>
+      <div className={s.filterStatus}><span className={s.selectionCount}>{selectionReady?`Клики: ${clicks} · Сессии: ${sessions.length}`:'Обновляем выборку…'}</span><span className={w.muted}>Обновлено {matchingScope?updated||'—':'—'}</span></div>
     </div></section>
     {error?<EuiCallOut color="danger" title="Нет связи со сборщиком"><p>{error}</p><p>Последние полученные данные сохранены на экране.</p></EuiCallOut>:null}
-    {!data.groups.length?<Empty>{loading||!matchingScope?'Загружаем клики…':session?'В этой сессии нет собранных кликов. Выберите другую сессию или всех участников.':'Пока нет собранных кликов. Откройте подключённый интерфейс и выполните несколько действий.'}</Empty>:<>
+    {!data.groups.length?<Empty>{loading||!matchingScope?'Загружаем клики…':session?'В этой сессии нет собранных кликов. Выберите другую сессию или всех участников.':'Пока нет собранных кликов. Откройте подключённый интерфейс и выполните несколько действий.'}</Empty>:!selectionReady?<Empty>{error?'Данные выбранного состояния пока недоступны. Повторяем загрузку…':'Загружаем выбранное состояние экрана…'}</Empty>:<>
       {previewError&&!leed?<EuiCallOut color="warning" title={previewError}/>:null}
       {exportError?<EuiCallOut color="danger" title="Не удалось скачать"><p>{exportError}</p></EuiCallOut>:null}
         <div className={`${w.between} ${s.mapHeading}`}><h2>{pageLabels[selected?.page||'']||selected?.path} · {clicks} кликов</h2><div className={s.exportActions}><EuiLink className={s.layerToggle} onClick={()=>setLayer(!layer)}><DesignIcon type={layer?'eyeClosed':'eye'}/>{layer?'Скрыть клики':'Показать клики'}</EuiLink>{leed&&selected?.context?.snapshot?<HeatmapDownload busy={!!exporting} disabled={!selected} onDownload={format=>void saveMap(format)}/>:null}</div></div>
