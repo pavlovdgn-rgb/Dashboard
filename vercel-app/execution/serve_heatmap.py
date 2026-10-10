@@ -140,14 +140,18 @@ def validate(event):
 
 
 def page_groups(db, study, session=''):
-    """Aggregate viewport click density by screen, not volatile DOM/snapshot fingerprints."""
+    """Keep mobile click states separate so every dot has the right static background."""
     where='study=?'+(' AND session=?' if session else '')
     args=(study,session) if session else (study,)
     rows=db.execute('SELECT * FROM clicks WHERE '+where+' ORDER BY timestamp DESC,seq DESC',args).fetchall()
     grouped={}
     ready={row['id'] for row in db.execute('SELECT id FROM snapshots')}
     for row in rows:
-        if row['page'].startswith(('leed-','bb-')):
+        context=json.loads(row['context']) if row['context'] else {}
+        snapshot=context.get('snapshot')
+        if row['page'].startswith('bb-') and snapshot in ready:
+            key='state-'+hashlib.sha256(json.dumps([row['page'],row['vw'],row['vh'],snapshot]).encode()).hexdigest()[:20]
+        elif row['page'].startswith(('leed-','bb-')):
             key='page-'+hashlib.sha256(json.dumps([row['page'],row['vw'],row['vh']]).encode()).hexdigest()[:20]
         else:
             key=row['layout']
@@ -171,7 +175,7 @@ def page_groups(db, study, session=''):
         chosen=min(backgrounds.values(),key=lambda item:(item['overlays'],-item['count']))['row'] if backgrounds else items[0]
         group={field:chosen[field] for field in ('page','version','vw','vh','rw','rh')}
         group.update(layout=key,context=json.loads(chosen['context']) if chosen['context'] else None,
-            clicks=len(items),sessions=len({row['session'] for row in items}),aggregation='page')
+            clicks=len(items),sessions=len({row['session'] for row in items}),aggregation='page',lastAt=max(row['timestamp'] for row in items))
         if group['page'].startswith('leed-'):
             group['path']=LEED_ROUTES[group['page'][5:]]
         elif group['page'].startswith('bb-'):
@@ -258,9 +262,11 @@ def make_handler(db_path):
                     if not 0<length<=MAX_SNAPSHOT:
                         return self.reply(413,{'error':'Snapshot too large or empty'})
                     data=json.loads(self.rfile.read(length))
-                    if not isinstance(data,dict) or set(data)!={'id','html','width','height'}:
+                    fields={'id','html','width','height'}
+                    if not isinstance(data,dict) or set(data) not in (fields,fields|{'study'}):
                         raise ValueError('Invalid snapshot')
                     identifier(data['id'])
+                    if 'study' in data:identifier(data['study'])
                     if not isinstance(data['html'],str) or not data['html'].startswith('<!doctype html>'):
                         raise ValueError('Invalid snapshot HTML')
                     number(data,'width',240,10000,True);number(data,'height',200,10000,True)
@@ -269,7 +275,7 @@ def make_handler(db_path):
                         # v2 IDs were based on HTML only. Identical HTML can reflow at another viewport;
                         # acknowledge such legacy retries so they do not poison an upload queue.
                         legacy_same_html=previous and data['id'].startswith('s-') and previous['html']==data['html']
-                        if previous and not legacy_same_html and any(previous[key]!=value for key,value in data.items()):
+                        if previous and not legacy_same_html and any(previous[key]!=value for key,value in data.items() if key!='study'):
                             raise ValueError('Conflicting snapshot ID')
                         db.execute('INSERT OR IGNORE INTO snapshots (id,html,width,height) VALUES (?,?,?,?)',
                             (data['id'],data['html'],data['width'],data['height']))

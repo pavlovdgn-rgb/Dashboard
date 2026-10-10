@@ -89,7 +89,8 @@ class handler(serve_heatmap.make_handler(None)):
     def participant_body_matches(self, path, study):
         try:
             length = int(self.headers.get('Content-Length', '0'))
-            if not 0 < length <= serve_heatmap.MAX_BODY:
+            limit = serve_heatmap.MAX_SNAPSHOT if path == '/api/heatmap/snapshots' else serve_heatmap.MAX_BODY
+            if not 0 < length <= limit:
                 return False
             body = self.rfile.read(length)
             data = json.loads(body)
@@ -196,7 +197,7 @@ class handler(serve_heatmap.make_handler(None)):
                 return self.reply(200, {'authenticated': True}, headers={'Set-Cookie': cookie})
             except (ValueError, TypeError):
                 return self.reply(400, {'error': 'Некорректный запрос.'})
-        if path in ('/api/project/visit', '/api/project/task-events', '/api/heatmap/events') and self.headers.get('Origin') == MOBILE_ORIGIN:
+        if path in ('/api/project/visit', '/api/project/task-events', '/api/heatmap/events', '/api/heatmap/snapshots') and self.headers.get('Origin') == MOBILE_ORIGIN:
             study = self.participant_study()
             if not study or not self.participant_body_matches(path, study):
                 return self.reply(403, {'error': 'Invalid participant link or study'})

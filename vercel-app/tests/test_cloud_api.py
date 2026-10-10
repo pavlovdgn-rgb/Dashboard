@@ -136,6 +136,12 @@ class CloudApiTests(unittest.TestCase):
         code,_,payload=self.request('POST',task_endpoint,task,extra=headers,authenticated=False)
         self.assertEqual(code,200,payload)
         self.assertTrue(json.loads(payload)['ignored'])
+        snapshot=dict(id='s3-mobile-link-test',study='biletberu-mobile',
+                      html='<!doctype html><html><body>Снимок</body></html>',width=390,height=844)
+        snap_endpoint='/api/heatmap/snapshots?study=biletberu-mobile'
+        self.assertEqual(self.request('POST',snap_endpoint,{**snapshot,'study':'leed-local'},extra=headers,authenticated=False)[0],403)
+        self.assertEqual(self.request('POST',snap_endpoint,snapshot,extra=headers,authenticated=False)[0],200)
+        self.assertEqual(self.data('GET','/api/heatmap/snapshots?id='+snapshot['id'])['html'],snapshot['html'])
         self.data('POST','/api/project/config',{'enabled':False})
 
     def test_existing_lead_data_is_archived_without_mixing_mobile_results(self):
@@ -268,6 +274,26 @@ class CloudApiTests(unittest.TestCase):
               'criterion':'custom','successDescription':'Открыт экран успешной оплаты','verification':check}
         saved=self.data('POST','/api/project/config?study='+study,{'mode':'scenario','tasks':[task]})
         self.assertEqual(saved['tasks'][0]['verification'],check)
+
+    def test_mobile_heatmap_separates_saved_scroll_states(self):
+        study=self.data('POST','/api/project/studies',{'studyTitle':'Снимки при кликах'})['studyId']
+        self.data('POST','/api/project/config?study='+study,{'enabled':True})
+        for index in (1,2):
+            snapshot=dict(id=f's3-scroll-{index}',study=study,
+                          html=f'<!doctype html><html><body>Состояние {index}</body></html>',width=390,height=844)
+            self.data('POST','/api/heatmap/snapshots',snapshot)
+            click=dict(id=f'click-scroll-{index}',study=study,session='scroll-tester',seq=index,
+                       page='bb-main',version='biletberu-v1',target=f'el-{index}',x=.5,y=.5,
+                       vw=390,vh=844,rw=390,rh=844,scroll_x=0,scroll_y=0,timestamp=1000+index,
+                       context={'signature':'1234567890abcdef','scrolls':[[0,0,index*200]],'snapshot':snapshot['id'],
+                                'element':{'label':'Кнопка','rect':[.4,.4,.2,.2]}})
+            self.data('POST','/api/heatmap/events',{'events':[click]})
+        groups=self.data('GET','/api/heatmap?study='+study+'&aggregation=page')['groups']
+        mobile=[group for group in groups if group['page']=='bb-main']
+        self.assertEqual({group['context']['snapshot'] for group in mobile},{'s3-scroll-1','s3-scroll-2'})
+        for group in mobile:
+            result=self.data('GET','/api/heatmap?study='+study+'&aggregation=page&group='+group['layout'])
+            self.assertEqual(sum(point['count'] for point in result['points']),1)
 
     def test_previous_round_clicks_are_available_as_element_checks(self):
         study=self.data('POST','/api/project/studies',{'studyTitle':'Клики прошлых раундов'})['studyId']

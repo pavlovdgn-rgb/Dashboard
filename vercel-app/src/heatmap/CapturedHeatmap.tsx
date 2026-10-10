@@ -12,7 +12,7 @@ export function inertDocument(html:string) {
     for(const attr of Array.from(el.attributes))if(attr.name.startsWith('on')||['srcdoc','action','formaction'].includes(attr.name))el.removeAttribute(attr.name);
   });
   const policy=doc.createElement('meta');policy.httpEquiv='Content-Security-Policy';
-  policy.content=`default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data: ${location.origin}; img-src data: ${location.origin}; form-action 'none'; base-uri 'none'`;
+  policy.content=`default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data: ${location.origin} https://biletberu-mobile.vercel.app; img-src data: ${location.origin} https://biletberu-mobile.vercel.app; form-action 'none'; base-uri 'none'`;
   doc.head.prepend(policy);
   return '<!doctype html>'+doc.documentElement.outerHTML;
 }
@@ -50,10 +50,11 @@ export function CapturedHeatmap({group,points,exportMode=false,highlightPoints=[
     `${location.origin}/participant${group.path||'/leads-table'}?ux_preview=1&parentOrigin=${encodeURIComponent(location.origin)}`;
   if(onlySaved&&!html)return <div ref={host} role="status">{error?'Снимок ещё не передан. Повторяем загрузку…':'Загружаем сохранённый снимок…'}</div>;
   return <>
-    {error?<EuiCallOut color="warning" title="Используется исходный интерфейс"><p>Сохранённый фон недоступен. Клики отображаются поверх исходного экрана.</p></EuiCallOut>:null}
+    {error?<EuiCallOut color="warning" title="Снимок пока недоступен"><p>Повторяем загрузку сохранённого состояния. До его появления положение клика на фоне может быть неточным.</p></EuiCallOut>:null}
+    {mobile&&!id?<EuiCallOut color="warning" title="Для этих кликов нет снимка"><p>В старых мобильных сессиях состояние экрана в момент нажатия не сохранялось. Фон показывает текущую версию приложения, поэтому точное положение элемента восстановить нельзя.</p></EuiCallOut>:null}
     <div ref={host} className={s.preview} data-testid="captured-heatmap"
       data-background={html?'saved':id&&!error?'loading':'fallback'}
-      style={exportMode?{width:group.vw,maxBlockSize:'none',border:0,borderRadius:0,overflow:'hidden'}:undefined}>
+      style={exportMode?{width:group.vw,maxBlockSize:'none',border:0,borderRadius:0,overflow:'hidden'}:mobile?{maxBlockSize:'none',overflow:'hidden'}:undefined}>
       <div style={{position:'relative',width:group.vw*scale,height:group.vh*scale}}>
         <div data-testid="heatmap-export-surface" className={s.capturedViewport} style={{width:group.vw,height:group.vh,transform:`scale(${scale})`,transformOrigin:'top left'}}>
           {html?<iframe title="Сохранённый фон экрана" sandbox="allow-same-origin" srcDoc={html} style={{width:group.vw,height:group.vh,pointerEvents:'none'}} onLoad={event=>{

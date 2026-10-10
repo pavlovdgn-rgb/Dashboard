@@ -1,5 +1,5 @@
 export type ClickPoint={x:number;y:number;target:string;count:number;sessions:string[];element?:{label:string;rect:[number,number,number,number]}};
-export type ClickGroup={layout:string;page:string;version:string;vw:number;vh:number;rw:number;rh:number;clicks:number;sessions:number;path?:string;aggregation?:string;backgroundResponsive?:boolean;context?:{signature:string;scrolls:number[][];snapshot?:string}};
+export type ClickGroup={layout:string;page:string;version:string;vw:number;vh:number;rw:number;rh:number;clicks:number;sessions:number;lastAt?:number;path?:string;aggregation?:string;backgroundResponsive?:boolean;context?:{signature:string;scrolls:number[][];snapshot?:string}};
 export type ClickData={groups:ClickGroup[];total:{clicks:number;sessions:number};points:ClickPoint[];sessions:string[];availableSessions?:{id:string;startedAt:number;clicks:number}[]};
 export type CollectorStatus={session?:string;pending:number;dropped?:number;error:string};
 export const LOCAL_VERSION='nova-local-v1';
