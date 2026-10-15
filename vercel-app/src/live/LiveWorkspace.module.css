@@ -5,6 +5,7 @@
 .taskEditor { display:grid; gap:var(--size-large); max-inline-size:calc(var(--size-base)*52); }
 .taskEditorHint { color:var(--text-secondary); font-size:var(--font-size-small); line-height:var(--line-height-medium); }
 .criteriaEditor { display:grid; gap:var(--size-base); }
+.criteriaEditor label textarea { block-size:calc(var(--line-height-medium)*2 + var(--size-small)*2 + var(--size-xx-small)); min-block-size:calc(var(--line-height-medium)*2 + var(--size-small)*2 + var(--size-xx-small)); }
 .criteriaCheck { display:grid; gap:var(--size-base); padding:var(--size-base); background:var(--background-canvas); border-radius:var(--radius-surface); }
 .criteriaPills :global(.euiButtonGroup__buttons) { flex-wrap:wrap; background:transparent; }
 .criteriaPills button[class] { border-radius:999px; background:var(--background-surface); }
