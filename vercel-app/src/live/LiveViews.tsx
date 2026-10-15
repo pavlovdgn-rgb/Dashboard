@@ -106,7 +106,7 @@ function StudyParameters({data,refresh}:Props){
     <div className={s.form}>{keys.map(key=><ProductCheckbox key={key} Label={parameterLabels[key]} Value={values[key]?'On':'Off'} State={mutation.busy?'Disabled':'Default'} onChange={value=>{setSaved(false);setDraft({...values,[key]:Boolean(value)});}}/>)}</div>
     <p className={w.muted}>Клики нужны для тепловой карты и сигналов затруднений, посещения — для маршрутов и воронки. Текст полей не передаётся.</p>
     {!values.collectVisits&&!values.collectClicks?<p role="status">Оба вида сбора выключены: новые события не будут записываться.</p>:null}
-    <div className={s.actions}><ProductButton Kind="Secondary" State={mutation.busy?'Loading':dirty?'Default':'Disabled'} onClick={()=>{setSaved(false);void mutation.run(async()=>{const result=await liveApi<Parameters>('/config',values);setDraft(result);setSaved(true);});}}>Сохранить параметры</ProductButton></div>
+    <div className={s.actions}><ProductButton Kind="Primary" State={mutation.busy?'Loading':dirty?'Default':'Disabled'} onClick={()=>{setSaved(false);void mutation.run(async()=>{const result=await liveApi<Parameters>('/config',values);setDraft(result);setSaved(true);});}}>Сохранить параметры</ProductButton></div>
     {saved?<p role="status">Параметры сохранены</p>:null}<ErrorMessage message={mutation.error}/>
     <p className={w.muted}>Запись экрана на телефоне пока не подключена.</p>
   </Card>;
