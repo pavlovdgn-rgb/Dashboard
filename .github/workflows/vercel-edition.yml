@@ -28,3 +28,4 @@ jobs:
       - run: npm run build
       - run: python -m pip install -r requirements.txt
       - run: python tests/test_cloud_api.py
+      - run: python tests/test_requested_study.py

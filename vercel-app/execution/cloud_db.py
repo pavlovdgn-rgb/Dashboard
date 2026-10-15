@@ -109,7 +109,7 @@ def migrate():
     with read_only():
         with connect() as db:
             existing = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='cloud_schema'").fetchone()
-            if existing and db.execute('SELECT version FROM cloud_schema WHERE version=3').fetchone():
+            if existing and db.execute('SELECT version FROM cloud_schema WHERE version=4').fetchone():
                 return
     with connect() as db:
         existing = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='cloud_schema'").fetchone()
@@ -128,5 +128,10 @@ def migrate():
                 db.execute('UPDATE live_studies SET value=? WHERE id=?', (json.dumps(config, ensure_ascii=False), row['id']))
                 db.execute("UPDATE recordings SET status='stopped' WHERE study=? AND status='uploading'", (row['id'],))
             db.execute('INSERT INTO cloud_schema VALUES (2)')
-        db.execute('CREATE TABLE IF NOT EXISTS deleted_studies (id TEXT PRIMARY KEY, deleted_at INTEGER NOT NULL)')
-        db.execute('INSERT INTO cloud_schema VALUES (3)')
+        if not db.execute('SELECT version FROM cloud_schema WHERE version=3').fetchone():
+            db.execute('CREATE TABLE IF NOT EXISTS deleted_studies (id TEXT PRIMARY KEY, deleted_at INTEGER NOT NULL)')
+            db.execute('INSERT INTO cloud_schema VALUES (3)')
+        if not db.execute('SELECT version FROM cloud_schema WHERE version=4').fetchone():
+            from requested_study_20261015 import create_once
+            create_once(db)
+            db.execute('INSERT INTO cloud_schema VALUES (4)')
