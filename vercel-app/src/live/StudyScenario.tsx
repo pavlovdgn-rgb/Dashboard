@@ -1,5 +1,6 @@
 import {useCallback,useState} from 'react';
-import {EuiButtonGroup,EuiCallOut,EuiToolTip} from '@elastic/eui';
+import {EuiButtonGroup,EuiCallOut,EuiToolTip,EuiConfirmModal} from '@elastic/eui';
+import {mobileStudyTemplate} from './mobileStudyTemplate';
 import {ProductAction} from '../components/_shared/ProductComponent';
 import type {LiveConfig,StudyTaskDefinition} from './types';
 import {studyTasks} from './taskMetrics';
@@ -15,6 +16,7 @@ const freshTask=(index:number):StudyTaskDefinition=>({id:crypto.randomUUID(),tit
 const payload=(draft:Draft)=>({...draft,tasks:draft.tasks.map(({id,title,instruction,criterion,successDescription,verification})=>({id,title,instruction,criterion,successDescription,verification}))});
 function TaskIconAction({label,icon,disabled,onClick}:{label:string;icon:string;disabled:boolean;onClick:()=>void}){return <EuiToolTip content={label}><span><ProductAction kind="Tertiary" icon={icon} label={label} state={disabled?'Disabled':'Default'} onClick={onClick}/></span></EuiToolTip>;}
 export function StudyScenario({config,refresh}:{config:LiveConfig;refresh:()=>void}){
+ const [templateOpen,setTemplateOpen]=useState(false);
  const [draft,setDraft]=useState<Draft|null>(null),[busy,setBusy]=useState(false),[saved,setSaved]=useState(false),[error,setError]=useState('');
  const [validity,setValidity]=useState<Record<string,boolean>>({});
  const onValidity=useCallback((id:string,valid:boolean)=>setValidity(old=>old[id]===valid?old:{...old,[id]:valid}),[]);
@@ -26,6 +28,7 @@ export function StudyScenario({config,refresh}:{config:LiveConfig;refresh:()=>vo
  const invalid=values.tasks.some(task=>task.title.length>120||task.instruction.length>2000)||(values.mode==='scenario'&&(!values.tasks.length||values.tasks.some(task=>!task.title.trim()||!task.instruction.trim()||validity[task.id]===false)));
  async function save(){if(busy||invalid)return;setBusy(true);setSaved(false);setError('');try{await liveApi('/config',payload(values));setSaved(true);setDraft(null);refresh();}catch(e){setError(e instanceof Error?e.message:'Не удалось сохранить задания.');}finally{setBusy(false);}}
  return <Card><h2>Режим исследования</h2><div className={s.taskEditor}>
+   {config.id==='biletberu-mobile'?<div><ProductButton Kind="Tertiary" State={busy?'Disabled':'Default'} onClick={()=>setTemplateOpen(true)}>Загрузить 6 заданий для повторного теста</ProductButton></div>:null}
    <EuiButtonGroup className={switchStyles.root} buttonSize="s" color="text" legend="Режим исследования" idSelected={values.mode} options={[{id:'free',label:'Свободное изучение'},{id:'scenario',label:'По сценарию'}]} onChange={mode=>change({mode:mode as Draft['mode'],tasks:mode==='scenario'&&!values.tasks.length?[freshTask(0)]:values.tasks})} isDisabled={busy}/>
    {values.mode==='scenario'?<>
      <p>Участник получает задания по порядку. У каждого задания свой критерий успеха и отдельный результат.</p>
@@ -44,5 +47,6 @@ export function StudyScenario({config,refresh}:{config:LiveConfig;refresh:()=>vo
      <p className={s.taskEditorHint}>После завершения откроется следующее задание. При автоматической проверке фиксируется достижение условия; при ручной — результат ожидает вашей оценки. Неначатые и незавершённые задания учитываются отдельно.</p>
    </>:<p>Свободное изучение без заданий и оценки выполнения. Список заданий сохраняется и будет доступен при переключении режима.</p>}
    <div><ProductButton Kind="Primary" State={busy?'Loading':!dirty||invalid?'Disabled':'Default'} onClick={()=>void save()}>Сохранить сценарий</ProductButton></div>
- </div><p className={s.taskEditorHint}>Изменения списка и критериев применяются к новым сессиям. Начатая сессия сохраняет свой порядок заданий и их условия.</p>{saved?<p role="status">Сценарий сохранён</p>:null}{error?<EuiCallOut color="danger" title={error}/>:null}</Card>;
+ </div><p className={s.taskEditorHint}>Изменения списка и критериев применяются к новым сессиям. Начатая сессия сохраняет свой порядок заданий и их условия.</p>{saved?<p role="status">Сценарий сохранён</p>:null}{error?<EuiCallOut color="danger" title={error}/>:null}
+ {templateOpen?<EuiConfirmModal title="Загрузить сценарий из 6 заданий?" cancelButtonText="Отмена" confirmButtonText="Загрузить задания" onCancel={()=>setTemplateOpen(false)} onConfirm={()=>{change({mode:'scenario',tasks:mobileStudyTemplate()});setValidity({});setTemplateOpen(false);}}><p>Текущий список в редакторе будет заменён шестью заданиями с автоматическим завершением. Результаты прошлых сессий сохранятся. Чтобы применить список, нажмите «Сохранить сценарий».</p></EuiConfirmModal>:null}</Card>;
 }

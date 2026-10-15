@@ -9,7 +9,7 @@ export function sessionTasks(run?:TaskRun):TaskAttempt[]{
  return run?.tasks??(run?[{...run,taskId:'legacy-task',revision:'legacy',title:'Задание 1',ordinal:0,startedAt:null}]:[]);
 }
 export function taskCounts(tasks:TaskAttempt[]){
- return {total:tasks.length,succeeded:tasks.filter(t=>t.status==='succeeded').length,failed:tasks.filter(t=>t.status==='failed').length,pending:tasks.filter(t=>t.status==='pending').length,notStarted:tasks.filter(t=>t.status==='not_started').length,unassessed:tasks.filter(t=>t.status==='unassessed').length,needsReview:tasks.filter(t=>t.status==='needs_review').length,indeterminate:tasks.filter(t=>t.status==='indeterminate').length};
+ return {total:tasks.length,succeeded:tasks.filter(t=>t.status==='succeeded').length,skipped:tasks.filter(t=>t.status==='skipped').length,failed:tasks.filter(t=>t.status==='failed').length,pending:tasks.filter(t=>t.status==='pending').length,notStarted:tasks.filter(t=>t.status==='not_started').length,unassessed:tasks.filter(t=>t.status==='unassessed').length,needsReview:tasks.filter(t=>t.status==='needs_review').length,indeterminate:tasks.filter(t=>t.status==='indeterminate').length};
 }
 export function taskGroups(data:Pick<LiveSummary,'project'|'sessions'>){
  const groups=new Map<string,{id:string;title:string;instruction:string;archived:boolean;attempts:TaskAttempt[]}>();

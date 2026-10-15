@@ -91,7 +91,7 @@ def record(db,data,identifier,pages,config):
     for key in ('id','study','session'):identifier(data[key])
     if not isinstance(data['taskId'],str):raise ValueError('Invalid task ID')
     if data['taskId']:identifier(data['taskId'])
-    if data['kind'] not in ('started','finished','chat_message_sent','lead_created','screen_visited','element_clicked','prototype_event'):raise ValueError('Invalid task action')
+    if data['kind'] not in ('started','finished','skipped','chat_message_sent','lead_created','screen_visited','element_clicked','prototype_event'):raise ValueError('Invalid task action')
     for key in ('value','label'):
         if key in data and (not isinstance(data[key],str) or len(data[key])>200):raise ValueError('Invalid event target')
     prefix='bb-' if config['id']=='biletberu-mobile' else 'leed-'
@@ -128,6 +128,11 @@ def record(db,data,identifier,pages,config):
             if automatic:
                 db.execute('UPDATE study_task_attempts SET finishedAt=? WHERE study=? AND session=? AND taskId=?',(data['timestamp'],*args))
                 completed=True
+        elif data['kind']=='skipped':
+            if run['finishedAt'] is not None:return {'accepted':data['id'],'run':run}
+            db.execute("UPDATE study_task_attempts SET status='skipped',completedAt=NULL,finishedAt=?,updatedAt=? WHERE study=? AND session=? AND taskId=?",
+                       (data['timestamp'],data['timestamp'],*args))
+            completed=True
         elif data['kind']=='finished':
             db.execute("UPDATE study_task_attempts SET status=CASE WHEN status='pending' THEN 'failed' ELSE status END,finishedAt=?,updatedAt=? WHERE study=? AND session=? AND taskId=?",
                        (data['timestamp'],data['timestamp'],*args))

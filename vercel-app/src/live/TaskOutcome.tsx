@@ -7,14 +7,14 @@ import s from './LiveWorkspace.module.css';
 import {TaskReview} from './TaskReview';
 import {useWireRoute} from '../screens/useWireRoute';
 
-const statusLabels:Record<TaskStatus,string>={succeeded:'Выполнено',failed:'Не выполнено',pending:'Без итогового результата',not_started:'Не начато',unassessed:'Не оценивалось',needs_review:'Ожидает оценки',indeterminate:'Невозможно оценить'};
+const statusLabels:Record<TaskStatus,string>={succeeded:'Выполнено',skipped:'Пропущено',failed:'Не выполнено',pending:'Без итогового результата',not_started:'Не начато',unassessed:'Не оценивалось',needs_review:'Ожидает оценки',indeterminate:'Невозможно оценить'};
 function Status({status}:{status:TaskStatus}){return <EuiBadge color={status==='succeeded'?'success':status==='failed'?'danger':'hollow'}>{statusLabels[status]}</EuiBadge>;}
-function remaining(tasks:TaskAttempt[]){const c=taskCounts(tasks);return `Не выполнено: ${c.failed} · Без итога: ${c.pending} · Не начато: ${c.notStarted} · Не оценивалось: ${c.unassessed}`+(c.needsReview?` · Ожидает оценки: ${c.needsReview}`:'')+(c.indeterminate?` · Невозможно оценить: ${c.indeterminate}`:'');}
+function remaining(tasks:TaskAttempt[]){const c=taskCounts(tasks);return `Не выполнено: ${c.failed} · Без итога: ${c.pending} · Не начато: ${c.notStarted} · Не оценивалось: ${c.unassessed}`+(c.needsReview?` · Ожидает оценки: ${c.needsReview}`:'')+(c.skipped?` · Пропущено: ${c.skipped}`:'')+(c.indeterminate?` · Невозможно оценить: ${c.indeterminate}`:'');}
 
 export function TaskOutcome({task,details=false}:{task?:LiveSession['task'];details?:boolean}){
  const {route}=useWireRoute();
  const tasks=sessionTasks(task),counts=taskCounts(tasks);
- if(!details)return !tasks.length?<span>Не оценивалось</span>:tasks.length===1?<Status status={tasks[0].status}/>:<div className={s.sessionTaskProgress}><span>{counts.succeeded} из {counts.total} заданий</span><MetricRatio value={counts.succeeded} total={counts.total} label="Выполненные задания сессии"/>{counts.needsReview?<small>Ожидает оценки: {counts.needsReview}</small>:null}{counts.indeterminate?<small>Невозможно оценить: {counts.indeterminate}</small>:null}{counts.pending||counts.notStarted?<small>Не завершено: {counts.pending+counts.notStarted}</small>:null}{counts.failed?<small>Не выполнено: {counts.failed}</small>:null}</div>;
+ if(!details)return !tasks.length?<span>Не оценивалось</span>:tasks.length===1?<Status status={tasks[0].status}/>:<div className={s.sessionTaskProgress}><span>{counts.succeeded} из {counts.total} заданий</span><MetricRatio value={counts.succeeded} total={counts.total} label="Выполненные задания сессии"/>{counts.needsReview?<small>Ожидает оценки: {counts.needsReview}</small>:null}{counts.indeterminate?<small>Невозможно оценить: {counts.indeterminate}</small>:null}{counts.pending||counts.notStarted?<small>Не завершено: {counts.pending+counts.notStarted}</small>:null}{counts.skipped?<small>Пропущено: {counts.skipped}</small>:null}{counts.failed?<small>Не выполнено: {counts.failed}</small>:null}</div>;
  return <Card><h2>Результаты заданий</h2>{tasks.length?<>
    <p>Выполнено {counts.succeeded} из {counts.total} заданий</p><MetricRatio value={counts.succeeded} total={counts.total} label="Выполненные задания сессии"/>
    <p>{remaining(tasks)}</p><div className={s.taskResultsTable}><Table label="Задания сессии" headers={['Задание','Результат','Критерий']}>

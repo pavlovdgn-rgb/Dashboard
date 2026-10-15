@@ -2,7 +2,7 @@ import type { ClickPoint,ClickGroup } from '../heatmap/types';
 export type SuccessCriterion='none'|'chat_message_sent'|'lead_created'|'custom';
 export type Verification={method:'manual'}|{method:'automatic';type:'screen'|'element'|'event';value:string;page:string};
 export type StudyTaskDefinition={id:string;title:string;instruction:string;criterion:SuccessCriterion;revision?:string;successDescription?:string;verification?:Verification};
-export type TaskStatus='not_started'|'pending'|'succeeded'|'failed'|'unassessed'|'needs_review'|'indeterminate';
+export type TaskStatus='not_started'|'pending'|'succeeded'|'failed'|'unassessed'|'needs_review'|'indeterminate'|'skipped';
 export type TaskAttempt={taskId:string;revision:string;ordinal:number;title:string;scenario:string;criterion:string;criterionLabel:string;status:TaskStatus;startedAt:number|null;completedAt:number|null;finishedAt:number|null;successDescription?:string;verification?:Verification;reviewedAt?:number|null};
 export type TaskRun={status:TaskStatus;criterion:string;criterionLabel:string;scenario:string;completedAt:number|null;finishedAt:number|null;tasks?:TaskAttempt[];activeTaskId?:string|null;totalTasks?:number;succeededTasks?:number;finishedTasks?:number};
 export type LiveConfig={id:string;title:string;studyId:string;studyTitle:string;url:string;enabled:boolean;funnel:string[];collectClicks:boolean;collectVisits:boolean;allowVideo:boolean;recordingMode:'video'|'screenshots';scenario:string;mode:'free'|'scenario';successCriterion:SuccessCriterion;tasks?:StudyTaskDefinition[];roundGroupId?:string;roundNumber?:number;roundBaseTitle?:string;roundClosedAt?:number|null};

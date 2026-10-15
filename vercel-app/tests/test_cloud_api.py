@@ -273,6 +273,29 @@ class CloudApiTests(unittest.TestCase):
         self.assertEqual(self.data('GET','/api/project?study='+study)['total']['clicks'],0)
         self.assertEqual(self.request('POST',config,{'enabled':True})[0],400)
 
+    def test_builtin_mobile_actions_and_explicit_skip(self):
+        study=self.data('POST','/api/project/studies',{'studyTitle':'Mobile skip and built-in results'})['studyId']
+        config='/api/project/config?study='+study
+        signals=self.data('GET','/api/project/criteria-catalog?study='+study)['signals']
+        self.assertTrue(any(signal['value']=='two_theatre_tickets_purchased' for signal in signals))
+        task=dict(id='first',title='Сохранить место',instruction='Добавьте место в избранное',criterion='custom',
+                  successDescription='Место добавлено',verification=dict(method='automatic',type='event',value='activity_favourited',page=''))
+        self.data('POST',config,{'enabled':True,'mode':'scenario','tasks':[task,{**task,'id':'second'}]})
+        def send(identifier,kind,task_id='',**extra):
+            return self.data('POST','/api/project/task-events',dict(id=study+'-'+identifier,study=study,session='skip-session',kind=kind,
+                taskId=task_id,timestamp=1000,page='bb-main',vw=393,vh=812,**extra))['run']
+        send('start','started')
+        skipped=send('skip','skipped','first')
+        self.assertEqual(skipped['tasks'][0]['status'],'skipped')
+        self.assertIsNone(skipped['tasks'][0]['completedAt'])
+        self.assertEqual(skipped['activeTaskId'],'second')
+        self.assertEqual(send('skip','skipped','first')['finishedTasks'],1)
+        self.assertEqual(send('late','prototype_event','first',value='activity_favourited')['succeededTasks'],0)
+        completed=send('success','prototype_event','second',value='activity_favourited')
+        self.assertIsNone(completed['activeTaskId'])
+        self.assertEqual(completed['succeededTasks'],1)
+        self.assertEqual(completed['tasks'][0]['status'],'skipped')
+
     def test_automatic_tasks_finish_and_advance(self):
         for kind, typ, value in [('screen_visited','screen','bb-main'),
                                  ('element_clicked','element','confirm-button'),

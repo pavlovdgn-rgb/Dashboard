@@ -4,6 +4,13 @@ import time
 from mobile_pages import MOBILE_SCREENS
 
 TYPES={'screen','element','event'}
+MOBILE_ACTIONS={
+    'nearby_activity_opened':'Открыта активность рядом с событием',
+    'activity_favourited':'Активность добавлена в избранное',
+    'two_theatre_tickets_purchased':'Успешно оформлены два билета на спектакль',
+    'planning_opened':'Открыт раздел «Куда пойдём?»',
+    'favourite_added_to_plan':'Место из избранного добавлено в план дня',
+}
 
 def initialize(db):
     db.executescript('''
@@ -37,6 +44,12 @@ def catalog(db,project):
     result=[dict(row) for row in db.execute('SELECT type,value,page,label,lastAt FROM prototype_success_signals WHERE project=? ORDER BY type,label',(project,))]
     if project=='biletberu-mobile':
         observed={(signal['type'],signal['value'],signal['page']) for signal in result}
+        # These are implemented domain actions, not arbitrary event names entered by an editor.
+        for value,label in MOBILE_ACTIONS.items():
+            if ('event',value,'') not in observed:
+                result.append({'type':'event','value':value,'page':'','label':label,'lastAt':0})
+        for signal in result:
+            if signal['type']=='event' and signal['value'] in MOBILE_ACTIONS:signal['label']=MOBILE_ACTIONS[signal['value']]
         for name,(_path,label) in MOBILE_SCREENS.items():
             page='bb-'+name
             if ('screen',page,page) not in observed:

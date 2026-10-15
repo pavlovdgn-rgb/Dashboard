@@ -7,7 +7,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape
 
 SECTIONS=['tasks','pages','sessions','funnel','signals','findings']
-STATUS={'succeeded':'Выполнено','failed':'Не выполнено','pending':'Без итогового результата','not_started':'Не начато','unassessed':'Не оценивалось','needs_review':'Ожидает оценки','indeterminate':'Невозможно оценить'}
+STATUS={'skipped':'Пропущено','succeeded':'Выполнено','failed':'Не выполнено','pending':'Без итогового результата','not_started':'Не начато','unassessed':'Не оценивалось','needs_review':'Ожидает оценки','indeterminate':'Невозможно оценить'}
 
 def options(data):
     if set(data)-{'device','title','sections'}:raise ValueError('Unknown report option')
