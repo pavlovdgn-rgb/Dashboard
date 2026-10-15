@@ -109,7 +109,7 @@ def migrate():
     with read_only():
         with connect() as db:
             existing = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='cloud_schema'").fetchone()
-            if existing and db.execute('SELECT version FROM cloud_schema WHERE version=4').fetchone():
+            if existing and db.execute('SELECT version FROM cloud_schema WHERE version=5').fetchone():
                 return
     with connect() as db:
         existing = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='cloud_schema'").fetchone()
@@ -135,3 +135,7 @@ def migrate():
             from requested_study_20261015 import create_once
             create_once(db)
             db.execute('INSERT INTO cloud_schema VALUES (4)')
+        if not db.execute('SELECT version FROM cloud_schema WHERE version=5').fetchone():
+            from requested_study_20261015 import use_payment_success_screen
+            use_payment_success_screen(db)
+            db.execute('INSERT INTO cloud_schema VALUES (5)')

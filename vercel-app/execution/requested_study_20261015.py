@@ -14,7 +14,7 @@ STUDY_TITLE='Повторный тест · 6 заданий · 15.10.2026'
 TASKS=[
     ('nearby','Найти активности рядом с событием','Открыта активность рядом с выбранным событием.','event','nearby_activity_opened'),
     ('favourite','Добавить активность в избранное','Активность появилась в избранном.','event','activity_favourited'),
-    ('purchase','Купить 2 билета на спектакль','Успешно оформлены ровно два билета на один спектакль.','event','two_theatre_tickets_purchased'),
+    ('purchase','Купить 2 билета на спектакль','Открыт экран успешной оплаты, в любом его варианте.','screen','bb-done'),
     ('favourites','Найти раздел «Избранное»','Открыт раздел «Избранное».','screen','bb-favourites'),
     ('planning','Найти функцию «Куда пойдём?»','Открыт раздел «Куда пойдём?», в том числе без билетов.','event','planning_opened'),
     ('plan','Построить план из избранного','В план дня добавлено место из избранного.','event','favourite_added_to_plan'),
@@ -39,4 +39,20 @@ def create_once(db):
     saved=live_project.settings(db,STUDY_ID)
     if saved['enabled'] or [task['instruction'] for task in saved['tasks']]!=[task[1] for task in TASKS]:
         raise ValueError('Requested study did not retain the exact task instructions')
+    return True
+
+
+def use_payment_success_screen(db):
+    """Apply the owner's revised criterion, retaining labels and historical attempts."""
+    row=db.execute('SELECT value FROM live_studies WHERE id=?',(STUDY_ID,)).fetchone()
+    if not row:return False
+    config=json.loads(row[0])
+    task=next((task for task in config.get('tasks',[]) if task['id']=='purchase' or task['title']=='Купить 2 билета на спектакль'),None)
+    if task is None:return False
+    task['successDescription']='Открыт экран успешной оплаты, в любом его варианте.'
+    task['criterion']='custom'
+    task['verification']={'method':'automatic','type':'screen','value':'bb-done','page':'bb-done'}
+    task['revision']=study_task_plan.version(task)
+    success_criteria.validate_connected(db,config['id'],[task])
+    db.execute('UPDATE live_studies SET value=? WHERE id=?',(json.dumps(config,ensure_ascii=False),STUDY_ID))
     return True
