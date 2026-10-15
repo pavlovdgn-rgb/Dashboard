@@ -43,6 +43,6 @@ export function StudyScenario({config,refresh}:{config:LiveConfig;refresh:()=>vo
      <div><ProductButton Kind="Secondary" icon="plus" State={busy||values.tasks.length>=20?'Disabled':'Default'} onClick={()=>change({tasks:[...values.tasks,freshTask(values.tasks.length)]})}>Добавить задание</ProductButton></div>
      <p className={s.taskEditorHint}>После завершения откроется следующее задание. При автоматической проверке фиксируется достижение условия; при ручной — результат ожидает вашей оценки. Неначатые и незавершённые задания учитываются отдельно.</p>
    </>:<p>Свободное изучение без заданий и оценки выполнения. Список заданий сохраняется и будет доступен при переключении режима.</p>}
-   <div><ProductButton Kind="Secondary" State={busy?'Loading':!dirty||invalid?'Disabled':'Default'} onClick={()=>void save()}>Сохранить сценарий</ProductButton></div>
+   <div><ProductButton Kind="Primary" State={busy?'Loading':!dirty||invalid?'Disabled':'Default'} onClick={()=>void save()}>Сохранить сценарий</ProductButton></div>
  </div><p className={s.taskEditorHint}>Изменения списка и критериев применяются к новым сессиям. Начатая сессия сохраняет свой порядок заданий и их условия.</p>{saved?<p role="status">Сценарий сохранён</p>:null}{error?<EuiCallOut color="danger" title={error}/>:null}</Card>;
 }
