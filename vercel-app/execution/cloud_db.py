@@ -8,6 +8,17 @@ from contextvars import ContextVar
 from pathlib import Path
 
 _read_only = ContextVar('cloud_db_read_only', default=False)
+_write_guard = ContextVar('cloud_db_write_guard', default=None)
+
+
+@contextmanager
+def guard_writes(check):
+    """Check a request's collection version inside the same transaction as its writes."""
+    token = _write_guard.set(check)
+    try:
+        yield
+    finally:
+        _write_guard.reset(token)
 
 
 @contextmanager
@@ -95,6 +106,9 @@ def connect(_path=None):
             db.execute('BEGIN' if local_test else 'BEGIN TRANSACTION READONLY')
         else:
             db.execute('BEGIN IMMEDIATE')
+            check = _write_guard.get()
+            if check is not None:
+                check(db)
         yield db
         raw.commit()
     except BaseException:

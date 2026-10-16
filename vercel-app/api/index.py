@@ -29,6 +29,10 @@ MOBILE_ORIGIN = 'https://biletberu-mobile.vercel.app'
 PUBLIC_API_ORIGIN = 'https://dashboard-woad-one-64.vercel.app'
 
 
+class CollectionReset(Exception):
+    pass
+
+
 def password():
     return os.environ.get('UXLAB_ACCESS_PASSWORD', '')
 
@@ -116,7 +120,8 @@ class handler(serve_heatmap.make_handler(None)):
                     scheme = 'https' if os.environ.get('VERCEL') else 'http'
                     api_origin = PUBLIC_API_ORIGIN if os.environ.get('VERCEL') else f"{scheme}://{self.headers.get('Host', '')}"
                     result['url'] = urlunsplit((url.scheme,url.netloc,url.path,url.query,
-                        urlencode({'ux_token':participant_token(result['studyId']),'ux_api':api_origin})))
+                        urlencode({'ux_token':participant_token(result['studyId']),'ux_api':api_origin,
+                                   **({'ux_version':result['collectionVersion']} if result.get('collectionVersion') else {})})))
                 return result
             if isinstance(value, list):
                 return [public_links(item) for item in value]
@@ -203,7 +208,14 @@ class handler(serve_heatmap.make_handler(None)):
                 return self.reply(403, {'error': 'Invalid participant link or study'})
             try:
                 if self.ready():
-                    return super().do_POST()
+                    def current_collection(db):
+                        row = db.execute('SELECT value FROM live_studies WHERE id=?', (study,)).fetchone()
+                        if row and json.loads(row[0]).get('collectionVersion', '') != self.headers.get('X-UXLab-Collection-Version', ''):
+                            raise CollectionReset()
+                    with cloud_db.guard_writes(current_collection):
+                        return super().do_POST()
+            except CollectionReset:
+                return self.reply(409, {'reset': True, 'error': 'Study results were reset; refresh collection settings'})
             except Exception:
                 return self.reply(503, {'error': 'Collection storage unavailable'})
         if not self.authorized():
@@ -217,7 +229,7 @@ class handler(serve_heatmap.make_handler(None)):
     def do_OPTIONS(self):
         if not self.allowed():
             return self.reply(403, {'error': 'Origin is not allowed'})
-        return self.reply(204, b'', headers={'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Range, X-UXLab-Participant'})
+        return self.reply(204, b'', headers={'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Range, X-UXLab-Participant, X-UXLab-Collection-Version'})
 
 
 if __name__ == '__main__':

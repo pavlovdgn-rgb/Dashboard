@@ -95,9 +95,7 @@ def studies(db):
     return result
 
 
-def delete_study(db,study):
-    row=db.execute('SELECT project_id FROM live_studies WHERE id=?',(study,)).fetchone()
-    if not row or row['project_id']!=DEFAULT['id']:raise ValueError('Unknown study')
+def clear_study_results(db,study):
     # Snapshot IDs are content-addressed and may be shared across studies.
     snapshot_ids={entry[0] for table in ('clicks','visits') for entry in db.execute(
         f"SELECT DISTINCT CASE WHEN json_valid(context) THEN json_extract(context,'$.snapshot') END FROM {table} WHERE study=?",(study,)) if entry[0]}
@@ -107,13 +105,19 @@ def delete_study(db,study):
         db.execute(f'DELETE FROM {table} WHERE study=?',(study,))
     db.execute('DELETE FROM recording_chunks WHERE recording IN (SELECT id FROM recordings WHERE study=?)',(study,))
     db.execute('DELETE FROM recordings WHERE study=?',(study,))
-    db.execute('DELETE FROM live_studies WHERE id=?',(study,))
-    db.execute('INSERT INTO deleted_studies VALUES (?,?)',(study,int(time.time()*1000)))
     for snapshot_id in snapshot_ids:
         referenced=any(db.execute(
             f"SELECT 1 FROM {table} WHERE CASE WHEN json_valid(context) THEN json_extract(context,'$.snapshot') END=? LIMIT 1",(snapshot_id,)).fetchone()
             for table in ('clicks','visits'))
         if not referenced:db.execute('DELETE FROM snapshots WHERE id=?',(snapshot_id,))
+
+
+def delete_study(db,study):
+    row=db.execute('SELECT project_id FROM live_studies WHERE id=?',(study,)).fetchone()
+    if not row or row['project_id']!=DEFAULT['id']:raise ValueError('Unknown study')
+    clear_study_results(db,study)
+    db.execute('DELETE FROM live_studies WHERE id=?',(study,))
+    db.execute('INSERT INTO deleted_studies VALUES (?,?)',(study,int(time.time()*1000)))
     remaining=db.execute('SELECT id FROM live_studies WHERE project_id=? ORDER BY created_at DESC,id LIMIT 1',(DEFAULT['id'],)).fetchone()
     return {'deleted':study,'nextStudyId':remaining['id'] if remaining else None}
 
@@ -252,6 +256,18 @@ def get(db,path,query,identifier):
 
 def post(db,path,data,identifier,pages,study=STUDY):
     if not isinstance(data,dict):raise ValueError('Expected object')
+    if path=='/api/project/studies/reset':
+        if set(data)!={'studyId','resetId','version'}:raise ValueError('Invalid reset request')
+        key=identifier(data['studyId']);reset_id=identifier(data['resetId'])
+        if str(uuid.UUID(reset_id))!=reset_id:raise ValueError('Invalid reset ID')
+        config=settings(db,key)
+        if config['id']!=DEFAULT['id']:raise ValueError('Unknown study')
+        if config.get('collectionVersion','')==reset_id:return config
+        if data['version']!=config.get('collectionVersion',''):raise ValueError('Study already reset; reload settings')
+        clear_study_results(db,key)
+        config.update(enabled=False,roundClosedAt=None,collectionVersion=reset_id)
+        db.execute('UPDATE live_studies SET value=? WHERE id=?',(json.dumps(config,ensure_ascii=False),key))
+        return settings(db,key)
     if path=='/api/project/studies/duplicate':
         if set(data)!={'studyId'}:raise ValueError('Invalid duplicate request')
         source_id=identifier(data['studyId'])
@@ -263,7 +279,7 @@ def post(db,path,data,identifier,pages,study=STUDY):
         config={**source,'studyId':key,'studyTitle':source['studyTitle'][:120-len(suffix)]+suffix,
                 'url':participant_url(source['url'],key)}
         # A copy starts its own history; a fixed round must remain editable as a new study.
-        for field in ('roundGroupId','roundNumber','roundBaseTitle','roundClosedAt'):
+        for field in ('roundGroupId','roundNumber','roundBaseTitle','roundClosedAt','collectionVersion'):
             config.pop(field,None)
         db.execute('INSERT INTO live_studies VALUES (?,?,?,?)',
                    (key,source['id'],json.dumps(config,ensure_ascii=False),int(time.time()*1000)))

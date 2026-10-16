@@ -9,6 +9,7 @@ import tempfile
 import threading
 import time
 import unittest
+import uuid
 from http.client import HTTPConnection
 from http.server import ThreadingHTTPServer
 from urllib.parse import urlsplit, parse_qs
@@ -192,6 +193,95 @@ class CloudApiTests(unittest.TestCase):
         self.assertEqual(self.data('GET','/api/project?study='+source_id)['sessions'][0]['task']['succeededTasks'],1)
         self.data('POST','/api/project/studies/delete',{'studyId':copy_id})
         self.assertEqual(self.data('GET','/api/project/config?study='+source_id),source)
+
+    def test_reset_clears_only_results_and_preserves_tasks_and_shared_assets(self):
+        source=self.data('POST','/api/project/studies',{'studyTitle':'Сброс результатов'})
+        study=source['studyId']
+        tasks=self.data('GET','/api/project/config?study=biletberu-retest-2026-10-15')['tasks']
+        source=self.data('POST','/api/project/config?study='+study,{'mode':'scenario',
+            'tasks':[{key:value for key,value in task.items() if key!='revision'} for task in tasks],
+            'enabled':True,'collectClicks':True,'collectVisits':False,'funnel':['bb-main','bb-done']})
+        other=self.data('POST','/api/project/studies',{'studyTitle':'Не обнулять'})['studyId']
+        started=dict(id='reset-start',study=study,session='reset-session',kind='started',taskId='',timestamp=1000,page='bb-main',vw=393,vh=812)
+        self.data('POST','/api/project/task-events',started)
+        with api.cloud_db.connect() as db:
+            created=db.execute('SELECT created_at FROM live_studies WHERE id=?',(study,)).fetchone()[0]
+            for snapshot in ('reset-shared','reset-only'):
+                db.execute('INSERT INTO snapshots VALUES (?,?,?,?)',(snapshot,'<html></html>',393,812))
+            for key,scope,snapshot in [('reset-click',study,'reset-only'),('reset-shared-click',study,'reset-shared'),('reset-other-click',other,'reset-shared')]:
+                db.execute('''INSERT INTO clicks (id,study,session,seq,page,version,layout,target,x,y,vw,vh,rw,rh,scroll_x,scroll_y,timestamp,context)
+                              VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
+                           (key,scope,key,1,'bb-main','v1','layout','button',.5,.5,393,812,393,812,0,0,1000,json.dumps({'snapshot':snapshot})))
+            db.execute('INSERT INTO visits VALUES (?,?,?,?,?,?,?,?)',('reset-visit',study,'reset-session','bb-main',1000,393,812,'{}'))
+            db.execute('INSERT INTO replay_frames (id,study,session,seq,timestamp,page,snapshot,vw,vh,kind,label) VALUES (?,?,?,?,?,?,?,?,?,?,?)',
+                       ('reset-frame',study,'reset-session',1,1000,'bb-main','<html></html>',393,812,'screen','Главная'))
+            db.execute('INSERT INTO recordings (id,study,session,startedAt,mime) VALUES (?,?,?,?,?)',('reset-video',study,'reset-session',1000,'video/webm'))
+            db.execute('INSERT INTO recording_chunks VALUES (?,?,?,?)',('reset-video',0,b'video','digest'))
+            db.execute('INSERT INTO live_findings (id,value,study) VALUES (?,?,?)',('reset-finding','{}',study))
+            db.execute('INSERT INTO live_reports (id,value,study) VALUES (?,?,?)',('reset-report','{}',study))
+        reset_id=str(uuid.uuid4())
+        reset=self.data('POST','/api/project/studies/reset',{'studyId':study,'resetId':reset_id,'version':''})
+        for key,value in source.items():
+            if key not in ('enabled','url'):self.assertEqual(reset[key],value,key)
+        self.assertFalse(reset['enabled']);self.assertEqual(reset['collectionVersion'],reset_id)
+        self.assertEqual(urlsplit(reset['url']).query,urlsplit(source['url']).query)
+        self.assertEqual(parse_qs(urlsplit(reset['url']).fragment)['ux_version'],[reset_id])
+        summary=self.data('GET','/api/project?study='+study)
+        self.assertEqual(summary['total'],{'clicks':0,'visits':0,'sessions':0,'pages':0,'lastAt':None})
+        self.assertEqual(summary['sessions'],[]);self.assertEqual(summary['findings'],[]);self.assertEqual(summary['reports'],[])
+        with api.cloud_db.connect() as db:
+            for table in ('clicks','visits','replay_frames','recordings','study_task_sessions','study_task_events',
+                          'study_task_attempts','study_task_runs','task_criteria_snapshots','live_findings','live_reports'):
+                self.assertEqual(db.execute(f'SELECT COUNT(*) FROM {table} WHERE study=?',(study,)).fetchone()[0],0,table)
+            self.assertEqual(db.execute('SELECT created_at FROM live_studies WHERE id=?',(study,)).fetchone()[0],created)
+            self.assertIsNone(db.execute('SELECT id FROM deleted_studies WHERE id=?',(study,)).fetchone())
+            self.assertIsNotNone(db.execute('SELECT id FROM clicks WHERE study=?',(other,)).fetchone())
+            self.assertIsNotNone(db.execute('SELECT id FROM snapshots WHERE id=?',('reset-shared',)).fetchone())
+            self.assertIsNone(db.execute('SELECT id FROM snapshots WHERE id=?',('reset-only',)).fetchone())
+            self.assertEqual(db.execute('SELECT COUNT(*) FROM recording_chunks WHERE recording=?',('reset-video',)).fetchone()[0],0)
+
+    def test_reset_rejects_old_queues_and_is_idempotent(self):
+        study=self.data('POST','/api/project/studies',{'studyTitle':'Очередь после сброса'})['studyId']
+        fixed=self.data('POST','/api/project/rounds?study='+study,{})['fixed']
+        reset_id=str(uuid.uuid4());payload={'studyId':study,'resetId':reset_id,'version':''}
+        self.assertEqual(self.request('POST','/api/project/studies/reset',payload,authenticated=False)[0],401)
+        reset=self.data('POST','/api/project/studies/reset',payload)
+        self.assertIsNone(reset['roundClosedAt']);self.assertIsNotNone(fixed['roundClosedAt'])
+        self.data('POST','/api/project/config?study='+study,{'enabled':True})
+        headers={'Origin':api.MOBILE_ORIGIN,'X-UXLab-Participant':api.participant_token(study)}
+        visit=dict(id='stale-reset-visit',study=study,session='stale-session',page='bb-main',timestamp=1000,vw=393,vh=812,context={'signature':'1234567890abcdef','scrolls':[]})
+        task=dict(id='stale-reset-task',study=study,session='stale-session',page='bb-main',timestamp=1000,vw=393,vh=812,taskId='',kind='started')
+        click=dict(id='stale-reset-click',study=study,session='stale-session',seq=1,page='bb-main',version='v1',target='button',x=.5,y=.5,vw=393,vh=812,rw=393,rh=812,scroll_x=0,scroll_y=0,timestamp=1000,context={'signature':'1234567890abcdef','scrolls':[]})
+        snapshot=dict(id='stale-reset-snapshot',study=study,html='<!doctype html><html></html>',width=393,height=812)
+        for path,body in [('/api/project/visit',visit),('/api/project/task-events',task),('/api/heatmap/events',{'events':[click]}),('/api/heatmap/snapshots',snapshot)]:
+            status,_,body=self.request('POST',path+'?study='+study,body,headers,authenticated=False)
+            self.assertEqual(status,409,body);self.assertTrue(json.loads(body)['reset'])
+        self.assertEqual(self.data('GET','/api/project?study='+study)['total']['sessions'],0)
+        current_headers={**headers,'X-UXLab-Collection-Version':reset_id}
+        self.assertEqual(self.request('POST','/api/project/visit?study='+study,visit,current_headers,authenticated=False)[0],200)
+        self.assertEqual(self.data('GET','/api/project?study='+study)['total']['sessions'],1)
+        self.data('POST','/api/project/studies/reset',payload)  # A lost response retry must not erase new data.
+        self.assertEqual(self.data('GET','/api/project?study='+study)['total']['sessions'],1)
+        self.data('POST','/api/project/studies/reset',{**payload,'resetId':str(uuid.uuid4())},status=400)
+        self.assertEqual(self.data('GET','/api/project?study='+study)['total']['sessions'],1)
+        copy=self.data('POST','/api/project/studies/duplicate',{'studyId':study})
+        self.assertNotIn('collectionVersion',copy)
+        for body in ({},{**payload,'extra':True},{**payload,'resetId':'bad-id'}):self.data('POST','/api/project/studies/reset',body,status=400)
+
+    def test_reset_version_checked_after_writer_lock(self):
+        import live_project
+        study=self.data('POST','/api/project/studies',{'studyTitle':'Сброс при отправке'})['studyId']
+        self.data('POST','/api/project/config?study='+study,{'enabled':True})
+        visit=dict(id='racing-reset-visit',study=study,session='racing-session',page='bb-main',timestamp=1000,vw=393,vh=812,context={'signature':'1234567890abcdef','scrolls':[]})
+        headers={'Origin':api.MOBILE_ORIGIN,'X-UXLab-Participant':api.participant_token(study)}
+        result=[]
+        with api.cloud_db.connect() as db:
+            thread=threading.Thread(target=lambda:result.append(self.request('POST','/api/project/visit?study='+study,visit,headers,authenticated=False)))
+            thread.start();time.sleep(.05)
+            live_project.post(db,'/api/project/studies/reset',{'studyId':study,'resetId':str(uuid.uuid4()),'version':''},api.serve_heatmap.identifier,api.serve_heatmap.PAGES)
+        thread.join(timeout=5)
+        self.assertEqual(result[0][0],409)
+        self.assertEqual(self.data('GET','/api/project?study='+study)['total']['sessions'],0)
 
     def test_duplicate_fixed_round_and_rejected_requests(self):
         source=self.data('POST','/api/project/studies',{'studyTitle':'Д'*120})

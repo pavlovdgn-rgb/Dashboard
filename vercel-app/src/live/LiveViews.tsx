@@ -23,6 +23,7 @@ import {ProjectList} from './ProjectList';
 import {studyTasks} from './taskMetrics';
 import {TaskOutcome,TaskSummary} from './TaskOutcome';
 import {StudyScenario} from './StudyScenario';
+import {StudyReset} from './StudyReset';
 import { CollectionControl } from './CollectionControl';
 import { pageSignalMetrics } from './metrics';
 import type { LiveSummary,LiveEvent,LiveFinding } from './types';
@@ -92,6 +93,7 @@ function StudySetup({data,refresh}:Props){
     <Card><div className={w.between}><div className={w.heading}><h2>Тестируемый интерфейс</h2><p>Билет Беру · мобильное приложение</p></div></div><p className={w.muted}>{data.project.url}</p><p>Приложение опубликовано отдельно; ссылка исследования связывает его события с этим дашбордом.</p></Card>
     <Card><h2>Название исследования</h2><div className={s.form}><Field label="Название исследования" value={title} onChange={value=>{setTitle(value);setSaved(false);}}/><ProductButton Kind="Secondary" State={mutation.busy?'Loading':!title.trim()||title.trim()===data.project.studyTitle?'Disabled':'Default'} onClick={()=>{setSaved(false);void mutation.run(async()=>{await liveApi('/config',{studyTitle:title.trim()});setSaved(true);});}}>Сохранить название</ProductButton></div>{saved?<p role="status">Название сохранено</p>:null}<ErrorMessage message={mutation.error}/></Card>
     <StudyScenario config={data.project} refresh={refresh}/><StudyParameters data={data} refresh={refresh}/>
+    <StudyReset data={data} refresh={refresh}/>
     <EuiLink href={`#/launch?study=${encodeURIComponent(data.project.studyId)}`}>К проверке и запуску</EuiLink>
   </>;
 }
