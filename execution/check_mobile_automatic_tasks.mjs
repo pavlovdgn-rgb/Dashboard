@@ -20,19 +20,27 @@ try{
  await expect(editor.getByLabel('Название задания',{exact:true})).toHaveCount(6);
  await editor.getByRole('button',{name:'Сохранить сценарий',exact:true}).click();
  await expect(editor.getByText('Сценарий сохранён',{exact:true})).toBeVisible();
- let config=await request('/api/project/config?study='+study,{enabled:true,collectClicks:false,collectVisits:false});
+ let config=await request('/api/project/config?study='+study,{enabled:true,collectClicks:true,collectVisits:true});
  assert.equal(config.tasks.length,6);assert.ok(config.tasks.every(task=>task.verification.method==='automatic'));
  assert.deepEqual(config.tasks[2].verification,{method:'automatic',type:'screen',value:'bb-done',page:'bb-done'});
  await editor.screenshot({path:new URL('configured.png',folder).pathname});
  const mobile=await browser.newContext({viewport:{width:393,height:852},isMobile:true,hasTouch:true});
- let blockWrites=false;
+ let blockWrites=false,holdSlowTraffic=false,holdSuccess=false;
+ let releaseSlowTraffic,releaseSuccess;
+ const slowGate=new Promise(resolve=>{releaseSlowTraffic=resolve;}),successGate=new Promise(resolve=>{releaseSuccess=resolve;});
+ const heldTraffic=new Set();let releasedTraffic=0;
  const studyBridge=async route=>{
   const req=route.request(),url=new URL(req.url());
   const cors={'access-control-allow-origin':app,'access-control-allow-headers':'Content-Type,X-UXLab-Participant','access-control-allow-methods':'GET,POST,OPTIONS'};
   if(req.method()==='OPTIONS')return route.fulfill({status:204,headers:cors});
   if(blockWrites&&url.pathname==='/api/project/task-events')return route.abort('failed');
+  const data=req.method()==='POST'?req.postDataJSON():null;
+  const success=url.pathname==='/api/project/task-events'&&data?.kind==='prototype_event'&&data.value==='nearby_activity_opened';
+  if(holdSuccess&&success)await successGate;
   const response=await fetch(api+url.pathname+url.search,{method:req.method(),headers:{Origin:'https://biletberu-mobile.vercel.app','Content-Type':req.headers()['content-type']||'application/json','X-UXLab-Participant':req.headers()['x-uxlab-participant']||''},...(req.method()==='POST'?{body:req.postDataBuffer()}: {})});
   if(!response.ok)console.log('Test bridge response',url.pathname,response.status,await response.clone().text());
+  const slowKind=url.pathname==='/api/project/config'?'config':url.pathname==='/api/project/visit'?'visit':url.pathname.startsWith('/api/heatmap/')?'heatmap':data?.kind==='screen_visited'||data?.kind==='element_clicked'?'catalog':null;
+  if(holdSlowTraffic&&slowKind){heldTraffic.add(slowKind);await slowGate;releasedTraffic++;}
   await route.fulfill({status:response.status,headers:{...cors,'content-type':response.headers.get('content-type')||'application/json'},body:Buffer.from(await response.arrayBuffer())});
  };
  await mobile.route('https://dashboard-woad-one-64.vercel.app/**',studyBridge);
@@ -67,9 +75,24 @@ try{
  await expect(page.locator('.uxlab-study-caption')).toHaveCount(0);
  await expect(modal).not.toContainText(config.studyTitle);
  await page.screenshot({path:new URL('details.png',folder).pathname});await close();
+ holdSlowTraffic=true;holdSuccess=true;
+ await page.evaluate(()=>document.getElementById('root').dispatchEvent(new MouseEvent('click',{bubbles:true,clientX:1,clientY:1})));
+ await expect.poll(()=>heldTraffic.has('catalog')).toBe(true);
  await nav('/activity?id=nook');await expect.poll(async()=> (await run())?.succeededTasks).toBe(0);
- await nav('/activity?id=nook&event=weekend');await current(2);
+ await page.evaluate(()=>dispatchEvent(new Event('online')));
+ await expect.poll(()=>heldTraffic.has('config')&&heldTraffic.has('heatmap')).toBe(true);
+ await nav('/activity?id=nook&event=weekend');
+ await expect(page.locator('.uxlab-study-goal')).toHaveText('✓ Выполнено · сохраняем…',{timeout:1000});
+ await expect(page.locator('.uxlab-study-skip')).toBeDisabled();
+ assert.equal(await page.locator('.uxlab-study').evaluate(el=>el.getBoundingClientRect().height),40);
+ await expect(modal).not.toBeVisible();await page.screenshot({path:new URL('success-saving.png',folder).pathname});
+ const transitionStarted=Date.now();holdSuccess=false;releaseSuccess();await current(2);
+ const transitionMs=Date.now()-transitionStarted;assert.ok(transitionMs<1000,`Success must not wait for analytics or policy polling (${transitionMs}ms)`);
  await page.getByRole('button',{name:'В избранное',exact:true}).click();await current(3);
+ assert.equal(releasedTraffic,0,'Both successes must bypass the held background responses');
+ const heldKinds=[...heldTraffic];holdSlowTraffic=false;releaseSlowTraffic();
+ await expect.poll(()=>releasedTraffic).toBeGreaterThan(0);
+ await expect(page.locator('.uxlab-study-count')).toHaveText('3/6');
  await nav('/payment?demo=1');assert.equal((await run()).succeededTasks,2,'Opening payment is not success');
  await page.getByText('Банковская карта',{exact:true}).click();await page.getByRole('button',{name:'К оплате',exact:true}).click();
  await expect(page.getByText('Банк отклонил платёж. Попробуйте ещё раз или оплатите через СБП',{exact:true}).first()).toBeVisible();
@@ -133,6 +156,27 @@ try{
  const skipped=(await request('/api/project?study='+skipStudy.studyId)).sessions[0].task;
  assert.equal(skipped.succeededTasks,0);assert.ok(skipped.tasks.every(task=>task.status==='skipped'));
  await other.screenshot({path:new URL('skipped.png',folder).pathname});
- assert.deepEqual(errors,[]);await writeFile(new URL('result.json',folder),JSON.stringify({sixAutomaticTasks:true,purchaseOnSuccessScreen:true,paymentSuccessVariants:3,declinedPaymentRejected:true,nearbyContextChecked:true,skipRetryAndReload:true,panelHeight:40,detailsOnlyOnTap:true,inlineSkip:true,noResearchCaption:true},null,2));
- console.log('PASS six real mobile tasks, purchase on the rendered success screen, declined payment rejected, nearby context, 40px panel, inline goals and skips, details only on tap, final result and retry after reload.');
+ await retry.close();
+
+ // A real success must survive an offline reload without satisfying the next
+ // task, even when both tasks deliberately use the same automatic criterion.
+ const offlineStudy=await request('/api/project/studies',{studyTitle:'Automatic success retry'});
+ const repeated=tasks.map((task,index)=>({...task,id:'repeat-'+index,verification:tasks[0].verification}));
+ const offlineConfig=await request('/api/project/config?study='+offlineStudy.studyId,{enabled:true,mode:'scenario',tasks:repeated,collectClicks:false,collectVisits:false});
+ const offline=await browser.newContext({viewport:{width:393,height:852}});await offline.route('https://dashboard-woad-one-64.vercel.app/**',studyBridge);
+ const replay=await offline.newPage();replay.on('pageerror',error=>errors.push(error.message));
+ await replay.goto(participantLink(offlineConfig));await expect(replay.locator('.uxlab-study-skip')).toBeEnabled();
+ blockWrites=true;
+ await replay.evaluate(()=>{history.pushState({},'','/app/activity?id=nook&event=weekend');dispatchEvent(new PopStateEvent('popstate'));});
+ await expect(replay.locator('.uxlab-study-goal')).toHaveText('✓ Действие выполнено · повторяем сохранение…');
+ await replay.reload();await expect(replay.locator('.uxlab-study-skip')).toBeDisabled();blockWrites=false;
+ await expect(replay.locator('.uxlab-study-count')).toHaveText('2/2',{timeout:20000});
+ await expect(replay.locator('.uxlab-study-goal')).toHaveText(repeated[1].title);
+ const recovered=(await request('/api/project?study='+offlineStudy.studyId)).sessions[0].task;
+ assert.equal(recovered.succeededTasks,1);assert.equal(recovered.activeTaskId,repeated[1].id);
+ await replay.locator('.uxlab-study-skip').click();
+ await expect(replay.getByRole('dialog',{name:'Задание исследования',exact:true})).toContainText('Выполнено 1 из 2 · Пропущено 1');
+ await offline.close();
+ assert.deepEqual(errors,[]);await writeFile(new URL('result.json',folder),JSON.stringify({sixAutomaticTasks:true,purchaseOnSuccessScreen:true,paymentSuccessVariants:3,declinedPaymentRejected:true,nearbyContextChecked:true,skipRetryAndReload:true,automaticSuccessRetryAndReload:true,panelHeight:40,detailsOnlyOnTap:true,inlineSkip:true,noResearchCaption:true,immediateSuccessFeedback:true,priorityTransitionMs:transitionMs,bypassedSlowResponses:heldKinds},null,2));
+ console.log('PASS priority task transitions and instant feedback, blocked analytics/config/catalog responses, all six tasks, payment variants, offline success and skip retries after reload.');
 }finally{await browser.close();}
