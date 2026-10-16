@@ -252,6 +252,22 @@ def get(db,path,query,identifier):
 
 def post(db,path,data,identifier,pages,study=STUDY):
     if not isinstance(data,dict):raise ValueError('Expected object')
+    if path=='/api/project/studies/duplicate':
+        if set(data)!={'studyId'}:raise ValueError('Invalid duplicate request')
+        source_id=identifier(data['studyId'])
+        row=db.execute('SELECT project_id FROM live_studies WHERE id=?',(source_id,)).fetchone()
+        if not row or row['project_id']!=DEFAULT['id']:raise ValueError('Unknown study')
+        source=settings(db,source_id)
+        key='study-'+str(uuid.uuid4())
+        suffix=' — копия'
+        config={**source,'studyId':key,'studyTitle':source['studyTitle'][:120-len(suffix)]+suffix,
+                'url':participant_url(source['url'],key)}
+        # A copy starts its own history; a fixed round must remain editable as a new study.
+        for field in ('roundGroupId','roundNumber','roundBaseTitle','roundClosedAt'):
+            config.pop(field,None)
+        db.execute('INSERT INTO live_studies VALUES (?,?,?,?)',
+                   (key,source['id'],json.dumps(config,ensure_ascii=False),int(time.time()*1000)))
+        return settings(db,key)
     if path=='/api/project/studies/delete':
         if set(data)!={'studyId'}:raise ValueError('Invalid delete request')
         return delete_study(db,identifier(data['studyId']))

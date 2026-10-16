@@ -147,6 +147,69 @@ class CloudApiTests(unittest.TestCase):
             self.assertIsNone(db.execute('SELECT id FROM snapshots WHERE id=?',(late['id'],)).fetchone())
             self.assertIsNone(db.execute('SELECT id FROM clicks WHERE id=?',(late_click['id'],)).fetchone())
 
+    def test_duplicate_study_preserves_settings_and_tasks_without_results(self):
+        template=self.data('GET','/api/project/config?study=biletberu-retest-2026-10-15')
+        tasks=[{key:value for key,value in task.items() if key!='revision'} for task in template['tasks']]
+        source=self.data('POST','/api/project/studies',{'studyTitle':'Повторное исследование'})
+        source_id=source['studyId']
+        source=self.data('POST','/api/project/config?study='+source_id,{
+            'mode':'scenario','tasks':tasks,'enabled':True,'collectClicks':True,'collectVisits':False,
+            'allowVideo':False,'recordingMode':'video','funnel':['bb-main','bb-event','bb-done']})
+        event=dict(id='duplicate-start',study=source_id,session='original-session',kind='started',
+                   taskId='',timestamp=1000,page='bb-main',vw=393,vh=812)
+        self.data('POST','/api/project/task-events',event)
+        self.data('POST','/api/project/task-events',{**event,'id':'duplicate-success','kind':'prototype_event',
+                  'taskId':tasks[0]['id'],'value':'nearby_activity_opened','page':'bb-activity','timestamp':1100})
+        click=dict(id='duplicate-source-click',study=source_id,session='original-session',seq=1,page='bb-main',
+                   version='v1',target='test-button',x=.5,y=.5,vw=393,vh=812,rw=393,rh=812,
+                   scroll_x=0,scroll_y=0,timestamp=1200,context={'signature':'1234567890abcdef','scrolls':[]})
+        self.data('POST','/api/heatmap/events',{'events':[click]})
+        with api.cloud_db.connect() as db:
+            db.execute('INSERT INTO live_findings (id,value,study) VALUES (?,?,?)',('duplicate-source-finding','{}',source_id))
+            db.execute('INSERT INTO live_reports (id,value,study) VALUES (?,?,?)',('duplicate-source-report','{}',source_id))
+            db.execute('INSERT INTO recordings (id,study,session,startedAt,mime) VALUES (?,?,?,?,?)',
+                       ('duplicate-source-recording',source_id,'original-session',1000,'video/webm'))
+        copy=self.data('POST','/api/project/studies/duplicate',{'studyId':source_id})
+        copy_id=copy['studyId']
+        self.assertNotEqual(copy_id,source_id)
+        self.assertEqual(copy['studyTitle'],source['studyTitle']+' — копия')
+        self.assertEqual(parse_qs(urlsplit(copy['url']).query)['ux_study'],[copy_id])
+        self.assertNotEqual(urlsplit(copy['url']).fragment,urlsplit(source['url']).fragment)
+        for key,value in source.items():
+            if key not in ('studyId','studyTitle','url'):self.assertEqual(copy[key],value,key)
+        summary=self.data('GET','/api/project?study='+copy_id)
+        self.assertEqual(summary['total']['sessions'],0)
+        self.assertEqual(summary['total']['clicks'],0)
+        self.assertEqual(summary['sessions'],[])
+        self.assertEqual(summary['findings'],[])
+        self.assertEqual(summary['reports'],[])
+        with api.cloud_db.connect() as db:
+            for table in ('clicks','visits','replay_frames','recordings','study_task_sessions',
+                          'study_task_attempts','study_task_events','task_criteria_snapshots','live_findings','live_reports'):
+                self.assertEqual(db.execute(f'SELECT COUNT(*) FROM {table} WHERE study=?',(copy_id,)).fetchone()[0],0,table)
+        self.data('POST','/api/project/config?study='+copy_id,{'studyTitle':'Независимая копия','enabled':False})
+        self.assertEqual(self.data('GET','/api/project/config?study='+source_id),source)
+        self.assertEqual(self.data('GET','/api/project?study='+source_id)['sessions'][0]['task']['succeededTasks'],1)
+        self.data('POST','/api/project/studies/delete',{'studyId':copy_id})
+        self.assertEqual(self.data('GET','/api/project/config?study='+source_id),source)
+
+    def test_duplicate_fixed_round_and_rejected_requests(self):
+        source=self.data('POST','/api/project/studies',{'studyTitle':'Д'*120})
+        fixed=self.data('POST','/api/project/rounds?study='+source['studyId'],{})['fixed']
+        copy=self.data('POST','/api/project/studies/duplicate',{'studyId':fixed['studyId']})
+        self.assertLessEqual(len(copy['studyTitle']),120)
+        self.assertTrue(copy['studyTitle'].endswith(' — копия'))
+        self.assertEqual(copy['mode'],'free')
+        self.assertEqual(copy['tasks'],[])
+        for key in ('roundGroupId','roundNumber','roundBaseTitle','roundClosedAt'):self.assertNotIn(key,copy)
+        self.assertTrue(self.data('POST','/api/project/config?study='+copy['studyId'],{'enabled':True})['enabled'])
+        self.assertIsNotNone(self.data('GET','/api/project/config?study='+fixed['studyId'])['roundClosedAt'])
+        count=len(self.data('GET','/api/project/studies')['studies'])
+        for body in ({},{'studyId':None},{'studyId':'missing-study'},{'studyId':source['studyId'],'enabled':True}):
+            self.data('POST','/api/project/studies/duplicate',body,status=400)
+        self.assertEqual(self.request('POST','/api/project/studies/duplicate',{'studyId':source['studyId']},authenticated=False)[0],401)
+        self.assertEqual(len(self.data('GET','/api/project/studies')['studies']),count)
+
     def test_last_study_can_be_deleted_and_created_again(self):
         import live_project
         with tempfile.TemporaryDirectory() as folder:
