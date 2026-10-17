@@ -4,6 +4,7 @@ import {ProductButton} from '../components';
 import {Card} from '../screens/WorkspaceUI';
 import {liveApi} from './api';
 import type {LiveSummary} from './types';
+import s from './LiveWorkspace.module.css';
 
 export function StudyReset({data,refresh}:{data:LiveSummary;refresh:()=>void}){
  const [confirmation,setConfirmation]=useState<{resetId:string;version:string}|null>(null);
@@ -20,7 +21,7 @@ export function StudyReset({data,refresh}:{data:LiveSummary;refresh:()=>void}){
  return <>
   <Card><h2>Сброс результатов</h2>
    <p>Обнулите статистику перед новым тестированием. Настройки исследования и задания сохранятся.</p>
-   <EuiButtonEmpty color="danger" iconType="refresh" onClick={()=>{setError('');setDone(false);setConfirmation({resetId:crypto.randomUUID(),version:data.project.collectionVersion||''});}}>Обнулить статистику</EuiButtonEmpty>
+   <div className={s.actions}><EuiButtonEmpty color="danger" iconType="refresh" onClick={()=>{setError('');setDone(false);setConfirmation({resetId:crypto.randomUUID(),version:data.project.collectionVersion||''});}}>Обнулить статистику</EuiButtonEmpty></div>
    {done?<p role="status">Статистика обнулена. Сбор приостановлен — включите его в разделе «Проверка и запуск», когда будете готовы.</p>:null}
   </Card>
   {confirmation?<EuiModal aria-labelledby="reset-study-heading" onClose={()=>{if(!busy)setConfirmation(null);}}>
